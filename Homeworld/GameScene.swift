@@ -17,6 +17,9 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         entityController = EntityController(scene: self)
         
+        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: frame.minY), to: CGPoint(x: frame.maxX, y: frame.minY))
+        self.physicsBody = floor
+        
         let joyStickSize = CGSize(width: 60, height: 60)
         let joyStick = JoystickNode(size: joyStickSize)
         joyStick.position = CGPoint(x: 2 * 60, y: 3 * 60)
@@ -34,32 +37,6 @@ class GameScene: SKScene {
         
         
     }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
     
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval

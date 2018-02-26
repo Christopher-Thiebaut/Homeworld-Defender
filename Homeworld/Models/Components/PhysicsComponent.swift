@@ -21,7 +21,7 @@ class PhysicsComponent: GKComponent {
     
     var physicsBody: SKPhysicsBody
     
-    init?(spriteNode: SKSpriteNode, bodyType: BodyType, mass: CGFloat, categoryBitmask: UInt32 = 0){
+    init?(spriteNode: SKSpriteNode, bodyType: BodyType, mass: CGFloat, categoryBitmask: UInt32 = UInt32.max){
         let center = CGPoint(x: spriteNode.size.width/2, y: spriteNode.size.height/2)
         switch bodyType {
         case .rectange:
@@ -38,7 +38,7 @@ class PhysicsComponent: GKComponent {
         physicsBody.mass = mass
         physicsBody.categoryBitMask = categoryBitmask
         spriteNode.physicsBody = physicsBody
-        physicsBody.affectedByGravity = false
+        //physicsBody.affectedByGravity = false
         super.init()
     }
     
