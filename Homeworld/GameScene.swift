@@ -11,18 +11,21 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var lastTouchLocation: CGPoint? = nil
-    
-    private var player: SKNode?
-    
-    private var thrustButton: SKNode?
-
+    var entityController: EntityController!
+    var lastUpdateTimeInterval: TimeInterval = 0
     
     override func didMove(to view: SKView) {
+        entityController = EntityController(scene: self)
+        
+        let humanFighter = HumanFighter(entityController: entityController)
+        if let humanSpriteComponent = humanFighter.component(ofType: SpriteComponent.self) {
+            humanSpriteComponent.node.position = CGPoint(x: size.width/2, y: size.height/2)
+            
+        }
+        entityController.add(humanFighter)
         physicsWorld.contactDelegate = self
         
-        player = self.childNode(withName: "player")
-        thrustButton = self.childNode(withName: "thrust_button")
+        
     }
     
     
@@ -38,47 +41,36 @@ class GameScene: SKScene {
         
     }
     
-    private func touchWasIn(node: SKNode?) -> Bool {
-        guard let lastTouch = lastTouchLocation, let node = node else {
-            return false
-        }
-        return node.contains(lastTouch)
-    }
-    
-    private func handleTouches(touches: Set<UITouch>){
-        for touch in touches {
-            let touchLocation = touch.location(in: self)
-            lastTouchLocation = touchLocation
-        }
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handleTouches(touches: touches)
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handleTouches(touches: touches)
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handleTouches(touches: touches)
+        
     }
     
     
     override func update(_ currentTime: TimeInterval) {
+        let dt = currentTime - lastUpdateTimeInterval
+        lastUpdateTimeInterval = currentTime
+        entityController.update(dt)
         // Called before each frame is rendered
-        if touchWasIn(node: thrustButton){
-            guard let playerRotation = player?.zRotation else {
-                NSLog("Failed to apply impulse to player because the player's orientation could not be determined")
-                return
-            }
-            let scale = 100.0
-            let angle = Float(playerRotation)
-            let dx = Double(cosf(angle))
-            let dy = Double(sinf(angle))
-            player?.physicsBody?.applyImpulse(CGVector.init(dx: dx * scale, dy: dy * scale))
-            lastTouchLocation = nil
-        }
+//        if touchWasIn(node: thrustButton){
+//            guard let playerRotation = player?.zRotation else {
+//                NSLog("Failed to apply impulse to player because the player's orientation could not be determined")
+//                return
+//            }
+//            let scale = 100.0
+//            let angle = Float(playerRotation)
+//            let dx = Double(cosf(angle))
+//            let dy = Double(sinf(angle))
+//            player?.physicsBody?.applyImpulse(CGVector.init(dx: dx * scale, dy: dy * scale))
+//            lastTouchLocation = nil
+//        }
     }
 }
 
