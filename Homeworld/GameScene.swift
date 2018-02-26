@@ -17,7 +17,13 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         entityController = EntityController(scene: self)
         
-        let humanFighter = HumanFighter(entityController: entityController)
+        let joyStickSize = CGSize(width: 60, height: 60)
+        let joyStick = JoystickNode(size: joyStickSize)
+        joyStick.position = CGPoint(x: 2 * 60, y: 3 * 60)
+        addChild(joyStick)
+        
+        
+        let humanFighter = HumanFighter(entityController: entityController, propulsionControl: joyStick)
         if let humanSpriteComponent = humanFighter.component(ofType: SpriteComponent.self) {
             humanSpriteComponent.node.position = CGPoint(x: size.width/2, y: size.height/2)
             

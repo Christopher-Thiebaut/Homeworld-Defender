@@ -16,7 +16,7 @@ class HumanFighter: GKEntity {
     
     let image = #imageLiteral(resourceName: "test_airplane")
     
-    init(entityController: EntityController){
+    init(entityController: EntityController, propulsionControl: PropulsionControl){
         super.init()
         
         //Set up the visual component of the entity
@@ -32,7 +32,7 @@ class HumanFighter: GKEntity {
         addComponent(physicsComponent)
         
         //Set up the propulsion component
-        guard let propulsionComponent = PropulsionComponent(spriteNode: spriteComponent.node, control: self) else {
+        guard let propulsionComponent = PropulsionComponent(spriteNode: spriteComponent.node, control: propulsionControl) else {
             fatalError("Could not initialize propulsion for human fighter. This is going to be a real short trip.")
         }
         addComponent(propulsionComponent)
@@ -51,7 +51,7 @@ extension HumanFighter : PropulsionControl {
     }
     
     func magnitude() -> CGFloat {
-        return mass*1600
+        return 1470
     }
     
     

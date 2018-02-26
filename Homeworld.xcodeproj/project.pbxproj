@@ -18,6 +18,7 @@
 		B3CD463520446F970016B396 /* HumanFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463420446F970016B396 /* HumanFighter.swift */; };
 		B3CD46372044729A0016B396 /* EntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46362044729A0016B396 /* EntityController.swift */; };
 		B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463A204479050016B396 /* PropulsionComponent.swift */; };
+		B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463D204494AE0016B396 /* JoystickNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B3CD463420446F970016B396 /* HumanFighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanFighter.swift; sourceTree = "<group>"; };
 		B3CD46362044729A0016B396 /* EntityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityController.swift; sourceTree = "<group>"; };
 		B3CD463A204479050016B396 /* PropulsionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropulsionComponent.swift; sourceTree = "<group>"; };
+		B3CD463D204494AE0016B396 /* JoystickNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		B361E2C420423E7100B2AF27 /* Homeworld */ = {
 			isa = PBXGroup;
 			children = (
+				B3CD463C2044945A0016B396 /* Controls */,
 				B3CD462E204469510016B396 /* Model Controllers */,
 				B3CD462A204467D50016B396 /* Models */,
 				B3CD4629204467360016B396 /* Resources */,
@@ -120,6 +123,14 @@
 				B3CD463420446F970016B396 /* HumanFighter.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		B3CD463C2044945A0016B396 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD463D204494AE0016B396 /* JoystickNode.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,

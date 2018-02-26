@@ -12,6 +12,7 @@ import GameplayKit
 
 protocol PropulsionControl: class {
     func shouldApplyThrust() -> Bool
+    ///The PropulsionControl should not attempt to scale the magnitude of the applied force with the mass of the object being moved as that is the responsibility of the PropulsionComponent.
     func magnitude() -> CGFloat
 }
 
@@ -44,7 +45,7 @@ class PropulsionComponent: GKComponent {
         }
         if control.shouldApplyThrust() {
             let playerRotation = spriteNode.zRotation
-            let scale = control.magnitude()
+            let scale = control.magnitude() * physicsBody.mass
             let angle = Float(playerRotation)
             let dx = CGFloat(cosf(angle))
             let dy = CGFloat(sinf(angle))
