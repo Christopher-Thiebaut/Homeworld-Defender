@@ -23,6 +23,7 @@
 		B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46412044B70D0016B396 /* MapWrappingComponent.swift */; };
 		B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46432044C3930016B396 /* HealthComponent.swift */; };
 		B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46452044C5900016B396 /* ContactDamageComponent.swift */; };
+		B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46472044CC440016B396 /* PassiveAgent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B3CD46412044B70D0016B396 /* MapWrappingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWrappingComponent.swift; sourceTree = "<group>"; };
 		B3CD46432044C3930016B396 /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
 		B3CD46452044C5900016B396 /* ContactDamageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDamageComponent.swift; sourceTree = "<group>"; };
+		B3CD46472044CC440016B396 /* PassiveAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveAgent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				B3CD46412044B70D0016B396 /* MapWrappingComponent.swift */,
 				B3CD46432044C3930016B396 /* HealthComponent.swift */,
 				B3CD46452044C5900016B396 /* ContactDamageComponent.swift */,
+				B3CD46472044CC440016B396 /* PassiveAgent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
+				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
 				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,
