@@ -39,6 +39,8 @@ class PropulsionComponent: GKComponent {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        
         guard let control = control else {
             NSLog("A propulsion control did not apply thrust this update cycle because it has no control object. It's probably supposed to have one.")
             return

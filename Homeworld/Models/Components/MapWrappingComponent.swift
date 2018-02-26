@@ -28,6 +28,8 @@ class MapWrappingComponent: GKComponent {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        
         guard let scene = scene else {
             fatalError("MapWrappingCompoenent does not have a scene.")
         }

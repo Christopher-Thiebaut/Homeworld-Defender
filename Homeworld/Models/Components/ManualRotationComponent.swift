@@ -31,6 +31,7 @@ class ManualRotationComponent: GKComponent {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
         
         guard let rotationControl = rotationControl else {
             NSLog("A Manual Rotation Component cannot rotate this round because its rotation control does not exist. This was probably unintentional. Fix it.")
