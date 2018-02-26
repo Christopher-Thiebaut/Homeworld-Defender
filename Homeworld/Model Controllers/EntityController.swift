@@ -18,7 +18,8 @@ class EntityController {
     
     lazy var componentSystems: [GKComponentSystem] = {
         let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
-        return [propulsionSystem]
+        let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
+        return [propulsionSystem, manualRotationSystem]
     }()
     
     init(scene: SKScene) {

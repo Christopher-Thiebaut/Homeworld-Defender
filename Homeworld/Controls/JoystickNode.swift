@@ -25,6 +25,12 @@ class JoystickNode: SKSpriteNode {
     
     var distanceOffCenter: CGFloat = 0
     
+    //The most extreme right position of the joystick with no vertical displacement
+    let zeroRotationReference: CGPoint
+    
+    //The angle between the most extreme right (no vertical displacement) position of the joystick and its current position.
+    var joystickAngle: CGFloat
+    
     init(size: CGSize){
         trackingDistance = size.width/2
         
@@ -35,6 +41,10 @@ class JoystickNode: SKSpriteNode {
         let touchPadSize = CGSize(width: touchPadLength, height: touchPadLength)
         
         touchPad = SKSpriteNode(texture: touchPadTexture, color: UIColor.black, size: touchPadSize)
+        
+        zeroRotationReference = CGPoint(x: touchPadLength, y: 0)
+        
+        joystickAngle = 0
         
         super.init(texture: touchPadTexture, color: .clear, size: size)
         
@@ -78,7 +88,13 @@ class JoystickNode: SKSpriteNode {
             
             //Normalize the distance between 0 and 1
             let normalizedDistance = min(abs(distance)/trackingDistance, 1)
+            
+            //Set the distance off center
             distanceOffCenter = normalizedDistance
+            
+            //Set the joystickAngle
+            joystickAngle = atan2(dy - 0, dx - 0)
+            //print(joystickAngle)
         }
     }
     
@@ -107,7 +123,7 @@ class JoystickNode: SKSpriteNode {
 extension JoystickNode : PropulsionControl {
     
     var thrustMagnitude: CGFloat {
-        return 2000    }
+        return 1000    }
     
     func shouldApplyThrust() -> Bool {
         return isPressed && distanceOffCenter > 0
@@ -117,4 +133,10 @@ extension JoystickNode : PropulsionControl {
         return distanceOffCenter * thrustMagnitude
     }
     
+}
+
+extension JoystickNode : RotationControl {
+    func angle() -> CGFloat {
+        return joystickAngle
+    }
 }

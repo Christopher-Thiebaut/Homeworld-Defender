@@ -23,13 +23,14 @@ class GameScene: SKScene {
         addChild(joyStick)
         
         
-        let humanFighter = HumanFighter(entityController: entityController, propulsionControl: joyStick)
+        let humanFighter = HumanFighter(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
         if let humanSpriteComponent = humanFighter.component(ofType: SpriteComponent.self) {
             humanSpriteComponent.node.position = CGPoint(x: size.width/2, y: size.height/2)
             
         }
         entityController.add(humanFighter)
         physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
         
     }

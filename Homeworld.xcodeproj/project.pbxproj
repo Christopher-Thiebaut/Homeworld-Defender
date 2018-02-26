@@ -19,6 +19,7 @@
 		B3CD46372044729A0016B396 /* EntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46362044729A0016B396 /* EntityController.swift */; };
 		B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463A204479050016B396 /* PropulsionComponent.swift */; };
 		B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463D204494AE0016B396 /* JoystickNode.swift */; };
+		B3CD46402044A9AC0016B396 /* ManualRotationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463F2044A9AC0016B396 /* ManualRotationComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B3CD46362044729A0016B396 /* EntityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityController.swift; sourceTree = "<group>"; };
 		B3CD463A204479050016B396 /* PropulsionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropulsionComponent.swift; sourceTree = "<group>"; };
 		B3CD463D204494AE0016B396 /* JoystickNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickNode.swift; sourceTree = "<group>"; };
+		B3CD463F2044A9AC0016B396 /* ManualRotationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualRotationComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				B3CD462C204468310016B396 /* SpriteComponent.swift */,
 				B3CD462F20446A410016B396 /* PhysicsComponent.swift */,
 				B3CD463A204479050016B396 /* PropulsionComponent.swift */,
+				B3CD463F2044A9AC0016B396 /* ManualRotationComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
 				B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
+				B3CD46402044A9AC0016B396 /* ManualRotationComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

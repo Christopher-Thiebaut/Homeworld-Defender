@@ -16,7 +16,7 @@ class HumanFighter: GKEntity {
     
     let image = #imageLiteral(resourceName: "test_airplane")
     
-    init(entityController: EntityController, propulsionControl: PropulsionControl){
+    init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
         
         //Set up the visual component of the entity
@@ -36,6 +36,10 @@ class HumanFighter: GKEntity {
             fatalError("Could not initialize propulsion for human fighter. This is going to be a real short trip.")
         }
         addComponent(propulsionComponent)
+        
+        //Set up the manual rotation component. This will allow the component to be manually rotated in response to a control's state.
+        let rotationComponent = ManualRotationComponent(spriteNode: spriteComponent.node, rotationControl: rotationControl)
+        addComponent(rotationComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
