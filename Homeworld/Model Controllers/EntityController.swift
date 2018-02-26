@@ -20,7 +20,8 @@ class EntityController {
         let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
         let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
         let mapWrappingSystem = GKComponentSystem(componentClass: MapWrappingComponent.self)
-        return [manualRotationSystem, propulsionSystem, mapWrappingSystem]
+        let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
+        return [manualRotationSystem, propulsionSystem, mapWrappingSystem, healthSystem]
     }()
     
     init(scene: SKScene) {

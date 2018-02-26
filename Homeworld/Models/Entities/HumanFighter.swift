@@ -43,6 +43,10 @@ class HumanFighter: GKEntity {
         //Give the HumanFighter a MapWrappingComponent so that if it leaves the map, it will re-enter from the other side.
         let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: entityController.scene)
         addComponent(mapWrappingComponent)
+        
+        //Give the HumanFighter a set amount of health
+        let healthComponent = HealthComponent(health: 100, entityController: entityController)
+        addComponent(healthComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
