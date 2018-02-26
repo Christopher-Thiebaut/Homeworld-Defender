@@ -65,19 +65,6 @@ class GameScene: SKScene {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         entityController.update(dt)
-        // Called before each frame is rendered
-//        if touchWasIn(node: thrustButton){
-//            guard let playerRotation = player?.zRotation else {
-//                NSLog("Failed to apply impulse to player because the player's orientation could not be determined")
-//                return
-//            }
-//            let scale = 100.0
-//            let angle = Float(playerRotation)
-//            let dx = Double(cosf(angle))
-//            let dy = Double(sinf(angle))
-//            player?.physicsBody?.applyImpulse(CGVector.init(dx: dx * scale, dy: dy * scale))
-//            lastTouchLocation = nil
-//        }
     }
 }
 

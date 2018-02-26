@@ -23,7 +23,6 @@ class HumanFighter: GKEntity {
         let texture = SKTexture(image: image)
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
         addComponent(spriteComponent)
-        spriteComponent.node.zRotation = 1.5707963268
         
         //Set up the physics properties of the physics component
         guard let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .texture, mass: mass) else {
@@ -40,23 +39,14 @@ class HumanFighter: GKEntity {
         //Set up the manual rotation component. This will allow the component to be manually rotated in response to a control's state.
         let rotationComponent = ManualRotationComponent(spriteNode: spriteComponent.node, rotationControl: rotationControl)
         addComponent(rotationComponent)
+        
+        //Give the HumanFighter a MapWrappingComponent so that if it leaves the map, it will re-enter from the other side.
+        let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: entityController.scene)
+        addComponent(mapWrappingComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-}
-//The extension below is for debuging purposes only to make sure the propulsion component works correctly
-extension HumanFighter : PropulsionControl {
-    
-    func shouldApplyThrust() -> Bool {
-        return true
-    }
-    
-    func magnitude() -> CGFloat {
-        return 1470
-    }
-    
     
 }

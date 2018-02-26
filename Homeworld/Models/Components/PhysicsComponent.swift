@@ -38,6 +38,7 @@ class PhysicsComponent: GKComponent {
         physicsBody.mass = mass
         physicsBody.categoryBitMask = categoryBitmask
         spriteNode.physicsBody = physicsBody
+        physicsBody.affectedByGravity = false
         super.init()
     }
     

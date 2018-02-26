@@ -17,9 +17,10 @@ class EntityController {
     let scene: SKScene
     
     lazy var componentSystems: [GKComponentSystem] = {
-        let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
         let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
-        return [propulsionSystem, manualRotationSystem]
+        let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
+        let mapWrappingSystem = GKComponentSystem(componentClass: MapWrappingComponent.self)
+        return [manualRotationSystem, propulsionSystem, mapWrappingSystem]
     }()
     
     init(scene: SKScene) {
@@ -48,7 +49,7 @@ class EntityController {
         entities.remove(entity)
     }
     
-    func update(_ deltaTime: CFTimeInterval) {
+    func update(_ deltaTime: TimeInterval) {
         for componentSystem in componentSystems {
             componentSystem.update(deltaTime: deltaTime)
         }
