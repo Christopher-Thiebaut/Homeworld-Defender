@@ -27,6 +27,12 @@ class Projectile: GKEntity {
         
         let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 50, destroySelf: oneHit, doNotHarm: immuneEntities, entityController: entityController)
         addComponent(contactDamageComponent)
+        
+        let wrapComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: entityController.scene)
+        addComponent(wrapComponent)
+        
+        let lifeSpanComponent = LifespanComponent(lifespan: 0.5, entityController: entityController)
+        addComponent(lifeSpanComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -57,11 +57,6 @@ class JoystickNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: UIResponder
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         isPressed = true

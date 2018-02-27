@@ -34,12 +34,13 @@ class PhysicsComponent: GKComponent {
                 return nil
             }
             physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.05, size: spriteNode.size)
-            physicsBody.contactTestBitMask = 0
         }
         physicsBody.mass = mass
+        physicsBody.contactTestBitMask = 0
         physicsBody.categoryBitMask = categoryBitmask
         spriteNode.physicsBody = physicsBody
         physicsBody.affectedByGravity = affectedByGravity
+        physicsBody.linearDamping = 1
         super.init()
     }
     

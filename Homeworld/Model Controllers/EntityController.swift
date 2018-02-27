@@ -24,7 +24,8 @@ class EntityController {
         let contactDamageComponent = GKComponentSystem(componentClass: ContactDamageComponent.self)
         let chaseAgentSystem = GKComponentSystem(componentClass: ChaseAgent.self)
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
-        return [manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, contactDamageComponent, chaseAgentSystem, projectileAgentSystem, healthSystem]
+        let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
+        return [manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, contactDamageComponent, chaseAgentSystem, healthSystem, expirationSystem]
     }()
     
     init(scene: SKScene) {
