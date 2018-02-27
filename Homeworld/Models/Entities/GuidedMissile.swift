@@ -33,6 +33,9 @@ class GuidedMissile: GKEntity {
         let chaseAgent = ChaseAgent(target: target, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
         addComponent(chaseAgent)
         
+        let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: entityController.scene)
+        addComponent(mapWrappingComponent)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
