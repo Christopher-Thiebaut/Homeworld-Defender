@@ -17,13 +17,15 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         entityController = EntityController(scene: self)
         
-        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: frame.minY), to: CGPoint(x: frame.maxX, y: frame.minY))
-        self.physicsBody = floor
+        let joyStickWidth = size.width/5
         
-        let joyStickSize = CGSize(width: 60, height: 60)
+        let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
-        joyStick.position = CGPoint(x: 2 * 60, y: 3 * 60)
+        joyStick.position = CGPoint(x: joyStickWidth/2 + 10, y: joyStickWidth/2 + 10)
         addChild(joyStick)
+        
+        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: joyStick.frame.maxY + 5), to: CGPoint(x: frame.maxX, y: joyStick.frame.maxY + 5))
+        self.physicsBody = floor
         
         
         let humanFighter = HumanFighter(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)

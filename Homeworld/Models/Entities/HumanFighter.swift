@@ -21,7 +21,8 @@ class HumanFighter: GKEntity {
         
         //Set up the visual component of the entity
         let texture = SKTexture(image: image)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        let size = CGSize(width: texture.size().width/2, height: texture.size().height/2)
+        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
         addComponent(spriteComponent)
         
         //Set up the physics properties of the physics component

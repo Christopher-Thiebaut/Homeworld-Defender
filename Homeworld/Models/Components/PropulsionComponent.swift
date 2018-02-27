@@ -46,7 +46,7 @@ class PropulsionComponent: GKComponent {
             return
         }
         //TODO: Re-examine later whether this additional conditional checking before apply thrust makes things better or worse.
-        if control.shouldApplyThrust() && (speed(velocity: physicsBody.velocity) < 200 || physicsBody.velocity.dy < 0) {
+        if control.shouldApplyThrust() /*&& (speed(velocity: physicsBody.velocity) < 500 || physicsBody.velocity.dy < 0)*/ {
             let playerRotation = spriteNode.zRotation
             let scale = control.magnitude() * physicsBody.mass
             let angle = Float(playerRotation)

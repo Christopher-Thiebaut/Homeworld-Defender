@@ -123,7 +123,7 @@ class JoystickNode: SKSpriteNode {
 extension JoystickNode : PropulsionControl {
     
     var thrustMagnitude: CGFloat {
-        return 1000    }
+        return 500    }
     
     func shouldApplyThrust() -> Bool {
         return isPressed && distanceOffCenter > 0
