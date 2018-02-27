@@ -13,6 +13,8 @@ class GameScene: SKScene {
     
     var entityController: EntityController!
     var lastUpdateTimeInterval: TimeInterval = 0
+    ///The floor is what should be consider "ground level" for most game elements, but will not usually be 0 at runtime because the control nodes are below the "floor"
+    var floorLevel: CGFloat = 0
     
     override func didMove(to view: SKView) {
         entityController = EntityController(scene: self)
@@ -44,9 +46,13 @@ class GameScene: SKScene {
         let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: joyStick.frame.maxY + 5), to: CGPoint(x: frame.maxX, y: joyStick.frame.maxY + 5))
         self.physicsBody = floor
         
+        floorLevel = joyStick.frame.maxY + 5
+        
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
+        
+        buildDemoCity(buildingWidth: 50)
         
         
 //        let wait = SKAction.wait(forDuration: 4)
@@ -68,6 +74,22 @@ class GameScene: SKScene {
             demoMissileSpriteComponent.node.position = CGPoint(x: size.width, y: demoMissileSpriteComponent.node.size.height/2)
         }
         entityController.add(demoMissile)
+    }
+    
+    private func buildDemoCity(buildingWidth: CGFloat){
+        var lastBuildingEnd: CGFloat = 0
+        let buildingTexture = SKTexture(image: #imageLiteral(resourceName: "basic_building"))
+        let scale = buildingWidth/buildingTexture.size().width
+        let buildingSize = CGSize(width: buildingTexture.size().width * scale, height: buildingTexture.size().height * scale)
+        let spaceBetweenBuildings: CGFloat = buildingWidth/5
+        while lastBuildingEnd < size.width {
+            let newBuilding = Building(texture: buildingTexture, size: buildingSize, entityController: entityController)
+            if let buildingNode = newBuilding.component(ofType: SpriteComponent.self)?.node {
+                buildingNode.position = CGPoint(x: lastBuildingEnd + buildingNode.size.width/2 + spaceBetweenBuildings, y: floorLevel + buildingNode.size.height/2)
+                lastBuildingEnd = buildingNode.position.x + buildingNode.size.width/2
+                entityController.add(newBuilding)
+            }
+        }
     }
 }
 
