@@ -18,16 +18,18 @@ class ContactDamageComponent: GKComponent {
     
     var damage: Int
     var lastDamageTime: TimeInterval
+    var doNotHarm: Set<GKEntity>
     
     weak var entityController: EntityController?
     
     
     
-    init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, entityController: EntityController){
+    init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, doNotHarm: Set<GKEntity> = [], entityController: EntityController){
         self.spriteNode = spriteNode
         self.damage = contactDamage
         self.destroySelf = true
         self.entityController = entityController
+        self.doNotHarm = doNotHarm
         lastDamageTime = 0
         super.init()
     }
@@ -52,8 +54,8 @@ class ContactDamageComponent: GKComponent {
         //Loop through other entities and see if any are having a collision with this one. If so, they should take the specified amount of damage.
         for entity in otherEntities {
             
-            guard let otherEntitySpriteComponent = entity.component(ofType: SpriteComponent.self), let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self) else {
-                //The other entity being checked either is immune to damage or has no physical representation and cannot collide or be damaged by contact
+            guard let otherEntitySpriteComponent = entity.component(ofType: SpriteComponent.self), let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self), !doNotHarm.contains(entity) else {
+                //The other entity being checked either is immune to damage or has no physical representation and cannot collide or be damaged by contact, or we have been specifically instructed not to damage.
                 continue
             }
             

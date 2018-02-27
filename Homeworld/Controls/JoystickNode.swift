@@ -103,7 +103,8 @@ class JoystickNode: SKSpriteNode {
         
         guard !touches.isEmpty else { return }
         
-        reset()
+        //Do not reset so that if the user takes their thumb off the joystick it stays put. Should make playing one handed a lot easier.
+        //reset()
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

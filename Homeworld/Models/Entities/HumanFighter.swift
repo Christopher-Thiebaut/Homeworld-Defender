@@ -56,6 +56,10 @@ class HumanFighter: GKEntity {
         //Add a passive agent to the fighter.  This will effectively do nothing except allow ai characters driven by agents to easily track it.
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)
         addComponent(passiveAgent)
+        
+        let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, damage: 50, speed: 1000, entityController: entityController)
+        addComponent(fireComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

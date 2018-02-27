@@ -38,6 +38,14 @@ class ManualRotationComponent: GKComponent {
             return
         }
         
-        spriteNode.zRotation = rotationControl.angle()
+        //spriteNode.zRotation = rotationControl.angle()
+        let desiredAngle = rotationControl.angle()
+        if desiredAngle + 20 < spriteNode.zRotation {
+            spriteNode.zRotation -= 20
+        }else if desiredAngle - 20 > spriteNode.zRotation {
+            spriteNode.zRotation += 20
+        }else{
+            spriteNode.zRotation = desiredAngle
+        }
     }
 }
