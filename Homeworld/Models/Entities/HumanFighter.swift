@@ -58,7 +58,8 @@ class HumanFighter: GKEntity {
         addComponent(passiveAgent)
         
         let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, damage: 50, speed: 1000, entityController: entityController)
+        let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, entityController: entityController)
         addComponent(fireComponent)
     }
     

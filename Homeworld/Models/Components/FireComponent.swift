@@ -17,10 +17,12 @@ class FireProjectileComponent: GKComponent {
     let entityController: EntityController
     let speed: CGFloat
     let texture: SKTexture
+    let size: CGSize
     
     //TODO: Make this so that if the user presses a button, the update cycle of this causes a damaging projectile to move in the direction the entity's sprite is facing.
-    init(projectileTexture: SKTexture, damage: Int, speed: CGFloat, entityController: EntityController){
+    init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, entityController: EntityController){
         self.texture = projectileTexture
+        self.size = size
         self.speed = speed
         self.entityController = entityController
         super.init()
@@ -47,7 +49,7 @@ class FireProjectileComponent: GKComponent {
             immuneEntities.insert(ownEntity)
         }
         
-        let projectile = Projectile(velocity: velocity, texture: texture, oneHit: true, immuneEntities: immuneEntities, entityController: entityController)
+        let projectile = Projectile(velocity: velocity, texture: texture, size: size, oneHit: true, immuneEntities: immuneEntities, entityController: entityController)
         projectile.component(ofType: SpriteComponent.self)?.node.position = spriteNode.position
         projectile.component(ofType: SpriteComponent.self)?.node.zRotation = spriteNode.zRotation
         entityController.add(projectile)

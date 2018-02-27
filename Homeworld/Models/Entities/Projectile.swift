@@ -13,10 +13,10 @@ import SpriteKit
 class Projectile: GKEntity {
     
     
-    init(velocity: CGVector, texture: SKTexture, oneHit: Bool = true, immuneEntities: Set<GKEntity>, entityController: EntityController){
+    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, immuneEntities: Set<GKEntity>, entityController: EntityController){
         super.init()
         
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
         addComponent(spriteComponent)
         
         guard let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .texture, mass: 5, affectedByGravity: false, categoryBitmask: 0) else{
