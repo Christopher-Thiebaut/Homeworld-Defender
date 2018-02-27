@@ -29,19 +29,31 @@ class GameScene: SKScene {
         let humanFighter = HumanFighter(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
         if let humanSpriteComponent = humanFighter.component(ofType: SpriteComponent.self) {
             humanSpriteComponent.node.position = CGPoint(x: size.width/2, y: size.height/2)
-            
         }
         entityController.add(humanFighter)
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
         
+        let wait = SKAction.wait(forDuration: 4)
+        self.run(wait)
+        run(SKAction.sequence([wait, SKAction.run {
+            self.addDemoMissile(target: humanFighter.component(ofType: PassiveAgent.self)!)
+            }]))
     }
     
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         entityController.update(dt)
+    }
+    
+    private func addDemoMissile(target: GKAgent2D){
+        let demoMissile = GuidedMissile.init(target: target, entityController: entityController)
+        if let demoMissileSpriteComponent = demoMissile.component(ofType: SpriteComponent.self) {
+            demoMissileSpriteComponent.node.position = CGPoint(x: size.width, y: demoMissileSpriteComponent.node.size.height/2)
+        }
+        entityController.add(demoMissile)
     }
 }
 

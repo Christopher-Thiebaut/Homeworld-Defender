@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "missile_7.png",
+      "filename" : "spr_missile.png",
       "scale" : "1x"
     },
     {
