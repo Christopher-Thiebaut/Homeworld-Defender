@@ -11,12 +11,16 @@ import SpriteKit
 
 class ButtonNode: SKSpriteNode {
     
-    let buttonAction: () -> ()
+    var buttonAction: (() -> ())?
     
-    init(texture: SKTexture, size: CGSize, action: @escaping () -> ()){
+    init(texture: SKTexture, size: CGSize, action: @escaping () -> () ){
         buttonAction = action
         super.init(texture: texture, color: SKColor.white, size: size)
         isUserInteractionEnabled = true
+    }
+    
+    init(texture: SKTexture, size: CGSize){
+        super.init(texture: texture, color: SKColor.white, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,7 +29,9 @@ class ButtonNode: SKSpriteNode {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        buttonAction()
+        if let action = buttonAction {
+            action()
+        }
     }
     
 }

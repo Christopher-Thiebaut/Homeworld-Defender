@@ -11,61 +11,111 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var entityController: EntityController!
+    ///Handles most of the simulation by managing the addition and removal of entities and calling the update functions of their components.
+    var entityController: EntityController
+    ///Used to calculate how much time has passed since the last update so that the EntityController can take appropriately sized simulaiton steps.
     var lastUpdateTimeInterval: TimeInterval = 0
     ///The floor is what should be consider "ground level" for most game elements, but will not usually be 0 at runtime because the control nodes are below the "floor"
     var floorLevel: CGFloat = 0
+    //Player Character's class. Allows for giving the player different kinds of fighters/planes on different levels.
+    let playerType: HumanFighter.Type
+    //Player's Sprite Node
+    var playerSpriteNode: SKSpriteNode? = nil
+    //The node representing the floor.
+    var floorNode: SKSpriteNode? = nil
+    ///Minimum height at which the camera will track the player.
+    var minimumCameraHeight: CGFloat = 200
+    
+    init<T: HumanFighter>(visibleSize: CGSize, player: T.Type){
+        playerType = player
+        entityController = EntityController()
+        super.init(size: visibleSize)
+        entityController.scene = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
+        
         entityController = EntityController(scene: self)
         
-        
-        let joyStickWidth = size.width/5
+        let joyStickWidth = min(size.width/4, 100)
         
         let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
-        joyStick.position = CGPoint(x: joyStickWidth/2 + 10, y: joyStickWidth/2 + 10)
-        addChild(joyStick)
         
-        let humanFighter = HumanFighter(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
-        if let humanSpriteComponent = humanFighter.component(ofType: SpriteComponent.self) {
-            humanSpriteComponent.node.position = CGPoint(x: size.width/2, y: size.height/2)
+        let player = playerType.init(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
+        guard let playerSpriteNode = player.component(ofType: SpriteComponent.self)?.node else{
+            fatalError("Player Character must have a sprite component.")
         }
-        entityController.add(humanFighter)
-        
-        //TODO: Refactor so that the controls can be added before the fighter. There should be a base scene that all levels inherit from that adds the controls.
+        self.playerSpriteNode = playerSpriteNode
+        playerSpriteNode.position = CGPoint(x: size.width/2, y: size.height/2)
+        entityController.add(player)
+
+        //Assign the fire button to the player's fire function.
         let buttonTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
         let fireButton = ButtonNode(texture: buttonTexture, size: joyStickSize) {
-            if let fireComponent = humanFighter.component(ofType: FireProjectileComponent.self){
+            if let fireComponent = player.component(ofType: FireProjectileComponent.self){
                 fireComponent.fire()
             }
         }
-        fireButton.position = CGPoint(x: size.width - joyStickWidth/2 - 10, y: joyStickWidth/2 + 10)
-        addChild(fireButton)
         
-        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: joyStick.frame.maxY + 5), to: CGPoint(x: frame.maxX, y: joyStick.frame.maxY + 5))
+        floorLevel = joyStickWidth + 15
+        
+        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: floorLevel), to: CGPoint(x: frame.maxX, y: floorLevel))
         self.physicsBody = floor
+        let floorNode = SKSpriteNode(color: .white, size: CGSize(width: size.width, height: 10))
+        floorNode.position = CGPoint(x: size.width/2, y: floorLevel)
+        addChild(floorNode)
+        self.floorNode = floorNode
         
-        floorLevel = joyStick.frame.maxY + 5
+        
+        //Make the controls children of the player so that they will move with the camera. Controls are positioned relative to the camera (center of the screen) so they don't move when the camera does.
+        let camera = SKCameraNode()
+        addChild(camera)
+        self.camera = camera
+        camera.addChild(joyStick)
+        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth) + 10, y: -0.5 * (size.height - joyStickWidth) + 10)
+        camera.addChild(fireButton)
+        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth) - 10, y: -0.5 * (size.height - joyStickWidth) + 10)
         
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        buildDemoCity(buildingWidth: 30)
-        
-        
-        let wait = SKAction.wait(forDuration: 4)
-        self.run(wait)
-        run(SKAction.sequence([wait, SKAction.run {[weak self] in
-            self?.spawnRaider()
-            }]))
+//        buildDemoCity(buildingWidth: 30)
+//
+//
+//        let wait = SKAction.wait(forDuration: 4)
+//        run(wait)
+//        run(SKAction.sequence([wait, SKAction.run {[weak self] in
+//            self?.spawnRaider()
+//            }]))
     }
     
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
+        updateCameraPosition()
         entityController.update(dt)
+    }
+    
+    //NOTE: This is used instead of SKConstraints to update the camera position because when the scene to tried to update camera x position due to map wrapping below the minimum height, there was a super gross jump in which the camera had a difficult time tracking the player. This looks smooth because the camera doesn't translate accross space to track the player, it teleports (like the player does)
+    private func updateCameraPosition(){
+        guard let playerNode = playerSpriteNode, let floorNode = floorNode else {
+            NSLog("Cannot position camera because the player or the floor could not be found.")
+            return
+        }
+        camera?.position.x = playerNode.position.x
+        if distanceBetween(playerNode, node2: floorNode) > minimumCameraHeight {
+            camera?.position.y = playerNode.position.y
+        }
+    }
+    
+    private func distanceBetween(_ node1: SKSpriteNode, node2: SKSpriteNode) -> CGFloat{
+        return hypot(node1.position.x - node2.position.x, node1.position.y - node2.position.y)
     }
     
     private func addDemoMissile(target: GKAgent2D){
@@ -104,9 +154,6 @@ class GameScene: SKScene {
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: size.width/2, y: size.height - 100)
         raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(raider)
-        //let missile = GuidedMissile(target: entityController.getPlayerAgent(), entityController: entityController)
-        //missile.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: size.width, y: size.height)
-        //entityController.add(missile)
     }
 }
 

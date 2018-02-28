@@ -16,7 +16,7 @@ class HumanFighter: GKEntity {
     
     let image = #imageLiteral(resourceName: "test_airplane")
     
-    init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
+    required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
         
         //Set up the visual component of the entity
@@ -42,7 +42,8 @@ class HumanFighter: GKEntity {
         addComponent(rotationComponent)
         
         //Give the HumanFighter a MapWrappingComponent so that if it leaves the map, it will re-enter from the other side.
-        let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: entityController.scene)
+        guard let scene = entityController.scene else { fatalError("Tried to do setup from entityController with no scene.") }
+        let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: scene)
         addComponent(mapWrappingComponent)
         
         //Give the HumanFighter a set amount of health
@@ -65,7 +66,7 @@ class HumanFighter: GKEntity {
         addComponent(fireComponent)
         
         //Give this entity a camera component that will be the scene's camera and follow this entity
-//        let cameraComponent = CameraComponent(spriteNodeToFollow: spriteComponent.node, scene: entityController.scene)
+//        let cameraComponent = CameraComponent(spriteNodeToFollow: spriteComponent.node, scene: scene)
 //        addComponent(cameraComponent)
     }
     

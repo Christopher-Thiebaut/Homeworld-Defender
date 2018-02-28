@@ -14,7 +14,12 @@ class EntityController {
     
     var entities = Set<GKEntity>()
     var toRemove = Set<GKEntity>()
-    let scene: SKScene
+    var scene: GameScene? {
+        didSet {
+            entities = Set<GKEntity>()
+            toRemove = Set<GKEntity>()
+        }
+    }
     
     lazy var componentSystems: [GKComponentSystem] = {
         let cameraSystem = GKComponentSystem(componentClass: CameraComponent.self)
@@ -31,7 +36,12 @@ class EntityController {
         return [cameraSystem, firingSystem, manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, raiderAgentSystem, healthSystem, expirationSystem, contactDamageComponent]
     }()
     
-    init(scene: SKScene) {
+    ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
+    init() {
+        //Allows the scene to create an instance of this before initializing itself.
+    }
+    
+    init(scene: GameScene) {
         self.scene = scene
     }
     
@@ -44,7 +54,7 @@ class EntityController {
         }
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
-            scene.addChild(spriteNode)
+            scene?.addChild(spriteNode)
         }
     }
     
