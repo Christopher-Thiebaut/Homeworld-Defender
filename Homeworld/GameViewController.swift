@@ -17,8 +17,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         let aspectRatio = view.bounds.width / view.bounds.height
+        let gamePlayAreaSize = CGSize(width: 2000, height: 800)
         
-        let scene = GameScene(visibleSize: CGSize(width: 640 * aspectRatio, height: 640), player: HumanFighter.self)
+        let scene = GameScene(visibleSize: CGSize(width: 640 * aspectRatio, height: 640), gamePlayAreaSize: gamePlayAreaSize, player: HumanFighter.self)
         let skView = self.view as! SKView
         skView.showsFPS = true
         skView.showsPhysics = true

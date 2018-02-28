@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     ///Handles most of the simulation by managing the addition and removal of entities and calling the update functions of their components.
-    var entityController: EntityController
+    let entityController: EntityController
     ///Used to calculate how much time has passed since the last update so that the EntityController can take appropriately sized simulaiton steps.
     var lastUpdateTimeInterval: TimeInterval = 0
     ///The floor is what should be consider "ground level" for most game elements, but will not usually be 0 at runtime because the control nodes are below the "floor"
@@ -25,9 +25,26 @@ class GameScene: SKScene {
     var floorNode: SKSpriteNode? = nil
     ///Minimum height at which the camera will track the player.
     var minimumCameraHeight: CGFloat = 200
+    //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
+    var gamePlayArea: CGSize
     
-    init<T: HumanFighter>(visibleSize: CGSize, player: T.Type){
+    var minX: CGFloat {
+        return -gamePlayArea.width/2
+    }
+    var maxX: CGFloat {
+        return gamePlayArea.width/2
+    }
+    private var leftMirrorBoundary: CGFloat {
+        return minX + size.width/2
+    }
+    
+    private var rightMirrorBoundary: CGFloat {
+        return maxX - size.width/2
+    }
+    
+    init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
+        gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
         entityController.scene = self
@@ -39,7 +56,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        entityController = EntityController(scene: self)
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         let joyStickWidth = min(size.width/4, 100)
         
@@ -64,10 +81,10 @@ class GameScene: SKScene {
         
         floorLevel = joyStickWidth + 15
         
-        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: frame.minX, y: floorLevel), to: CGPoint(x: frame.maxX, y: floorLevel))
+        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: minX, y: floorLevel), to: CGPoint(x: maxX, y: floorLevel))
         self.physicsBody = floor
-        let floorNode = SKSpriteNode(color: .white, size: CGSize(width: size.width, height: 10))
-        floorNode.position = CGPoint(x: size.width/2, y: floorLevel)
+        let floorNode = SKSpriteNode(color: .white, size: CGSize(width: gamePlayArea.width, height: 10))
+        floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
         addChild(floorNode)
         self.floorNode = floorNode
         
@@ -85,7 +102,7 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-//        buildDemoCity(buildingWidth: 30)
+        buildDemoCity(buildingWidth: 30)
 //
 //
 //        let wait = SKAction.wait(forDuration: 4)
@@ -109,12 +126,12 @@ class GameScene: SKScene {
             return
         }
         camera?.position.x = playerNode.position.x
-        if distanceBetween(playerNode, node2: floorNode) > minimumCameraHeight {
+        if playerNode.position.y - floorNode.position.y > minimumCameraHeight {
             camera?.position.y = playerNode.position.y
         }
     }
     
-    private func distanceBetween(_ node1: SKSpriteNode, node2: SKSpriteNode) -> CGFloat{
+    private func distanceBetween(_ node1: SKSpriteNode, _ node2: SKSpriteNode) -> CGFloat{
         return hypot(node1.position.x - node2.position.x, node1.position.y - node2.position.y)
     }
     

@@ -13,10 +13,10 @@ import GameplayKit
 ///Entities with a map wrapping component will check their position every update and, if they have left the scene's visible area, will reappear on the opposite side from which they left.
 class MapWrappingComponent: GKComponent {
     
-    weak var scene: SKScene?
+    weak var scene: GameScene?
     var spriteNode: SKSpriteNode
     
-    init(spriteNode: SKSpriteNode, scene: SKScene){
+    init(spriteNode: SKSpriteNode, scene: GameScene){
         self.spriteNode = spriteNode
         self.scene = scene
         
@@ -33,10 +33,10 @@ class MapWrappingComponent: GKComponent {
         guard let scene = scene else {
             fatalError("MapWrappingCompoenent does not have a scene.")
         }
-        if spriteNode.position.x > scene.size.width + spriteNode.size.width/2 {
-            spriteNode.position.x = spriteNode.size.width/2
-        }else if spriteNode.position.x < 0 {
-            spriteNode.position.x = scene.size.width - spriteNode.size.width/2
+        if spriteNode.position.x > scene.maxX + spriteNode.size.width/2 {
+            spriteNode.position.x = scene.minX + spriteNode.size.width/2
+        }else if spriteNode.position.x < scene.minX {
+            spriteNode.position.x = scene.maxX - spriteNode.size.width/2
         }
     }
 }
