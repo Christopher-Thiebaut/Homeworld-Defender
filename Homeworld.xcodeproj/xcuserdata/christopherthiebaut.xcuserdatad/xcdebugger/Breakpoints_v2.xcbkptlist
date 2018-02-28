@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homeworld/GameScene.swift"
-            timestampString = "541537176.3023551"
+            timestampString = "541538637.8836581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "updateCameraPosition()"
             landmarkType = "7">
          </BreakpointContent>

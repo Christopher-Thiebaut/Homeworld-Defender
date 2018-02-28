@@ -116,6 +116,7 @@ class GameScene: SKScene {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         updateCameraPosition()
+        updateMirrorZones()
         entityController.update(dt)
     }
     
@@ -129,6 +130,34 @@ class GameScene: SKScene {
         if playerNode.position.y - floorNode.position.y > minimumCameraHeight {
             camera?.position.y = playerNode.position.y
         }
+    }
+    
+    private func updateMirrorZones(){
+        guard let camera = camera else {
+            NSLog("Cannot update mirror zones because there is no camera.")
+            return
+        }
+        if camera.position.x < leftMirrorBoundary {
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: minX, max: leftMirrorBoundary)
+            for node in nodesToUpdate {
+                node.position.x = maxX - (node.position.x - minX)
+            }
+        }else if camera.position.x > rightMirrorBoundary {
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: rightMirrorBoundary, max: maxX)
+            for node in nodesToUpdate {
+                node.position.x = maxX - node.position.x
+            }
+        }
+    }
+    
+    private func getNodesWithXcoordinatesBetween(min: CGFloat, max: CGFloat) -> [SKNode]{
+        var foundNodes: [SKNode] = []
+        for node in children {
+            if node.position.x > min && node.position.x < max {
+                foundNodes.append(node)
+            }
+        }
+        return foundNodes
     }
     
     private func distanceBetween(_ node1: SKSpriteNode, _ node2: SKSpriteNode) -> CGFloat{
