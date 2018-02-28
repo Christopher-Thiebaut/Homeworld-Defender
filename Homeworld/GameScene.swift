@@ -109,7 +109,7 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        
+ //       singleNodeDemoCity(buildingWidth: 30)
 //        let debugginBeacon = DebugginBeacon()
 //        debugginBeacon.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: anchorPoint.x, y: floorLevel + 30)
 //        entityController.add(debugginBeacon)
@@ -144,7 +144,6 @@ class GameScene: SKScene {
         }
     }
     
-    //TODO: Sliding Window Update looks like it SHOULD work, but doesn't.  Positions drift slightly each time they are updated, which causes collisions between objects with should be stationary. (visibly distorts positions of stationary objects that get updated.)
     private func slidingWindowUpdate(){
         guard let playerSprite = playerSpriteNode else {
             NSLog("Cannot update positions based on player position because the player has no position.")
@@ -153,14 +152,16 @@ class GameScene: SKScene {
         if playerSprite.position.x > lastPlayerPositionX {
             let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x - gamePlayArea.width/2 - 40, max: playerSprite.position.x - gamePlayArea.width/2 - 30)
             for node in nodesToUpdate {
-                let distanceFromWindow = playerSprite.position.x - gamePlayArea.width/2 - node.position.x
-                node.position.x = playerSprite.position.x + gamePlayArea.width/2 + distanceFromWindow
+                //let distanceFromWindow = playerSprite.position.x - gamePlayArea.width/2 - node.position.x
+                //node.position.x = playerSprite.position.x + gamePlayArea.width/2 + distanceFromWindow
+                node.position.x += gamePlayArea.width
             }
         }else if playerSprite.position.x < lastPlayerPositionX {
             let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x + gamePlayArea.width/2 + 30, max: playerSprite.position.x + gamePlayArea.width/2 + 40)
             for node in nodesToUpdate {
-                let distanceFromWindow = node.position.x - playerSprite.position.x - gamePlayArea.width/2
-                node.position.x = playerSprite.position.x - gamePlayArea.width/2 - distanceFromWindow
+                //let distanceFromWindow = node.position.x - playerSprite.position.x - gamePlayArea.width/2
+                //node.position.x = playerSprite.position.x - gamePlayArea.width/2 - distanceFromWindow
+                node.position.x -= gamePlayArea.width
             }
         }
         lastPlayerPositionX = playerSprite.position.x
