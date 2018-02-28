@@ -17,6 +17,7 @@ class EntityController {
     let scene: SKScene
     
     lazy var componentSystems: [GKComponentSystem] = {
+        let cameraSystem = GKComponentSystem(componentClass: CameraComponent.self)
         let firingSystem = GKComponentSystem(componentClass: FireProjectileComponent.self)
         let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
         let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
@@ -27,7 +28,7 @@ class EntityController {
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
         let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
         let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
-        return [firingSystem, manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, raiderAgentSystem, healthSystem, expirationSystem, contactDamageComponent]
+        return [cameraSystem, firingSystem, manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, raiderAgentSystem, healthSystem, expirationSystem, contactDamageComponent]
     }()
     
     init(scene: SKScene) {

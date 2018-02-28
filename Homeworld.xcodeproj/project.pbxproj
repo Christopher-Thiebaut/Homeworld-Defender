@@ -14,6 +14,7 @@
 		B306E2F4204618EC00F0E0D9 /* RaiderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */; };
 		B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */; };
 		B306E2F82046223600F0E0D9 /* Raider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F72046223600F0E0D9 /* Raider.swift */; };
+		B306E2FA20466FA000F0E0D9 /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F920466FA000F0E0D9 /* CameraComponent.swift */; };
 		B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2C520423E7100B2AF27 /* AppDelegate.swift */; };
 		B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CB20423E7100B2AF27 /* GameScene.swift */; };
 		B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CD20423E7100B2AF27 /* GameViewController.swift */; };
@@ -45,6 +46,7 @@
 		B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderBehavior.swift; sourceTree = "<group>"; };
 		B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderAgent.swift; sourceTree = "<group>"; };
 		B306E2F72046223600F0E0D9 /* Raider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raider.swift; sourceTree = "<group>"; };
+		B306E2F920466FA000F0E0D9 /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		B361E2C220423E7100B2AF27 /* Homeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B361E2C520423E7100B2AF27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B361E2CB20423E7100B2AF27 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */,
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
+				B306E2F920466FA000F0E0D9 /* CameraComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
+				B306E2FA20466FA000F0E0D9 /* CameraComponent.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,

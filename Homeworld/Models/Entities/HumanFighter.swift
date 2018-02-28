@@ -57,10 +57,16 @@ class HumanFighter: GKEntity {
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)
         addComponent(passiveAgent)
         
+        
+        //Set up the fighter's rocket launcher
         let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
         let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000,reloadTime: 1, entityController: entityController)
         addComponent(fireComponent)
+        
+        //Give this entity a camera component that will be the scene's camera and follow this entity
+//        let cameraComponent = CameraComponent(spriteNodeToFollow: spriteComponent.node, scene: entityController.scene)
+//        addComponent(cameraComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
