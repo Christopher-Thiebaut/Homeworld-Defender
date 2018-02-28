@@ -17,6 +17,7 @@ class EntityController {
     let scene: SKScene
     
     lazy var componentSystems: [GKComponentSystem] = {
+        let firingSystem = GKComponentSystem(componentClass: FireProjectileComponent.self)
         let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
         let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
         let mapWrappingSystem = GKComponentSystem(componentClass: MapWrappingComponent.self)
@@ -25,7 +26,8 @@ class EntityController {
         let chaseAgentSystem = GKComponentSystem(componentClass: ChaseAgent.self)
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
         let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
-        return [manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, contactDamageComponent, chaseAgentSystem, healthSystem, expirationSystem]
+        let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
+        return [firingSystem, manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, raiderAgentSystem, healthSystem, expirationSystem, contactDamageComponent]
     }()
     
     init(scene: SKScene) {
@@ -66,6 +68,26 @@ class EntityController {
             }
         }
         toRemove.removeAll()
+    }
+    
+    func getCivilianTargetAgents() -> [GKAgent2D]{
+        var targets: [GKAgent2D] = []
+        for entity in entities {
+            guard let building = entity as? Building, let buildingAgent = building.component(ofType: PassiveAgent.self) else {
+                continue
+            }
+            targets.append(buildingAgent)
+        }
+        return targets
+    }
+    
+    func getPlayerAgent() -> GKAgent2D {
+        for entity in entities {
+            if let playerEntity = entity as? HumanFighter, let playerAgent = playerEntity.component(ofType: PassiveAgent.self) {
+                return playerAgent
+            }
+        }
+        fatalError("Player was not found.  This should have led to the game ending.")
     }
     
 }

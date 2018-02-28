@@ -52,14 +52,14 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        buildDemoCity(buildingWidth: 50)
+        buildDemoCity(buildingWidth: 30)
         
         
-//        let wait = SKAction.wait(forDuration: 4)
-//        self.run(wait)
-//        run(SKAction.sequence([wait, SKAction.run {
-//            self.addDemoMissile(target: humanFighter.component(ofType: PassiveAgent.self)!)
-//            }]))
+        let wait = SKAction.wait(forDuration: 4)
+        self.run(wait)
+        run(SKAction.sequence([wait, SKAction.run {[weak self] in
+            self?.spawnRaider()
+            }]))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -77,19 +77,36 @@ class GameScene: SKScene {
     }
     
     private func buildDemoCity(buildingWidth: CGFloat){
-        var lastBuildingEnd: CGFloat = 0
         let buildingTexture = SKTexture(image: #imageLiteral(resourceName: "basic_building"))
         let scale = buildingWidth/buildingTexture.size().width
         let buildingSize = CGSize(width: buildingTexture.size().width * scale, height: buildingTexture.size().height * scale)
         let spaceBetweenBuildings: CGFloat = buildingWidth/5
+        var lastBuildingEnd: CGFloat = -0.5 * spaceBetweenBuildings
+        var lastBuilding: Building? = nil
         while lastBuildingEnd < size.width {
             let newBuilding = Building(texture: buildingTexture, size: buildingSize, entityController: entityController)
             if let buildingNode = newBuilding.component(ofType: SpriteComponent.self)?.node {
                 buildingNode.position = CGPoint(x: lastBuildingEnd + buildingNode.size.width/2 + spaceBetweenBuildings, y: floorLevel + buildingNode.size.height/2)
                 lastBuildingEnd = buildingNode.position.x + buildingNode.size.width/2
                 entityController.add(newBuilding)
+                lastBuilding = newBuilding
             }
         }
+        //Remove the last building iff it is mostly off screen.
+        if let lastBuilding = lastBuilding, lastBuildingEnd > size.width + buildingWidth/2 {
+            entityController.remove(lastBuilding)
+        }
+    }
+    
+    private func spawnRaider(){
+        let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
+        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: [entityController.getPlayerAgent()], unlessDistanceAway: 0, entityController: entityController)
+        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: size.width/2, y: size.height - 100)
+        raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
+        entityController.add(raider)
+        //let missile = GuidedMissile(target: entityController.getPlayerAgent(), entityController: entityController)
+        //missile.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: size.width, y: size.height)
+        //entityController.add(missile)
     }
 }
 

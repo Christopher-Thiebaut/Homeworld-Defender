@@ -27,7 +27,7 @@ class ContactDamageComponent: GKComponent {
     init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, doNotHarm: Set<GKEntity> = [], entityController: EntityController){
         self.spriteNode = spriteNode
         self.damage = contactDamage
-        self.destroySelf = true
+        self.destroySelf = destroySelf
         self.entityController = entityController
         self.doNotHarm = doNotHarm
         lastDamageTime = 0

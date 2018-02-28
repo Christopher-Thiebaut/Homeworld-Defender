@@ -18,9 +18,13 @@ class FireProjectileComponent: GKComponent {
     let speed: CGFloat
     let texture: SKTexture
     let size: CGSize
+    let reloadTime: TimeInterval
+    var timeSinceLastFired: TimeInterval
     
     //TODO: Make this so that if the user presses a button, the update cycle of this causes a damaging projectile to move in the direction the entity's sprite is facing.
-    init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, entityController: EntityController){
+    init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, reloadTime: TimeInterval, entityController: EntityController){
+        self.reloadTime = reloadTime
+        self.timeSinceLastFired = reloadTime + 1
         self.texture = projectileTexture
         self.size = size
         self.speed = speed
@@ -32,11 +36,21 @@ class FireProjectileComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func update(deltaTime seconds: TimeInterval) {
+        timeSinceLastFired += seconds
+    }
+    
     func fire(){
         guard let spriteNode = entity?.component(ofType: SpriteComponent.self)?.node else {
             NSLog("She cannot fire while she's cloaked.")
             return
         }
+        
+        guard timeSinceLastFired > reloadTime else {
+            return
+        }
+        
+        timeSinceLastFired = 0
         
         let angle = Float(spriteNode.zRotation)
         let dx = CGFloat(cosf(angle))

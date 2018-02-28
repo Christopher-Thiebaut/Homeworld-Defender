@@ -11,6 +11,9 @@
 		B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2EB2045D01A00F0E0D9 /* ButtonNode.swift */; };
 		B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */; };
 		B306E2F22045F88900F0E0D9 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F12045F88900F0E0D9 /* Building.swift */; };
+		B306E2F4204618EC00F0E0D9 /* RaiderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */; };
+		B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */; };
+		B306E2F82046223600F0E0D9 /* Raider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F72046223600F0E0D9 /* Raider.swift */; };
 		B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2C520423E7100B2AF27 /* AppDelegate.swift */; };
 		B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CB20423E7100B2AF27 /* GameScene.swift */; };
 		B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CD20423E7100B2AF27 /* GameViewController.swift */; };
@@ -39,6 +42,9 @@
 		B306E2EB2045D01A00F0E0D9 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanComponent.swift; sourceTree = "<group>"; };
 		B306E2F12045F88900F0E0D9 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
+		B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderBehavior.swift; sourceTree = "<group>"; };
+		B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderAgent.swift; sourceTree = "<group>"; };
+		B306E2F72046223600F0E0D9 /* Raider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raider.swift; sourceTree = "<group>"; };
 		B361E2C220423E7100B2AF27 /* Homeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B361E2C520423E7100B2AF27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B361E2CB20423E7100B2AF27 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 				B3CD46452044C5900016B396 /* ContactDamageComponent.swift */,
 				B3CD46472044CC440016B396 /* PassiveAgent.swift */,
 				B3CD464C2044D49D0016B396 /* ChaseAgent.swift */,
+				B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */,
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
 			);
@@ -159,6 +166,7 @@
 				B3CD464E2044D7F40016B396 /* GuidedMissile.swift */,
 				B306E2E92045C5B900F0E0D9 /* Projectile.swift */,
 				B306E2F12045F88900F0E0D9 /* Building.swift */,
+				B306E2F72046223600F0E0D9 /* Raider.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				B3CD46492044D34F0016B396 /* ChaseBehavior.swift */,
+				B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -271,7 +280,9 @@
 			files = (
 				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
+				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
+				B306E2F4204618EC00F0E0D9 /* RaiderBehavior.swift in Sources */,
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
@@ -287,6 +298,7 @@
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,
 				B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */,
+				B306E2F82046223600F0E0D9 /* Raider.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
 				B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */,
