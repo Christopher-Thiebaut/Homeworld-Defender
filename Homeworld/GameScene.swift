@@ -27,6 +27,10 @@ class GameScene: SKScene {
     var minimumCameraHeight: CGFloat = 200
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
     var gamePlayArea: CGSize
+    ///The portion of the gameplay area in which it is safe to place nodes such that movement due to mirror zones will not cause a collision.
+    private var placementArea: CGRect {
+        return CGRect(x: minX, y: floorLevel, width: rightMirrorBoundary, height: gamePlayArea.height)
+    }
     
     var minX: CGFloat {
         return -gamePlayArea.width/2
@@ -50,6 +54,8 @@ class GameScene: SKScene {
         entityController.scene = self
     }
     
+    private var lastPlayerPositionX: CGFloat = 0
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -68,7 +74,8 @@ class GameScene: SKScene {
             fatalError("Player Character must have a sprite component.")
         }
         self.playerSpriteNode = playerSpriteNode
-        playerSpriteNode.position = CGPoint(x: size.width/2, y: size.height/2)
+        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: size.height/2)
+        lastPlayerPositionX = playerSpriteNode.position.x
         entityController.add(player)
 
         //Assign the fire button to the player's fire function.
@@ -81,12 +88,12 @@ class GameScene: SKScene {
         
         floorLevel = joyStickWidth + 15
         
-        let floor = SKPhysicsBody(edgeFrom: CGPoint(x: minX, y: floorLevel), to: CGPoint(x: maxX, y: floorLevel))
-        self.physicsBody = floor
-        let floorNode = SKSpriteNode(color: .white, size: CGSize(width: gamePlayArea.width, height: 10))
+        let floorNode = SKSpriteNode(color: .white, size: CGSize(width: gamePlayArea.width * 2, height: 10))
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
         addChild(floorNode)
         self.floorNode = floorNode
+        floorNode.physicsBody = SKPhysicsBody(rectangleOf: floorNode.size)
+        floorNode.physicsBody?.affectedByGravity = false
         
         
         //Make the controls children of the player so that they will move with the camera. Controls are positioned relative to the camera (center of the screen) so they don't move when the camera does.
@@ -102,6 +109,10 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
+        
+//        let debugginBeacon = DebugginBeacon()
+//        debugginBeacon.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: anchorPoint.x, y: floorLevel + 30)
+//        entityController.add(debugginBeacon)
         buildDemoCity(buildingWidth: 30)
 //
 //
@@ -116,7 +127,8 @@ class GameScene: SKScene {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         updateCameraPosition()
-        updateMirrorZones()
+        //updateMirrorZones()
+        slidingWindowUpdate()
         entityController.update(dt)
     }
     
@@ -132,22 +144,26 @@ class GameScene: SKScene {
         }
     }
     
-    private func updateMirrorZones(){
-        guard let camera = camera else {
-            NSLog("Cannot update mirror zones because there is no camera.")
+    //TODO: Sliding Window Update looks like it SHOULD work, but doesn't.  Positions drift slightly each time they are updated, which causes collisions between objects with should be stationary. (visibly distorts positions of stationary objects that get updated.)
+    private func slidingWindowUpdate(){
+        guard let playerSprite = playerSpriteNode else {
+            NSLog("Cannot update positions based on player position because the player has no position.")
             return
         }
-        if camera.position.x < leftMirrorBoundary {
-            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: minX, max: leftMirrorBoundary)
+        if playerSprite.position.x > lastPlayerPositionX {
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x - gamePlayArea.width/2 - 40, max: playerSprite.position.x - gamePlayArea.width/2 - 30)
             for node in nodesToUpdate {
-                node.position.x = maxX - (node.position.x - minX)
+                let distanceFromWindow = playerSprite.position.x - gamePlayArea.width/2 - node.position.x
+                node.position.x = playerSprite.position.x + gamePlayArea.width/2 + distanceFromWindow
             }
-        }else if camera.position.x > rightMirrorBoundary {
-            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: rightMirrorBoundary, max: maxX)
+        }else if playerSprite.position.x < lastPlayerPositionX {
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x + gamePlayArea.width/2 + 30, max: playerSprite.position.x + gamePlayArea.width/2 + 40)
             for node in nodesToUpdate {
-                node.position.x = maxX - node.position.x
+                let distanceFromWindow = node.position.x - playerSprite.position.x - gamePlayArea.width/2
+                node.position.x = playerSprite.position.x - gamePlayArea.width/2 - distanceFromWindow
             }
         }
+        lastPlayerPositionX = playerSprite.position.x
     }
     
     private func getNodesWithXcoordinatesBetween(min: CGFloat, max: CGFloat) -> [SKNode]{
@@ -177,9 +193,9 @@ class GameScene: SKScene {
         let scale = buildingWidth/buildingTexture.size().width
         let buildingSize = CGSize(width: buildingTexture.size().width * scale, height: buildingTexture.size().height * scale)
         let spaceBetweenBuildings: CGFloat = buildingWidth/5
-        var lastBuildingEnd: CGFloat = -0.5 * spaceBetweenBuildings
+        var lastBuildingEnd: CGFloat = placementArea.minX - (0.5 * spaceBetweenBuildings)
         var lastBuilding: Building? = nil
-        while lastBuildingEnd < size.width {
+        while lastBuildingEnd < placementArea.maxX {
             let newBuilding = Building(texture: buildingTexture, size: buildingSize, entityController: entityController)
             if let buildingNode = newBuilding.component(ofType: SpriteComponent.self)?.node {
                 buildingNode.position = CGPoint(x: lastBuildingEnd + buildingNode.size.width/2 + spaceBetweenBuildings, y: floorLevel + buildingNode.size.height/2)
@@ -189,7 +205,7 @@ class GameScene: SKScene {
             }
         }
         //Remove the last building iff it is mostly off screen.
-        if let lastBuilding = lastBuilding, lastBuildingEnd > size.width + buildingWidth/2 {
+        if let lastBuilding = lastBuilding, lastBuildingEnd > placementArea.maxX {
             entityController.remove(lastBuilding)
         }
     }

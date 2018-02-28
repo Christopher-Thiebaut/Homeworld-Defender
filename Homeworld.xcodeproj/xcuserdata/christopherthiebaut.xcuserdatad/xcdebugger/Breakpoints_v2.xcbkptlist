@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homeworld/GameScene.swift"
-            timestampString = "541538637.8836581"
+            timestampString = "541547513.520161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "updateCameraPosition()"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "buildDemoCity(buildingWidth:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

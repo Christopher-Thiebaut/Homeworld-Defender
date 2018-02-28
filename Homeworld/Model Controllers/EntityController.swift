@@ -33,7 +33,8 @@ class EntityController {
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
         let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
         let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
-        return [cameraSystem, firingSystem, manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, raiderAgentSystem, healthSystem, expirationSystem, contactDamageComponent]
+        let positionLoggingComponent = GKComponentSystem(componentClass: PositionLoggingComponent.self)
+        return [positionLoggingComponent, cameraSystem, firingSystem, manualRotationSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, raiderAgentSystem, healthSystem, expirationSystem, contactDamageComponent]
     }()
     
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.

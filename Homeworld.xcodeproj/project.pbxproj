@@ -21,6 +21,8 @@
 		B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B361E2CF20423E7100B2AF27 /* Main.storyboard */; };
 		B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B361E2D220423E7100B2AF27 /* Assets.xcassets */; };
 		B361E2D620423E7100B2AF27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */; };
+		B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */; };
+		B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */; };
 		B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D2CEF204515EC0048941B /* FireComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
 		B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462F20446A410016B396 /* PhysicsComponent.swift */; };
@@ -55,6 +57,8 @@
 		B361E2D220423E7100B2AF27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B361E2D520423E7100B2AF27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B361E2D720423E7100B2AF27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBeacon.swift; sourceTree = "<group>"; };
+		B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLoggingComponent.swift; sourceTree = "<group>"; };
 		B37D2CEF204515EC0048941B /* FireComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		B3CD462F20446A410016B396 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
 				B306E2F920466FA000F0E0D9 /* CameraComponent.swift */,
+				B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				B306E2E92045C5B900F0E0D9 /* Projectile.swift */,
 				B306E2F12045F88900F0E0D9 /* Building.swift */,
 				B306E2F72046223600F0E0D9 /* Raider.swift */,
+				B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -289,6 +295,7 @@
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
+				B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
 				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
@@ -305,6 +312,7 @@
 				B306E2F82046223600F0E0D9 /* Raider.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
+				B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */,
 				B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */,
 				B3CD46402044A9AC0016B396 /* ManualRotationComponent.swift in Sources */,
 			);
