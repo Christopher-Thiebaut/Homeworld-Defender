@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
         let scene = GameScene(visibleSize: CGSize(width: 640 * aspectRatio, height: 640), gamePlayAreaSize: gamePlayAreaSize, player: HumanFighter.self)
         let skView = self.view as! SKView
         skView.showsFPS = true
-        skView.showsPhysics = true
+        //skView.showsPhysics = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .aspectFill

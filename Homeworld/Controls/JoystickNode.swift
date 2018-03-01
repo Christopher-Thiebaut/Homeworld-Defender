@@ -14,7 +14,9 @@ class JoystickNode: SKSpriteNode {
     //MARK: - Properties
     
     /// The visual representation of the joystick the player can move around.
-    var touchPad: SKSpriteNode
+    var ball: SKSpriteNode
+    
+    var rod: SKSpriteNode
     
     /// The center of the joystick
     let center: CGPoint
@@ -27,21 +29,32 @@ class JoystickNode: SKSpriteNode {
     var joystickAngle: CGFloat
     
     init(size: CGSize){
-        trackingDistance = size.width/2
+        trackingDistance = size.width/1.5
         
-        let touchPadLength = size.width / 2.2
-        center = CGPoint(x: size.width/2 - touchPadLength, y: size.height/2 - touchPadLength)
+        let ballLength = size.width / 2.2
+        center = CGPoint(x: 0, y: 0)
+        //center = CGPoint(x: size.width/2 - ballLength, y: size.height/2 - ballLength)
         
-        let touchPadTexture = SKTexture(image: #imageLiteral(resourceName: "ControlPad"))
-        let touchPadSize = CGSize(width: touchPadLength, height: touchPadLength)
+        let ballTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
+        let ballSize = CGSize(width: ballLength, height: ballLength)
         
-        touchPad = SKSpriteNode(texture: touchPadTexture, color: UIColor.black, size: touchPadSize)
+        
+        ball = SKSpriteNode(texture: ballTexture, color: UIColor.black, size: ballSize)
+        ball.zPosition = 0.5
         
         joystickAngle = 0
         
-        super.init(texture: touchPadTexture, color: .clear, size: size)
+        let rodTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_rod"))
+        let rodSize = CGSize(width: ballLength/5, height: ballLength/5)
+        rod = SKSpriteNode(texture: rodTexture, color: .black, size: rodSize)
+        rod.zRotation = joystickAngle
+        rod.zPosition = 0.25
         
-        addChild(touchPad)
+        let baseTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_base"))
+        super.init(texture: baseTexture, color: .clear, size: size)
+        
+        addChild(ball)
+        addChild(rod)
         
         isUserInteractionEnabled = true
     }
@@ -66,7 +79,8 @@ class JoystickNode: SKSpriteNode {
                 dy = (dx / distance) * trackingDistance
             }
             
-            touchPad.position = CGPoint(x: center.x + dx, y: center.y + dy)
+            ball.position = CGPoint(x: center.x + dx, y: center.y + dy)
+            
             
             //Normalize the distance between 0 and 1
             let normalizedDistance = min(abs(distance)/trackingDistance, 1)
@@ -77,6 +91,10 @@ class JoystickNode: SKSpriteNode {
             //Set the joystickAngle
             joystickAngle = atan2(dy - 0, dx - 0)
             //print(joystickAngle)
+            
+            rod.position = CGPoint(x: (ball.position.x + center.x)/2, y: (ball.position.y + center.y)/2)
+            rod.size.width = min(distance, hypot(ball.position.x - center.x, ball.position.y - center.y))
+            rod.zRotation = joystickAngle
         }
     }
 }
