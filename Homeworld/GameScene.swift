@@ -47,11 +47,14 @@ class GameScene: SKScene {
         return (camera?.position.x ?? 0) + gamePlayArea.width/2
     }
     
+    var gameStates: GameStateMachine!
+    
     init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
         gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
+        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
         entityController.scene = self
     }
     
@@ -112,7 +115,7 @@ class GameScene: SKScene {
         //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
         let pauseTexture = SKTexture(image: #imageLiteral(resourceName: "pause"))
         let pauseButton = ButtonNode(texture: pauseTexture, size: CGSize.init(width: 30, height: 30)) { [weak self] in
-            self?.isPaused = true
+            self?.gameStates.enter(PauseState.self)
         }
         camera.addChild(pauseButton)
         pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width), y: 0.5 * (size.height - pauseButton.size.height))

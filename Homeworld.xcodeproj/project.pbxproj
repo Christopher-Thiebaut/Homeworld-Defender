@@ -24,6 +24,7 @@
 		B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */; };
 		B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */; };
 		B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D2CEF204515EC0048941B /* FireComponent.swift */; };
+		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
 		B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462F20446A410016B396 /* PhysicsComponent.swift */; };
 		B3CD463520446F970016B396 /* HumanFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463420446F970016B396 /* HumanFighter.swift */; };
@@ -60,6 +61,7 @@
 		B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBeacon.swift; sourceTree = "<group>"; };
 		B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLoggingComponent.swift; sourceTree = "<group>"; };
 		B37D2CEF204515EC0048941B /* FireComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireComponent.swift; sourceTree = "<group>"; };
+		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		B3CD462F20446A410016B396 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		B3CD463420446F970016B396 /* HumanFighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanFighter.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				B3CD463320446F4B0016B396 /* Entities */,
 				B3CD462B204467E50016B396 /* Components */,
 				B3CD464B2044D4870016B396 /* Behaviors */,
+				B3C20D3C20486D2700B4F962 /* GameStates.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
+				B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */,
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
 				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
