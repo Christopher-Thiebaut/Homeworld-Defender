@@ -29,7 +29,7 @@ class GameScene: SKScene {
     var gamePlayArea: CGSize
     ///The portion of the gameplay area in which it is safe to place nodes such that movement due to mirror zones will not cause a collision.
     private var placementArea: CGRect {
-        return CGRect(x: minX, y: floorLevel, width: rightMirrorBoundary, height: gamePlayArea.height)
+        return CGRect(x: minX, y: floorLevel, width: gamePlayArea.width, height: gamePlayArea.height)
     }
     
     var minX: CGFloat {
@@ -37,13 +37,6 @@ class GameScene: SKScene {
     }
     var maxX: CGFloat {
         return gamePlayArea.width/2
-    }
-    private var leftMirrorBoundary: CGFloat {
-        return minX + size.width/2
-    }
-    
-    private var rightMirrorBoundary: CGFloat {
-        return maxX - size.width/2
     }
     
     init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
@@ -64,7 +57,7 @@ class GameScene: SKScene {
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let joyStickWidth = min(size.width/4, 100)
+        let joyStickWidth = min(size.width/3.5, 100)
         
         let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
@@ -101,9 +94,9 @@ class GameScene: SKScene {
         addChild(camera)
         self.camera = camera
         camera.addChild(joyStick)
-        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth) + 10, y: -0.5 * (size.height - joyStickWidth) + 10)
+        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
         camera.addChild(fireButton)
-        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth) - 10, y: -0.5 * (size.height - joyStickWidth) + 10)
+        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth) - joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
         
         
         physicsWorld.contactDelegate = self
@@ -127,7 +120,6 @@ class GameScene: SKScene {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
         updateCameraPosition()
-        //updateMirrorZones()
         slidingWindowUpdate()
         entityController.update(dt)
     }
@@ -175,10 +167,6 @@ class GameScene: SKScene {
             }
         }
         return foundNodes
-    }
-    
-    private func distanceBetween(_ node1: SKSpriteNode, _ node2: SKSpriteNode) -> CGFloat{
-        return hypot(node1.position.x - node2.position.x, node1.position.y - node2.position.y)
     }
     
     private func addDemoMissile(target: GKAgent2D){

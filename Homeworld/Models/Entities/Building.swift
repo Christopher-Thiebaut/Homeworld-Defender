@@ -27,8 +27,8 @@ class Building: GKEntity {
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)
         addComponent(passiveAgent)
         
-//        let contactDamageComponenent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 100, destroySelf: false, entityController: entityController)
-//        addComponent(contactDamageComponenent)
+        let contactDamageComponenent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 100, destroySelf: false, entityController: entityController)
+        addComponent(contactDamageComponenent)
     }
     
     required init?(coder aDecoder: NSCoder) {
