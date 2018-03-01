@@ -55,6 +55,8 @@ class GameScene: SKScene {
         return (camera?.position.x ?? 0) + gamePlayArea.width/2
     }
     
+    let cityCenterReferenceNode = SKNode()
+    
     private var lastPlayerPositionX: CGFloat = 0
     
     var gameStates: GameStateMachine!
@@ -141,11 +143,13 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        buildDemoCity(buildingWidth: 30)
+        
+        /*buildDemoCity(buildingWidth: 30)
         
         run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
             self.spawnRaider()
-            }]), count: 4))
+            }]), count: 4))*/
+        cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
 
     }
     

@@ -11,10 +11,8 @@
 		B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2EB2045D01A00F0E0D9 /* ButtonNode.swift */; };
 		B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */; };
 		B306E2F22045F88900F0E0D9 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F12045F88900F0E0D9 /* Building.swift */; };
-		B306E2F4204618EC00F0E0D9 /* RaiderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */; };
 		B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */; };
 		B306E2F82046223600F0E0D9 /* Raider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F72046223600F0E0D9 /* Raider.swift */; };
-		B306E2FA20466FA000F0E0D9 /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F920466FA000F0E0D9 /* CameraComponent.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
 		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
@@ -49,10 +47,8 @@
 		B306E2EB2045D01A00F0E0D9 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanComponent.swift; sourceTree = "<group>"; };
 		B306E2F12045F88900F0E0D9 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
-		B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderBehavior.swift; sourceTree = "<group>"; };
 		B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderAgent.swift; sourceTree = "<group>"; };
 		B306E2F72046223600F0E0D9 /* Raider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raider.swift; sourceTree = "<group>"; };
-		B306E2F920466FA000F0E0D9 /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
 		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
@@ -95,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B35BEBC92048C6100039CF1E /* States */ = {
+			isa = PBXGroup;
+			children = (
+				B3C20D3C20486D2700B4F962 /* GameStates.swift */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
 		B361E2B920423E7100B2AF27 = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +147,7 @@
 				B3CD463320446F4B0016B396 /* Entities */,
 				B3CD462B204467E50016B396 /* Components */,
 				B3CD464B2044D4870016B396 /* Behaviors */,
-				B3C20D3C20486D2700B4F962 /* GameStates.swift */,
+				B35BEBC92048C6100039CF1E /* States */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,7 +167,6 @@
 				B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */,
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
-				B306E2F920466FA000F0E0D9 /* CameraComponent.swift */,
 				B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */,
 				B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */,
 				B35BEBC72048C1F90039CF1E /* TeamComponent.swift */,
@@ -205,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				B3CD46492044D34F0016B396 /* ChaseBehavior.swift */,
-				B306E2F3204618EC00F0E0D9 /* RaiderBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -305,7 +307,6 @@
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
 				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
-				B306E2F4204618EC00F0E0D9 /* RaiderBehavior.swift in Sources */,
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
@@ -320,7 +321,6 @@
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
-				B306E2FA20466FA000F0E0D9 /* CameraComponent.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,
