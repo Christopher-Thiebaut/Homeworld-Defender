@@ -11,6 +11,14 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    struct ZPositions {
+        static let `default`: CGFloat = 0
+        static let low: CGFloat = 250
+        static let medium: CGFloat = 500
+        static let high: CGFloat = 750
+        static let required: CGFloat = 1000
+    }
+    
     ///Handles most of the simulation by managing the addition and removal of entities and calling the update functions of their components.
     let entityController: EntityController
     ///Used to calculate how much time has passed since the last update so that the EntityController can take appropriately sized simulaiton steps.
@@ -33,10 +41,10 @@ class GameScene: SKScene {
     }
     
     var minX: CGFloat {
-        return -gamePlayArea.width/2
+        return (camera?.position.x ?? 0) - gamePlayArea.width/2
     }
     var maxX: CGFloat {
-        return gamePlayArea.width/2
+        return (camera?.position.x ?? 0) + gamePlayArea.width/2
     }
     
     init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
@@ -96,25 +104,26 @@ class GameScene: SKScene {
         self.camera = camera
         camera.addChild(joyStick)
         joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
+        joyStick.zPosition = ZPositions.high
         camera.addChild(fireButton)
         fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth) - joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
+        fireButton.zPosition = ZPositions.high
+        
+        //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
+        let pauseTexture = SKTexture(image: #imageLiteral(resourceName: "pause"))
+        let pauseButton = ButtonNode(texture: pauseTexture, size: CGSize.init(width: 30, height: 30)) { [weak self] in
+            self?.isPaused = true
+        }
+        camera.addChild(pauseButton)
+        pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width), y: 0.5 * (size.height - pauseButton.size.height))
+        pauseButton.zPosition = ZPositions.high
         
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
- //       singleNodeDemoCity(buildingWidth: 30)
-//        let debugginBeacon = DebugginBeacon()
-//        debugginBeacon.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: anchorPoint.x, y: floorLevel + 30)
-//        entityController.add(debugginBeacon)
         buildDemoCity(buildingWidth: 30)
-//
-//
-//        let wait = SKAction.wait(forDuration: 4)
-//        run(wait)
-//        run(SKAction.sequence([wait, SKAction.run {[weak self] in
-//            self?.spawnRaider()
-//            }]))
+
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -210,15 +219,5 @@ class GameScene: SKScene {
 }
 
 extension GameScene : SKPhysicsContactDelegate {
-    
-    func didBegin(_ contact: SKPhysicsContact) {
-        let body1 = contact.bodyA
-        let body2 = contact.bodyB
-    }
-    
-    func didEnd(_ contact: SKPhysicsContact) {
-        let body1 = contact.bodyA
-        let body2 = contact.bodyB
-    }
     
 }
