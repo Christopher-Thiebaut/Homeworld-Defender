@@ -14,13 +14,13 @@ class Projectile: GKEntity {
     
     let lifespan: TimeInterval = 0.75
     
-    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, immuneEntities: Set<GKEntity>, entityController: EntityController){
+    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, immuneEntities: Set<GKEntity>, collisionCategory: PhysicsComponent.CollisionCategory, entityController: EntityController){
         super.init()
         
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
         addComponent(spriteComponent)
         
-        guard let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .texture, mass: 5, affectedByGravity: false, categoryBitmask: 0) else{
+        guard let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .texture, mass: 5, affectedByGravity: false, collisionCategory: collisionCategory) else{
             fatalError("A projectile MUST have a physics body or it cannot have a velocity")
         }
         addComponent(physicsComponent)

@@ -87,6 +87,7 @@ class GameScene: SKScene {
         self.floorNode = floorNode
         floorNode.physicsBody = SKPhysicsBody(rectangleOf: floorNode.size)
         floorNode.physicsBody?.affectedByGravity = false
+        floorNode.physicsBody?.isDynamic = false
         
         
         //Make the controls children of the player so that they will move with the camera. Controls are positioned relative to the camera (center of the screen) so they don't move when the camera does.
@@ -209,5 +210,15 @@ class GameScene: SKScene {
 }
 
 extension GameScene : SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let body1 = contact.bodyA
+        let body2 = contact.bodyB
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        let body1 = contact.bodyA
+        let body2 = contact.bodyB
+    }
     
 }

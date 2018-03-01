@@ -26,7 +26,7 @@ class HumanFighter: GKEntity {
         addComponent(spriteComponent)
         
         //Set up the physics properties of the physics component
-        guard let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .texture, mass: mass) else {
+        guard let physicsComponent = PhysicsComponent.init(spriteNode: spriteComponent.node, bodyType: .texture, mass: mass, collisionCategory: .player) else {
             fatalError("Cannot initialize HumanFighter without a texture.")
         }
         addComponent(physicsComponent)
@@ -62,7 +62,7 @@ class HumanFighter: GKEntity {
         //Set up the fighter's rocket launcher
         let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000,reloadTime: 1, entityController: entityController)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 1500, reloadTime: 0.5, projectileCategory: .playerProjectile, entityController: entityController)
         addComponent(fireComponent)
         
         //Give this entity a camera component that will be the scene's camera and follow this entity
