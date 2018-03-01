@@ -14,7 +14,7 @@ class Projectile: GKEntity {
     
     let lifespan: TimeInterval = 0.75
     
-    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, immuneEntities: Set<GKEntity>, collisionCategory: PhysicsComponent.CollisionCategory, entityController: EntityController){
+    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, allies: TeamComponent.Team?, collisionCategory: PhysicsComponent.CollisionCategory, entityController: EntityController){
         super.init()
         
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
@@ -26,7 +26,7 @@ class Projectile: GKEntity {
         addComponent(physicsComponent)
         physicsComponent.physicsBody.velocity = velocity
         
-        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 50, destroySelf: oneHit, doNotHarm: immuneEntities, entityController: entityController)
+        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 50, destroySelf: oneHit, doNotHarm: allies, entityController: entityController)
         addComponent(contactDamageComponent)
         
         let lifeSpanComponent = LifespanComponent(lifespan: 0.75, entityController: entityController)

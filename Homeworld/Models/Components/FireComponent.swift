@@ -21,9 +21,10 @@ class FireProjectileComponent: GKComponent {
     let reloadTime: TimeInterval
     var timeSinceLastFired: TimeInterval
     let projectileCategory: PhysicsComponent.CollisionCategory
+    let allies: TeamComponent.Team?
     
     //TODO: Make this so that if the user presses a button, the update cycle of this causes a damaging projectile to move in the direction the entity's sprite is facing.
-    init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, reloadTime: TimeInterval, projectileCategory: PhysicsComponent.CollisionCategory, entityController: EntityController){
+    init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, reloadTime: TimeInterval, projectileCategory: PhysicsComponent.CollisionCategory, allies: TeamComponent.Team?, entityController: EntityController){
         self.reloadTime = reloadTime
         self.timeSinceLastFired = reloadTime + 1
         self.texture = projectileTexture
@@ -31,6 +32,7 @@ class FireProjectileComponent: GKComponent {
         self.speed = speed
         self.entityController = entityController
         self.projectileCategory = projectileCategory
+        self.allies = allies
         super.init()
     }
     
@@ -60,12 +62,7 @@ class FireProjectileComponent: GKComponent {
         
         let velocity = CGVector(dx: dx * speed, dy: dy * speed)
         
-        var immuneEntities: Set<GKEntity> = []
-        if let ownEntity = self.entity {
-            immuneEntities.insert(ownEntity)
-        }
-        
-        let projectile = Projectile(velocity: velocity, texture: texture, size: size, oneHit: true, immuneEntities: immuneEntities, collisionCategory: projectileCategory, entityController: entityController)
+        let projectile = Projectile(velocity: velocity, texture: texture, size: size, oneHit: true, allies: allies, collisionCategory: projectileCategory, entityController: entityController)
         projectile.component(ofType: SpriteComponent.self)?.node.position = spriteNode.position
         projectile.component(ofType: SpriteComponent.self)?.node.zRotation = spriteNode.zRotation
         entityController.add(projectile)

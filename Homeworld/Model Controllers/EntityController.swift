@@ -63,7 +63,7 @@ class EntityController {
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             spriteNode.removeFromParent()
         }
-        
+        entity.component(ofType: ScoreDeathComponent.self)?.scoreDeath()
         toRemove.insert(entity)
         entities.remove(entity)
     }
@@ -91,6 +91,16 @@ class EntityController {
             targets.append(buildingAgent)
         }
         return targets
+    }
+    
+    func getAlienEntities() -> [GKEntity]{
+        var aliens: [GKEntity] = []
+        for entity in entities {
+            if let raider = entity as? Raider {
+                aliens.append(raider)
+            }
+        }
+        return aliens
     }
     
     func getPlayerAgent() -> GKAgent2D {

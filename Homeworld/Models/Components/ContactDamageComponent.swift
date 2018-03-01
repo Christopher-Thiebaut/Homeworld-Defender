@@ -18,13 +18,11 @@ class ContactDamageComponent: GKComponent {
     
     var damage: Int
     var lastDamageTime: TimeInterval
-    var doNotHarm: Set<GKEntity>
+    var doNotHarm: TeamComponent.Team?
     
     weak var entityController: EntityController?
-    
-    
-    
-    init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, doNotHarm: Set<GKEntity> = [], entityController: EntityController){
+
+    init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, doNotHarm: TeamComponent.Team? = nil, entityController: EntityController){
         self.spriteNode = spriteNode
         self.damage = contactDamage
         self.destroySelf = destroySelf
@@ -54,10 +52,17 @@ class ContactDamageComponent: GKComponent {
         //Loop through other entities and see if any are having a collision with this one. If so, they should take the specified amount of damage.
         for entity in otherEntities {
             
-            guard let otherEntitySpriteComponent = entity.component(ofType: SpriteComponent.self), let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self), !doNotHarm.contains(entity) else {
+            guard let otherEntitySpriteComponent = entity.component(ofType: SpriteComponent.self), let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self) else {
                 //The other entity being checked either is immune to damage or has no physical representation and cannot collide or be damaged by contact, or we have been specifically instructed not to damage.
                 continue
             }
+            
+            if let doNotHarm = doNotHarm {
+                if let otherEntityTeam =  entity.component(ofType: TeamComponent.self)?.team, otherEntityTeam == doNotHarm {
+                    continue
+                }
+            }
+            
             
             if spriteNode.calculateAccumulatedFrame().intersects(otherEntitySpriteComponent.node.calculateAccumulatedFrame()) {
                 otherEntityHealthComponent.takeDamage(damage)

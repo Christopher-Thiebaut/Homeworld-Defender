@@ -62,12 +62,11 @@ class HumanFighter: GKEntity {
         //Set up the fighter's rocket launcher
         let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 1500, reloadTime: 0.5, projectileCategory: .playerProjectile, entityController: entityController)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 1500, reloadTime: 0.5, projectileCategory: .playerProjectile, allies: .human, entityController: entityController)
         addComponent(fireComponent)
         
-        //Give this entity a camera component that will be the scene's camera and follow this entity
-//        let cameraComponent = CameraComponent(spriteNodeToFollow: spriteComponent.node, scene: scene)
-//        addComponent(cameraComponent)
+        let team = TeamComponent(team: .human)
+        addComponent(team)
     }
     
     required init?(coder aDecoder: NSCoder) {

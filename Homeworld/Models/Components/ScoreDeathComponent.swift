@@ -25,7 +25,7 @@ class ScoreDeathComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
+    func scoreDeath(){
         gameScene?.score += pointValue
     }
     

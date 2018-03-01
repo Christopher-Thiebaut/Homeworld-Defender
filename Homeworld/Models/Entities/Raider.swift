@@ -32,7 +32,7 @@ class Raider: GKEntity {
         addComponent(healthComponent)
         
         //The raider should cause damage if collided with
-        let contactDamgeComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 20, destroySelf: false, entityController: entityController)
+        let contactDamgeComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 20, destroySelf: false, doNotHarm: TeamComponent.Team.alien, entityController: entityController)
         addComponent(contactDamgeComponent)
         
         //Give the raider an agent to control its behavior
@@ -42,12 +42,15 @@ class Raider: GKEntity {
         //Set up the raider's gun
         let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileSize = CGSize(width: spriteComponent.node.size.width/10, height: spriteComponent.node.size.height/10)
-        let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, reloadTime: 1, projectileCategory: .alienProjectile, entityController: entityController)
+        let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, reloadTime: 1, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
         addComponent(fireProjectileComponent)
         
         //Assign the number of points the player will get if this entity is destroyed.
         let scoreDeathComponent = ScoreDeathComponent(gameScene: gameScene, pointValue: 5)
         addComponent(scoreDeathComponent)
+        
+        let team = TeamComponent(team: .alien)
+        addComponent(team)
         
     }
     
