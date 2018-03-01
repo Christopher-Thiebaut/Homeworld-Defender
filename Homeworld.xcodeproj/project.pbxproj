@@ -15,6 +15,8 @@
 		B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */; };
 		B306E2F82046223600F0E0D9 /* Raider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F72046223600F0E0D9 /* Raider.swift */; };
 		B306E2FA20466FA000F0E0D9 /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F920466FA000F0E0D9 /* CameraComponent.swift */; };
+		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
+		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
 		B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2C520423E7100B2AF27 /* AppDelegate.swift */; };
 		B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CB20423E7100B2AF27 /* GameScene.swift */; };
 		B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CD20423E7100B2AF27 /* GameViewController.swift */; };
@@ -50,6 +52,8 @@
 		B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderAgent.swift; sourceTree = "<group>"; };
 		B306E2F72046223600F0E0D9 /* Raider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raider.swift; sourceTree = "<group>"; };
 		B306E2F920466FA000F0E0D9 /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
+		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
+		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
 		B361E2C220423E7100B2AF27 /* Homeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B361E2C520423E7100B2AF27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B361E2CB20423E7100B2AF27 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				B361E2D220423E7100B2AF27 /* Assets.xcassets */,
 				B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */,
 				B361E2D720423E7100B2AF27 /* Info.plist */,
+				B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
 				B306E2F920466FA000F0E0D9 /* CameraComponent.swift */,
 				B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */,
+				B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			files = (
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,
+				B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */,
 				B361E2D620423E7100B2AF27 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +310,7 @@
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
 				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
+				B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */,
 				B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,

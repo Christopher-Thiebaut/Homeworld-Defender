@@ -19,6 +19,10 @@ class Raider: GKEntity {
         
         super.init()
         
+        guard let gameScene = entityController.scene else {
+            fatalError("Cannot add an entity to an entity controller with no scene.")
+        }
+        
         //Set up the visual component
         let spriteComponent = SpriteComponent(entity: self, texture: appearance, size: appearance.size())
         addComponent(spriteComponent)
@@ -41,6 +45,9 @@ class Raider: GKEntity {
         let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, reloadTime: 1, projectileCategory: .alienProjectile, entityController: entityController)
         addComponent(fireProjectileComponent)
         
+        //Assign the number of points the player will get if this entity is destroyed.
+        let scoreDeathComponent = ScoreDeathComponent(gameScene: gameScene, pointValue: 5)
+        addComponent(scoreDeathComponent)
         
     }
     

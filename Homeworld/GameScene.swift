@@ -19,6 +19,14 @@ class GameScene: SKScene {
         static let required: CGFloat = 1000
     }
     
+    var score: Int = 0 {
+        didSet{
+            scoreLabel?.text = "\(score)"
+        }
+    }
+    
+    var scoreLabel: SKLabelNode?
+    
     ///Handles most of the simulation by managing the addition and removal of entities and calling the update functions of their components.
     let entityController: EntityController
     ///Used to calculate how much time has passed since the last update so that the EntityController can take appropriately sized simulaiton steps.
@@ -47,6 +55,8 @@ class GameScene: SKScene {
         return (camera?.position.x ?? 0) + gamePlayArea.width/2
     }
     
+    private var lastPlayerPositionX: CGFloat = 0
+    
     var gameStates: GameStateMachine!
     
     init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
@@ -57,8 +67,6 @@ class GameScene: SKScene {
         gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
         entityController.scene = self
     }
-    
-    private var lastPlayerPositionX: CGFloat = 0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -114,18 +122,30 @@ class GameScene: SKScene {
         
         //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
         let pauseTexture = SKTexture(image: #imageLiteral(resourceName: "pause"))
-        let pauseButton = ButtonNode(texture: pauseTexture, size: CGSize.init(width: 30, height: 30)) { [weak self] in
+        let pauseButton = ButtonNode(texture: pauseTexture, size: CGSize(width: 30, height: 30)) { [weak self] in
             self?.gameStates.enter(PauseState.self)
         }
         camera.addChild(pauseButton)
-        pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width), y: 0.5 * (size.height - pauseButton.size.height))
+        pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width) + 10, y: 0.5 * (size.height - pauseButton.size.height) - 10)
         pauseButton.zPosition = ZPositions.high
+        
+        //Add a label that will be used to display the current score in a cool retro font.
+        let scoreDisplay = SKLabelNode(fontNamed: "VT323")
+        scoreDisplay.text = "\(score)"
+        scoreDisplay.position = CGPoint(x: 0, y: 0.5 * (size.height - scoreDisplay.frame.height) - 20)
+        camera.addChild(scoreDisplay)
+        
+        scoreLabel = scoreDisplay
         
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
         buildDemoCity(buildingWidth: 30)
+        
+        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+            self.spawnRaider()
+            }]), count: 4))
 
     }
     
