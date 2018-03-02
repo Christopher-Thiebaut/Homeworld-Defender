@@ -255,7 +255,7 @@ class GameScene: SKScene {
         let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
         let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: [entityController.getPlayerAgent()], unlessDistanceAway: 200, entityController: entityController)
         guard let camera = camera else { return }
-        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: camera.position.x, y: size.height - 100)
+        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: camera.position.x, y: size.height)
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(raider)
     }
