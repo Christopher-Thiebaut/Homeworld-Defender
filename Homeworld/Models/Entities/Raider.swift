@@ -32,7 +32,7 @@ class Raider: GKEntity {
         addComponent(healthComponent)
         
         //The raider should cause damage if collided with
-        let contactDamgeComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 20, destroySelf: false, doNotHarm: TeamComponent.Team.alien, entityController: entityController)
+        let contactDamgeComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 20, destroySelf: false, doNotHarm: [TeamComponent.Team.alien], entityController: entityController)
         addComponent(contactDamgeComponent)
         
         //Give the raider an agent to control its behavior

@@ -12,3 +12,7 @@ import SpriteKit
 class TreeNode: SKSpriteNode {}
 
 class RockNode: SKSpriteNode {}
+
+class SmallBuildingNode: SKSpriteNode {}
+
+class BigBuildingNode: SKSpriteNode {}

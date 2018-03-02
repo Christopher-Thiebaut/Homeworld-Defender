@@ -78,15 +78,7 @@ class GameScene: SKScene {
         gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
-        //Steal children (from the SKScene defined by the file)
-        /*if let levelScene = SKScene(fileNamed: fileNamed){
-            for node in levelScene.children {
-                node.removeFromParent()
-                self.addChild(node)
-            }
-        }else{
-            print("Cannot steal children")
-        }*/
+        
         sceneEditorNode = SKNode(fileNamed: fileNamed)
         gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
         entityController.scene = self
@@ -161,20 +153,11 @@ class GameScene: SKScene {
         
         scoreLabel = scoreDisplay
         
-        
-        physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        
-        /*buildDemoCity(buildingWidth: 30)
-        
-        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
-            self.spawnRaider()
-            }]), count: 4))*/
         cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
         
         stealChildren()
-
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -248,6 +231,10 @@ class GameScene: SKScene {
                 let rockEntity = Rock(spriteNode: rock, entityController: entityController)
                 entityController.add(rockEntity)
             }
+            if let smallBuilding = child as? SmallBuildingNode {
+                let smallBuilding = Building(spriteNode: smallBuilding, health: 100, entityController: entityController)
+                entityController.add(smallBuilding)
+            }
             if let tileMapNode = child as? SKTileMapNode {
                 addChild(tileMapNode)
             }
@@ -255,39 +242,4 @@ class GameScene: SKScene {
         }
         sceneEditorNode = nil
     }
-    
-    func buildDemoCity(buildingWidth: CGFloat){
-        let buildingTexture = SKTexture(image: #imageLiteral(resourceName: "basic_building"))
-        let scale = buildingWidth/buildingTexture.size().width
-        let buildingSize = CGSize(width: buildingTexture.size().width * scale, height: buildingTexture.size().height * scale)
-        let spaceBetweenBuildings: CGFloat = buildingWidth/5
-        var lastBuildingEnd: CGFloat = placementArea.minX - (0.5 * spaceBetweenBuildings)
-        var lastBuilding: Building? = nil
-        while lastBuildingEnd < placementArea.maxX {
-            let newBuilding = Building(texture: buildingTexture, size: buildingSize, entityController: entityController)
-            if let buildingNode = newBuilding.component(ofType: SpriteComponent.self)?.node {
-                buildingNode.position = CGPoint(x: lastBuildingEnd + buildingNode.size.width/2 + spaceBetweenBuildings, y: floorLevel + buildingNode.size.height/2)
-                lastBuildingEnd = buildingNode.position.x + buildingNode.size.width/2
-                entityController.add(newBuilding)
-                lastBuilding = newBuilding
-            }
-        }
-        //Remove the last building iff it is mostly off screen.
-        if let lastBuilding = lastBuilding, lastBuildingEnd > placementArea.maxX {
-            entityController.remove(lastBuilding)
-        }
-    }
-    
-    private func spawnRaider(){
-        let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
-        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: [entityController.getPlayerAgent()], unlessDistanceAway: 0, entityController: entityController)
-        guard let camera = camera else { return }
-        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: camera.position.x, y: size.height - 100)
-        //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
-        entityController.add(raider)
-    }
-}
-
-extension GameScene : SKPhysicsContactDelegate {
-    
 }

@@ -18,11 +18,11 @@ class ContactDamageComponent: GKComponent {
     
     var damage: Int
     var lastDamageTime: TimeInterval
-    var doNotHarm: TeamComponent.Team?
+    var doNotHarm: [TeamComponent.Team]
     
     weak var entityController: EntityController?
 
-    init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, doNotHarm: TeamComponent.Team? = nil, entityController: EntityController){
+    init(spriteNode: SKSpriteNode, contactDamage: Int, destroySelf: Bool, doNotHarm: [TeamComponent.Team] = [], entityController: EntityController){
         self.spriteNode = spriteNode
         self.damage = contactDamage
         self.destroySelf = destroySelf
@@ -57,12 +57,10 @@ class ContactDamageComponent: GKComponent {
                 continue
             }
             
-            if let doNotHarm = doNotHarm {
-                if let otherEntityTeam =  entity.component(ofType: TeamComponent.self)?.team, otherEntityTeam == doNotHarm {
-                    continue
-                }
-            }
             
+            if let otherEntityTeam =  entity.component(ofType: TeamComponent.self)?.team, doNotHarm.contains(otherEntityTeam) {
+                continue
+            }
             
             if spriteNode.calculateAccumulatedFrame().intersects(otherEntitySpriteComponent.node.calculateAccumulatedFrame()) {
                 otherEntityHealthComponent.takeDamage(damage)
