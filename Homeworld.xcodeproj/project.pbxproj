@@ -17,6 +17,7 @@
 		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
 		B35BEBCE2048C8560039CF1E /* LevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBCD2048C8560039CF1E /* LevelOne.swift */; };
+		B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBCF2048E5530039CF1E /* LevelOne.sks */; };
 		B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2C520423E7100B2AF27 /* AppDelegate.swift */; };
 		B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CB20423E7100B2AF27 /* GameScene.swift */; };
 		B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2CD20423E7100B2AF27 /* GameViewController.swift */; };
@@ -54,6 +55,7 @@
 		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
 		B35BEBCD2048C8560039CF1E /* LevelOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelOne.swift; sourceTree = "<group>"; };
+		B35BEBCF2048E5530039CF1E /* LevelOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelOne.sks; sourceTree = "<group>"; };
 		B361E2C220423E7100B2AF27 /* Homeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B361E2C520423E7100B2AF27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B361E2CB20423E7100B2AF27 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				B361E2CB20423E7100B2AF27 /* GameScene.swift */,
 				B35BEBCD2048C8560039CF1E /* LevelOne.swift */,
+				B35BEBCF2048E5530039CF1E /* LevelOne.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,
 				B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */,

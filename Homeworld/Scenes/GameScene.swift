@@ -61,11 +61,33 @@ class GameScene: SKScene {
     
     var gameStates: GameStateMachine!
     
+    //Private Var SceneEditor Scene
+    var sceneEditorNode: SKNode?
+    
     init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
         gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
+        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
+        entityController.scene = self
+    }
+    
+    init<T: HumanFighter>(fileNamed: String, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
+        playerType = player
+        gamePlayArea = gamePlayAreaSize
+        entityController = EntityController()
+        super.init(size: visibleSize)
+        //Steal children (from the SKScene defined by the file)
+        /*if let levelScene = SKScene(fileNamed: fileNamed){
+            for node in levelScene.children {
+                node.removeFromParent()
+                self.addChild(node)
+            }
+        }else{
+            print("Cannot steal children")
+        }*/
+        sceneEditorNode = SKNode(fileNamed: fileNamed)
         gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
         entityController.scene = self
     }
@@ -102,7 +124,7 @@ class GameScene: SKScene {
         
         floorLevel = joyStickWidth + 15
         
-        let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(0), size: CGSize(width: gamePlayArea.width * 2, height: 10))
+        let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(1), size: CGSize(width: gamePlayArea.width * 2, height: 10))
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
         addChild(floorNode)
         self.floorNode = floorNode
@@ -150,6 +172,8 @@ class GameScene: SKScene {
             self.spawnRaider()
             }]), count: 4))*/
         cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
+        
+        stealChildren()
 
     }
     
@@ -208,6 +232,18 @@ class GameScene: SKScene {
             demoMissileSpriteComponent.node.position = CGPoint(x: size.width, y: demoMissileSpriteComponent.node.size.height/2)
         }
         entityController.add(demoMissile)
+    }
+    
+    private func stealChildren(){
+        guard let editorNode = sceneEditorNode else {
+            return
+        }
+        for child in editorNode.children {
+            child.removeFromParent()
+            addChild(child)
+            child.position.y += floorLevel
+        }
+        sceneEditorNode = nil
     }
     
     func buildDemoCity(buildingWidth: CGFloat){
