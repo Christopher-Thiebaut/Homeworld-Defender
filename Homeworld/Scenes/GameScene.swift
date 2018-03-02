@@ -244,6 +244,10 @@ class GameScene: SKScene {
                 let treeEntity = Tree(spriteNode: tree, entityController: entityController) //Badum tss.
                 entityController.add(treeEntity)
             }
+            if let rock = child as? RockNode {
+                let rockEntity = Rock(spriteNode: rock, entityController: entityController)
+                entityController.add(rockEntity)
+            }
             if let tileMapNode = child as? SKTileMapNode {
                 addChild(tileMapNode)
             }

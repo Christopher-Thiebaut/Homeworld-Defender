@@ -9,6 +9,6 @@
 import Foundation
 import SpriteKit
 
-class TreeNode: SKSpriteNode {
-    
-}
+class TreeNode: SKSpriteNode {}
+
+class RockNode: SKSpriteNode {}
