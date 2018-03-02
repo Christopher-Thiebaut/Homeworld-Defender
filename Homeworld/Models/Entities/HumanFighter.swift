@@ -47,7 +47,7 @@ class HumanFighter: GKEntity {
 //        addComponent(mapWrappingComponent)
         
         //Give the HumanFighter a set amount of health
-        let healthComponent = HealthComponent(health: 10000000, entityController: entityController)
+        let healthComponent = HealthComponent(health: 500, entityController: entityController)
         addComponent(healthComponent)
         
         //The human fighter should do damage to entities with which it collides. Still probably not a good idea to collide with things.
@@ -62,7 +62,7 @@ class HumanFighter: GKEntity {
         //Set up the fighter's rocket launcher
         let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 1500, reloadTime: 0.5, projectileCategory: .playerProjectile, allies: .human, entityController: entityController)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 1500, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, entityController: entityController)
         addComponent(fireComponent)
         
         let team = TeamComponent(team: .human)
