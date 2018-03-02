@@ -14,6 +14,7 @@ class TeamComponent: GKComponent {
     enum Team {
         case human
         case alien
+        case environment
     }
     
     let team: Team

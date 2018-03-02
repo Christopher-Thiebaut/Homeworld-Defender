@@ -240,7 +240,13 @@ class GameScene: SKScene {
         }
         for child in editorNode.children {
             child.removeFromParent()
-            addChild(child)
+            if let tree = child as? TreeNode {
+                let treeEntity = Tree(spriteNode: tree, entityController: entityController) //Badum tss.
+                entityController.add(treeEntity)
+            }
+            if let tileMapNode = child as? SKTileMapNode {
+                addChild(tileMapNode)
+            }
             child.position.y += floorLevel
         }
         sceneEditorNode = nil

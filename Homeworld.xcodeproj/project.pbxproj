@@ -13,6 +13,8 @@
 		B306E2F22045F88900F0E0D9 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F12045F88900F0E0D9 /* Building.swift */; };
 		B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */; };
 		B306E2F82046223600F0E0D9 /* Raider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F72046223600F0E0D9 /* Raider.swift */; };
+		B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */; };
+		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
 		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
@@ -42,6 +44,7 @@
 		B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46492044D34F0016B396 /* ChaseBehavior.swift */; };
 		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
 		B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464E2044D7F40016B396 /* GuidedMissile.swift */; };
+		B3E68A70204916D60094961F /* tileset.sks in Resources */ = {isa = PBXBuildFile; fileRef = B3E68A6F204916D60094961F /* tileset.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,8 @@
 		B306E2F12045F88900F0E0D9 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderAgent.swift; sourceTree = "<group>"; };
 		B306E2F72046223600F0E0D9 /* Raider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raider.swift; sourceTree = "<group>"; };
+		B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilderNodes.swift; sourceTree = "<group>"; };
+		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
 		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 		B3CD46492044D34F0016B396 /* ChaseBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
 		B3CD464C2044D49D0016B396 /* ChaseAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseAgent.swift; sourceTree = "<group>"; };
 		B3CD464E2044D7F40016B396 /* GuidedMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedMissile.swift; sourceTree = "<group>"; };
+		B3E68A6F204916D60094961F /* tileset.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tileset.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B30B81B72049BC1800A4F7A0 /* SceneBuilderNodes */ = {
+			isa = PBXGroup;
+			children = (
+				B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */,
+			);
+			path = SceneBuilderNodes;
+			sourceTree = "<group>";
+		};
 		B35BEBC92048C6100039CF1E /* States */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +165,7 @@
 				B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */,
 				B361E2D720423E7100B2AF27 /* Info.plist */,
 				B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */,
+				B3E68A6F204916D60094961F /* tileset.sks */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -158,6 +173,7 @@
 		B3CD462A204467D50016B396 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B30B81B72049BC1800A4F7A0 /* SceneBuilderNodes */,
 				B3CD463320446F4B0016B396 /* Entities */,
 				B3CD462B204467E50016B396 /* Components */,
 				B3CD464B2044D4870016B396 /* Behaviors */,
@@ -205,6 +221,7 @@
 				B306E2F12045F88900F0E0D9 /* Building.swift */,
 				B306E2F72046223600F0E0D9 /* Raider.swift */,
 				B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */,
+				B30B81BA2049BDBA00A4F7A0 /* Tree.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -286,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E68A70204916D60094961F /* tileset.sks in Resources */,
 				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,
@@ -318,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
+				B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */,
 				B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */,
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
 				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
@@ -337,6 +356,7 @@
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
+				B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,
@@ -486,7 +506,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM5E6M7XJW;
 				INFOPLIST_FILE = "$(SRCROOT)/Homeworld/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.christopherthiebaut.Homeworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -502,7 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM5E6M7XJW;
 				INFOPLIST_FILE = "$(SRCROOT)/Homeworld/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.christopherthiebaut.Homeworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
