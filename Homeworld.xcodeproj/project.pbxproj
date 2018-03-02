@@ -16,6 +16,7 @@
 		B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */; };
 		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
 		B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BC2049C47800A4F7A0 /* Rock.swift */; };
+		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
 		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
@@ -57,6 +58,7 @@
 		B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilderNodes.swift; sourceTree = "<group>"; };
 		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		B30B81BC2049C47800A4F7A0 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
+		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
 		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				B3CD46492044D34F0016B396 /* ChaseBehavior.swift */,
+				B3338B922049F21800589E7C /* RetreatBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
+				B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */,
 				B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,

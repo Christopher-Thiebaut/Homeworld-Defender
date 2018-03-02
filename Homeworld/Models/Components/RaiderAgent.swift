@@ -12,10 +12,14 @@ import GameplayKit
 class RaiderAgent: GKAgent2D, GKAgentDelegate {
     
     let findTargets: () -> [GKAgent2D]
+    let enemies: [GKAgent2D]
+    let desiredDistanceFromEnemies: Float
     
     init(findTargets: @escaping () -> [GKAgent2D], avoid: [GKAgent2D], distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
         self.findTargets = findTargets
         let targets = findTargets()
+        enemies = avoid
+        desiredDistanceFromEnemies = distanceFromAvoid
         super.init()
         self.delegate = self
         self.maxSpeed = maxSpeed
@@ -56,8 +60,15 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         
         let nearestTarget: GKAgent2D? = self.nearestTarget(from: targets)
         
+        let nearestEnemy: GKAgent2D? = self.nearestTarget(from: enemies)
+        
         guard let spriteNode = entity?.component(ofType: SpriteComponent.self)?.node else {
             NSLog("Raider agent will not perform activity because it has no sprite.")
+            return
+        }
+        
+        if let nearestEnemy = nearestEnemy, distanceTo(target: nearestEnemy) < desiredDistanceFromEnemies{
+            behavior = RetreatBehavior(targetSpeed: maxSpeed, avoid: nearestEnemy)
             return
         }
         

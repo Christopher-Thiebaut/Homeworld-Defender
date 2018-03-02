@@ -158,6 +158,10 @@ class GameScene: SKScene {
         cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
         
         stealChildren()
+        
+        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+            self.spawnRaider()
+            }]), count: 4))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -245,5 +249,14 @@ class GameScene: SKScene {
             child.position.y += floorLevel - floorNode.size.height
         }
         sceneEditorNode = nil
+    }
+    
+    private func spawnRaider(){
+        let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
+        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: [entityController.getPlayerAgent()], unlessDistanceAway: 200, entityController: entityController)
+        guard let camera = camera else { return }
+        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: camera.position.x, y: size.height - 100)
+        //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
+        entityController.add(raider)
     }
 }
