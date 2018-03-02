@@ -43,7 +43,7 @@ class GameScene: SKScene {
     var minimumCameraHeight: CGFloat = 200
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
     var gamePlayArea: CGSize
-    ///The portion of the gameplay area in which it is safe to place nodes such that movement due to mirror zones will not cause a collision.
+    ///The portion of the gameplay area in which it is safe to place nodes such that their relative position to other nodes in game space will not be altered by sliding window update.
     private var placementArea: CGRect {
         return CGRect(x: minX, y: floorLevel, width: gamePlayArea.width, height: gamePlayArea.height)
     }
@@ -102,7 +102,7 @@ class GameScene: SKScene {
             fatalError("Player Character must have a sprite component.")
         }
         self.playerSpriteNode = playerSpriteNode
-        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: size.height/2)
+        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: size.height)
         lastPlayerPositionX = playerSpriteNode.position.x
         entityController.add(player)
 
@@ -235,10 +235,14 @@ class GameScene: SKScene {
                 let smallBuilding = Building(spriteNode: smallBuilding, health: 100, entityController: entityController)
                 entityController.add(smallBuilding)
             }
+            if let bigBuilding = child as? BigBuildingNode {
+                let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
+                entityController.add(bigBuilding)
+            }
             if let tileMapNode = child as? SKTileMapNode {
                 addChild(tileMapNode)
             }
-            child.position.y += floorLevel
+            child.position.y += floorLevel - floorNode.size.height
         }
         sceneEditorNode = nil
     }
