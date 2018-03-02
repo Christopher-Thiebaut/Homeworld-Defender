@@ -36,9 +36,9 @@ class GameScene: SKScene {
     //Player Character's class. Allows for giving the player different kinds of fighters/planes on different levels.
     let playerType: HumanFighter.Type
     //Player's Sprite Node
-    var playerSpriteNode: SKSpriteNode? = nil
+    var playerSpriteNode: SKSpriteNode!
     //The node representing the floor.
-    var floorNode: SKSpriteNode? = nil
+    var floorNode: SKSpriteNode!
     ///Minimum height at which the camera will track the player.
     var minimumCameraHeight: CGFloat = 200
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
@@ -102,7 +102,7 @@ class GameScene: SKScene {
         
         floorLevel = joyStickWidth + 15
         
-        let floorNode = SKSpriteNode(color: .white, size: CGSize(width: gamePlayArea.width * 2, height: 10))
+        let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(0), size: CGSize(width: gamePlayArea.width * 2, height: 10))
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
         addChild(floorNode)
         self.floorNode = floorNode
@@ -181,15 +181,11 @@ class GameScene: SKScene {
         if playerSprite.position.x > lastPlayerPositionX {
             let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x - gamePlayArea.width/2 - 40, max: playerSprite.position.x - gamePlayArea.width/2 - 30)
             for node in nodesToUpdate {
-                //let distanceFromWindow = playerSprite.position.x - gamePlayArea.width/2 - node.position.x
-                //node.position.x = playerSprite.position.x + gamePlayArea.width/2 + distanceFromWindow
                 node.position.x += gamePlayArea.width
             }
         }else if playerSprite.position.x < lastPlayerPositionX {
             let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x + gamePlayArea.width/2 + 30, max: playerSprite.position.x + gamePlayArea.width/2 + 40)
             for node in nodesToUpdate {
-                //let distanceFromWindow = node.position.x - playerSprite.position.x - gamePlayArea.width/2
-                //node.position.x = playerSprite.position.x - gamePlayArea.width/2 - distanceFromWindow
                 node.position.x -= gamePlayArea.width
             }
         }
@@ -214,7 +210,7 @@ class GameScene: SKScene {
         entityController.add(demoMissile)
     }
     
-    private func buildDemoCity(buildingWidth: CGFloat){
+    func buildDemoCity(buildingWidth: CGFloat){
         let buildingTexture = SKTexture(image: #imageLiteral(resourceName: "basic_building"))
         let scale = buildingWidth/buildingTexture.size().width
         let buildingSize = CGSize(width: buildingTexture.size().width * scale, height: buildingTexture.size().height * scale)
