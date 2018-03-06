@@ -14,14 +14,14 @@ class HumanFighter: GKEntity {
     
     let mass: CGFloat = 1000
     
-    let image = #imageLiteral(resourceName: "test_airplane")
+    let image = #imageLiteral(resourceName: "guardious_side")
     
     required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
         
         //Set up the visual component of the entity
         let texture = SKTexture(image: image)
-        let size = CGSize(width: texture.size().width/2, height: texture.size().height/2)
+        let size = CGSize(width: texture.size().width, height: texture.size().height)
         let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
         addComponent(spriteComponent)
         
@@ -47,7 +47,7 @@ class HumanFighter: GKEntity {
 //        addComponent(mapWrappingComponent)
         
         //Give the HumanFighter a set amount of health
-        let healthComponent = HealthComponent(health: 500, entityController: entityController)
+        let healthComponent = HealthComponent(health: 5000, entityController: entityController)
         addComponent(healthComponent)
         
         //The human fighter should do damage to entities with which it collides. Still probably not a good idea to collide with things.
