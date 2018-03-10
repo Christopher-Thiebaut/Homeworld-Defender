@@ -24,7 +24,7 @@ class GuidedMissile: GKEntity {
         super.init()
         
         let texture = SKTexture(image: image)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: texture.size())
+        let spriteComponent = SpriteComponent(texture: texture, size: texture.size())
         addComponent(spriteComponent)
         
         let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 200, destroySelf: true, entityController: entityController)

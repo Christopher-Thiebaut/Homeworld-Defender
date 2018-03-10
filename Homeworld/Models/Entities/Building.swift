@@ -19,7 +19,7 @@ class Building: GKEntity {
         
         super.init()
         
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
+        let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
         let healthComponent = HealthComponent(health: health, entityController: entityController)
@@ -40,7 +40,7 @@ class Building: GKEntity {
         
         super.init()
         
-        let spriteComponent = SpriteComponent(entity: self, spriteNode: spriteNode, color: .white)
+        let spriteComponent = SpriteComponent(spriteNode: spriteNode, color: .white)
         addComponent(spriteComponent)
         
         let healthComponent = HealthComponent(health: health, entityController: entityController)

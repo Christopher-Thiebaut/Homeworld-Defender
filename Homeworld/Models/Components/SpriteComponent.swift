@@ -13,12 +13,12 @@ class SpriteComponent: GKComponent {
     
     let node: SKSpriteNode
     //TODO: Subclass SpriteComponent so that the sprite entities that need it can have a sprite component that animates based on their movement.
-    init(entity: GKEntity, texture: SKTexture, color: UIColor = .white, size: CGSize) {
+    init(texture: SKTexture, color: UIColor = .white, size: CGSize) {
         node = SKSpriteNode(texture: texture, color: color, size: size)
         super.init()
     }
     
-    init(entity: GKEntity, spriteNode: SKSpriteNode, color: UIColor = .white) {
+    init(spriteNode: SKSpriteNode, color: UIColor = .white) {
         node = spriteNode
         super.init()
     }

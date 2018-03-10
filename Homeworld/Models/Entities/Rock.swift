@@ -15,7 +15,7 @@ class Rock: GKEntity {
     init(spriteNode: SKSpriteNode, entityController: EntityController){
         super.init()
         
-        let spriteComponent = SpriteComponent(entity: self, spriteNode: spriteNode)
+        let spriteComponent = SpriteComponent(spriteNode: spriteNode)
         addComponent(spriteComponent)
         
         let teamComponent = TeamComponent(team: .environment)

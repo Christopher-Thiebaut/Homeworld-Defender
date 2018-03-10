@@ -16,7 +16,7 @@ class DebugginBeacon: GKEntity {
         super.init()
         
         let texture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, color: .white, size: texture.size())
+        let spriteComponent = SpriteComponent(texture: texture, color: .white, size: texture.size())
         addComponent(spriteComponent)
         
         let positionLoggingComponent = PositionLoggingComponent()

@@ -14,15 +14,15 @@ class HumanFighter: GKEntity {
     
     let mass: CGFloat = 1000
     
-    let image = #imageLiteral(resourceName: "guardious_side")
+    let image = #imageLiteral(resourceName: "pixel_fighter")
     
     required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
         
         //Set up the visual component of the entity
         let texture = SKTexture(image: image)
-        let size = CGSize(width: texture.size().width, height: texture.size().height)
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
+        let size = CGSize(width: texture.size().width/3, height: texture.size().height/3)
+        let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
         //Set up the physics properties of the physics component
@@ -65,8 +65,13 @@ class HumanFighter: GKEntity {
         let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 1500, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, entityController: entityController)
         addComponent(fireComponent)
         
+        //Give the fighter an airfoil (produces upward velocity from horizontal) so fighter won't fall if it flies sideways.
+        let airfoilComponent = AirfoilComponent(physicsBody: physicsComponent.physicsBody, liftRatio: 0.01)
+        addComponent(airfoilComponent)
+        
         let team = TeamComponent(team: .human)
         addComponent(team)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

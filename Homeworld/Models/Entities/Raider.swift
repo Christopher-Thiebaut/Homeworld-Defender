@@ -24,7 +24,7 @@ class Raider: GKEntity {
         }
         
         //Set up the visual component
-        let spriteComponent = SpriteComponent(entity: self, texture: appearance, size: appearance.size())
+        let spriteComponent = SpriteComponent(texture: appearance, size: appearance.size())
         addComponent(spriteComponent)
         
         //Give the raider limited health
@@ -48,6 +48,12 @@ class Raider: GKEntity {
         //Assign the number of points the player will get if this entity is destroyed.
         let scoreDeathComponent = ScoreDeathComponent(gameScene: gameScene, pointValue: 5)
         addComponent(scoreDeathComponent)
+        
+        //Give the raider a physics component so he won't run through boundaries
+        if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
+            addComponent(physicsComponent)
+        }
+        
         
         let team = TeamComponent(team: .alien)
         addComponent(team)
