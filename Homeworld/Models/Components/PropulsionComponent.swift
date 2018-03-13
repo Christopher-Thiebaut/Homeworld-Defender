@@ -50,11 +50,9 @@ class PropulsionComponent: GKComponent {
             let playerRotation = spriteNode.zRotation
             let scale = control.magnitude() * physicsBody.mass
             let angle = Float(playerRotation)
-            print("\(angle), \(physicsBody.velocity)")
             let dx = CGFloat(cosf(angle))
             let dy = CGFloat(sinf(angle))
-//            physicsBody.applyForce(CGVector.init(dx: dx * scale, dy: dy * scale))
-            entity?.component(ofType: PhysicsComponent.self)?.applyForce(vector: CGVector(dx: dx * scale, dy: dy * scale))
+            physicsBody.applyForce(CGVector.init(dx: dx * scale, dy: dy * scale))
         }
     }
     

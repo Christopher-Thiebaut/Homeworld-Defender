@@ -96,8 +96,4 @@ class PhysicsComponent: GKComponent {
         }
     }
     
-    func applyForce(vector: CGVector){
-        lastForce = vector
-        physicsBody.applyForce(vector)
-    }
 }

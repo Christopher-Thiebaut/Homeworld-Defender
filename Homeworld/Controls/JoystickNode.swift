@@ -90,7 +90,6 @@ class JoystickNode: SKSpriteNode {
             
             //Set the joystickAngle
             joystickAngle = atan2(dy - 0, dx - 0)
-            //print(joystickAngle)
             
             rod.position = CGPoint(x: (ball.position.x + center.x)/2, y: (ball.position.y + center.y)/2)
             rod.size.width = min(distance, hypot(ball.position.x - center.x, ball.position.y - center.y))

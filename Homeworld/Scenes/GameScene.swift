@@ -96,6 +96,7 @@ class GameScene: SKScene {
         
         let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
+        joyStick.distanceOffCenter = 0.4
         
         let player = playerType.init(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
         guard let playerSpriteNode = player.component(ofType: SpriteComponent.self)?.node else{
@@ -252,7 +253,7 @@ class GameScene: SKScene {
         let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
         let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: [entityController.getPlayerAgent()], unlessDistanceAway: 200, entityController: entityController)
         guard let camera = camera else { return }
-        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: camera.position.x, y: size.height)
+        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: cityCenterReferenceNode.position.x, y: camera.position.y + size.height)
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(raider)
     }
