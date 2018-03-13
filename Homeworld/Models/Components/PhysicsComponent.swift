@@ -26,12 +26,36 @@ class PhysicsComponent: GKComponent {
         case environment = 32
     }
     
+    private var spriteNode: SKSpriteNode
+    private var bodyType: BodyType
+    private var mass: CGFloat
+    private var affectedByGravity: Bool
+    private var collisionCategory: CollisionCategory
+    private var lastForce: CGVector = CGVector(dx: 0, dy: 0)
+    
     private let collideWithAllCategories = CollisionCategory.player.rawValue + CollisionCategory.playerProjectile.rawValue + CollisionCategory.humanAI.rawValue + CollisionCategory.alien.rawValue + CollisionCategory.alienProjectile.rawValue + CollisionCategory.environment.rawValue
     
     var physicsBody: SKPhysicsBody
     
     init?(spriteNode: SKSpriteNode, bodyType: BodyType, mass: CGFloat, affectedByGravity: Bool = true, collisionCategory: CollisionCategory){
-        let center = CGPoint(x: spriteNode.size.width/2, y: spriteNode.size.height/2)
+        
+        self.spriteNode = spriteNode
+        self.bodyType = bodyType
+        self.mass = mass
+        self.affectedByGravity = affectedByGravity
+        self.collisionCategory = collisionCategory
+        physicsBody = SKPhysicsBody()
+        super.init()
+        setupPhysicsBody()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupPhysicsBody(){
+        let velocity = physicsBody.velocity
+        let center = CGPoint(x: 0, y: 0)
         switch bodyType {
         case .rectange:
             physicsBody = SKPhysicsBody(rectangleOf: spriteNode.size, center: center)
@@ -40,7 +64,7 @@ class PhysicsComponent: GKComponent {
         case .texture:
             guard let texture = spriteNode.texture else {
                 NSLog("Cannot initialize SKPhysics body for PhysicsComponent with texture because the provided SKSpriteNode has no texture.")
-                return nil
+                return
             }
             physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.05, size: spriteNode.size)
         }
@@ -48,12 +72,9 @@ class PhysicsComponent: GKComponent {
         spriteNode.physicsBody = physicsBody
         physicsBody.affectedByGravity = affectedByGravity
         physicsBody.linearDamping = 1
-        super.init()
+        physicsBody.velocity = velocity
+        physicsBody.applyForce(lastForce)
         setCollisionCategory(collisionCategory)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func setCollisionCategory(_ category: CollisionCategory){
@@ -75,4 +96,8 @@ class PhysicsComponent: GKComponent {
         }
     }
     
+    func applyForce(vector: CGVector){
+        lastForce = vector
+        physicsBody.applyForce(vector)
+    }
 }

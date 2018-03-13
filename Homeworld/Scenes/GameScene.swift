@@ -116,7 +116,7 @@ class GameScene: SKScene {
         
         floorLevel = joyStickWidth + 15
         
-        let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(1), size: CGSize(width: gamePlayArea.width * 2, height: 10))
+        let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(1), size: CGSize(width: gamePlayArea.width * 10, height: 10))
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
         let floorEntity = Ground(spriteNode: floorNode, entityController: entityController)
         self.floorNode = floorNode

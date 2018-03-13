@@ -71,6 +71,9 @@ class HumanFighter: GKEntity {
         let animationComponent = AnimatedComponent(spriteAtlas: SKTextureAtlas(named: "basic_fighter_short"))
         addComponent(animationComponent)
         
+        let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node)
+        addComponent(rocketEffectComponent)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

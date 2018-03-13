@@ -80,6 +80,10 @@ class AnimatedComponent: GKComponent {
         if let texture = spriteNode.texture {
             spriteNode.size = CGSize.init(width: texture.size().width * xScale, height: texture.size().height * yScale)
         }
+        
+        if let physicsComponent = entity?.component(ofType: PhysicsComponent.self){
+            physicsComponent.setupPhysicsBody()
+        }
     }
     
 }

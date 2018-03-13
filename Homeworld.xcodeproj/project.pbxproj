@@ -33,6 +33,8 @@
 		B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394483920535F3100A48BF0 /* AirfoilComponent.swift */; };
 		B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */; };
 		B395E448205841240091C7A3 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E447205841240091C7A3 /* Ground.swift */; };
+		B395E44A205845500091C7A3 /* RocketFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = B395E449205845500091C7A3 /* RocketFire.sks */; };
+		B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */; };
 		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
@@ -81,6 +83,8 @@
 		B394483920535F3100A48BF0 /* AirfoilComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponent.swift; sourceTree = "<group>"; };
 		B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = basic_fighter_short.atlas; sourceTree = "<group>"; };
 		B395E447205841240091C7A3 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
+		B395E449205845500091C7A3 /* RocketFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RocketFire.sks; sourceTree = "<group>"; };
+		B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketEffectComponent.swift; sourceTree = "<group>"; };
 		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				B361E2D720423E7100B2AF27 /* Info.plist */,
 				B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */,
 				B3E68A6F204916D60094961F /* tileset.sks */,
+				B395E449205845500091C7A3 /* RocketFire.sks */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				B35BEBC72048C1F90039CF1E /* TeamComponent.swift */,
 				B394483920535F3100A48BF0 /* AirfoilComponent.swift */,
 				B3C861C220570CC70053688D /* AnimatedComponent.swift */,
+				B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				B3E68A70204916D60094961F /* tileset.sks in Resources */,
 				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
+				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,
 				B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */,
@@ -365,6 +372,7 @@
 				B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */,
 				B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
+				B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
 				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
