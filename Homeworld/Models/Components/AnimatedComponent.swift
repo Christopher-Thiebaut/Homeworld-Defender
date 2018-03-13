@@ -50,6 +50,17 @@ class AnimatedComponent: GKComponent {
             return
         }
         
+        var xScale: CGFloat
+        var yScale: CGFloat
+        
+        if let texture = spriteNode.texture {
+            xScale = spriteNode.size.width/texture.size().width
+            yScale = spriteNode.size.height/texture.size().height
+        }else{
+            xScale = 1
+            yScale = 1
+        }
+        
         let rotation = spriteNode.zRotation
         
         if rotation >= 0 {
@@ -64,6 +75,10 @@ class AnimatedComponent: GKComponent {
                     spriteNode.texture = frames[frames.count - 1 - index]
                 }
             }
+        }
+        
+        if let texture = spriteNode.texture {
+            spriteNode.size = CGSize.init(width: texture.size().width * xScale, height: texture.size().height * yScale)
         }
     }
     
