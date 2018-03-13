@@ -42,11 +42,6 @@ class HumanFighter: GKEntity {
         let rotationComponent = ManualRotationComponent(spriteNode: spriteComponent.node, rotationControl: rotationControl)
         addComponent(rotationComponent)
         
-        //Give the HumanFighter a MapWrappingComponent so that if it leaves the map, it will re-enter from the other side.
-//        guard let scene = entityController.scene else { fatalError("Tried to do setup from entityController with no scene.") }
-//        let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: scene)
-//        addComponent(mapWrappingComponent)
-        
         //Give the HumanFighter a set amount of health
         let healthComponent = HealthComponent(health: 5000, entityController: entityController)
         addComponent(healthComponent)

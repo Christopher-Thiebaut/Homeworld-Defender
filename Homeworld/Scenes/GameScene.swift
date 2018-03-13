@@ -118,12 +118,9 @@ class GameScene: SKScene {
         
         let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(1), size: CGSize(width: gamePlayArea.width * 2, height: 10))
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
-        addChild(floorNode)
+        let floorEntity = Ground(spriteNode: floorNode, entityController: entityController)
         self.floorNode = floorNode
-        floorNode.physicsBody = SKPhysicsBody(rectangleOf: floorNode.size)
-        floorNode.physicsBody?.affectedByGravity = false
-        floorNode.physicsBody?.isDynamic = false
-        
+        entityController.add(floorEntity)
         
         //Make the controls children of the player so that they will move with the camera. Controls are positioned relative to the camera (center of the screen) so they don't move when the camera does.
         let camera = SKCameraNode()
@@ -159,9 +156,9 @@ class GameScene: SKScene {
         
         stealChildren()
         
-//        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
-//            self.spawnRaider()
-//            }]), count: 4))
+        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+            self.spawnRaider()
+            }]), count: 4))
     }
     
     override func update(_ currentTime: TimeInterval) {

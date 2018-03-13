@@ -32,6 +32,7 @@
 		B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D2CEF204515EC0048941B /* FireComponent.swift */; };
 		B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394483920535F3100A48BF0 /* AirfoilComponent.swift */; };
 		B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */; };
+		B395E448205841240091C7A3 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E447205841240091C7A3 /* Ground.swift */; };
 		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
@@ -79,6 +80,7 @@
 		B37D2CEF204515EC0048941B /* FireComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireComponent.swift; sourceTree = "<group>"; };
 		B394483920535F3100A48BF0 /* AirfoilComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponent.swift; sourceTree = "<group>"; };
 		B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = basic_fighter_short.atlas; sourceTree = "<group>"; };
+		B395E447205841240091C7A3 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */,
 				B30B81BA2049BDBA00A4F7A0 /* Tree.swift */,
 				B30B81BC2049C47800A4F7A0 /* Rock.swift */,
+				B395E447205841240091C7A3 /* Ground.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
 				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
+				B395E448205841240091C7A3 /* Ground.swift in Sources */,
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */,

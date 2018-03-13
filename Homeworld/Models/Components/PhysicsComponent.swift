@@ -62,7 +62,7 @@ class PhysicsComponent: GKComponent {
         case .player:
             physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue
         case .playerProjectile:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue - CollisionCategory.alien.rawValue
         case .humanAI:
             physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.humanAI.rawValue
         case .alien:
