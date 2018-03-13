@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "layered_starfighter_profile.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "guardious_side.png",
       "scale" : "2x"
     },
     {

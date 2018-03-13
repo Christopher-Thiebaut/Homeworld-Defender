@@ -14,14 +14,15 @@ class HumanFighter: GKEntity {
     
     let mass: CGFloat = 1000
     
-    let image = #imageLiteral(resourceName: "pixel_fighter")
+    let image = SKTextureAtlas.init(named: "basic_fighter_short").textureNamed("1")
     
     required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
         
         //Set up the visual component of the entity
-        let texture = SKTexture(image: image)
-        let size = CGSize(width: texture.size().width/3, height: texture.size().height/3)
+        //let texture = SKTexture(image: image)
+        let texture = image
+        let size = CGSize(width: texture.size().width/10, height: texture.size().height/10)
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
@@ -71,6 +72,9 @@ class HumanFighter: GKEntity {
         
         let team = TeamComponent(team: .human)
         addComponent(team)
+        
+        let animationComponent = AnimatedComponent(spriteAtlas: SKTextureAtlas(named: "basic_fighter_short"))
+        addComponent(animationComponent)
         
     }
     

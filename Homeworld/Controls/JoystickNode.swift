@@ -77,7 +77,6 @@ class JoystickNode: SKSpriteNode {
             if distance > trackingDistance {
                 dx = (dx / distance) * trackingDistance
                 dy = (dy / distance) * trackingDistance
-                print("dx: \(dx); dy: \(dy); distance: \(distance); tracking distance: \(trackingDistance)")
             }
             
             ball.position = CGPoint(x: center.x + dx, y: center.y + dy)

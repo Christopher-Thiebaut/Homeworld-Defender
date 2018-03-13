@@ -159,9 +159,9 @@ class GameScene: SKScene {
         
         stealChildren()
         
-        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
-            self.spawnRaider()
-            }]), count: 4))
+//        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+//            self.spawnRaider()
+//            }]), count: 4))
     }
     
     override func update(_ currentTime: TimeInterval) {
