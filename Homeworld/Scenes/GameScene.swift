@@ -25,6 +25,8 @@ class GameScene: SKScene {
         }
     }
     
+    private var finishedSpawningEnemies = false
+    
     var scoreLabel: SKLabelNode?
     
     ///Handles most of the simulation by managing the addition and removal of entities and calling the update functions of their components.
@@ -153,9 +155,9 @@ class GameScene: SKScene {
         
         stealChildren()
         
-        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
-            self.spawnRaider()
-            }]), count: 4))
+//        run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+//            self.spawnRaider()
+//            }]), count: 4))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -163,10 +165,14 @@ class GameScene: SKScene {
         lastUpdateTimeInterval = currentTime
         updateCameraPosition()
         slidingWindowUpdate()
+        if aliensDefeated() {
+            gameStates.enter(VictoryState.self)
+        }
         if playerDefeated() {
             gameStates.enter(DefeatState.self)
         }
         entityController.update(dt)
+        spawnAliens(timeElapsed: dt)
     }
     
     //The player loses when the player dies or the whole city is wiped out.
@@ -175,6 +181,13 @@ class GameScene: SKScene {
             return true
         }
         return entityController.getCivilianTargetAgents().count == 0
+    }
+    
+    private func aliensDefeated() -> Bool {
+        guard finishedSpawningEnemies else {
+            return false
+        }
+        return entityController.getAlienEntities().count == 0
     }
     
     //NOTE: This is used instead of SKConstraints to update the camera position because when the scene to tried to update camera x position due to map wrapping below the minimum height, there was a super gross jump in which the camera had a difficult time tracking the player. This looks smooth because the camera doesn't translate accross space to track the player, it teleports (like the player does)
@@ -254,6 +267,22 @@ class GameScene: SKScene {
             child.position.y += floorLevel - floorNode.size.height
         }
         sceneEditorNode = nil
+    }
+    
+    private var timeSinceAlien: TimeInterval = 100
+    private var alienInterval: TimeInterval = 1
+    private var totalAliens = 30
+    private var aliensSpawned = 0
+    private func spawnAliens(timeElapsed dt: TimeInterval) {
+        timeSinceAlien += dt
+        if timeSinceAlien > alienInterval && aliensSpawned < totalAliens {
+            timeSinceAlien = 0
+            spawnRaider()
+            aliensSpawned += 1
+        }
+        if aliensSpawned >= totalAliens {
+            finishedSpawningEnemies = true
+        }
     }
     
     private func spawnRaider(){

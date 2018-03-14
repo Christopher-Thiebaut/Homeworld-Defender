@@ -16,16 +16,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let aspectRatio = view.bounds.width / view.bounds.height
-//        let gamePlayAreaSize = CGSize(width: 2000, height: 800)
-        
         let skView = self.view as! SKView
-//        skView.showsFPS = true
-//        //skView.showsPhysics = true
-//        skView.showsNodeCount = true
-//        skView.ignoresSiblingOrder = true
-//        scene.scaleMode = .aspectFill
-//        skView.presentScene(scene)
         let mainMenu = MainMenuScene(size: CGSize(width: view.frame.width, height: view.frame.height))
         mainMenu.scaleMode = .aspectFill
         skView.presentScene(mainMenu)

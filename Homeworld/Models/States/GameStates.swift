@@ -98,8 +98,8 @@ class PlayState: GKState {
         guard let previous = previousState as? PauseState else {
             return
         }
-        GameStateMachine.toggleUserInteraction(in: scene)
         previous.pauseOverlay.removeFromParent()
+        GameStateMachine.toggleUserInteraction(in: scene)
         scene.isPaused = false
     }
 }
@@ -121,7 +121,7 @@ class GameOverState: GKState {
     
     override func didEnter(from previousState: GKState?) {
         scene.isPaused = true
-        let overlay = buildVictoryOverlay()
+        let overlay = buildOverlay()
         
         if let camera = scene.camera {
             camera.addChild(overlay)
@@ -130,7 +130,7 @@ class GameOverState: GKState {
         }
     }
     
-    private func buildVictoryOverlay() -> SKSpriteNode {
+    private func buildOverlay() -> SKSpriteNode {
         let background = SKSpriteNode(color: UIColor.black.withAlphaComponent(0.5), size: scene.size)
         background.position = CGPoint(x: 0, y: 0)
         background.zPosition = GameScene.ZPositions.high + 1
