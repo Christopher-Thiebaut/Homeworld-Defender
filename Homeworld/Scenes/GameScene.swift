@@ -69,7 +69,7 @@ class GameScene: SKScene {
         gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
-        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
+        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self), WinState(scene: self)])
         entityController.scene = self
     }
     
@@ -80,7 +80,7 @@ class GameScene: SKScene {
         super.init(size: visibleSize)
         
         sceneEditorNode = SKNode(fileNamed: fileNamed)
-        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self)])
+        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self), WinState(scene: self)])
         entityController.scene = self
     }
     

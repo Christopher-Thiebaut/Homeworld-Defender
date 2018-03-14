@@ -91,15 +91,72 @@ class PlayState: GKState {
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass is PauseState.Type
+        return stateClass is PauseState.Type || stateClass is WinState.Type
     }
     
     override func didEnter(from previousState: GKState?) {
         guard let previous = previousState as? PauseState else {
             return
         }
+        GameStateMachine.toggleUserInteraction(in: scene)
         previous.pauseOverlay.removeFromParent()
         GameStateMachine.toggleUserInteraction(in: scene)
         scene.isPaused = false
+    }
+}
+
+class WinState: GKState {
+    
+    let scene: GameScene
+    
+    init(scene: GameScene) {
+        self.scene = scene
+        super.init()
+    }
+    
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        return false
+    }
+    
+    override func didEnter(from previousState: GKState?) {
+        scene.isPaused = true
+        let overlay = buildVictoryOverlay()
+        
+        if let camera = scene.camera {
+            camera.addChild(overlay)
+        }else{
+            scene.addChild(overlay)
+        }
+    }
+    
+    private func buildVictoryOverlay() -> SKSpriteNode {
+        let background = SKSpriteNode(color: UIColor.black.withAlphaComponent(0.5), size: scene.size)
+        background.position = CGPoint(x: 0, y: 0)
+        background.zPosition = GameScene.ZPositions.high + 1
+        
+        let mainMenuLabel = SKLabelNode(fontNamed: "VT323")
+        mainMenuLabel.text = "RETURN TO MENU"
+        mainMenuLabel.fontColor = .red
+        mainMenuLabel.fontSize = 25
+        let mainMenuButton = ButtonNode(label: mainMenuLabel, action: returnToMainMenu)
+        background.addChild(mainMenuButton)
+        mainMenuButton.alpha = 1
+        
+        let congratulationsLabel = SKLabelNode(fontNamed: "VT323")
+        congratulationsLabel.fontSize = 30
+        congratulationsLabel.text = "CONGRATULATIONS, YOU SAVED THE WORLD"
+        congratulationsLabel.fontColor = .white
+        congratulationsLabel.position = CGPoint(x: 0, y: background.size.height/3.5)
+        background.addChild(congratulationsLabel)
+        congratulationsLabel.alpha = 1
+        
+        return background
+    }
+    
+    private func returnToMainMenu(){
+        guard let view = scene.view else { return }
+        let mainMenu = MainMenuScene(size: view.frame.size)
+        mainMenu.scaleMode = .aspectFill
+        view.presentScene(mainMenu)
     }
 }
