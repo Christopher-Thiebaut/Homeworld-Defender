@@ -71,7 +71,7 @@ class HumanFighter: GKEntity {
         let animationComponent = AnimatedComponent(spriteAtlas: SKTextureAtlas(named: "basic_fighter_short"))
         addComponent(animationComponent)
         
-        let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node)
+        let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, scene: entityController.scene!)
         addComponent(rocketEffectComponent)
         
     }
