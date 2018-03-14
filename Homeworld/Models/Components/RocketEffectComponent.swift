@@ -33,7 +33,6 @@ class RocketEffectComponent: GKComponent {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-//        guard let physicsBody = spriteNode.physicsBody else { return }
         let desiredDistance = spriteNode.size.width/2 - spriteNode.size.width/10
         let angle = Float(spriteNode.zRotation)
         let dx = CGFloat(cosf(angle))

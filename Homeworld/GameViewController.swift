@@ -16,18 +16,20 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let aspectRatio = view.bounds.width / view.bounds.height
-        let gamePlayAreaSize = CGSize(width: 2000, height: 800)
+//        let aspectRatio = view.bounds.width / view.bounds.height
+//        let gamePlayAreaSize = CGSize(width: 2000, height: 800)
         
-        //let scene = LevelOne(visibleSize: CGSize(width: 640 * aspectRatio, height: 640), gamePlayAreaSize: gamePlayAreaSize, player: HumanFighter.self)
-        let scene = GameScene(fileNamed: "LevelOne", visibleSize: CGSize(width: 640 * aspectRatio, height: 640), gamePlayAreaSize: gamePlayAreaSize, player: HumanFighter.self)
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        //skView.showsPhysics = true
-        skView.showsNodeCount = true
-        skView.ignoresSiblingOrder = true
-        scene.scaleMode = .aspectFill
-        skView.presentScene(scene)
+//        skView.showsFPS = true
+//        //skView.showsPhysics = true
+//        skView.showsNodeCount = true
+//        skView.ignoresSiblingOrder = true
+//        scene.scaleMode = .aspectFill
+//        skView.presentScene(scene)
+        let mainMenu = MainMenuScene(size: CGSize(width: view.frame.width, height: view.frame.height))
+        mainMenu.scaleMode = .aspectFill
+        skView.presentScene(mainMenu)
+        
     }
 
     override var shouldAutorotate: Bool {

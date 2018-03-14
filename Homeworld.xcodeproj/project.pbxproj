@@ -29,7 +29,7 @@
 		B361E2D620423E7100B2AF27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */; };
 		B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */; };
 		B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */; };
-		B36EE3C12058C22F003DBD40 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = B36EE3C02058C22F003DBD40 /* MainMenu.sks */; };
+		B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */; };
 		B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D2CEF204515EC0048941B /* FireComponent.swift */; };
 		B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394483920535F3100A48BF0 /* AirfoilComponent.swift */; };
 		B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */; };
@@ -80,7 +80,7 @@
 		B361E2D720423E7100B2AF27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBeacon.swift; sourceTree = "<group>"; };
 		B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLoggingComponent.swift; sourceTree = "<group>"; };
-		B36EE3C02058C22F003DBD40 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B37D2CEF204515EC0048941B /* FireComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireComponent.swift; sourceTree = "<group>"; };
 		B394483920535F3100A48BF0 /* AirfoilComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponent.swift; sourceTree = "<group>"; };
 		B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = basic_fighter_short.atlas; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			children = (
 				B361E2CB20423E7100B2AF27 /* GameScene.swift */,
 				B35BEBCF2048E5530039CF1E /* LevelOne.sks */,
-				B36EE3C02058C22F003DBD40 /* MainMenu.sks */,
+				B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -328,7 +328,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E68A70204916D60094961F /* tileset.sks in Resources */,
-				B36EE3C12058C22F003DBD40 /* MainMenu.sks in Resources */,
 				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
 				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
@@ -362,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */,
 				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
 				B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */,
 				B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */,

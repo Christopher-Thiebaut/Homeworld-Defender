@@ -31,7 +31,6 @@ class PhysicsComponent: GKComponent {
     private var mass: CGFloat
     private var affectedByGravity: Bool
     private var collisionCategory: CollisionCategory
-    private var lastForce: CGVector = CGVector(dx: 0, dy: 0)
     
     private let collideWithAllCategories = CollisionCategory.player.rawValue + CollisionCategory.playerProjectile.rawValue + CollisionCategory.humanAI.rawValue + CollisionCategory.alien.rawValue + CollisionCategory.alienProjectile.rawValue + CollisionCategory.environment.rawValue
     
@@ -73,7 +72,6 @@ class PhysicsComponent: GKComponent {
         physicsBody.affectedByGravity = affectedByGravity
         physicsBody.linearDamping = 1
         physicsBody.velocity = velocity
-        physicsBody.applyForce(lastForce)
         setCollisionCategory(collisionCategory)
     }
     
