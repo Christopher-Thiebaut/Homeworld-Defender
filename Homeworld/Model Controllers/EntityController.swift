@@ -104,13 +104,12 @@ class EntityController {
         return aliens
     }
     
-    func getPlayerAgent() -> GKAgent2D {
+    func getPlayerAgent() -> GKAgent2D? {
         for entity in entities {
             if let playerEntity = entity as? HumanFighter, let playerAgent = playerEntity.component(ofType: PassiveAgent.self) {
                 return playerAgent
             }
         }
-        fatalError("Player was not found.  This should have led to the game ending.")
+        return nil
     }
-    
 }

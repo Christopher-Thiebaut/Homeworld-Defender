@@ -22,9 +22,11 @@ class RocketEffectComponent: GKComponent {
             NSLog("Failed to initialize particle emitter for rocket effect.")
         }
         if let emitter = particleEmitter {
-            scene.addChild(emitter)
+            //scene.addChild(emitter)
             emitter.zPosition = spriteNode.zPosition - 1
             emitter.particleSize = CGSize(width: spriteNode.size.width * 2.5, height: spriteNode.size.height * 2.5)
+            spriteNode.addChild(emitter)
+            emitter.position.x = -spriteNode.size.width/2
         }
         super.init()
     }
@@ -34,12 +36,12 @@ class RocketEffectComponent: GKComponent {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-        let desiredDistance = spriteNode.size.width/2 - spriteNode.size.width/10
+        /*let desiredDistance = spriteNode.size.width/2 - spriteNode.size.width/10
         let angle = Float(spriteNode.zRotation)
         let dx = CGFloat(cosf(angle))
         let dy = CGFloat(sinf(angle))
         particleEmitter?.position = CGPoint(x: spriteNode.position.x - dx * desiredDistance, y: spriteNode.position.y - dy * desiredDistance)
-        particleEmitter?.zRotation = spriteNode.zRotation
+        particleEmitter?.zRotation = spriteNode.zRotation*/
     }
     
 }

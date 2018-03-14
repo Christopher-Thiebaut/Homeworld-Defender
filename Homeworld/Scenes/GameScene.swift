@@ -64,22 +64,14 @@ class GameScene: SKScene {
     //Private Var SceneEditor Scene
     var sceneEditorNode: SKNode?
     
-    init<T: HumanFighter>(visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
+    init<T: HumanFighter>(fileNamed: String? = nil, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
         gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
-        gameStates = buildGameStates()
-        entityController.scene = self
-    }
-    
-    init<T: HumanFighter>(fileNamed: String, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
-        playerType = player
-        gamePlayArea = gamePlayAreaSize
-        entityController = EntityController()
-        super.init(size: visibleSize)
-        
-        sceneEditorNode = SKNode(fileNamed: fileNamed)
+        if let fileName = fileNamed {
+            sceneEditorNode = SKNode(fileNamed: fileName)
+        }
         gameStates = buildGameStates()
         entityController.scene = self
     }
@@ -171,7 +163,18 @@ class GameScene: SKScene {
         lastUpdateTimeInterval = currentTime
         updateCameraPosition()
         slidingWindowUpdate()
+        if playerDefeated() {
+            gameStates.enter(DefeatState.self)
+        }
         entityController.update(dt)
+    }
+    
+    //The player loses when the player dies or the whole city is wiped out.
+    private func playerDefeated() -> Bool {
+        guard entityController.getPlayerAgent() != nil else {
+            return true
+        }
+        return entityController.getCivilianTargetAgents().count == 0
     }
     
     //NOTE: This is used instead of SKConstraints to update the camera position because when the scene to tried to update camera x position due to map wrapping below the minimum height, there was a super gross jump in which the camera had a difficult time tracking the player. This looks smooth because the camera doesn't translate accross space to track the player, it teleports (like the player does)
@@ -255,7 +258,13 @@ class GameScene: SKScene {
     
     private func spawnRaider(){
         let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
-        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: [entityController.getPlayerAgent()], unlessDistanceAway: 200, entityController: entityController)
+        let avoidAgents: [GKAgent2D]
+        if let playerAgent = entityController.getPlayerAgent() {
+            avoidAgents = [playerAgent]
+        }else{
+            avoidAgents = []
+        }
+        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: avoidAgents, unlessDistanceAway: 200, entityController: entityController)
         guard let camera = camera else { return }
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: cityCenterReferenceNode.position.x, y: camera.position.y + size.height)
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
