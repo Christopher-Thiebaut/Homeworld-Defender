@@ -24,6 +24,7 @@ class RocketEffectComponent: GKComponent {
         if let emitter = particleEmitter {
             scene.addChild(emitter)
             emitter.zPosition = spriteNode.zPosition - 1
+            emitter.particleSize = CGSize(width: spriteNode.size.width * 2.5, height: spriteNode.size.height * 2.5)
         }
         super.init()
     }
