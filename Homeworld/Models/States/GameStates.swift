@@ -100,7 +100,6 @@ class PlayState: GKState {
         }
         GameStateMachine.toggleUserInteraction(in: scene)
         previous.pauseOverlay.removeFromParent()
-        GameStateMachine.toggleUserInteraction(in: scene)
         scene.isPaused = false
     }
 }
