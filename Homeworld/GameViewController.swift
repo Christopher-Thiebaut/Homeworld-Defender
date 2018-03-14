@@ -20,7 +20,6 @@ class GameViewController: UIViewController {
         let mainMenu = MainMenuScene(size: CGSize(width: view.frame.width, height: view.frame.height))
         mainMenu.scaleMode = .aspectFill
         skView.presentScene(mainMenu)
-        
     }
 
     override var shouldAutorotate: Bool {

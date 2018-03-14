@@ -63,8 +63,9 @@ class GameScene: SKScene {
     
     var gameStates: GameStateMachine!
     
-    //Private Var SceneEditor Scene
     var sceneEditorNode: SKNode?
+    
+    private let randomSource = GKARC4RandomSource()
     
     init<T: HumanFighter>(fileNamed: String? = nil, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
@@ -163,7 +164,6 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval
         lastUpdateTimeInterval = currentTime
-        updateCameraPosition()
         slidingWindowUpdate()
         if aliensDefeated() {
             gameStates.enter(VictoryState.self)
@@ -173,6 +173,7 @@ class GameScene: SKScene {
         }
         entityController.update(dt)
         spawnAliens(timeElapsed: dt)
+        updateCameraPosition()
     }
     
     //The player loses when the player dies or the whole city is wiped out.
@@ -208,12 +209,12 @@ class GameScene: SKScene {
             return
         }
         if playerSprite.position.x > lastPlayerPositionX {
-            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x - gamePlayArea.width/2 - 40, max: playerSprite.position.x - gamePlayArea.width/2 - 30)
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x - gamePlayArea.width/2 - 500, max: playerSprite.position.x - gamePlayArea.width/2 - 30)
             for node in nodesToUpdate {
                 node.position.x += gamePlayArea.width
             }
         }else if playerSprite.position.x < lastPlayerPositionX {
-            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x + gamePlayArea.width/2 + 30, max: playerSprite.position.x + gamePlayArea.width/2 + 40)
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x + gamePlayArea.width/2 + 30, max: playerSprite.position.x + gamePlayArea.width/2 + 500)
             for node in nodesToUpdate {
                 node.position.x -= gamePlayArea.width
             }
@@ -262,7 +263,7 @@ class GameScene: SKScene {
                 entityController.add(bigBuilding)
             }
             if let tileMapNode = child as? SKTileMapNode {
-                addChild(tileMapNode)
+                //addChild(tileMapNode)
             }
             child.position.y += floorLevel - floorNode.size.height
         }
@@ -271,7 +272,7 @@ class GameScene: SKScene {
     
     private var timeSinceAlien: TimeInterval = 100
     private var alienInterval: TimeInterval = 1
-    private var totalAliens = 30
+    private var totalAliens = 15
     private var aliensSpawned = 0
     private func spawnAliens(timeElapsed dt: TimeInterval) {
         timeSinceAlien += dt
@@ -293,9 +294,9 @@ class GameScene: SKScene {
         }else{
             avoidAgents = []
         }
-        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: avoidAgents, unlessDistanceAway: 200, entityController: entityController)
+        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: avoidAgents, unlessDistanceAway: 300, entityController: entityController)
         guard let camera = camera else { return }
-        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: cityCenterReferenceNode.position.x, y: camera.position.y + size.height)
+        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(raider)
     }

@@ -23,7 +23,9 @@ class MainMenuScene: SKScene {
         playLabel.fontColor = UIColor.red
         playLabel.fontSize = 30
         
-        let playButtonNode = ButtonNode(label: playLabel, action: launchNextLevel)
+        let playButtonNode = ButtonNode(label: playLabel) { [weak self] in
+            self?.launchNextLevel()
+        }
         playButtonNode.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(playButtonNode)
     }
