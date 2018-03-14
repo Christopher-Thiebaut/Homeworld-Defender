@@ -30,7 +30,15 @@ class ButtonNode: SKNode {
         super.init()
         let textureNode = SKSpriteNode(texture: texture, color: SKColor.white, size: size)
         self.addChild(textureNode)
+        isUserInteractionEnabled = true
         //super.init(texture: texture, color: SKColor.white, size: size)
+    }
+    
+    init(label: SKLabelNode, action: @escaping () -> () ){
+        super.init()
+        self.addChild(label)
+        self.buttonAction = action
+        isUserInteractionEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {

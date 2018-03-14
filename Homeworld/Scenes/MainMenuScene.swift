@@ -12,13 +12,20 @@ class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         let titleNode = SKLabelNode(fontNamed: "VT323")
-        titleNode.text = "Homeworld Defender"
+        titleNode.text = "HOMEWORLD DEFENDER"
         titleNode.position = CGPoint(x: size.width/2, y: size.height/1.3)
         titleNode.fontSize = 50
         addChild(titleNode)
         
-        launchNextLevel()
+        //launchNextLevel()
+        let playLabel = SKLabelNode(fontNamed: "VT323")
+        playLabel.text = "PLAY"
+        playLabel.fontColor = UIColor.red
+        playLabel.fontSize = 30
         
+        let playButtonNode = ButtonNode(label: playLabel, action: launchNextLevel)
+        playButtonNode.position = CGPoint(x: size.width/2, y: size.height/2)
+        addChild(playButtonNode)
     }
     
     //TODO: This is a temporary implementation as there is currently only one level.
