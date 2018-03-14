@@ -69,7 +69,7 @@ class GameScene: SKScene {
         gamePlayArea = gamePlayAreaSize
         entityController = EntityController()
         super.init(size: visibleSize)
-        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self), WinState(scene: self)])
+        gameStates = buildGameStates()
         entityController.scene = self
     }
     
@@ -80,8 +80,12 @@ class GameScene: SKScene {
         super.init(size: visibleSize)
         
         sceneEditorNode = SKNode(fileNamed: fileNamed)
-        gameStates = GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self), WinState(scene: self)])
+        gameStates = buildGameStates()
         entityController.scene = self
+    }
+    
+    private func buildGameStates() -> GameStateMachine {
+        return GameStateMachine(states: [PlayState(scene: self), PauseState(scene: self), VictoryState(scene: self), DefeatState(scene: self)])
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -91,7 +91,7 @@ class PlayState: GKState {
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass is PauseState.Type || stateClass is WinState.Type
+        return stateClass is PauseState.Type || stateClass is GameOverState.Type
     }
     
     override func didEnter(from previousState: GKState?) {
@@ -105,12 +105,14 @@ class PlayState: GKState {
     }
 }
 
-class WinState: GKState {
+class GameOverState: GKState {
     
     let scene: GameScene
+    let message: String
     
-    init(scene: GameScene) {
+    init(scene: GameScene, message: String) {
         self.scene = scene
+        self.message = message
         super.init()
     }
     
@@ -142,13 +144,13 @@ class WinState: GKState {
         background.addChild(mainMenuButton)
         mainMenuButton.alpha = 1
         
-        let congratulationsLabel = SKLabelNode(fontNamed: "VT323")
-        congratulationsLabel.fontSize = 30
-        congratulationsLabel.text = "CONGRATULATIONS, YOU SAVED THE WORLD"
-        congratulationsLabel.fontColor = .white
-        congratulationsLabel.position = CGPoint(x: 0, y: background.size.height/3.5)
-        background.addChild(congratulationsLabel)
-        congratulationsLabel.alpha = 1
+        let messageLabel = SKLabelNode(fontNamed: "VT323")
+        messageLabel.fontSize = 30
+        messageLabel.text = message
+        messageLabel.fontColor = .white
+        messageLabel.position = CGPoint(x: 0, y: background.size.height/3.5)
+        background.addChild(messageLabel)
+        messageLabel.alpha = 1
         
         return background
     }
@@ -158,5 +160,19 @@ class WinState: GKState {
         let mainMenu = MainMenuScene(size: view.frame.size)
         mainMenu.scaleMode = .aspectFill
         view.presentScene(mainMenu)
+    }
+}
+
+class VictoryState: GameOverState {
+    
+    init(scene: GameScene){
+        super.init(scene: scene, message: "CONGRATULATIONS, YOU SAVED THE WORLD.")
+    }
+}
+
+class DefeatState: GameOverState {
+    
+    init(scene: GameScene){
+        super.init(scene: scene, message: "YOU HAVE BEEN DEFEATED, HUMANITY IS DOOMED.")
     }
 }
