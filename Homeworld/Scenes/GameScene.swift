@@ -38,9 +38,9 @@ class GameScene: SKScene {
     //Player Character's class. Allows for giving the player different kinds of fighters/planes on different levels.
     let playerType: HumanFighter.Type
     //Player's Sprite Node
-    var playerSpriteNode: SKSpriteNode!
+    var playerSpriteNode: SKSpriteNode?
     //The node representing the floor.
-    var floorNode: SKSpriteNode!
+    var floorNode: SKSpriteNode?
     ///Minimum height at which the camera will track the player.
     var minimumCameraHeight: CGFloat = 200
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
@@ -61,7 +61,7 @@ class GameScene: SKScene {
     
     private var lastPlayerPositionX: CGFloat = 0
     
-    var gameStates: GameStateMachine!
+    var gameStates: GameStateMachine?
     
     var sceneEditorNode: SKNode?
     
@@ -77,6 +77,8 @@ class GameScene: SKScene {
         }
         gameStates = buildGameStates()
         entityController.scene = self
+        
+        log.info("GameScene initialized")
     }
     
     private func buildGameStates() -> GameStateMachine {
@@ -95,6 +97,7 @@ class GameScene: SKScene {
         
         let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
+        log.info("Joystick initialized.")
         joyStick.distanceOffCenter = 0.4
         
         let player = playerType.init(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
@@ -113,6 +116,7 @@ class GameScene: SKScene {
                 fireComponent.fire()
             }
         }
+        log.info("firebutton initialized")
         
         floorLevel = joyStickWidth + 15
         let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
@@ -122,6 +126,8 @@ class GameScene: SKScene {
         let floorEntity = Ground(spriteNode: floorNode, entityController: entityController)
         self.floorNode = floorNode
         entityController.add(floorEntity)
+        
+        log.info("floor initialized.")
         
         //Make the controls children of the player so that they will move with the camera. Controls are positioned relative to the camera (center of the screen) so they don't move when the camera does.
         let camera = SKCameraNode()
@@ -137,7 +143,7 @@ class GameScene: SKScene {
         //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
         let pauseTexture = SKTexture(image: #imageLiteral(resourceName: "pause"))
         let pauseButton = ButtonNode(texture: pauseTexture, size: CGSize(width: 30, height: 30)) { [weak self] in
-            self?.gameStates.enter(PauseState.self)
+            self?.gameStates?.enter(PauseState.self)
         }
         camera.addChild(pauseButton)
         pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width) + 10, y: 0.5 * (size.height - pauseButton.size.height) - 10)
@@ -156,6 +162,7 @@ class GameScene: SKScene {
         cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
         
         stealChildren()
+        log.info("didmoveto finished")
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -163,10 +170,10 @@ class GameScene: SKScene {
         lastUpdateTimeInterval = currentTime
         slidingWindowUpdate()
         if aliensDefeated() {
-            gameStates.enter(VictoryState.self)
+            gameStates?.enter(VictoryState.self)
         }
         if playerDefeated() {
-            gameStates.enter(DefeatState.self)
+            gameStates?.enter(DefeatState.self)
         }
         entityController.update(dt)
         spawnAliens(timeElapsed: dt)
@@ -259,7 +266,7 @@ class GameScene: SKScene {
                 let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
                 entityController.add(bigBuilding)
             }
-            child.position.y += floorLevel - floorNode.size.height
+            child.position.y += floorLevel - (floorNode?.size.height ?? 0)
         }
         sceneEditorNode = nil
     }
@@ -292,13 +299,7 @@ class GameScene: SKScene {
             }
             return agentsToAvoid
         }
-//        var avoidAgents: [GKAgent2D]
-//        if let playerAgent = entityController.getPlayerAgent() {
-//            avoidAgents = [playerAgent]
-//        }else{
-//            avoidAgents = []
-//        }
-//        avoidAgents.append(contentsOf: entityController.getCivilianTargetAgents())
+
         let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: findAgentsToAvoid, unlessDistanceAway: 250, entityController: entityController)
         guard let camera = camera else { return }
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)

@@ -54,9 +54,13 @@
 		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
 		B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464E2044D7F40016B396 /* GuidedMissile.swift */; };
 		B3E68A70204916D60094961F /* tileset.sks in Resources */ = {isa = PBXBuildFile; fileRef = B3E68A6F204916D60094961F /* tileset.sks */; };
+		DF1A890C30808ED20AEA04D8 /* Pods_Homeworld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261A70A6D67B9E3837741A56 /* Pods_Homeworld.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		261A70A6D67B9E3837741A56 /* Pods_Homeworld.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Homeworld.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46EE541E09B4595864A4F46C /* Pods-Homeworld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homeworld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Homeworld/Pods-Homeworld.debug.xcconfig"; sourceTree = "<group>"; };
+		8591E2B7FFDFC4B775848688 /* Pods-Homeworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homeworld.release.xcconfig"; path = "Pods/Target Support Files/Pods-Homeworld/Pods-Homeworld.release.xcconfig"; sourceTree = "<group>"; };
 		B306E2E92045C5B900F0E0D9 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		B306E2EB2045D01A00F0E0D9 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanComponent.swift; sourceTree = "<group>"; };
@@ -113,12 +117,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1A890C30808ED20AEA04D8 /* Pods_Homeworld.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78B18B17D954E8F8FD674427 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				46EE541E09B4595864A4F46C /* Pods-Homeworld.debug.xcconfig */,
+				8591E2B7FFDFC4B775848688 /* Pods-Homeworld.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B30B81B72049BC1800A4F7A0 /* SceneBuilderNodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +164,8 @@
 			children = (
 				B361E2C420423E7100B2AF27 /* Homeworld */,
 				B361E2C320423E7100B2AF27 /* Products */,
+				78B18B17D954E8F8FD674427 /* Pods */,
+				DD50A738B55FC30F896C5BA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,9 +194,9 @@
 		B3CD4629204467360016B396 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */,
 				B361E2C520423E7100B2AF27 /* AppDelegate.swift */,
 				B361E2D220423E7100B2AF27 /* Assets.xcassets */,
+				B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */,
 				B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */,
 				B361E2D720423E7100B2AF27 /* Info.plist */,
 				B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */,
@@ -270,6 +286,14 @@
 			path = Behaviors;
 			sourceTree = "<group>";
 		};
+		DD50A738B55FC30F896C5BA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				261A70A6D67B9E3837741A56 /* Pods_Homeworld.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,10 +301,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B361E2DA20423E7100B2AF27 /* Build configuration list for PBXNativeTarget "Homeworld" */;
 			buildPhases = (
+				897A8E8605161BA12DE8F670 /* [CP] Check Pods Manifest.lock */,
 				B361E2BE20423E7100B2AF27 /* Sources */,
 				B361E2BF20423E7100B2AF27 /* Frameworks */,
 				B361E2C020423E7100B2AF27 /* Resources */,
 				B3CD46502044FBCD0016B396 /* ShellScript */,
+				5F5DC23B4E0F63B301183379 /* [CP] Embed Pods Frameworks */,
+				CC11A57E4C571536B26F2F92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -344,6 +371,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5F5DC23B4E0F63B301183379 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Homeworld/Pods-Homeworld-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Homeworld/Pods-Homeworld-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		897A8E8605161BA12DE8F670 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Homeworld-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B3CD46502044FBCD0016B396 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,6 +419,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		CC11A57E4C571536B26F2F92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Homeworld/Pods-Homeworld-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -481,7 +559,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Debug;
 		};
@@ -537,10 +615,12 @@
 		};
 		B361E2DB20423E7100B2AF27 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46EE541E09B4595864A4F46C /* Pods-Homeworld.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM5E6M7XJW;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Homeworld/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -553,10 +633,12 @@
 		};
 		B361E2DC20423E7100B2AF27 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8591E2B7FFDFC4B775848688 /* Pods-Homeworld.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM5E6M7XJW;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Homeworld/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -35,7 +35,12 @@ class JoystickNode: SKSpriteNode {
         center = CGPoint(x: 0, y: 0)
         //center = CGPoint(x: size.width/2 - ballLength, y: size.height/2 - ballLength)
         
-        let ballTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
+//        let ballTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
+        guard let ballImage = UIImage(named: "red_button") else {
+            log.error("Did not find ballImage.")
+            fatalError("There is no red button.")
+        }
+        let ballTexture = SKTexture(image: ballImage)
         let ballSize = CGSize(width: ballLength, height: ballLength)
         
         
