@@ -17,6 +17,7 @@
 		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
 		B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BC2049C47800A4F7A0 /* Rock.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
+		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
 		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
@@ -53,7 +54,6 @@
 		B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46492044D34F0016B396 /* ChaseBehavior.swift */; };
 		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
 		B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464E2044D7F40016B396 /* GuidedMissile.swift */; };
-		B3E68A70204916D60094961F /* tileset.sks in Resources */ = {isa = PBXBuildFile; fileRef = B3E68A6F204916D60094961F /* tileset.sks */; };
 		DF1A890C30808ED20AEA04D8 /* Pods_Homeworld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261A70A6D67B9E3837741A56 /* Pods_Homeworld.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +71,7 @@
 		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		B30B81BC2049C47800A4F7A0 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
+		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
 		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		B3CD46492044D34F0016B396 /* ChaseBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
 		B3CD464C2044D49D0016B396 /* ChaseAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseAgent.swift; sourceTree = "<group>"; };
 		B3CD464E2044D7F40016B396 /* GuidedMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedMissile.swift; sourceTree = "<group>"; };
-		B3E68A6F204916D60094961F /* tileset.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tileset.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,8 +200,8 @@
 				B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */,
 				B361E2D720423E7100B2AF27 /* Info.plist */,
 				B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */,
-				B3E68A6F204916D60094961F /* tileset.sks */,
 				B395E449205845500091C7A3 /* RocketFire.sks */,
+				B352B074205B30560058E0B8 /* ResourceNames.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -357,7 +357,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E68A70204916D60094961F /* tileset.sks in Resources */,
 				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
 				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
@@ -460,6 +459,7 @@
 				B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
 				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
+				B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */,
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
 				B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */,

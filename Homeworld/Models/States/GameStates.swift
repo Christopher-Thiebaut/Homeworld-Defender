@@ -66,7 +66,8 @@ class PauseState: GKState {
     }
     
     private func buildPauseOverlay() -> SKNode {
-        let playTexture = SKTexture(image: #imageLiteral(resourceName: "play"))
+        //let playTexture = SKTexture(image: #imageLiteral(resourceName: "play"))
+        let playTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.resumeName)
         let buttonSize = CGSize(width: 2 * playTexture.size().width, height: 2 * playTexture.size().height)
         let playButton = ButtonNode(texture: playTexture, size: buttonSize) { [weak self] in
             self?.stateMachine?.enter(PlayState.self)

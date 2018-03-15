@@ -15,7 +15,8 @@ class DebugginBeacon: GKEntity {
     override init() {
         super.init()
         
-        let texture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
+        //let texture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
+        let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.raiderName)
         let spriteComponent = SpriteComponent(texture: texture, color: .white, size: texture.size())
         addComponent(spriteComponent)
         

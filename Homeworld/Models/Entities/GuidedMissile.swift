@@ -14,7 +14,7 @@ class GuidedMissile: GKEntity {
     
     let entityController: EntityController
     let target: GKAgent
-    let image = #imageLiteral(resourceName: "missile")
+    //let image = #imageLiteral(resourceName: "missile")
     let maxSpeed: Float = 400
     let maxAcceleration: Float = 40000
     
@@ -22,8 +22,8 @@ class GuidedMissile: GKEntity {
         self.entityController = entityController
         self.target = target
         super.init()
-        
-        let texture = SKTexture(image: image)
+        let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
+        //let texture = SKTexture(image: image)
         let spriteComponent = SpriteComponent(texture: texture, size: texture.size())
         addComponent(spriteComponent)
         

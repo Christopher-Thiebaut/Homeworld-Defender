@@ -46,6 +46,8 @@ class GameScene: SKScene {
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
     var gamePlayArea: CGSize
     ///The portion of the gameplay area in which it is safe to place nodes such that their relative position to other nodes in game space will not be altered by sliding window update.
+    let textureAtlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
+    
     private var placementArea: CGRect {
         return CGRect(x: minX, y: floorLevel, width: gamePlayArea.width, height: gamePlayArea.height)
     }
@@ -110,7 +112,8 @@ class GameScene: SKScene {
         entityController.add(player)
 
         //Assign the fire button to the player's fire function.
-        let buttonTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
+        //let buttonTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
+        let buttonTexture = textureAtlas.textureNamed(ResourceNames.redButtonName)
         let fireButton = ButtonNode(texture: buttonTexture, size: joyStickSize) {
             if let fireComponent = player.component(ofType: FireProjectileComponent.self){
                 fireComponent.fire()
@@ -119,7 +122,8 @@ class GameScene: SKScene {
         log.info("firebutton initialized")
         
         floorLevel = joyStickWidth + 15
-        let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
+        //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
+        let floorTexture = textureAtlas.textureNamed(ResourceNames.groundName)
         let floorNode = SKSpriteNode(texture: floorTexture, color: .white, size: CGSize(width: gamePlayArea.width * 3, height: 10))
         //let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(1), size: CGSize(width: gamePlayArea.width * 10, height: 10))
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
@@ -141,7 +145,8 @@ class GameScene: SKScene {
         fireButton.zPosition = ZPositions.high
         
         //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
-        let pauseTexture = SKTexture(image: #imageLiteral(resourceName: "pause"))
+        //let pauseTexture = SKTexture(image: #imageLiteral(resourceName: "pause"))
+        let pauseTexture = textureAtlas.textureNamed(ResourceNames.pauseName)
         let pauseButton = ButtonNode(texture: pauseTexture, size: CGSize(width: 30, height: 30)) { [weak self] in
             self?.gameStates?.enter(PauseState.self)
         }
@@ -288,7 +293,8 @@ class GameScene: SKScene {
     }
     
     private func spawnRaider(){
-        let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
+        //let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
+        let raiderTexture = textureAtlas.textureNamed(ResourceNames.raiderName)
         let findAgentsToAvoid = {[weak self] () -> [GKAgent2D] in
             var agentsToAvoid: [GKAgent2D] = []
             if let civilianCollisionRisks = self?.entityController.getCivilianTargetAgents(){

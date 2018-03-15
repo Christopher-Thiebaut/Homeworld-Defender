@@ -36,11 +36,9 @@ class JoystickNode: SKSpriteNode {
         //center = CGPoint(x: size.width/2 - ballLength, y: size.height/2 - ballLength)
         
 //        let ballTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
-        guard let ballImage = UIImage(named: "red_button") else {
-            log.error("Did not find ballImage.")
-            fatalError("There is no red button.")
-        }
-        let ballTexture = SKTexture(image: ballImage)
+//        let ballTexture = SKTexture(image: ballImage)
+        let imagesAtlas = SKTextureAtlas(named: "SceneResources")
+        let ballTexture = imagesAtlas.textureNamed("red_button")
         let ballSize = CGSize(width: ballLength, height: ballLength)
         
         
@@ -49,13 +47,15 @@ class JoystickNode: SKSpriteNode {
         
         joystickAngle = 0
         
-        let rodTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_rod"))
+        //let rodTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_rod"))
+        let rodTexture = imagesAtlas.textureNamed("joystick_rod")
         let rodSize = CGSize(width: ballLength/5, height: ballLength/5)
         rod = SKSpriteNode(texture: rodTexture, color: .black, size: rodSize)
         rod.zRotation = joystickAngle
         rod.zPosition = 0.25
         
-        let baseTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_base"))
+        //let baseTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_base"))
+        let baseTexture = imagesAtlas.textureNamed("joystick_base")
         super.init(texture: baseTexture, color: .clear, size: size)
         
         addChild(ball)

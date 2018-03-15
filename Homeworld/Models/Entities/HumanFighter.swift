@@ -14,7 +14,7 @@ class HumanFighter: GKEntity {
     
     let mass: CGFloat = 1000
     
-    let image = SKTextureAtlas.init(named: "basic_fighter_short").textureNamed("1")
+    let image = SKTextureAtlas(named: "basic_fighter_short").textureNamed("1")
     
     required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
