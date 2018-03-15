@@ -12,13 +12,14 @@ import GameplayKit
 class RaiderAgent: GKAgent2D, GKAgentDelegate {
     
     let findTargets: () -> [GKAgent2D]
-    let enemies: [GKAgent2D]
     let desiredDistanceFromEnemies: Float
+    private var lastPosition: CGPoint = CGPoint(x: 0, y: 0)
+    private var findEnemies: () -> [GKAgent2D]
     
-    init(findTargets: @escaping () -> [GKAgent2D], avoid: [GKAgent2D], distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
+    init(findTargets: @escaping () -> [GKAgent2D], avoid: @escaping () -> [GKAgent2D], distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
         self.findTargets = findTargets
         let targets = findTargets()
-        enemies = avoid
+        findEnemies = avoid
         desiredDistanceFromEnemies = distanceFromAvoid
         super.init()
         self.delegate = self
@@ -54,9 +55,21 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
+        //Check for super insane jumps in position (which GKAgents aparently do sometimes) If the agent jumps insanely, put it back.
+        let distance = hypot(lastPosition.x - CGFloat(position.x), lastPosition.y - CGFloat(position.y))
+        if distance > 10000 {
+            position.x = Float(lastPosition.x)
+            position.y = Float(lastPosition.y)
+            entity?.component(ofType: SpriteComponent.self)?.node.position = lastPosition
+        }else{
+            lastPosition.x = CGFloat(position.x)
+            lastPosition.y = CGFloat(position.y)
+        }
         
         //Find nearest target
         let targets = findTargets()
+        
+        let enemies = findEnemies()
         
         let nearestTarget: GKAgent2D? = self.nearestTarget(from: targets)
         
@@ -67,9 +80,10 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             return
         }
         
-        if let nearestEnemy = nearestEnemy, distanceTo(target: nearestEnemy) < desiredDistanceFromEnemies{
-            behavior = RetreatBehavior(targetSpeed: maxSpeed, avoid: nearestEnemy)
-            if let enemySprite = nearestEnemy.entity?.component(ofType: SpriteComponent.self)?.node {
+        if let dangerousEnemy = nearestEnemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
+            behavior = RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
+            //TODO: Try resolving this issue by giving the agent a closure it can use to find its enemies rather than an array of enemies.
+            if let enemySprite = nearestEnemy?.entity?.component(ofType: SpriteComponent.self)?.node {
                 //TODO: Give this a random offset so that the enemy will miss sometimes.
                 let turnTowardPursuer = SKConstraint.orient(to: enemySprite, offset: SKRange(constantValue: 0))
                 spriteNode.constraints = [turnTowardPursuer]
@@ -87,7 +101,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         let rotationConstraint = SKConstraint.orient(to: targetSpriteNode, offset: SKRange(constantValue: 0))
         spriteNode.constraints = [rotationConstraint]
         
-        guard distanceTo(target: target) < 200 else {
+        guard distanceTo(target: target) < 300 else {
             //If the raider is not very close to a target, approach the nearest one.
             behavior = ChaseBehavior(targetSpeed: maxSpeed, seek: target)
             return
@@ -108,11 +122,14 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         
     }
     
-    private func nearestTarget(from targets: [GKAgent2D]) -> GKAgent2D? {
+    private func nearestTarget(from targets: [GKAgent2D?]) -> GKAgent2D? {
         var nearestTarget: GKAgent2D? = nil
         for target in targets {
             guard let closeTarget = nearestTarget else {
                 nearestTarget = target
+                continue
+            }
+            guard let target = target else {
                 continue
             }
             let closeTargetDistance = distanceTo(target: closeTarget)

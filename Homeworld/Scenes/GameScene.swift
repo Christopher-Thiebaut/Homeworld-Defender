@@ -259,9 +259,6 @@ class GameScene: SKScene {
                 let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
                 entityController.add(bigBuilding)
             }
-            if let tileMapNode = child as? SKTileMapNode {
-                //addChild(tileMapNode)
-            }
             child.position.y += floorLevel - floorNode.size.height
         }
         sceneEditorNode = nil
@@ -285,13 +282,24 @@ class GameScene: SKScene {
     
     private func spawnRaider(){
         let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
-        let avoidAgents: [GKAgent2D]
-        if let playerAgent = entityController.getPlayerAgent() {
-            avoidAgents = [playerAgent]
-        }else{
-            avoidAgents = []
+        let findAgentsToAvoid = {[weak self] () -> [GKAgent2D] in
+            var agentsToAvoid: [GKAgent2D] = []
+            if let civilianCollisionRisks = self?.entityController.getCivilianTargetAgents(){
+                agentsToAvoid.append(contentsOf: civilianCollisionRisks)
+            }
+            if let player = self?.entityController.getPlayerAgent() {
+                agentsToAvoid.append(player)
+            }
+            return agentsToAvoid
         }
-        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: avoidAgents, unlessDistanceAway: 300, entityController: entityController)
+//        var avoidAgents: [GKAgent2D]
+//        if let playerAgent = entityController.getPlayerAgent() {
+//            avoidAgents = [playerAgent]
+//        }else{
+//            avoidAgents = []
+//        }
+//        avoidAgents.append(contentsOf: entityController.getCivilianTargetAgents())
+        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: findAgentsToAvoid, unlessDistanceAway: 250, entityController: entityController)
         guard let camera = camera else { return }
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))

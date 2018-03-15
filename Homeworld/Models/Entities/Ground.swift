@@ -26,6 +26,9 @@ class Ground: GKEntity {
             addComponent(physicsComponent)
             physicsComponent.physicsBody.isDynamic = false
         }
+        
+        let groundAgent = PassiveAgent(spriteNode: spriteNode)
+        addComponent(groundAgent)
     }
     
     required init?(coder aDecoder: NSCoder) {

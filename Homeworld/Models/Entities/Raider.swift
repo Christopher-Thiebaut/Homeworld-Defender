@@ -15,7 +15,7 @@ let maxAcceleration: Float = 40000
 
 class Raider: GKEntity {
     
-    init(appearance: SKTexture, findTargets: @escaping () -> [GKAgent2D], afraidOf: [GKAgent2D], unlessDistanceAway distance: Float, entityController: EntityController){
+    init(appearance: SKTexture, findTargets: @escaping () -> [GKAgent2D], afraidOf: @escaping () -> [GKAgent2D], unlessDistanceAway distance: Float, entityController: EntityController){
         
         super.init()
         
