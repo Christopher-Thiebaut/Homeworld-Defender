@@ -30,7 +30,11 @@ class GameStateMachine: GKStateMachine {
         if let state = currentState as? PauseState{
             state.scene.isPaused = true
         }
+        if let state = currentState as? GameOverState {
+            state.scene.isPaused = true
+        }
         enter(PauseState.self)
+        
     }
 }
 
@@ -128,6 +132,10 @@ class GameOverState: GKState {
             camera.addChild(overlay)
         }else{
             scene.addChild(overlay)
+        }
+        
+        if scene.score > UserData.currentUser.highScore {
+            UserData.currentUser.highScore = scene.score
         }
     }
     

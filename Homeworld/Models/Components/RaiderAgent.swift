@@ -83,7 +83,6 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         if let dangerousEnemy = nearestEnemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
             behavior = RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
             if let enemySprite = nearestEnemy?.entity?.component(ofType: SpriteComponent.self)?.node {
-                //TODO: Give this a random offset so that the enemy will miss sometimes.
                 let turnTowardPursuer = SKConstraint.orient(to: enemySprite, offset: SKRange(constantValue: 0))
                 spriteNode.constraints = [turnTowardPursuer]
                 entity?.component(ofType: FireProjectileComponent.self)?.fire()

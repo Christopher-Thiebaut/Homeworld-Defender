@@ -8,19 +8,15 @@
 
 import Foundation
 
-struct UserData: Codable {
+class UserData: Codable {
     
-    var highScore: Int
-    
-    static let currentUser = UserData()
-    
-    init() {
-        if let savedUser = UserData.load() {
-            self = savedUser
-        }else{
-            self.init(highScore: 0)
+    var highScore: Int {
+        didSet {
+            self.save()
         }
     }
+    
+    static let currentUser = UserData.load()
     
     init(highScore: Int) {
         self.highScore = highScore
@@ -42,14 +38,14 @@ struct UserData: Codable {
         }
     }
     
-    static func load() -> UserData? {
+    static func load() -> UserData {
         do {
             let data = try Data(contentsOf: savedFileURL)
             let userData = try JSONDecoder().decode(UserData.self, from: data)
             return userData
         } catch let error {
             NSLog("Error loading user data: \(error.localizedDescription)")
-            return nil
+            return UserData(highScore: 0)
         }
     }
 }
