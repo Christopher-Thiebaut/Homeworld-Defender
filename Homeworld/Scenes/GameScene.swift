@@ -79,8 +79,6 @@ class GameScene: SKScene {
         }
         gameStates = buildGameStates()
         entityController.scene = self
-        
-        log.info("GameScene initialized")
     }
     
     private func buildGameStates() -> GameStateMachine {
@@ -99,7 +97,6 @@ class GameScene: SKScene {
         
         let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
-        log.info("Joystick initialized.")
         joyStick.distanceOffCenter = 0.4
         
         let player = playerType.init(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
@@ -119,7 +116,7 @@ class GameScene: SKScene {
                 fireComponent.fire()
             }
         }
-        log.info("firebutton initialized")
+
         
         floorLevel = joyStickWidth + 15
         //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
@@ -130,8 +127,6 @@ class GameScene: SKScene {
         let floorEntity = Ground(spriteNode: floorNode, entityController: entityController)
         self.floorNode = floorNode
         entityController.add(floorEntity)
-        
-        log.info("floor initialized.")
         
         //Make the controls children of the player so that they will move with the camera. Controls are positioned relative to the camera (center of the screen) so they don't move when the camera does.
         let camera = SKCameraNode()
@@ -167,7 +162,6 @@ class GameScene: SKScene {
         cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
         
         stealChildren()
-        log.info("didmoveto finished")
     }
     
     override func update(_ currentTime: TimeInterval) {
