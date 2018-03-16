@@ -40,7 +40,7 @@ class Raider: GKEntity {
         addComponent(raiderAgent)
         
         //Set up the raider's gun
-        let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
+        let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
         let projectileSize = CGSize(width: spriteComponent.node.size.width/10, height: spriteComponent.node.size.height/10)
         let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, reloadTime: 1.5, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
         addComponent(fireProjectileComponent)

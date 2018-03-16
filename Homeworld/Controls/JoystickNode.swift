@@ -37,8 +37,8 @@ class JoystickNode: SKSpriteNode {
         
 //        let ballTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
 //        let ballTexture = SKTexture(image: ballImage)
-        let imagesAtlas = SKTextureAtlas(named: "SceneResources")
-        let ballTexture = imagesAtlas.textureNamed("red_button")
+        let imagesAtlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
+        let ballTexture = imagesAtlas.textureNamed(ResourceNames.redButtonName)
         let ballSize = CGSize(width: ballLength, height: ballLength)
         
         

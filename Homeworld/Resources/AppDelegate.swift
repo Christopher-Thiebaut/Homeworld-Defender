@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let cloud = SBPlatformDestination(appID: "2kYevm", appSecret: "14YRoe6w9Izu4cetuIpib1lGf4CSAshg", encryptionKey: "7pjnpc0vdxnhfoewzoSQpVUoTbGuwVsr") // to cloud
-        
+        //cloud.sendingPoints.threshold = 1
         log.addDestination(cloud)
         
         return true

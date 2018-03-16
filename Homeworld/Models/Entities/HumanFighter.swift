@@ -56,7 +56,8 @@ class HumanFighter: GKEntity {
         
         
         //Set up the fighter's rocket launcher
-        let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
+        //let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
+        let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
         let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, firesRockets: true, entityController: entityController)
         addComponent(fireComponent)

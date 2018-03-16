@@ -54,6 +54,7 @@
 		B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46492044D34F0016B396 /* ChaseBehavior.swift */; };
 		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
 		B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464E2044D7F40016B396 /* GuidedMissile.swift */; };
+		B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */; };
 		DF1A890C30808ED20AEA04D8 /* Pods_Homeworld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261A70A6D67B9E3837741A56 /* Pods_Homeworld.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		B3CD46492044D34F0016B396 /* ChaseBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
 		B3CD464C2044D49D0016B396 /* ChaseAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseAgent.swift; sourceTree = "<group>"; };
 		B3CD464E2044D7F40016B396 /* GuidedMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedMissile.swift; sourceTree = "<group>"; };
+		B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SceneResources.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		B3CD4629204467360016B396 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */,
 				B361E2C520423E7100B2AF27 /* AppDelegate.swift */,
 				B361E2D220423E7100B2AF27 /* Assets.xcassets */,
 				B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */,
@@ -357,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */,
 				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
 				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
@@ -560,6 +564,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Debug;
 		};
@@ -609,6 +614,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				"Texture Atlas Maximum Size" = 4096x4096;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

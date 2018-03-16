@@ -16,4 +16,5 @@ struct ResourceNames {
     static let groundName = "ground"
     static let pauseName = "pause"
     static let resumeName = "play"
+    static let joystickBaseName = "joystick_base"
 }

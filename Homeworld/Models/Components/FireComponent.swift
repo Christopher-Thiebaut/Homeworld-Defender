@@ -24,7 +24,6 @@ class FireProjectileComponent: GKComponent {
     let allies: TeamComponent.Team?
     let firesRockets: Bool
     
-    //TODO: Make this so that if the user presses a button, the update cycle of this causes a damaging projectile to move in the direction the entity's sprite is facing.
     init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, reloadTime: TimeInterval, projectileCategory: PhysicsComponent.CollisionCategory, allies: TeamComponent.Team?, firesRockets: Bool = false,entityController: EntityController){
         self.reloadTime = reloadTime
         self.timeSinceLastFired = reloadTime + 1

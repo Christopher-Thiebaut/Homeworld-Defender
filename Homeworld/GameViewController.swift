@@ -12,7 +12,6 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    //TODO: Adjust scaling so the scene's size is actually wider than the visible area.  Wrapping should be based on a smaller area.  Maybe have some 'mirrored' areas on each side
     override func viewDidLoad() {
         super.viewDidLoad()
         
