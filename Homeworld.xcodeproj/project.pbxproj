@@ -16,6 +16,7 @@
 		B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */; };
 		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
 		B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BC2049C47800A4F7A0 /* Rock.swift */; };
+		B3128526205C2F5F00F48AAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3128525205C2F5F00F48AAD /* User.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
@@ -67,6 +68,7 @@
 		B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilderNodes.swift; sourceTree = "<group>"; };
 		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		B30B81BC2049C47800A4F7A0 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
+		B3128525205C2F5F00F48AAD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				B3CD462B204467E50016B396 /* Components */,
 				B3CD464B2044D4870016B396 /* Behaviors */,
 				B35BEBC92048C6100039CF1E /* States */,
+				B3128525205C2F5F00F48AAD /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,7 +304,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Christopher Thiebaut";
 				TargetAttributes = {
 					B361E2C120423E7100B2AF27 = {
@@ -385,6 +388,7 @@
 				B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
 				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
+				B3128526205C2F5F00F48AAD /* User.swift in Sources */,
 				B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */,
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
@@ -446,6 +450,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -453,6 +458,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -504,6 +510,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -511,6 +518,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

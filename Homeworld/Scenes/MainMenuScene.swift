@@ -17,10 +17,17 @@ class MainMenuScene: SKScene {
         titleNode.fontSize = 50
         addChild(titleNode)
         
+        let highScoreLabel = SKLabelNode(fontNamed: "VT323")
+        highScoreLabel.text = "HIGH SCORE: \(UserData.currentUser.highScore)"
+        highScoreLabel.fontSize = 20
+        highScoreLabel.fontColor = .white
+        highScoreLabel.position = CGPoint(x: size.width/2, y: size.height - highScoreLabel.frame.height)
+        addChild(highScoreLabel)
+        
         //launchNextLevel()
         let playLabel = SKLabelNode(fontNamed: "VT323")
         playLabel.text = "PLAY"
-        playLabel.fontColor = UIColor.red
+        playLabel.fontColor = .red
         playLabel.fontSize = 30
         
         let playButtonNode = ButtonNode(label: playLabel) { [weak self] in
