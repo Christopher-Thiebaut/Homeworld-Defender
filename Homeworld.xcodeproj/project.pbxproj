@@ -17,6 +17,7 @@
 		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
 		B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BC2049C47800A4F7A0 /* Rock.swift */; };
 		B3128526205C2F5F00F48AAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3128525205C2F5F00F48AAD /* User.swift */; };
+		B3150F03206032D400E10875 /* WeaklyReferencingAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F02206032D400E10875 /* WeaklyReferencingAgent.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
@@ -71,6 +72,7 @@
 		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		B30B81BC2049C47800A4F7A0 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 		B3128525205C2F5F00F48AAD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B3150F02206032D400E10875 /* WeaklyReferencingAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaklyReferencingAgent.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				B3C861C220570CC70053688D /* AnimatedComponent.swift */,
 				B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */,
 				B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */,
+				B3150F02206032D400E10875 /* WeaklyReferencingAgent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,
 				B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */,
+				B3150F03206032D400E10875 /* WeaklyReferencingAgent.swift in Sources */,
 				B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */,
 				B306E2F82046223600F0E0D9 /* Raider.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,

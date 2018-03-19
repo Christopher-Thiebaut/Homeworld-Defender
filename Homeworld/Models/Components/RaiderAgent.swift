@@ -17,6 +17,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     private var findEnemies: () -> [GKAgent2D]
     var firstMove = true
     var lastStepSize: TimeInterval = 0
+    weak var target: GKAgent2D? = nil
     
     init(findTargets: @escaping () -> [GKAgent2D], avoid: @escaping () -> [GKAgent2D], distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
         self.findTargets = findTargets
@@ -70,11 +71,15 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         }
         
         //Find nearest target
-        let targets = findTargets()
+
+        if self.target == nil {
+            let targets = findTargets()
+            target = self.nearestTarget(from: targets)
+        }
         
         let enemies = findEnemies()
         
-        let nearestTarget: GKAgent2D? = self.nearestTarget(from: targets)
+        
         
         let nearestEnemy: GKAgent2D? = self.nearestTarget(from: enemies)
         
@@ -93,10 +98,18 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             return
         }
         
-        guard let target = nearestTarget, let targetSpriteNode = target.entity?.component(ofType: SpriteComponent.self)?.node else {
+        guard let target = target else {
             NSLog("Raider will not attack because target can't be found.")
             return
         }
+        
+        guard let passiveTarget = target as? WeaklyReferencingAgent, let targetEntity = passiveTarget.weakEntity else { return }
+
+        guard let targetSpriteComponent = targetEntity.component(ofType: SpriteComponent.self) else {
+            NSLog("Raider will not attack because target can't be found.")
+            return
+        }
+        let targetSpriteNode = targetSpriteComponent.node
         
         // Turn to face the nearest target.
         let rotationConstraint = SKConstraint.orient(to: targetSpriteNode, offset: SKRange(constantValue: 0))
