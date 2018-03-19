@@ -51,13 +51,23 @@ class FireProjectileComponent: GKComponent {
             return
         }
         
+        let angle = Float(spriteNode.zRotation)
+        
+        fire(angle: angle)
+    }
+    
+    func fire(angle: Float) {
+        guard let spriteNode = entity?.component(ofType: SpriteComponent.self)?.node else {
+            NSLog("She cannot fire while she's cloaked.")
+            return
+        }
+        
         guard timeSinceLastFired > reloadTime else {
             return
         }
         
         timeSinceLastFired = 0
         
-        let angle = Float(spriteNode.zRotation)
         let dx = CGFloat(cosf(angle))
         let dy = CGFloat(sinf(angle))
         
@@ -65,7 +75,7 @@ class FireProjectileComponent: GKComponent {
         
         let projectile = Projectile(velocity: velocity, texture: texture, size: size, oneHit: true, allies: allies, collisionCategory: projectileCategory, isRocket: firesRockets ,entityController: entityController)
         projectile.component(ofType: SpriteComponent.self)?.node.position = spriteNode.position
-        projectile.component(ofType: SpriteComponent.self)?.node.zRotation = spriteNode.zRotation
+        projectile.component(ofType: SpriteComponent.self)?.node.zRotation = CGFloat(angle)
         entityController.add(projectile)
     }
     

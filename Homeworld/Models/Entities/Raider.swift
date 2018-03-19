@@ -24,7 +24,8 @@ class Raider: GKEntity {
         }
         
         //Set up the visual component
-        let spriteComponent = SpriteComponent(texture: appearance, size: appearance.size())
+        let raiderSize = CGSize(width: appearance.size().width/10, height: appearance.size().height/10)
+        let spriteComponent = SpriteComponent(texture: appearance, size: raiderSize)
         addComponent(spriteComponent)
         
         //Give the raider limited health
@@ -40,7 +41,7 @@ class Raider: GKEntity {
         addComponent(raiderAgent)
         
         //Set up the raider's gun
-        let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
+        let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.defaultAlientBlaster)
         let projectileSize = CGSize(width: spriteComponent.node.size.width/10, height: spriteComponent.node.size.height/10)
         let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, reloadTime: 1.5, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
         addComponent(fireProjectileComponent)
@@ -50,9 +51,9 @@ class Raider: GKEntity {
         addComponent(scoreDeathComponent)
         
         //Give the raider a physics component so he won't run through boundaries
-//        if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
-//            addComponent(physicsComponent)
-//        }
+        if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
+            addComponent(physicsComponent)
+        }
         
         
         let team = TeamComponent(team: .alien)

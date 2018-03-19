@@ -11,11 +11,9 @@ import SpriteKit
 import GameplayKit
 
 ///The PassiveAgent has no agency.  It follows its sprite around and exists so that its entity can be targeted or followed by other agents. Intended to be used for the entity representing the player character.  Can also be used for buildings or other passive objects that can be targeted.
-class PassiveAgent: GKAgent2D, WeaklyReferencingAgent {
+class PassiveAgent: GKAgent2D {
     
     let spriteNode: SKSpriteNode
-    
-    weak var weakEntity: GKEntity?
     
     init(spriteNode: SKSpriteNode){
         self.spriteNode = spriteNode
@@ -35,8 +33,4 @@ class PassiveAgent: GKAgent2D, WeaklyReferencingAgent {
         self.position = float2(x: Float(spriteNode.position.x), y: Float(spriteNode.position.y))
     }
     
-    override func didAddToEntity() {
-        super.didAddToEntity()
-        weakEntity = entity
-    }
 }

@@ -83,18 +83,16 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         
         let nearestEnemy: GKAgent2D? = self.nearestTarget(from: enemies)
         
-        guard let spriteNode = entity?.component(ofType: SpriteComponent.self)?.node else {
-            NSLog("Raider agent will not perform activity because it has no sprite.")
-            return
-        }
-        
         if let dangerousEnemy = nearestEnemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
             behavior = RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
-            if let enemySprite = nearestEnemy?.entity?.component(ofType: SpriteComponent.self)?.node {
-                let turnTowardPursuer = SKConstraint.orient(to: enemySprite, offset: SKRange(constantValue: 0))
-                spriteNode.constraints = [turnTowardPursuer]
-                entity?.component(ofType: FireProjectileComponent.self)?.fire()
-            }
+//            if let enemySprite = nearestEnemy?.entity?.component(ofType: SpriteComponent.self)?.node {
+//                //let turnTowardPursuer = SKConstraint.orient(to: enemySprite, offset: SKRange(constantValue: 0))
+//                //spriteNode.constraints = [turnTowardPursuer]
+//                let fireAngle = atan2f(self.position.x - dangerousEnemy.position.x, self.position.y - dangerousEnemy.position.y)
+//                entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle)
+//            }
+            let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)
+            entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle)
             return
         }
         
@@ -102,18 +100,6 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             NSLog("Raider will not attack because target can't be found.")
             return
         }
-        
-        guard let passiveTarget = target as? WeaklyReferencingAgent, let targetEntity = passiveTarget.weakEntity else { return }
-
-        guard let targetSpriteComponent = targetEntity.component(ofType: SpriteComponent.self) else {
-            NSLog("Raider will not attack because target can't be found.")
-            return
-        }
-        let targetSpriteNode = targetSpriteComponent.node
-        
-        // Turn to face the nearest target.
-        let rotationConstraint = SKConstraint.orient(to: targetSpriteNode, offset: SKRange(constantValue: 0))
-        spriteNode.constraints = [rotationConstraint]
         
         guard distanceTo(target: target) < 300 else {
             //If the raider is not very close to a target, approach the nearest one.
@@ -131,8 +117,8 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             NSLog("Raider cannot attack because it is unarmed.")
             return
         }
-        
-        projectileFiringComponent.fire()
+        let fireAngle = atan2f(target.position.y - self.position.y, target.position.x - self.position.x)
+        projectileFiringComponent.fire(angle: fireAngle)
         
     }
     
@@ -158,12 +144,6 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             if targetDistanceRep < closeTargetDiscanceRep {
                 nearestTarget = target
             }
-//            let closeTargetDistance = distanceTo(target: closeTarget)
-//            let targetDistance = distanceTo(target: target)
-//
-//            if targetDistance < closeTargetDistance {
-//                nearestTarget = target
-//            }
         }
         return nearestTarget
     }
