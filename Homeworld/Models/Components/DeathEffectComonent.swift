@@ -10,14 +10,15 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-class ScoreDeathComponent: GKComponent {
+class DeathEffectComonent: GKComponent {
     
     weak var gameScene: GameScene?
-    let pointValue: Int
     
-    init(gameScene: GameScene, pointValue: Int) {
+    var deathEffect: () -> ()
+    
+    init(gameScene: GameScene, deathEffect: @escaping () -> ()) {
         self.gameScene = gameScene
-        self.pointValue = pointValue
+        self.deathEffect = deathEffect
         super.init()
     }
     
@@ -25,8 +26,8 @@ class ScoreDeathComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func scoreDeath(){
-        gameScene?.score += pointValue
+    func applyDeathEffect(){
+        deathEffect()
     }
     
 }

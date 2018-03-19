@@ -47,7 +47,7 @@ class Raider: GKEntity {
         addComponent(fireProjectileComponent)
         
         //Assign the number of points the player will get if this entity is destroyed.
-        let scoreDeathComponent = ScoreDeathComponent(gameScene: gameScene, pointValue: 5)
+        let scoreDeathComponent = DeathEffectComonent(gameScene: gameScene, deathEffect: {gameScene.score += 5})
         addComponent(scoreDeathComponent)
         
         //Give the raider a physics component so he won't run through boundaries

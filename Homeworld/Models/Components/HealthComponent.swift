@@ -30,7 +30,6 @@ class HealthComponent: GKComponent {
     func takeDamage(_ damage: Int){
         health -= damage
         if let entity = self.entity, health <= 0 {
-            entity.component(ofType: FieryDeathComponent.self)?.entityDied()
             entityController?.remove(entity)
         }
     }

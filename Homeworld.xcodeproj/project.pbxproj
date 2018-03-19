@@ -19,12 +19,11 @@
 		B3128526205C2F5F00F48AAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3128525205C2F5F00F48AAD /* User.swift */; };
 		B3150F052060618000E10875 /* explosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3150F042060618000E10875 /* explosion.atlas */; };
 		B3150F07206061BD00E10875 /* ConstantAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */; };
-		B3150F092060649600E10875 /* FieryDeath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F082060649600E10875 /* FieryDeath.swift */; };
 		B3150F0B206064CF00E10875 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F0A206064CF00E10875 /* Explosion.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
-		B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */; };
+		B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
 		B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBCF2048E5530039CF1E /* LevelOne.sks */; };
 		B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361E2C520423E7100B2AF27 /* AppDelegate.swift */; };
@@ -77,12 +76,11 @@
 		B3128525205C2F5F00F48AAD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B3150F042060618000E10875 /* explosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = explosion.atlas; sourceTree = "<group>"; };
 		B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAnimationComponent.swift; sourceTree = "<group>"; };
-		B3150F082060649600E10875 /* FieryDeath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieryDeath.swift; sourceTree = "<group>"; };
 		B3150F0A206064CF00E10875 /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
-		B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDeathComponent.swift; sourceTree = "<group>"; };
+		B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeathEffectComonent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
 		B35BEBCF2048E5530039CF1E /* LevelOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelOne.sks; sourceTree = "<group>"; };
 		B361E2C220423E7100B2AF27 /* Homeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,14 +235,13 @@
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
 				B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */,
-				B35BEBC52048B4EE0039CF1E /* ScoreDeathComponent.swift */,
+				B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */,
 				B35BEBC72048C1F90039CF1E /* TeamComponent.swift */,
 				B394483920535F3100A48BF0 /* AirfoilComponent.swift */,
 				B3C861C220570CC70053688D /* AnimatedComponent.swift */,
 				B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */,
 				B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */,
 				B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */,
-				B3150F082060649600E10875 /* FieryDeath.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -414,13 +411,12 @@
 				B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */,
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
-				B35BEBC62048B4EE0039CF1E /* ScoreDeathComponent.swift in Sources */,
+				B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */,
 				B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
-				B3150F092060649600E10875 /* FieryDeath.swift in Sources */,
 				B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
