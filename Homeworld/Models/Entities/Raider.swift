@@ -50,9 +50,9 @@ class Raider: GKEntity {
         addComponent(scoreDeathComponent)
         
         //Give the raider a physics component so he won't run through boundaries
-        if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
-            addComponent(physicsComponent)
-        }
+//        if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
+//            addComponent(physicsComponent)
+//        }
         
         
         let team = TeamComponent(team: .alien)

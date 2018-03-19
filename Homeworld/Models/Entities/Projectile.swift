@@ -36,6 +36,8 @@ class Projectile: GKEntity {
             let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, scene: scene)
             addComponent(rocketEffectComponent)
         }
+        
+        spriteComponent.node.zPosition = GameScene.ZPositions.default
     }
     
     required init?(coder aDecoder: NSCoder) {

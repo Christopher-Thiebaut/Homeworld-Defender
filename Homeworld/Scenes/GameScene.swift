@@ -45,9 +45,10 @@ class GameScene: SKScene {
     var minimumCameraHeight: CGFloat = 200
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
     var gamePlayArea: CGSize
-    ///The portion of the gameplay area in which it is safe to place nodes such that their relative position to other nodes in game space will not be altered by sliding window update.
+
     let textureAtlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
     
+    ///The portion of the gameplay area in which it is safe to place nodes such that their relative position to other nodes in game space will not be altered by sliding window update.
     private var placementArea: CGRect {
         return CGRect(x: minX, y: floorLevel, width: gamePlayArea.width, height: gamePlayArea.height)
     }
@@ -79,6 +80,7 @@ class GameScene: SKScene {
         }
         gameStates = buildGameStates()
         entityController.scene = self
+        speed = 0.9999
     }
     
     private func buildGameStates() -> GameStateMachine {
@@ -109,7 +111,6 @@ class GameScene: SKScene {
         entityController.add(player)
 
         //Assign the fire button to the player's fire function.
-        //let buttonTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
         let buttonTexture = textureAtlas.textureNamed(ResourceNames.redButtonName)
         let fireButton = ButtonNode(texture: buttonTexture, size: joyStickSize) {
             if let fireComponent = player.component(ofType: FireProjectileComponent.self){
@@ -133,10 +134,19 @@ class GameScene: SKScene {
         addChild(camera)
         self.camera = camera
         camera.addChild(joyStick)
-        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
+        let leftPositionAdjustment: CGFloat
+        let rightPositionAdjustment: CGFloat
+        if #available(iOS 11.0, *) {
+            leftPositionAdjustment = CGFloat(view.safeAreaInsets.left)
+            rightPositionAdjustment = CGFloat(view.safeAreaInsets.right)
+        } else {
+            leftPositionAdjustment = 0
+            rightPositionAdjustment = 0
+        }
+        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth - leftPositionAdjustment) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
         joyStick.zPosition = ZPositions.high
         camera.addChild(fireButton)
-        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth) - joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
+        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth - rightPositionAdjustment) - joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
         fireButton.zPosition = ZPositions.high
         
         //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
@@ -146,7 +156,7 @@ class GameScene: SKScene {
             self?.gameStates?.enter(PauseState.self)
         }
         camera.addChild(pauseButton)
-        pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width) + 10, y: 0.5 * (size.height - pauseButton.size.height) - 10)
+        pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width - leftPositionAdjustment) + 10, y: 0.5 * (size.height - pauseButton.size.height) - 10)
         pauseButton.zPosition = ZPositions.high
         
         //Add a label that will be used to display the current score in a cool retro font.
@@ -162,10 +172,13 @@ class GameScene: SKScene {
         cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
         
         stealChildren()
+        
+        showPlayerHealthBar()
     }
     
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval
+        NSLog("\(currentTime)")
         lastUpdateTimeInterval = currentTime
         slidingWindowUpdate()
         if aliensDefeated() {
@@ -177,6 +190,12 @@ class GameScene: SKScene {
         entityController.update(dt)
         spawnAliens(timeElapsed: dt)
         updateCameraPosition()
+    }
+    
+    override var isPaused: Bool {
+        didSet {
+            //lastUpdateTimeInterval = Date().timeIntervalSince1970
+        }
     }
     
     //The player loses when the player dies or the whole city is wiped out.
@@ -235,14 +254,6 @@ class GameScene: SKScene {
         return foundNodes
     }
     
-    private func addDemoMissile(target: GKAgent2D){
-        let demoMissile = GuidedMissile.init(target: target, entityController: entityController)
-        if let demoMissileSpriteComponent = demoMissile.component(ofType: SpriteComponent.self) {
-            demoMissileSpriteComponent.node.position = CGPoint(x: size.width, y: demoMissileSpriteComponent.node.size.height/2)
-        }
-        entityController.add(demoMissile)
-    }
-    
     private func stealChildren(){
         guard let editorNode = sceneEditorNode else {
             return
@@ -266,17 +277,19 @@ class GameScene: SKScene {
                 entityController.add(bigBuilding)
             }
             child.position.y += floorLevel - (floorNode?.size.height ?? 0)
+            child.zPosition = ZPositions.default
         }
         sceneEditorNode = nil
     }
     
     private var timeSinceAlien: TimeInterval = 100
     private var alienInterval: TimeInterval = 1
-    private var totalAliens = 15
+    private var totalAliens = 30
     private var aliensSpawned = 0
+    private var maxAliens = 5
     private func spawnAliens(timeElapsed dt: TimeInterval) {
         timeSinceAlien += dt
-        if timeSinceAlien > alienInterval && aliensSpawned < totalAliens {
+        if timeSinceAlien > alienInterval && aliensSpawned < totalAliens && entityController.getAlienEntities().count < maxAliens {
             timeSinceAlien = 0
             spawnRaider()
             aliensSpawned += 1
@@ -285,10 +298,13 @@ class GameScene: SKScene {
             finishedSpawningEnemies = true
         }
     }
-    
+    var raiderTexture: SKTexture?
     private func spawnRaider(){
         //let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
-        let raiderTexture = textureAtlas.textureNamed(ResourceNames.raiderName)
+        if self.raiderTexture == nil {
+            self.raiderTexture = textureAtlas.textureNamed(ResourceNames.raiderName)
+        }
+        
         let findAgentsToAvoid = {[weak self] () -> [GKAgent2D] in
             var agentsToAvoid: [GKAgent2D] = []
             if let civilianCollisionRisks = self?.entityController.getCivilianTargetAgents(){
@@ -297,13 +313,34 @@ class GameScene: SKScene {
             if let player = self?.entityController.getPlayerAgent() {
                 agentsToAvoid.append(player)
             }
+            if let environmentObstacles = self?.entityController.getEnvironmentAgents() {
+                agentsToAvoid.append(contentsOf: environmentObstacles)
+            }
             return agentsToAvoid
         }
-
+        guard let raiderTexture = raiderTexture else {return}
         let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: findAgentsToAvoid, unlessDistanceAway: 250, entityController: entityController)
         guard let camera = camera else { return }
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)
+        raider.component(ofType: SpriteComponent.self)?.node.zPosition = ZPositions.default
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(raider)
+    }
+}
+// MARK: - HealthBar
+extension GameScene {
+    func showPlayerHealthBar() {
+        guard let playerHealthComponent = entityController.getPlayerAgent()?.entity?.component(ofType: HealthComponent.self) else {
+            NSLog("Not displaying player health bar because the player doesn't exist.")
+            return
+        }
+        let healthBarHeight: CGFloat = 10
+        let healthBarPosition = CGPoint(x: -size.width/4, y: size.height/2 - healthBarHeight)
+        //let healthBarPosition = camera!.position
+        let healthBar = DisplayedPercentageBar(initialSize: CGSize.init(width: size.width/3, height: healthBarHeight), color: .green, initialPosition: healthBarPosition, quantityToMonitor: playerHealthComponent)
+        if let healthBarSprite = healthBar.component(ofType: PercentageBarComponent.self)?.bar {
+            camera?.addChild(healthBarSprite)
+        }
+        entityController.add(healthBar)
     }
 }

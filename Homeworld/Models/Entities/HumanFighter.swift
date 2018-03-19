@@ -43,7 +43,7 @@ class HumanFighter: GKEntity {
         addComponent(rotationComponent)
         
         //Give the HumanFighter a set amount of health
-        let healthComponent = HealthComponent(health: 5000, entityController: entityController)
+        let healthComponent = HealthComponent(health: 200, entityController: entityController)
         addComponent(healthComponent)
         
         //The human fighter should do damage to entities with which it collides. Still probably not a good idea to collide with things.
@@ -59,7 +59,7 @@ class HumanFighter: GKEntity {
         //let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, firesRockets: true, entityController: entityController)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, firesRockets: false, entityController: entityController)
         addComponent(fireComponent)
         
         //Give the fighter an airfoil (produces upward velocity from horizontal) so fighter won't fall if it flies sideways.

@@ -15,6 +15,8 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     let desiredDistanceFromEnemies: Float
     private var lastPosition: CGPoint = CGPoint(x: 0, y: 0)
     private var findEnemies: () -> [GKAgent2D]
+    var firstMove = true
+    var lastStepSize: TimeInterval = 0
     
     init(findTargets: @escaping () -> [GKAgent2D], avoid: @escaping () -> [GKAgent2D], distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
         self.findTargets = findTargets
@@ -46,15 +48,16 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     }
     
     func agentDidUpdate(_ agent: GKAgent) {
-        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
+        guard let spriteComponent = entity?.component(ofType: SpriteComponent.self), !firstMove else {
+            firstMove = false
             return
         }
-        
         spriteComponent.node.position = CGPoint(x: CGFloat(position.x), y: CGFloat(position.y))
     }
     
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
+        lastStepSize = seconds
         //Check for super insane jumps in position (which GKAgents aparently do sometimes) If the agent jumps insanely, put it back.
         let distance = hypot(lastPosition.x - CGFloat(position.x), lastPosition.y - CGFloat(position.y))
         if distance > 10000 {

@@ -26,6 +26,9 @@ class Tree: GKEntity {
         
         let healthComponent = HealthComponent(health: 60, entityController: entityController)
         addComponent(healthComponent)
+        
+        let treeAgent = PassiveAgent(spriteNode: spriteNode)
+        addComponent(treeAgent)
     }
     
     required init?(coder aDecoder: NSCoder) {

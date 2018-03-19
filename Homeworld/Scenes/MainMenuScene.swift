@@ -11,6 +11,7 @@ import SpriteKit
 class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
+        
         let titleNode = SKLabelNode(fontNamed: "VT323")
         titleNode.text = "HOMEWORLD DEFENDER"
         titleNode.position = CGPoint(x: size.width/2, y: size.height/1.3)
@@ -50,6 +51,7 @@ class MainMenuScene: SKScene {
         //skView.showsPhysics = true
         view.showsNodeCount = true
         view.ignoresSiblingOrder = true
+        view.showsDrawCount = true
         scene.scaleMode = .aspectFill
         view.presentScene(scene)
     }

@@ -36,7 +36,8 @@ class EntityController {
         let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
         let positionLoggingComponent = GKComponentSystem(componentClass: PositionLoggingComponent.self)
         let rocketEffectSystem = GKComponentSystem(componentClass: RocketEffectComponent.self)
-        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem]
+        let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
+        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, displayedStatusBarsSystem]
     }()
     
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
@@ -57,7 +58,9 @@ class EntityController {
         }
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
-            scene?.addChild(spriteNode)
+            if spriteNode.parent == nil {
+                scene?.addChild(spriteNode)
+            }
         }
     }
     
@@ -76,7 +79,7 @@ class EntityController {
         
         //If an entity is below the floor, remove it (because GKAgents will sometimes move without traversing all the space in between and the floor is thin.
         for entity in entities {
-            if let position = entity.component(ofType: SpriteComponent.self)?.node.position, let floorLevel = scene?.floorLevel, position.y < floorLevel {
+            if let node = entity.component(ofType: SpriteComponent.self)?.node, let parent = node.parent, let position = scene?.convert(node.position, from: parent), let floorLevel = scene?.floorLevel, position.y < floorLevel {
                 remove(entity)
             }
         }
@@ -108,6 +111,16 @@ class EntityController {
             }
         }
         return aliens
+    }
+    
+    func getEnvironmentAgents() -> [GKAgent2D]{
+        var environment: [GKAgent2D] = []
+        for entity in entities {
+            if let agent = entity.component(ofType: PassiveAgent.self) ,entity.component(ofType: TeamComponent.self)?.team == .environment {
+                environment.append(agent)
+            }
+        }
+        return environment
     }
     
     func getPlayerAgent() -> GKAgent2D? {

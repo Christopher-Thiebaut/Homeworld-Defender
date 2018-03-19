@@ -56,6 +56,8 @@
 		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
 		B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464E2044D7F40016B396 /* GuidedMissile.swift */; };
 		B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */; };
+		B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */; };
+		B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,8 @@
 		B3CD464C2044D49D0016B396 /* ChaseAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseAgent.swift; sourceTree = "<group>"; };
 		B3CD464E2044D7F40016B396 /* GuidedMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedMissile.swift; sourceTree = "<group>"; };
 		B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SceneResources.atlas; sourceTree = "<group>"; };
+		B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPercentageBar.swift; sourceTree = "<group>"; };
+		B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageBarComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +233,7 @@
 				B394483920535F3100A48BF0 /* AirfoilComponent.swift */,
 				B3C861C220570CC70053688D /* AnimatedComponent.swift */,
 				B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */,
+				B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				B30B81BC2049C47800A4F7A0 /* Rock.swift */,
 				B395E447205841240091C7A3 /* Ground.swift */,
 				B36EE3C420599A79003DBD40 /* AlienInvasion.swift */,
+				B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -379,10 +385,12 @@
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
 				B395E448205841240091C7A3 /* Ground.swift in Sources */,
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
+				B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
 				B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */,
+				B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */,
 				B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */,
@@ -491,7 +499,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Debug;
@@ -543,7 +551,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				"Texture Atlas Maximum Size" = 4096x4096;
 				VALIDATE_PRODUCT = YES;
 			};
