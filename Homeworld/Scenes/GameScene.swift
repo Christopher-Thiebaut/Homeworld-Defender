@@ -178,7 +178,6 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval
-        NSLog("\(currentTime)")
         lastUpdateTimeInterval = currentTime
         slidingWindowUpdate()
         if aliensDefeated() {
@@ -192,15 +191,9 @@ class GameScene: SKScene {
         updateCameraPosition()
     }
     
-    override var isPaused: Bool {
-        didSet {
-            //lastUpdateTimeInterval = Date().timeIntervalSince1970
-        }
-    }
-    
     //The player loses when the player dies or the whole city is wiped out.
     private func playerDefeated() -> Bool {
-        guard entityController.getPlayerAgent() != nil else {
+        guard entityController.playerAgent != nil else {
             return true
         }
         return entityController.getCivilianTargetAgents().count == 0
@@ -310,7 +303,7 @@ class GameScene: SKScene {
             if let civilianCollisionRisks = self?.entityController.getCivilianTargetAgents(){
                 agentsToAvoid.append(contentsOf: civilianCollisionRisks)
             }
-            if let player = self?.entityController.getPlayerAgent() {
+            if let player = self?.entityController.playerAgent {
                 agentsToAvoid.append(player)
             }
             if let environmentObstacles = self?.entityController.getEnvironmentAgents() {
@@ -318,8 +311,15 @@ class GameScene: SKScene {
             }
             return agentsToAvoid
         }
+        let findTargets = {[weak self] () -> [GKAgent2D] in
+            var targets = [GKAgent2D]()
+            if let entityController = self?.entityController {
+                targets = Array(entityController.getCivilianTargetAgents())
+            }
+            return targets
+        }
         guard let raiderTexture = raiderTexture else {return}
-        let raider = Raider(appearance: raiderTexture, findTargets: entityController.getCivilianTargetAgents, afraidOf: findAgentsToAvoid, unlessDistanceAway: 250, entityController: entityController)
+        let raider = Raider(appearance: raiderTexture, findTargets: findTargets, afraidOf: findAgentsToAvoid, unlessDistanceAway: 250, entityController: entityController)
         guard let camera = camera else { return }
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)
         raider.component(ofType: SpriteComponent.self)?.node.zPosition = ZPositions.default
@@ -330,7 +330,7 @@ class GameScene: SKScene {
 // MARK: - HealthBar
 extension GameScene {
     func showPlayerHealthBar() {
-        guard let playerHealthComponent = entityController.getPlayerAgent()?.entity?.component(ofType: HealthComponent.self) else {
+        guard let playerHealthComponent = entityController.playerAgent?.entity?.component(ofType: HealthComponent.self) else {
             NSLog("Not displaying player health bar because the player doesn't exist.")
             return
         }
