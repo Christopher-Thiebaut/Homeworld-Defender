@@ -276,10 +276,10 @@ class GameScene: SKScene {
     }
     
     private var timeSinceAlien: TimeInterval = 100
-    private var alienInterval: TimeInterval = 1
+    private var alienInterval: TimeInterval = 1.5
     private var totalAliens = 30
     private var aliensSpawned = 0
-    private var maxAliens = 5
+    private var maxAliens = 30
     private func spawnAliens(timeElapsed dt: TimeInterval) {
         timeSinceAlien += dt
         if timeSinceAlien > alienInterval && aliensSpawned < totalAliens && entityController.getAlienEntities().count < maxAliens {

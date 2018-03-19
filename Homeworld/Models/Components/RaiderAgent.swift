@@ -91,8 +91,11 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
 //                let fireAngle = atan2f(self.position.x - dangerousEnemy.position.x, self.position.y - dangerousEnemy.position.y)
 //                entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle)
 //            }
-            let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)
-            entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle)
+            if let enemy = dangerousEnemy.entity, !(enemy is Tree){
+                let randomOffset = Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
+                let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)
+                entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle + randomOffset)
+            }
             return
         }
         

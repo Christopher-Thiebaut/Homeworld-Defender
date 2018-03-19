@@ -17,6 +17,10 @@
 		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
 		B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BC2049C47800A4F7A0 /* Rock.swift */; };
 		B3128526205C2F5F00F48AAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3128525205C2F5F00F48AAD /* User.swift */; };
+		B3150F052060618000E10875 /* explosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3150F042060618000E10875 /* explosion.atlas */; };
+		B3150F07206061BD00E10875 /* ConstantAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */; };
+		B3150F092060649600E10875 /* FieryDeath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F082060649600E10875 /* FieryDeath.swift */; };
+		B3150F0B206064CF00E10875 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F0A206064CF00E10875 /* Explosion.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
@@ -71,6 +75,10 @@
 		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		B30B81BC2049C47800A4F7A0 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 		B3128525205C2F5F00F48AAD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B3150F042060618000E10875 /* explosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = explosion.atlas; sourceTree = "<group>"; };
+		B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAnimationComponent.swift; sourceTree = "<group>"; };
+		B3150F082060649600E10875 /* FieryDeath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieryDeath.swift; sourceTree = "<group>"; };
+		B3150F0A206064CF00E10875 /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
@@ -186,6 +194,7 @@
 		B3CD4629204467360016B396 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3150F042060618000E10875 /* explosion.atlas */,
 				B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */,
 				B361E2C520423E7100B2AF27 /* AppDelegate.swift */,
 				B361E2D220423E7100B2AF27 /* Assets.xcassets */,
@@ -234,6 +243,8 @@
 				B3C861C220570CC70053688D /* AnimatedComponent.swift */,
 				B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */,
 				B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */,
+				B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */,
+				B3150F082060649600E10875 /* FieryDeath.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -260,6 +271,7 @@
 				B395E447205841240091C7A3 /* Ground.swift */,
 				B36EE3C420599A79003DBD40 /* AlienInvasion.swift */,
 				B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */,
+				B3150F0A206064CF00E10875 /* Explosion.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -347,6 +359,7 @@
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
 				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
+				B3150F052060618000E10875 /* explosion.atlas in Resources */,
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,
 				B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */,
 				B361E2D620423E7100B2AF27 /* LaunchScreen.storyboard in Resources */,
@@ -384,6 +397,7 @@
 				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
 				B395E448205841240091C7A3 /* Ground.swift in Sources */,
+				B3150F07206061BD00E10875 /* ConstantAnimationComponent.swift in Sources */,
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
 				B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
@@ -406,6 +420,7 @@
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
+				B3150F092060649600E10875 /* FieryDeath.swift in Sources */,
 				B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
@@ -417,6 +432,7 @@
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
 				B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */,
 				B36EE3C520599A79003DBD40 /* AlienInvasion.swift in Sources */,
+				B3150F0B206064CF00E10875 /* Explosion.swift in Sources */,
 				B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */,
 				B3CD46402044A9AC0016B396 /* ManualRotationComponent.swift in Sources */,
 			);

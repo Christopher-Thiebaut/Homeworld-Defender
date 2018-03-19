@@ -55,7 +55,6 @@ class Raider: GKEntity {
             addComponent(physicsComponent)
         }
         
-        
         let team = TeamComponent(team: .alien)
         addComponent(team)
         
