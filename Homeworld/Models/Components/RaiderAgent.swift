@@ -146,12 +146,24 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             guard let target = target else {
                 continue
             }
-            let closeTargetDistance = distanceTo(target: closeTarget)
-            let targetDistance = distanceTo(target: target)
             
-            if targetDistance < closeTargetDistance {
+            //We are using this instead of the actual distances to save computation time.
+            var xDifference = self.position.x - closeTarget.position.x
+            var yDifference = self.position.y - closeTarget.position.y
+            let closeTargetDiscanceRep = xDifference * xDifference + yDifference * yDifference
+            xDifference = self.position.x - target.position.x
+            yDifference = self.position.y - target.position.y
+            let targetDistanceRep = xDifference * xDifference + yDifference * yDifference
+            
+            if targetDistanceRep < closeTargetDiscanceRep {
                 nearestTarget = target
             }
+//            let closeTargetDistance = distanceTo(target: closeTarget)
+//            let targetDistance = distanceTo(target: target)
+//
+//            if targetDistance < closeTargetDistance {
+//                nearestTarget = target
+//            }
         }
         return nearestTarget
     }
