@@ -22,14 +22,15 @@ class Explosion: GKEntity {
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
-        let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count))
+        let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count), entityController: entityController)
         addComponent(explosionAnimation)
+        explosionAnimation.explosionAnimation()
         
-        let lifespanComponent = LifespanComponent(lifespan: duration, entityController: entityController)
-        addComponent(lifespanComponent)
+//        let lifespanComponent = LifespanComponent(lifespan: duration, entityController: entityController)
+//        addComponent(lifespanComponent)
         
-        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: damage, destroySelf: false, doNotHarm: [], entityController: entityController)
-        addComponent(contactDamageComponent)
+//        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: damage, destroySelf: false, doNotHarm: [], entityController: entityController)
+//        addComponent(contactDamageComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

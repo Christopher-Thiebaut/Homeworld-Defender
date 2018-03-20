@@ -47,7 +47,7 @@ class HumanFighter: GKEntity {
         addComponent(healthComponent)
         
         //The human fighter should do damage to entities with which it collides. Still probably not a good idea to collide with things.
-        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 50, destroySelf: false, entityController: entityController)
+        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 50, destroySelf: false, doNotHarm: [.human], entityController: entityController)
         addComponent(contactDamageComponent)
         
         //Add a passive agent to the fighter.  This will effectively do nothing except allow ai characters driven by agents to easily track it.
@@ -59,7 +59,7 @@ class HumanFighter: GKEntity {
         //let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, firesRockets: false, entityController: entityController)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, firesRockets: true, entityController: entityController)
         addComponent(fireComponent)
         
         //Give the fighter an airfoil (produces upward velocity from horizontal) so fighter won't fall if it flies sideways.

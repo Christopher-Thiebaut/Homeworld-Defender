@@ -17,6 +17,11 @@ class Projectile: GKEntity {
     init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, allies: TeamComponent.Team?, collisionCategory: PhysicsComponent.CollisionCategory, isRocket: Bool = false, entityController: EntityController){
         super.init()
         
+        if let allies = allies {
+            let teamComponent = TeamComponent(team: allies)
+            addComponent(teamComponent)
+        }
+        
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
@@ -32,9 +37,20 @@ class Projectile: GKEntity {
         let lifeSpanComponent = LifespanComponent(lifespan: 0.75, entityController: entityController)
         addComponent(lifeSpanComponent)
         
-        if let scene = entityController.scene, isRocket {
-            let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, scene: scene)
-            addComponent(rocketEffectComponent)
+        let healthComponent = HealthComponent(health: 1, entityController: entityController)
+        addComponent(healthComponent)
+        
+        if isRocket {
+            let createExplosion: () -> () = {
+                let explosionAtlas = SKTextureAtlas(named: "explosion")
+                let explosion = Explosion(scale: 1, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)
+                explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
+                entityController.add(explosion)
+            }
+            
+            let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
+            addComponent(deathEffectComponent)
+
         }
         
         spriteComponent.node.zPosition = GameScene.ZPositions.default

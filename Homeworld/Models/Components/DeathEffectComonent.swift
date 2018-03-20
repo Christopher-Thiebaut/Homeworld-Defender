@@ -12,12 +12,9 @@ import SpriteKit
 
 class DeathEffectComonent: GKComponent {
     
-    weak var gameScene: GameScene?
-    
     var deathEffect: () -> ()
     
-    init(gameScene: GameScene, deathEffect: @escaping () -> ()) {
-        self.gameScene = gameScene
+    init(deathEffect: @escaping () -> ()) {
         self.deathEffect = deathEffect
         super.init()
     }
