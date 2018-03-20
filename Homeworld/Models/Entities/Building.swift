@@ -33,6 +33,16 @@ class Building: GKEntity {
         
         let teamComponent = TeamComponent(team: .environment)
         addComponent(teamComponent)
+        
+        let createExplosion: () -> () = {
+            let explosionAtlas = SKTextureAtlas(named: "explosion")
+            let explosion = Explosion(scale: 2, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)
+            explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
+            entityController.add(explosion)
+        }
+        
+        let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
+        addComponent(deathEffectComponent)
     }
     
     init(spriteNode: SKSpriteNode, health: Int, entityController: EntityController){

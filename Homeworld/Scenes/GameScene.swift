@@ -276,7 +276,7 @@ class GameScene: SKScene {
     }
     
     private var timeSinceAlien: TimeInterval = 100
-    private var alienInterval: TimeInterval = 1.5
+    private var alienInterval: TimeInterval = 2
     private var totalAliens = 30
     private var aliensSpawned = 0
     private var maxAliens = 30

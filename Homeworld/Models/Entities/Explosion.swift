@@ -22,6 +22,8 @@ class Explosion: GKEntity {
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
+        spriteComponent.node.zPosition = GameScene.ZPositions.high
+        
         let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count), entityController: entityController)
         addComponent(explosionAnimation)
         explosionAnimation.explosionAnimation()

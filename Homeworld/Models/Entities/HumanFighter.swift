@@ -75,6 +75,16 @@ class HumanFighter: GKEntity {
         let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, scene: entityController.scene!)
         addComponent(rocketEffectComponent)
         
+        let createExplosion: () -> () = {
+            let explosionAtlas = SKTextureAtlas(named: "explosion")
+            let explosion = Explosion(scale: 2, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)
+            explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
+            entityController.add(explosion)
+        }
+        
+        let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
+        addComponent(deathEffectComponent)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

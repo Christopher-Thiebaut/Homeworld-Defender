@@ -183,4 +183,13 @@ class DefeatState: GameOverState {
     init(scene: GameScene){
         super.init(scene: scene, message: "YOU HAVE BEEN DEFEATED, HUMANITY IS DOOMED.")
     }
+    
+    override func didEnter(from previousState: GKState?) {
+        super.didEnter(from: previousState)
+        scene.isPaused = false
+        //This is to let any death-related animations play.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {[weak self] in
+            self?.scene.isPaused = true
+        })
+    }
 }

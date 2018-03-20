@@ -132,6 +132,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
                 nearestTarget = target
                 continue
             }
+            
             guard let target = target else {
                 continue
             }
