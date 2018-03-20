@@ -24,7 +24,7 @@ class Raider: GKEntity {
         }
         
         //Set up the visual component
-        let raiderSize = CGSize(width: appearance.size().width/10, height: appearance.size().height/10)
+        let raiderSize = CGSize(width: appearance.size().width/7, height: appearance.size().height/7)
         let spriteComponent = SpriteComponent(texture: appearance, size: raiderSize)
         addComponent(spriteComponent)
         

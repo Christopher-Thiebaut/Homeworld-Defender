@@ -22,7 +22,7 @@ class HumanFighter: GKEntity {
         //Set up the visual component of the entity
         //let texture = SKTexture(image: image)
         let texture = image
-        let size = CGSize(width: texture.size().width/10, height: texture.size().height/10)
+        let size = CGSize(width: texture.size().width/7, height: texture.size().height/7)
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
