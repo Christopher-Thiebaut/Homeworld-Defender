@@ -68,8 +68,6 @@ class GameScene: SKScene {
     
     var sceneEditorNode: SKNode?
     
-    private let randomSource = GKARC4RandomSource()
-    
     init<T: HumanFighter>(fileNamed: String? = nil, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
         gamePlayArea = gamePlayAreaSize
@@ -95,7 +93,7 @@ class GameScene: SKScene {
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let joyStickWidth = min(size.width/3.5, 100)
+        let joyStickWidth = min(size.width/3.5, 150)
         
         let joyStickSize = CGSize(width: joyStickWidth, height: joyStickWidth)
         let joyStick = JoystickNode(size: joyStickSize)
@@ -143,10 +141,10 @@ class GameScene: SKScene {
             leftPositionAdjustment = 0
             rightPositionAdjustment = 0
         }
-        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth - leftPositionAdjustment) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
+        joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth - leftPositionAdjustment) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 30)
         joyStick.zPosition = ZPositions.high
         camera.addChild(fireButton)
-        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth - rightPositionAdjustment) - joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 10)
+        fireButton.position = CGPoint(x: 0.5 * (size.width - joyStickWidth - rightPositionAdjustment) - joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 30)
         fireButton.zPosition = ZPositions.high
         
         //Add a pause button in the top left corner of the screen (positioned relative to the camera.)
@@ -213,7 +211,7 @@ class GameScene: SKScene {
             return
         }
         camera?.position.x = playerNode.position.x
-        if playerNode.position.y - floorNode.position.y > minimumCameraHeight {
+        if playerNode.position.y - floorNode.position.y > minimumCameraHeight && playerNode.position.y < placementArea.maxY - minimumCameraHeight {
             camera?.position.y = playerNode.position.y
         }
     }

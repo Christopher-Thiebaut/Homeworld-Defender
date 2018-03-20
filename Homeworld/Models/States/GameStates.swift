@@ -125,7 +125,9 @@ class GameOverState: GKState {
     }
     
     override func didEnter(from previousState: GKState?) {
-        scene.isPaused = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {[weak self] in
+            self?.scene.isPaused = true
+        })
         let overlay = buildOverlay()
         
         if let camera = scene.camera {
@@ -184,12 +186,12 @@ class DefeatState: GameOverState {
         super.init(scene: scene, message: "YOU HAVE BEEN DEFEATED, HUMANITY IS DOOMED.")
     }
     
-    override func didEnter(from previousState: GKState?) {
-        super.didEnter(from: previousState)
-        scene.isPaused = false
-        //This is to let any death-related animations play.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {[weak self] in
-            self?.scene.isPaused = true
-        })
-    }
+//    override func didEnter(from previousState: GKState?) {
+//        super.didEnter(from: previousState)
+//        scene.isPaused = false
+//        //This is to let any death-related animations play.
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {[weak self] in
+//            self?.scene.isPaused = true
+//        })
+//    }
 }

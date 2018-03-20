@@ -35,13 +35,14 @@
 		B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */; };
 		B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */; };
 		B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */; };
-		B36EE3C520599A79003DBD40 /* AlienInvasion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C420599A79003DBD40 /* AlienInvasion.swift */; };
+		B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C420599A79003DBD40 /* MotherShip.swift */; };
 		B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D2CEF204515EC0048941B /* FireComponent.swift */; };
 		B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394483920535F3100A48BF0 /* AirfoilComponent.swift */; };
 		B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */; };
 		B395E448205841240091C7A3 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E447205841240091C7A3 /* Ground.swift */; };
 		B395E44A205845500091C7A3 /* RocketFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = B395E449205845500091C7A3 /* RocketFire.sks */; };
 		B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */; };
+		B3A4457D20616230001587BB /* CollisionAvoidanceBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */; };
 		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
@@ -94,13 +95,14 @@
 		B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBeacon.swift; sourceTree = "<group>"; };
 		B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLoggingComponent.swift; sourceTree = "<group>"; };
 		B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
-		B36EE3C420599A79003DBD40 /* AlienInvasion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlienInvasion.swift; sourceTree = "<group>"; };
+		B36EE3C420599A79003DBD40 /* MotherShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherShip.swift; sourceTree = "<group>"; };
 		B37D2CEF204515EC0048941B /* FireComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireComponent.swift; sourceTree = "<group>"; };
 		B394483920535F3100A48BF0 /* AirfoilComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponent.swift; sourceTree = "<group>"; };
 		B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = basic_fighter_short.atlas; sourceTree = "<group>"; };
 		B395E447205841240091C7A3 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		B395E449205845500091C7A3 /* RocketFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RocketFire.sks; sourceTree = "<group>"; };
 		B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketEffectComponent.swift; sourceTree = "<group>"; };
+		B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionAvoidanceBehavior.swift; sourceTree = "<group>"; };
 		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
@@ -266,7 +268,7 @@
 				B30B81BA2049BDBA00A4F7A0 /* Tree.swift */,
 				B30B81BC2049C47800A4F7A0 /* Rock.swift */,
 				B395E447205841240091C7A3 /* Ground.swift */,
-				B36EE3C420599A79003DBD40 /* AlienInvasion.swift */,
+				B36EE3C420599A79003DBD40 /* MotherShip.swift */,
 				B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */,
 				B3150F0A206064CF00E10875 /* Explosion.swift */,
 			);
@@ -287,6 +289,7 @@
 			children = (
 				B3CD46492044D34F0016B396 /* ChaseBehavior.swift */,
 				B3338B922049F21800589E7C /* RetreatBehavior.swift */,
+				B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
 				B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
+				B3A4457D20616230001587BB /* CollisionAvoidanceBehavior.swift in Sources */,
 				B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
 				B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */,
@@ -427,7 +431,7 @@
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
 				B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */,
-				B36EE3C520599A79003DBD40 /* AlienInvasion.swift in Sources */,
+				B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */,
 				B3150F0B206064CF00E10875 /* Explosion.swift in Sources */,
 				B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */,
 				B3CD46402044A9AC0016B396 /* ManualRotationComponent.swift in Sources */,

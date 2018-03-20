@@ -37,7 +37,7 @@ class Raider: GKEntity {
         addComponent(contactDamgeComponent)
         
         //Give the raider an agent to control its behavior
-        let raiderAgent = RaiderAgent(findTargets: findTargets, avoid: afraidOf, distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
+        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: afraidOf, findEnemy: {return entityController.playerAgent},distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
         addComponent(raiderAgent)
         
         //Set up the raider's gun

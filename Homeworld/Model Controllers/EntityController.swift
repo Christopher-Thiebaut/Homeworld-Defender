@@ -104,6 +104,7 @@ class EntityController {
     }
     
     func remove(_ entity: GKEntity){
+        entity.component(ofType: SpriteComponent.self)?.node.removeAllActions()
         entity.component(ofType: SpriteComponent.self)?.node.removeFromParent()
         entity.component(ofType: DeathEffectComonent.self)?.applyDeathEffect()
         entity.component(ofType: RocketEffectComponent.self)?.particleEmitter?.removeFromParent()

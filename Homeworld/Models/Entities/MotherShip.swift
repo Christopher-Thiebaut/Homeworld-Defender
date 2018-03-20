@@ -9,7 +9,8 @@
 import SpriteKit
 import GameplayKit
 
-class AlienInvasion: GKEntity {
+class MotherShip: GKEntity {
+    
     
     
 }
