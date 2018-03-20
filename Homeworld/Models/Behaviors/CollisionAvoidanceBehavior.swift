@@ -11,9 +11,9 @@ import GameplayKit
 
 class CollisionAvoidanceBehavior: GKBehavior {
     
-    init(collisionRisks: [GKAgent2D]) {
+    init(collisionRisks: [GKObstacle]) {
         super.init()
-        setWeight(1, for: GKGoal(toAvoid: collisionRisks, maxPredictionTime: 1))
+        setWeight(1, for: GKGoal(toAvoid: collisionRisks, maxPredictionTime: 5))
     }
     
 }

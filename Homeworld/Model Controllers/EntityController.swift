@@ -23,7 +23,7 @@ class EntityController {
     
     var alienAgents = Set<GKAgent2D>()
     var buildingAgents = Set<GKAgent2D>()
-    var environmentAgents = Set<GKAgent2D>()
+    var obstacles = Set<GKCircleObstacle>()
     lazy var playerAgent: GKAgent2D? = getPlayerAgent()
     
     lazy var componentSystems: [GKComponentSystem] = {
@@ -63,7 +63,6 @@ class EntityController {
         guard let agent = agent else { return }
         alienAgents.remove(agent)
         buildingAgents.remove(agent)
-        environmentAgents.remove(agent)
         if agent == playerAgent {
             playerAgent = nil
         }
@@ -80,9 +79,6 @@ class EntityController {
         if entity is Building {
             buildingAgents.insert(agent)
         }
-        if entity.component(ofType: TeamComponent.self)?.team == .environment {
-            environmentAgents.insert(agent)
-        }
     }
     
     func add(_ entity: GKEntity) {
@@ -95,6 +91,10 @@ class EntityController {
         
         updateGroupsForAgent(entity.component(ofType: PassiveAgent.self))
         updateGroupsForAgent(entity.component(ofType: RaiderAgent.self))
+        
+        if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle {
+            obstacles.insert(obstacle)
+        }
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             if spriteNode.parent == nil {
@@ -110,6 +110,7 @@ class EntityController {
         entity.component(ofType: RocketEffectComponent.self)?.particleEmitter?.removeFromParent()
         removeAgentFromAgentGroups(entity.component(ofType: PassiveAgent.self))
         removeAgentFromAgentGroups(entity.component(ofType: RaiderAgent.self))
+        if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle { obstacles.remove(obstacle) }
         toRemove.insert(entity)
         entities.remove(entity)
     }
@@ -151,10 +152,6 @@ class EntityController {
     
     func getAlienEntities() -> Set<GKAgent2D> {
         return alienAgents
-    }
-    
-    func getEnvironmentAgents() -> Set<GKAgent2D>{
-        return environmentAgents
     }
     
     private func getPlayerAgent() -> GKAgent2D? {

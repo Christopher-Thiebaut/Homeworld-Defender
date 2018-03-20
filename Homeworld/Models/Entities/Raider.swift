@@ -15,7 +15,7 @@ let maxAcceleration: Float = 40000
 
 class Raider: GKEntity {
     
-    init(appearance: SKTexture, findTargets: @escaping () -> [GKAgent2D], afraidOf: @escaping () -> [GKAgent2D], unlessDistanceAway distance: Float, entityController: EntityController){
+    init(appearance: SKTexture, findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKObstacle], unlessDistanceAway distance: Float, entityController: EntityController){
         
         super.init()
         
@@ -37,7 +37,7 @@ class Raider: GKEntity {
         addComponent(contactDamgeComponent)
         
         //Give the raider an agent to control its behavior
-        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: afraidOf, findEnemy: {return entityController.playerAgent},distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
+        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: findObstacles, findEnemy: {return entityController.playerAgent},distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
         addComponent(raiderAgent)
         
         //Set up the raider's gun

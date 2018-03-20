@@ -14,11 +14,11 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     let findTargets: () -> [GKAgent2D]
     let desiredDistanceFromEnemies: Float
     private var lastPosition: CGPoint = CGPoint(x: 0, y: 0)
-    private let findObstacles: () -> [GKAgent2D]
+    private let findObstacles: () -> [GKObstacle]
     private let findEnemy: () -> GKAgent2D?
     weak var target: GKAgent2D? = nil
     
-    init(findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKAgent2D], findEnemy: @escaping () -> GKAgent2D?, distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
+    init(findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKObstacle], findEnemy: @escaping () -> GKAgent2D?, distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
         self.findTargets = findTargets
         let targets = findTargets()
         self.findObstacles = findObstacles
@@ -31,7 +31,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         self.radius = radius
         self.mass = 0.4
         if let nearestTarget = nearestTarget(from: targets){
-            behavior = GKCompositeBehavior(behaviors: [ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget), CollisionAvoidanceBehavior.init(collisionRisks: findObstacles())], andWeights: [1, 2]) //ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget)
+            behavior = GKCompositeBehavior(behaviors: [ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget), CollisionAvoidanceBehavior(collisionRisks: findObstacles())], andWeights: [1, 400]) //ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget)
         }
     }
     
@@ -82,7 +82,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         let enemy: GKAgent2D? = findEnemy()
         
         if let dangerousEnemy = enemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
-            behavior = GKCompositeBehavior(behaviors: [RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy), CollisionAvoidanceBehavior.init(collisionRisks: obstacles)], andWeights: [1, 2]) //RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
+            behavior = GKCompositeBehavior(behaviors: [RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy), CollisionAvoidanceBehavior(collisionRisks: obstacles)], andWeights: [1, 400]) //RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
 
             let randomOffset = Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
             let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)

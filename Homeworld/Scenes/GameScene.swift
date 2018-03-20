@@ -296,18 +296,12 @@ class GameScene: SKScene {
             self.raiderTexture = textureAtlas.textureNamed(ResourceNames.raiderName)
         }
         
-        let findAgentsToAvoid = {[weak self] () -> [GKAgent2D] in
-            var agentsToAvoid: [GKAgent2D] = []
-            if let civilianCollisionRisks = self?.entityController.getCivilianTargetAgents(){
-                agentsToAvoid.append(contentsOf: civilianCollisionRisks)
+        let findObstacles = {[weak self] () -> [GKObstacle] in
+            if let obstacles = self?.entityController.obstacles {
+                return Array(obstacles)
+            }else{
+                return []
             }
-            if let player = self?.entityController.playerAgent {
-                agentsToAvoid.append(player)
-            }
-            if let environmentObstacles = self?.entityController.getEnvironmentAgents() {
-                agentsToAvoid.append(contentsOf: environmentObstacles)
-            }
-            return agentsToAvoid
         }
         let findTargets = {[weak self] () -> [GKAgent2D] in
             var targets = [GKAgent2D]()
@@ -317,7 +311,7 @@ class GameScene: SKScene {
             return targets
         }
         guard let raiderTexture = raiderTexture else {return}
-        let raider = Raider(appearance: raiderTexture, findTargets: findTargets, afraidOf: findAgentsToAvoid, unlessDistanceAway: 250, entityController: entityController)
+        let raider = Raider(appearance: raiderTexture, findTargets: findTargets, findObstacles: findObstacles, unlessDistanceAway: 250, entityController: entityController)
         guard let camera = camera else { return }
         raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)
         raider.component(ofType: SpriteComponent.self)?.node.zPosition = ZPositions.default

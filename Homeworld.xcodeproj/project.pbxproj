@@ -43,6 +43,7 @@
 		B395E44A205845500091C7A3 /* RocketFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = B395E449205845500091C7A3 /* RocketFire.sks */; };
 		B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */; };
 		B3A4457D20616230001587BB /* CollisionAvoidanceBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */; };
+		B3A4457F20616C32001587BB /* PassiveObstacleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A4457E20616C32001587BB /* PassiveObstacleComponent.swift */; };
 		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
@@ -103,6 +104,7 @@
 		B395E449205845500091C7A3 /* RocketFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RocketFire.sks; sourceTree = "<group>"; };
 		B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketEffectComponent.swift; sourceTree = "<group>"; };
 		B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionAvoidanceBehavior.swift; sourceTree = "<group>"; };
+		B3A4457E20616C32001587BB /* PassiveObstacleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveObstacleComponent.swift; sourceTree = "<group>"; };
 		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */,
 				B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */,
 				B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */,
+				B3A4457E20616C32001587BB /* PassiveObstacleComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
+				B3A4457F20616C32001587BB /* PassiveObstacleComponent.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
 				B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */,
