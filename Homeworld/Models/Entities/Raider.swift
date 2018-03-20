@@ -46,10 +46,6 @@ class Raider: GKEntity {
         let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: 1000, reloadTime: 1.5, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
         addComponent(fireProjectileComponent)
         
-        //Assign the number of points the player will get if this entity is destroyed.
-        let scoreDeathComponent = DeathEffectComonent(deathEffect: {gameScene.score += 5})
-        addComponent(scoreDeathComponent)
-        
         //Give the raider a physics component so he won't run through boundaries
         if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
             addComponent(physicsComponent)
@@ -57,6 +53,17 @@ class Raider: GKEntity {
         
         let team = TeamComponent(team: .alien)
         addComponent(team)
+        
+        let createExplosion: () -> () = {
+            let explosionAtlas = SKTextureAtlas(named: "explosion")
+            let explosion = Explosion(scale: 0.5, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)
+            explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
+            entityController.add(explosion)
+            gameScene.score += 5
+        }
+        
+        let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
+        addComponent(deathEffectComponent)
         
     }
     

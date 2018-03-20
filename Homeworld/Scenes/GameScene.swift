@@ -25,7 +25,7 @@ class GameScene: SKScene {
         }
     }
     
-    private var finishedSpawningEnemies = false
+    var finishedSpawningEnemies = false
     
     var scoreLabel: SKLabelNode?
     
@@ -172,6 +172,11 @@ class GameScene: SKScene {
         stealChildren()
         
         showPlayerHealthBar()
+        
+        let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 10, height: 200), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
+        guard let motherShipNode = motherShip.component(ofType: SpriteComponent.self)?.node else { return }
+        //camera.addChild(motherShipNode)
+        entityController.add(motherShip)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -185,7 +190,7 @@ class GameScene: SKScene {
             gameStates?.enter(DefeatState.self)
         }
         entityController.update(dt)
-        spawnAliens(timeElapsed: dt)
+
         updateCameraPosition()
     }
     
@@ -273,51 +278,6 @@ class GameScene: SKScene {
         sceneEditorNode = nil
     }
     
-    private var timeSinceAlien: TimeInterval = 100
-    private var alienInterval: TimeInterval = 2
-    private var totalAliens = 30
-    private var aliensSpawned = 0
-    private var maxAliens = 30
-    private func spawnAliens(timeElapsed dt: TimeInterval) {
-        timeSinceAlien += dt
-        if timeSinceAlien > alienInterval && aliensSpawned < totalAliens && entityController.getAlienEntities().count < maxAliens {
-            timeSinceAlien = 0
-            spawnRaider()
-            aliensSpawned += 1
-        }
-        if aliensSpawned >= totalAliens {
-            finishedSpawningEnemies = true
-        }
-    }
-    var raiderTexture: SKTexture?
-    private func spawnRaider(){
-        //let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
-        if self.raiderTexture == nil {
-            self.raiderTexture = textureAtlas.textureNamed(ResourceNames.raiderName)
-        }
-        
-        let findObstacles = {[weak self] () -> [GKObstacle] in
-            if let obstacles = self?.entityController.obstacles {
-                return Array(obstacles)
-            }else{
-                return []
-            }
-        }
-        let findTargets = {[weak self] () -> [GKAgent2D] in
-            var targets = [GKAgent2D]()
-            if let entityController = self?.entityController {
-                targets = Array(entityController.getCivilianTargetAgents())
-            }
-            return targets
-        }
-        guard let raiderTexture = raiderTexture else {return}
-        let raider = Raider(appearance: raiderTexture, findTargets: findTargets, findObstacles: findObstacles, unlessDistanceAway: 250, entityController: entityController)
-        guard let camera = camera else { return }
-        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: minX + CGFloat(GKARC4RandomSource.sharedRandom().nextInt(upperBound: Int(maxX))), y: camera.position.y + size.height)
-        raider.component(ofType: SpriteComponent.self)?.node.zPosition = ZPositions.default
-        //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
-        entityController.add(raider)
-    }
 }
 // MARK: - HealthBar
 extension GameScene {
