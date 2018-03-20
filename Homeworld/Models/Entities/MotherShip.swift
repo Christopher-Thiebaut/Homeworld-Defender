@@ -21,33 +21,10 @@ class MotherShip: GKEntity {
         
         super.init()
         
-        let expectedPanelCount = exits + 1
-        let exitWidth: CGFloat = 100
-        let panelHeight: CGFloat = 100
-        
-        let panelWidth = (size.width - CGFloat(exits) * exitWidth)/CGFloat(expectedPanelCount)
-        
-        let panelSize = CGSize(width: panelWidth, height: panelHeight)
-        let exitSize = CGSize(width: exitWidth, height: panelHeight)
-        
         let mainPanel = SKSpriteNode(color: .gray, size: size)
         mainPanel.position = position
         
         mainPanel.zPosition = GameScene.ZPositions.high
-        
-        //var lastNodeEnd = CGPoint(x: firstPanel.frame.maxX, y: firstPanel.size.height/2)
-        
-//        for panelNumber in 1..<expectedPanelCount + exits {
-//            var nextPanel: SKSpriteNode
-//            if panelNumber % 2 == 0 {
-//                nextPanel = SKSpriteNode(color: .gray, size: panelSize)
-//            }else{
-//                nextPanel = SKSpriteNode(color: .green, size: exitSize)
-//            }
-//            nextPanel.position = CGPoint(x: lastNodeEnd.x + nextPanel.size.width/2, y: lastNodeEnd.y)
-//            lastNodeEnd = CGPoint(x: nextPanel.position.x + nextPanel.size.width/2, y: lastNodeEnd.y)
-//            firstPanel.addChild(nextPanel)
-//        }
         
         let spriteComponent = SpriteComponent(spriteNode: mainPanel)
         addComponent(spriteComponent)

@@ -21,6 +21,8 @@ class EntityController {
         }
     }
     
+    var difficultyLevel: Difficulty
+    
     var alienAgents = Set<GKAgent2D>()
     var buildingAgents = Set<GKAgent2D>()
     var obstacles = Set<GKCircleObstacle>()
@@ -47,12 +49,14 @@ class EntityController {
     }()
     
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
-    init() {
+    init(difficulty: Difficulty.DifficultyLevel) {
         //Allows the scene to create an instance of this before initializing itself.
+        self.difficultyLevel = Difficulty(difficulty: difficulty)
     }
     
-    init(scene: GameScene) {
+    init(scene: GameScene, difficulty: Difficulty.DifficultyLevel) {
         self.scene = scene
+        self.difficultyLevel = Difficulty(difficulty: difficulty)
     }
     
 //    private func setupAgentGroups() {

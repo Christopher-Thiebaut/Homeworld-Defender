@@ -17,8 +17,10 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     private let findObstacles: () -> [GKObstacle]
     private let findEnemy: () -> GKAgent2D?
     weak var target: GKAgent2D? = nil
+    private let entityController: EntityController
     
     init(findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKObstacle], findEnemy: @escaping () -> GKAgent2D?, distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
+        self.entityController = entityController
         self.findTargets = findTargets
         let targets = findTargets()
         self.findObstacles = findObstacles
@@ -86,9 +88,9 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         if let dangerousEnemy = enemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
             behavior = GKCompositeBehavior(behaviors: [RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy), CollisionAvoidanceBehavior(collisionRisks: obstacles)], andWeights: [1, 400]) //RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
 
-            let randomOffset = Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
+            let stormTrooperOffset = entityController.difficultyLevel.getStormTrooperOffset()//Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
             let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)
-            entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle + randomOffset)
+            entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle + stormTrooperOffset)
             
             return
         }

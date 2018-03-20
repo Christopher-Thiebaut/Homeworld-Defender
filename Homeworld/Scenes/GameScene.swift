@@ -19,6 +19,8 @@ class GameScene: SKScene {
         static let required: CGFloat = 1000
     }
     
+    //MARK: - PROPERTIES
+    
     var score: Int = 0 {
         didSet{
             scoreLabel?.text = "\(score)"
@@ -60,18 +62,18 @@ class GameScene: SKScene {
         return (camera?.position.x ?? 0) + gamePlayArea.width/2
     }
     
-    let cityCenterReferenceNode = SKNode()
-    
     private var lastPlayerPositionX: CGFloat = 0
     
     var gameStates: GameStateMachine?
     
     var sceneEditorNode: SKNode?
     
+    //MARK: - Initialization
+    
     init<T: HumanFighter>(fileNamed: String? = nil, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
         gamePlayArea = gamePlayAreaSize
-        entityController = EntityController()
+        entityController = EntityController(difficulty: .medium)
         super.init(size: visibleSize)
         if let fileName = fileNamed {
             sceneEditorNode = SKNode(fileNamed: fileName)
@@ -88,6 +90,8 @@ class GameScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - SETUP
     
     override func didMove(to view: SKView) {
         
@@ -167,17 +171,43 @@ class GameScene: SKScene {
         
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        cityCenterReferenceNode.position = CGPoint(x: playerSpriteNode.position.x, y: floorLevel)
-        
         stealChildren()
         
         showPlayerHealthBar()
         
         let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 10, height: 200), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
-        guard let motherShipNode = motherShip.component(ofType: SpriteComponent.self)?.node else { return }
-        //camera.addChild(motherShipNode)
         entityController.add(motherShip)
     }
+    
+    private func stealChildren(){
+        guard let editorNode = sceneEditorNode else {
+            return
+        }
+        for child in editorNode.children {
+            child.removeFromParent()
+            if let tree = child as? TreeNode {
+                let treeEntity = Tree(spriteNode: tree, entityController: entityController) //Badum tss.
+                entityController.add(treeEntity)
+            }
+            if let rock = child as? RockNode {
+                let rockEntity = Rock(spriteNode: rock, entityController: entityController)
+                entityController.add(rockEntity)
+            }
+            if let smallBuilding = child as? SmallBuildingNode {
+                let smallBuilding = Building(spriteNode: smallBuilding, health: 100, entityController: entityController)
+                entityController.add(smallBuilding)
+            }
+            if let bigBuilding = child as? BigBuildingNode {
+                let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
+                entityController.add(bigBuilding)
+            }
+            child.position.y += floorLevel - (floorNode?.size.height ?? 0)
+            child.zPosition = ZPositions.default
+        }
+        sceneEditorNode = nil
+    }
+    
+    //MARK: - UPDATE
     
     override func update(_ currentTime: TimeInterval) {
         let dt = currentTime - lastUpdateTimeInterval
@@ -248,34 +278,6 @@ class GameScene: SKScene {
             }
         }
         return foundNodes
-    }
-    
-    private func stealChildren(){
-        guard let editorNode = sceneEditorNode else {
-            return
-        }
-        for child in editorNode.children {
-            child.removeFromParent()
-            if let tree = child as? TreeNode {
-                let treeEntity = Tree(spriteNode: tree, entityController: entityController) //Badum tss.
-                entityController.add(treeEntity)
-            }
-            if let rock = child as? RockNode {
-                let rockEntity = Rock(spriteNode: rock, entityController: entityController)
-                entityController.add(rockEntity)
-            }
-            if let smallBuilding = child as? SmallBuildingNode {
-                let smallBuilding = Building(spriteNode: smallBuilding, health: 100, entityController: entityController)
-                entityController.add(smallBuilding)
-            }
-            if let bigBuilding = child as? BigBuildingNode {
-                let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
-                entityController.add(bigBuilding)
-            }
-            child.position.y += floorLevel - (floorNode?.size.height ?? 0)
-            child.zPosition = ZPositions.default
-        }
-        sceneEditorNode = nil
     }
     
 }
