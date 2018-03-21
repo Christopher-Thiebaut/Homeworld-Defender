@@ -120,7 +120,7 @@ class MotherShip: GKEntity {
             let tile = SKSpriteNode(texture: texture, color: .white, size: tileSize)
             tile.position = nextTilePosition
             spriteNode?.addChild(tile)
-            tile.zPosition = GameScene.ZPositions.low //This is so that the total z-index of the tiles will match an existing level and not need a separate drawing pass.
+            tile.zPosition -= GameScene.ZPositions.low //This is so that the total z-index of the tiles will match an existing level and not need a separate drawing pass.
             tiledTextureWidth += tileSize.width
             nextTilePosition.x += tileSize.width
         }

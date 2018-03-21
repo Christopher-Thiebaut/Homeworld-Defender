@@ -27,12 +27,14 @@ class Explosion: GKEntity {
         let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count), entityController: entityController)
         addComponent(explosionAnimation)
         explosionAnimation.explosionAnimation()
+        spriteComponent.node.run(SKAction.playSoundFileNamed(ResourceNames.Sounds.smallExplosion, waitForCompletion: false))
+//        let explosion = SKAudioNode(fileNamed: ResourceNames.Sounds.smallExplosion)
+//        spriteComponent.node.addChild(explosion)
+//        explosion.autoplayLooped = false
+//        explosion.isPositional = false
+//        explosion.run(SKAction.changeVolume(by: -0.95, duration: 0))
+//        explosion.run(SKAction.play())
         
-//        let lifespanComponent = LifespanComponent(lifespan: duration, entityController: entityController)
-//        addComponent(lifespanComponent)
-        
-//        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: damage, destroySelf: false, doNotHarm: [], entityController: entityController)
-//        addComponent(contactDamageComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -48,6 +48,8 @@
 		B3A4457D20616230001587BB /* CollisionAvoidanceBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */; };
 		B3A4457F20616C32001587BB /* PassiveObstacleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A4457E20616C32001587BB /* PassiveObstacleComponent.swift */; };
 		B3A445812061A05B001587BB /* HunterAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A445802061A05B001587BB /* HunterAgent.swift */; };
+		B3AABB382062D5EF0093869F /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AABB372062D5EF0093869F /* Sounds.swift */; };
+		B3AC52262062F2BB009E76BD /* small_explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = B3AC52252062F2BB009E76BD /* small_explosion.caf */; };
 		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
@@ -113,6 +115,8 @@
 		B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionAvoidanceBehavior.swift; sourceTree = "<group>"; };
 		B3A4457E20616C32001587BB /* PassiveObstacleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveObstacleComponent.swift; sourceTree = "<group>"; };
 		B3A445802061A05B001587BB /* HunterAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunterAgent.swift; sourceTree = "<group>"; };
+		B3AABB372062D5EF0093869F /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		B3AC52252062F2BB009E76BD /* small_explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = small_explosion.caf; sourceTree = "<group>"; };
 		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
@@ -201,9 +205,18 @@
 			path = Homeworld;
 			sourceTree = "<group>";
 		};
+		B3AABB322062CC450093869F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B3AC52252062F2BB009E76BD /* small_explosion.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		B3CD4629204467360016B396 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3AABB322062CC450093869F /* Sounds */,
 				B3150F042060618000E10875 /* explosion.atlas */,
 				B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */,
 				B361E2C520423E7100B2AF27 /* AppDelegate.swift */,
@@ -266,6 +279,7 @@
 			children = (
 				B3CD46362044729A0016B396 /* EntityController.swift */,
 				B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */,
+				B3AABB372062D5EF0093869F /* Sounds.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -372,6 +386,7 @@
 				B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */,
 				B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */,
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
+				B3AC52262062F2BB009E76BD /* small_explosion.caf in Resources */,
 				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
 				B3150F052060618000E10875 /* explosion.atlas in Resources */,
@@ -447,6 +462,7 @@
 				B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */,
 				B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */,
 				B306E2F82046223600F0E0D9 /* Raider.swift in Sources */,
+				B3AABB382062D5EF0093869F /* Sounds.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
 				B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */,

@@ -149,13 +149,13 @@ class GameOverState: GKState {
         let mainMenuLabel = SKLabelNode(fontNamed: "VT323")
         mainMenuLabel.text = "RETURN TO MENU"
         mainMenuLabel.fontColor = .red
-        mainMenuLabel.fontSize = 25
+        mainMenuLabel.fontSize = 30
         let mainMenuButton = ButtonNode(label: mainMenuLabel, action: returnToMainMenu)
         background.addChild(mainMenuButton)
         mainMenuButton.alpha = 1
         
         let messageLabel = SKLabelNode(fontNamed: "VT323")
-        messageLabel.fontSize = 30
+        messageLabel.fontSize = 40
         messageLabel.text = message
         messageLabel.fontColor = .white
         messageLabel.position = CGPoint(x: 0, y: background.size.height/3.5)

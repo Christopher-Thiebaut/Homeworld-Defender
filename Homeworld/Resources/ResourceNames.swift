@@ -21,4 +21,8 @@ struct ResourceNames {
     static let defaultAlientBlaster = "yellow_blast"
     static let starBackground = "stars"
     static let mothershipTexture = "alien_tile"
+    
+    struct Sounds {
+        static let smallExplosion = "small_explosion.caf"
+    }
 }
