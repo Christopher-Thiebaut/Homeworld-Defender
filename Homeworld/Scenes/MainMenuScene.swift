@@ -25,7 +25,6 @@ class MainMenuScene: SKScene {
         highScoreLabel.position = CGPoint(x: size.width/2, y: size.height - highScoreLabel.frame.height)
         addChild(highScoreLabel)
         
-        //launchNextLevel()
         let playLabel = SKLabelNode(fontNamed: "VT323")
         playLabel.text = "PLAY"
         playLabel.fontColor = .red
@@ -36,9 +35,11 @@ class MainMenuScene: SKScene {
         }
         playButtonNode.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(playButtonNode)
+        
+        backgroundColor = .black
     }
     
-    //TODO: This is a temporary implementation as there is currently only one level.
+    //This is a temporary implementation as there is currently only one level.
     func launchNextLevel() {
         guard let view = view else {
             NSLog("There is no SKView available to configure or present the next level. ")

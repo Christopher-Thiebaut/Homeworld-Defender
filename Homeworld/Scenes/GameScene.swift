@@ -160,13 +160,13 @@ class GameScene: SKScene {
         }
         camera.addChild(pauseButton)
         pauseButton.position = CGPoint(x: -0.5 * (size.width - pauseButton.size.width - leftPositionAdjustment) + 10, y: 0.5 * (size.height - pauseButton.size.height) - 10)
-        pauseButton.zPosition = ZPositions.high
+        pauseButton.zPosition = ZPositions.required
         
         //Add a label that will be used to display the current score in a cool retro font.
         let scoreDisplay = SKLabelNode(fontNamed: "VT323")
         scoreDisplay.text = "\(score)"
         scoreDisplay.position = CGPoint(x: 0, y: 0.5 * (size.height - scoreDisplay.frame.height) - 20)
-        scoreDisplay.zPosition = ZPositions.medium
+        scoreDisplay.zPosition = ZPositions.required
         camera.addChild(scoreDisplay)
         
         scoreLabel = scoreDisplay
@@ -299,7 +299,7 @@ extension GameScene {
         let healthBar = DisplayedPercentageBar(initialSize: CGSize.init(width: size.width/3, height: healthBarHeight), color: .green, initialPosition: healthBarPosition, quantityToMonitor: playerHealthComponent)
         if let healthBarSprite = healthBar.component(ofType: PercentageBarComponent.self)?.bar {
             camera?.addChild(healthBarSprite)
-            healthBarSprite.zPosition = ZPositions.medium
+            healthBarSprite.zPosition = ZPositions.required
         }
         entityController.add(healthBar)
     }

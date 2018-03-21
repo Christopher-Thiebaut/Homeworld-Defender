@@ -79,8 +79,8 @@ class PauseState: GKState {
         let pauseBackground = SKSpriteNode(color: UIColor.black.withAlphaComponent(0.5), size: scene.size)
         pauseBackground.addChild(playButton)
         playButton.position = CGPoint(x: 0, y: 0)
-        playButton.zPosition = GameScene.ZPositions.required
-        pauseBackground.zPosition = GameScene.ZPositions.high + 1
+        playButton.zPosition = GameScene.ZPositions.required + 2
+        pauseBackground.zPosition = GameScene.ZPositions.required + 1
         playButton.alpha = 1
         return pauseBackground
     }
@@ -144,7 +144,7 @@ class GameOverState: GKState {
     private func buildOverlay() -> SKSpriteNode {
         let background = SKSpriteNode(color: UIColor.black.withAlphaComponent(0.5), size: scene.size)
         background.position = CGPoint(x: 0, y: 0)
-        background.zPosition = GameScene.ZPositions.high + 1
+        background.zPosition = GameScene.ZPositions.required + 1
         
         let mainMenuLabel = SKLabelNode(fontNamed: "VT323")
         mainMenuLabel.text = "RETURN TO MENU"
