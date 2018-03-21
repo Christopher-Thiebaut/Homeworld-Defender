@@ -19,5 +19,5 @@ struct ResourceNames {
     static let resumeName = "play"
     static let joystickBaseName = "joystick_base"
     static let defaultAlientBlaster = "yellow_blast"
-    
+    static let starBackground = "stars"
 }

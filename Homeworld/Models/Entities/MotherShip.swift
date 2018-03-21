@@ -97,7 +97,7 @@ class MotherShip: GKEntity {
             alien = Hunter(appearance: hunterTexture, target: player, obstacles: findObstacles(), entityController: entityController)
         }
         alien.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: spriteNode.position.x, y: spriteNode.position.y)
-        alien.component(ofType: SpriteComponent.self)?.node.zPosition = GameScene.ZPositions.default
+        alien.component(ofType: SpriteComponent.self)?.node.zPosition = GameScene.ZPositions.low
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(alien)
     }

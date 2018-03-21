@@ -108,6 +108,7 @@ class GameScene: SKScene {
             fatalError("Player Character must have a sprite component.")
         }
         self.playerSpriteNode = playerSpriteNode
+        playerSpriteNode.zPosition = ZPositions.low
         playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: size.height)
         lastPlayerPositionX = playerSpriteNode.position.x
         entityController.add(player)
@@ -125,7 +126,7 @@ class GameScene: SKScene {
         //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
         let floorTexture = textureAtlas.textureNamed(ResourceNames.groundName)
         let floorNode = SKSpriteNode(texture: floorTexture, color: .white, size: CGSize(width: gamePlayArea.width * 3, height: 10))
-        //let floorNode = SKSpriteNode(color: UIColor.white.withAlphaComponent(1), size: CGSize(width: gamePlayArea.width * 10, height: 10))
+        floorNode.zPosition = ZPositions.low
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
         let floorEntity = Ground(spriteNode: floorNode, entityController: entityController)
         self.floorNode = floorNode
@@ -165,6 +166,7 @@ class GameScene: SKScene {
         let scoreDisplay = SKLabelNode(fontNamed: "VT323")
         scoreDisplay.text = "\(score)"
         scoreDisplay.position = CGPoint(x: 0, y: 0.5 * (size.height - scoreDisplay.frame.height) - 20)
+        scoreDisplay.zPosition = ZPositions.medium
         camera.addChild(scoreDisplay)
         
         scoreLabel = scoreDisplay
@@ -177,6 +179,8 @@ class GameScene: SKScene {
         
         let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 10, height: 200), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
         entityController.add(motherShip)
+        
+        addStarBackground()
     }
     
     private func stealChildren(){
@@ -202,7 +206,7 @@ class GameScene: SKScene {
                 entityController.add(bigBuilding)
             }
             child.position.y += floorLevel - (floorNode?.size.height ?? 0)
-            child.zPosition = ZPositions.default
+            child.zPosition = ZPositions.low
         }
         sceneEditorNode = nil
     }
@@ -281,6 +285,7 @@ class GameScene: SKScene {
     }
     
 }
+
 // MARK: - HealthBar
 extension GameScene {
     func showPlayerHealthBar() {
@@ -294,7 +299,29 @@ extension GameScene {
         let healthBar = DisplayedPercentageBar(initialSize: CGSize.init(width: size.width/3, height: healthBarHeight), color: .green, initialPosition: healthBarPosition, quantityToMonitor: playerHealthComponent)
         if let healthBarSprite = healthBar.component(ofType: PercentageBarComponent.self)?.bar {
             camera?.addChild(healthBarSprite)
+            healthBarSprite.zPosition = ZPositions.medium
         }
         entityController.add(healthBar)
+    }
+}
+
+//MARK: - Background
+extension GameScene {
+    func addStarBackground(){
+        let backgroundTexture = textureAtlas.textureNamed(ResourceNames.starBackground)
+        var backgroundHeight: CGFloat = 0
+        while backgroundHeight < gamePlayArea.height {
+            var rowWidth: CGFloat = 0
+            var nextTilePosition = CGPoint(x: minX + backgroundTexture.size().width/2, y: backgroundHeight + backgroundTexture.size().width/2)
+            while rowWidth < gamePlayArea.width {
+                let backgroundTile = SKSpriteNode(texture: backgroundTexture)
+                backgroundTile.position = nextTilePosition
+                backgroundTile.zPosition = ZPositions.default
+                addChild(backgroundTile)
+                nextTilePosition.x += backgroundTile.size.width
+                rowWidth += backgroundTile.size.width
+            }
+            backgroundHeight += backgroundTexture.size().height
+        }
     }
 }
