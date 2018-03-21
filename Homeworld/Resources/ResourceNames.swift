@@ -20,4 +20,5 @@ struct ResourceNames {
     static let joystickBaseName = "joystick_base"
     static let defaultAlientBlaster = "yellow_blast"
     static let starBackground = "stars"
+    static let mothershipTexture = "alien_tile"
 }

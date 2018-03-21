@@ -177,7 +177,8 @@ class GameScene: SKScene {
         
         showPlayerHealthBar()
         
-        let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 10, height: 200), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
+        //The mothership is thick so that the player can't camp out where aliens come out and shoot them immediately (because the aliens can shoot from inside the mothersip and will be able to shoot the player first)
+        let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 2, height: 400), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
         entityController.add(motherShip)
         
         addStarBackground()

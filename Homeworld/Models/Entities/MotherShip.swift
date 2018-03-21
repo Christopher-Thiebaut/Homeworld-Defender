@@ -14,14 +14,18 @@ class MotherShip: GKEntity {
     let entityController: EntityController
     let textureAtlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
     var spriteNode: SKSpriteNode? = nil
+    let size: CGSize
+    let position: CGPoint
     
     init(size: CGSize, position: CGPoint, exits: Int, entityController: EntityController){
         
         self.entityController = entityController
+        self.size = size
+        self.position = position
         
         super.init()
         
-        let mainPanel = SKSpriteNode(color: .gray, size: size)
+        let mainPanel = SKSpriteNode(color: UIColor.green.withAlphaComponent(0.4), size: size)
         mainPanel.position = position
         
         mainPanel.zPosition = GameScene.ZPositions.high
@@ -30,6 +34,8 @@ class MotherShip: GKEntity {
         addComponent(spriteComponent)
         
         spriteNode = spriteComponent.node
+        
+        addTiledTexture()
         
         let contactDamageComponent = ContactDamageComponent(spriteNode: mainPanel, contactDamage: 1000, destroySelf: false, doNotHarm: [.alien], entityController: entityController)
         addComponent(contactDamageComponent)
@@ -96,10 +102,27 @@ class MotherShip: GKEntity {
         }else{
             alien = Hunter(appearance: hunterTexture, target: player, obstacles: findObstacles(), entityController: entityController)
         }
-        alien.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: spriteNode.position.x, y: spriteNode.position.y)
+        let doorWidth: CGFloat = 100
+        let xPositionOffset = CGFloat(GKARC4RandomSource.sharedRandom().nextUniform() - 0.5) * doorWidth
+        alien.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: spriteNode.position.x + xPositionOffset, y: spriteNode.position.y)
         alien.component(ofType: SpriteComponent.self)?.node.zPosition = GameScene.ZPositions.low
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
         entityController.add(alien)
     }
     
+    private func addTiledTexture() {
+        let texture = textureAtlas.textureNamed(ResourceNames.mothershipTexture)
+        let scale = (size.height - size.height/4)/texture.size().height
+        let tileSize = CGSize(width: texture.size().width * scale, height: texture.size().height * scale)
+        var tiledTextureWidth: CGFloat = 0
+        var nextTilePosition = CGPoint(x: position.x - size.width/2 + tileSize.width/2, y: 0)
+        while tiledTextureWidth < size.width {
+            let tile = SKSpriteNode(texture: texture, color: .white, size: tileSize)
+            tile.position = nextTilePosition
+            spriteNode?.addChild(tile)
+            tile.zPosition = GameScene.ZPositions.low //This is so that the total z-index of the tiles will match an existing level and not need a separate drawing pass.
+            tiledTextureWidth += tileSize.width
+            nextTilePosition.x += tileSize.width
+        }
+    }
 }
