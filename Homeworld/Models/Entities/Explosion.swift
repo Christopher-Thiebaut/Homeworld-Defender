@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class Explosion: GKEntity {
     
@@ -27,13 +28,19 @@ class Explosion: GKEntity {
         let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count), entityController: entityController)
         addComponent(explosionAnimation)
         explosionAnimation.explosionAnimation()
-        spriteComponent.node.run(SKAction.playSoundFileNamed(ResourceNames.Sounds.smallExplosion, waitForCompletion: false))
+        if UserData.currentUser.wantsSoundEffects {
+            spriteComponent.node.run(SKAction.playSoundFileNamed(ResourceNames.Sounds.smallExplosion, waitForCompletion: false))
+        }
 //        let explosion = SKAudioNode(fileNamed: ResourceNames.Sounds.smallExplosion)
 //        spriteComponent.node.addChild(explosion)
 //        explosion.autoplayLooped = false
 //        explosion.isPositional = false
-//        explosion.run(SKAction.changeVolume(by: -0.95, duration: 0))
 //        explosion.run(SKAction.play())
+//        do {
+//            try explosion.avAudioNode?.engine?.start()
+//        }catch {
+//            NSLog("Whatever")
+//        }
         
     }
     

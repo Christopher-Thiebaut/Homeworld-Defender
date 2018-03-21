@@ -63,8 +63,8 @@ class HunterAgent: GKAgent2D, GKAgentDelegate {
 //        }else{
 //            compositeBehavior.setWeight(0, for: retreat)
 //        }
-        
-        if distanceToTarget < 250 {
+        let attackDistance = entityController.difficultyLevel.getAttackDistance()
+        if distanceToTarget < attackDistance {
             let fireAngle = atan2f(target.position.y - self.position.y, target.position.x - self.position.x)
             let stormTrooperOffset = entityController.difficultyLevel.getStormTrooperOffset()
             entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle + stormTrooperOffset)

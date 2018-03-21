@@ -16,6 +16,18 @@ class UserData: Codable {
         }
     }
     
+    var wantsSoundEffects: Bool = true {
+        didSet {
+            self.save()
+        }
+    }
+    
+    var preferredDifficulty: Difficulty.DifficultyLevel = .medium {
+        didSet {
+            self.save()
+        }
+    }
+    
     static let currentUser = UserData.load()
     
     init(highScore: Int) {

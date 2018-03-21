@@ -73,7 +73,7 @@ class GameScene: SKScene {
     init<T: HumanFighter>(fileNamed: String? = nil, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
         playerType = player
         gamePlayArea = gamePlayAreaSize
-        entityController = EntityController(difficulty: .medium)
+        entityController = EntityController(difficulty: UserData.currentUser.preferredDifficulty)
         super.init(size: visibleSize)
         if let fileName = fileNamed {
             sceneEditorNode = SKNode(fileNamed: fileName)

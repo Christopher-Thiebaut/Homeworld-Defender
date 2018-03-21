@@ -99,8 +99,8 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             NSLog("Raider will not attack because target can't be found.")
             return
         }
-        
-        guard distanceTo(target: target) < 300 else {
+        let attackDistance = entityController.difficultyLevel.getAttackDistance()
+        guard distanceTo(target: target) < attackDistance else {
             //If the raider is not very close to a target, approach the nearest one.
             behavior = ChaseBehavior(targetSpeed: maxSpeed, seek: target)
             return

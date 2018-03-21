@@ -59,7 +59,7 @@ class HumanFighter: GKEntity {
         //let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
         let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
         let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.2, projectileCategory: .playerProjectile, allies: .human, firesRockets: true, entityController: entityController)
+        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 200, speed: 2000, reloadTime: 0.4, projectileCategory: .playerProjectile, allies: .human, firesRockets: true, entityController: entityController)
         addComponent(fireComponent)
         
         //Give the fighter an airfoil (produces upward velocity from horizontal) so fighter won't fall if it flies sideways.

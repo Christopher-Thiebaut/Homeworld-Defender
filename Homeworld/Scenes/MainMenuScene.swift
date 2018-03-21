@@ -36,6 +36,15 @@ class MainMenuScene: SKScene {
         playButtonNode.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(playButtonNode)
         
+        let settingsLabel = SKLabelNode(fontNamed: "VT323")
+        settingsLabel.text = "SETTINGS"
+        settingsLabel.fontColor = .red
+        settingsLabel.fontSize = 30
+        
+        let settingsButtonNode = ButtonNode(label: settingsLabel, action: {[weak self] in self?.launchSettings()})
+        settingsButtonNode.position = CGPoint(x: size.width/2, y: size.height/4)
+        addChild(settingsButtonNode)
+        
         backgroundColor = .black
     }
     
@@ -53,6 +62,16 @@ class MainMenuScene: SKScene {
         view.showsNodeCount = true
         view.ignoresSiblingOrder = true
         view.showsDrawCount = true
+        scene.scaleMode = .aspectFill
+        view.presentScene(scene)
+    }
+    
+    func launchSettings() {
+        guard let view = view else {
+            NSLog("There is no SKView available to configure or present the settings scene ")
+            return
+        }
+        let scene = SettingsScene(size: CGSize(width: view.frame.width, height: view.frame.height))
         scene.scaleMode = .aspectFill
         view.presentScene(scene)
     }
