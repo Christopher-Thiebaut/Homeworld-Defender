@@ -13,7 +13,7 @@ import SpriteKit
 class HunterAgent: GKAgent2D, GKAgentDelegate {
     
     let chase: GKBehavior
-    let retreat: GKBehavior
+    //let retreat: GKBehavior
     let doNotRunIntoStuff: GKBehavior
     let compositeBehavior: GKCompositeBehavior
     let target: GKAgent2D
@@ -21,9 +21,9 @@ class HunterAgent: GKAgent2D, GKAgentDelegate {
     
     init(target: GKAgent2D, obstacles: [GKObstacle], maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
         chase = ChaseBehavior(targetSpeed: maxSpeed, seek: target)
-        retreat = RetreatBehavior(targetSpeed: maxSpeed, avoid: target)
+        //retreat = RetreatBehavior(targetSpeed: maxSpeed, avoid: target)
         doNotRunIntoStuff = CollisionAvoidanceBehavior(collisionRisks: obstacles)
-        compositeBehavior = GKCompositeBehavior(behaviors: [chase, retreat, doNotRunIntoStuff], andWeights: [1,0,400])
+        compositeBehavior = GKCompositeBehavior(behaviors: [chase, doNotRunIntoStuff], andWeights: [1,0,40])
         self.entityController = entityController
         self.target = target
         super.init()
@@ -58,11 +58,11 @@ class HunterAgent: GKAgent2D, GKAgentDelegate {
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         let distanceToTarget = hypotf(self.position.x - target.position.x, self.position.y - target.position.y)
-        if distanceToTarget < 150 {
-            compositeBehavior.setWeight(400, for: retreat)
-        }else{
-            compositeBehavior.setWeight(0, for: retreat)
-        }
+//        if distanceToTarget < 0 {
+//            compositeBehavior.setWeight(400, for: retreat)
+//        }else{
+//            compositeBehavior.setWeight(0, for: retreat)
+//        }
         
         if distanceToTarget < 250 {
             let fireAngle = atan2f(target.position.y - self.position.y, target.position.x - self.position.x)

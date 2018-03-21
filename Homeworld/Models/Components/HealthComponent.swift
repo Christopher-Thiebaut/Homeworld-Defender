@@ -29,6 +29,7 @@ class HealthComponent: GKComponent {
     
     func takeDamage(_ damage: Int){
         health -= damage
+        entity?.component(ofType: ImpactFeedbackComponent.self)?.impactDetected()
         if let entity = self.entity, health <= 0 {
             entityController?.remove(entity)
         }

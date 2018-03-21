@@ -37,6 +37,7 @@ class EntityController {
         let mapWrappingSystem = GKComponentSystem(componentClass: MapWrappingComponent.self)
         let passiveAgentSystem = GKComponentSystem(componentClass: PassiveAgent.self)
         let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
+        let hunterAgentSystem = GKComponentSystem(componentClass: HunterAgent.self)
         let contactDamageComponent = GKComponentSystem(componentClass: ContactDamageComponent.self)
         let chaseAgentSystem = GKComponentSystem(componentClass: ChaseAgent.self)
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
@@ -45,7 +46,7 @@ class EntityController {
         let rocketEffectSystem = GKComponentSystem(componentClass: RocketEffectComponent.self)
         let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
         let constantAnimationSystem = GKComponentSystem(componentClass: ConstantAnimationComponent.self)
-        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, displayedStatusBarsSystem, constantAnimationSystem]
+        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem]
     }()
     
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
@@ -95,6 +96,7 @@ class EntityController {
         
         updateGroupsForAgent(entity.component(ofType: PassiveAgent.self))
         updateGroupsForAgent(entity.component(ofType: RaiderAgent.self))
+        updateGroupsForAgent(entity.component(ofType: HunterAgent.self))
         
         if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle {
             obstacles.insert(obstacle)
@@ -114,6 +116,7 @@ class EntityController {
         entity.component(ofType: RocketEffectComponent.self)?.particleEmitter?.removeFromParent()
         removeAgentFromAgentGroups(entity.component(ofType: PassiveAgent.self))
         removeAgentFromAgentGroups(entity.component(ofType: RaiderAgent.self))
+        removeAgentFromAgentGroups(entity.component(ofType: HunterAgent.self))
         if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle { obstacles.remove(obstacle) }
         toRemove.insert(entity)
         entities.remove(entity)

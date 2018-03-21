@@ -12,10 +12,12 @@ struct ResourceNames {
     static let mainSpriteAtlasName = "SceneResources"
     static let missileName = "missile"
     static let raiderName = "green_ufo"
+    static let hunterName = "red_ufo"
     static let redButtonName = "red_button"
     static let groundName = "ground"
     static let pauseName = "pause"
     static let resumeName = "play"
     static let joystickBaseName = "joystick_base"
     static let defaultAlientBlaster = "yellow_blast"
+    
 }

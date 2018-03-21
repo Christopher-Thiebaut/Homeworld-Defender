@@ -37,6 +37,8 @@
 		B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */; };
 		B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C420599A79003DBD40 /* MotherShip.swift */; };
 		B3790CB42061B9FE00EF2174 /* DifficultyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */; };
+		B3790CB62061C26F00EF2174 /* Hunter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB52061C26F00EF2174 /* Hunter.swift */; };
+		B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */; };
 		B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D2CEF204515EC0048941B /* FireComponent.swift */; };
 		B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394483920535F3100A48BF0 /* AirfoilComponent.swift */; };
 		B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */; };
@@ -100,6 +102,8 @@
 		B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B36EE3C420599A79003DBD40 /* MotherShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherShip.swift; sourceTree = "<group>"; };
 		B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevel.swift; sourceTree = "<group>"; };
+		B3790CB52061C26F00EF2174 /* Hunter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hunter.swift; sourceTree = "<group>"; };
+		B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactFeedbackComponent.swift; sourceTree = "<group>"; };
 		B37D2CEF204515EC0048941B /* FireComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireComponent.swift; sourceTree = "<group>"; };
 		B394483920535F3100A48BF0 /* AirfoilComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponent.swift; sourceTree = "<group>"; };
 		B395E44520583ADA0091C7A3 /* basic_fighter_short.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = basic_fighter_short.atlas; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 				B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */,
 				B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */,
 				B3A4457E20616C32001587BB /* PassiveObstacleComponent.swift */,
+				B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				B36EE3C420599A79003DBD40 /* MotherShip.swift */,
 				B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */,
 				B3150F0A206064CF00E10875 /* Explosion.swift */,
+				B3790CB52061C26F00EF2174 /* Hunter.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */,
 				B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
+				B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B3A4457F20616C32001587BB /* PassiveObstacleComponent.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
@@ -443,6 +450,7 @@
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
 				B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */,
+				B3790CB62061C26F00EF2174 /* Hunter.swift in Sources */,
 				B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */,
 				B3150F0B206064CF00E10875 /* Explosion.swift in Sources */,
 				B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */,

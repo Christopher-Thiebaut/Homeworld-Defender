@@ -31,6 +31,9 @@ class MotherShip: GKEntity {
         
         spriteNode = spriteComponent.node
         
+        let contactDamageComponent = ContactDamageComponent(spriteNode: mainPanel, contactDamage: 1000, destroySelf: false, doNotHarm: [.alien], entityController: entityController)
+        addComponent(contactDamageComponent)
+        
         mainPanel.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run { [weak self] in
             self?.spawnAliens(timeElapsed: 1)
             }]))) 
@@ -50,7 +53,7 @@ class MotherShip: GKEntity {
         timeSinceAlien += dt
         if timeSinceAlien > alienInterval && aliensSpawned < totalAliens && entityController.getAlienEntities().count < maxAliens {
             timeSinceAlien = 0
-            spawnRaider()
+            spawnAlien()
             aliensSpawned += 1
         }
         if aliensSpawned >= totalAliens {
@@ -58,10 +61,15 @@ class MotherShip: GKEntity {
         }
     }
     var raiderTexture: SKTexture?
-    private func spawnRaider(){
+    var hunterTexture: SKTexture?
+    private func spawnAlien(){
         //let raiderTexture = SKTexture(image: #imageLiteral(resourceName: "enemy01"))
         if self.raiderTexture == nil {
             self.raiderTexture = textureAtlas.textureNamed(ResourceNames.raiderName)
+        }
+        
+        if self.hunterTexture == nil {
+            self.hunterTexture = textureAtlas.textureNamed(ResourceNames.hunterName)
         }
         
         let findObstacles = {[weak self] () -> [GKObstacle] in
@@ -79,13 +87,19 @@ class MotherShip: GKEntity {
             return targets
         }
         guard let raiderTexture = raiderTexture else {return}
+        guard let hunterTexture = hunterTexture else {return}
         guard let spriteNode = spriteNode else { return }
-        let raider = Raider(appearance: raiderTexture, findTargets: findTargets, findObstacles: findObstacles, unlessDistanceAway: 250, entityController: entityController)
-
-        raider.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: spriteNode.position.x, y: spriteNode.position.y)
-        raider.component(ofType: SpriteComponent.self)?.node.zPosition = GameScene.ZPositions.default
+        guard let player = entityController.playerAgent else {return}
+        let alien: GKEntity
+        if aliensSpawned%3 == 0 {
+            alien = Raider(appearance: raiderTexture, findTargets: findTargets, findObstacles: findObstacles, unlessDistanceAway: 250, entityController: entityController)
+        }else{
+            alien = Hunter(appearance: hunterTexture, target: player, obstacles: findObstacles(), entityController: entityController)
+        }
+        alien.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: spriteNode.position.x, y: spriteNode.position.y)
+        alien.component(ofType: SpriteComponent.self)?.node.zPosition = GameScene.ZPositions.default
         //raider.component(ofType: RaiderAgent.self)?.position = float2.init(x: Float(size.width/2), y: Float(size.width/2 - 100))
-        entityController.add(raider)
+        entityController.add(alien)
     }
     
 }

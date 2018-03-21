@@ -82,6 +82,9 @@ class HumanFighter: GKEntity {
             entityController.add(explosion)
         }
         
+        let impactFeedbackComponent = ImpactFeedbackComponent(feedbackStyle: .heavy)
+        addComponent(impactFeedbackComponent)
+        
         let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
         addComponent(deathEffectComponent)
         
