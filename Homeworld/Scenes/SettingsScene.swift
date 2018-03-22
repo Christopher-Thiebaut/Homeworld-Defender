@@ -36,12 +36,32 @@ class SettingsScene: SKScene {
     
     lazy var difficultyLabels: [SKLabelNode] = [easyDifficultyLabel, mediumDifficultyLabel, hardDifficultyLabel, madnessDifficultyLabel]
     
+    var backroundMusicPreference: Bool = true {
+        didSet {
+            UserData.currentUser.wantsBackgroundMusic = backroundMusicPreference
+            backgroundMusicLabel.fontColor = backroundMusicPreference ? .red : .white
+            backgroundMusicLabel.text = backroundMusicPreference ? "MUSIC ON" : "MUSIC OFF"
+        }
+    }
+    
+    let backgroundMusicLabel = SKLabelNode(fontNamed: "VT323")
+    
+    var soundEffectsPreference: Bool = true {
+        didSet {
+            UserData.currentUser.wantsSoundEffects = soundEffectsPreference
+            soundEffectLabel.fontColor = soundEffectsPreference ? .red : .white
+            soundEffectLabel.text = soundEffectsPreference ? "SOUND EFFECTS ON" : "SOUND EFFECTS OFF"
+        }
+    }
+    
+    let soundEffectLabel = SKLabelNode(fontNamed: "VT323")
+    
     override func didMove(to view: SKView) {
         
         
         let sceneTitle = SKLabelNode(fontNamed: "VT323")
         sceneTitle.text = "Settings"
-        sceneTitle.position = CGPoint(x: size.width/2, y: size.height/1.3)
+        sceneTitle.position = CGPoint(x: size.width/2, y: size.height/1.15)
         sceneTitle.fontSize = 50
         addChild(sceneTitle)
         
@@ -54,10 +74,12 @@ class SettingsScene: SKScene {
         hardDifficultyLabel.text = "HARD"
         madnessDifficultyLabel.text = "MADNESS"
         
+        let labelSpacing: CGFloat = 30
         for label in difficultyLabels {
             label.fontSize = 30
-            totalLabelsWidth += label.frame.width
+            totalLabelsWidth += label.frame.width + labelSpacing
         }
+        totalLabelsWidth -= labelSpacing
         
         var difficultyButtons: [ButtonNode] = []
         
@@ -70,16 +92,39 @@ class SettingsScene: SKScene {
         let madnessButton = ButtonNode(label: madnessDifficultyLabel, action: {[weak self] in self?.selectedDifficulty = .madness})
         difficultyButtons.append(madnessButton)
         
-        var nextButtonLeftEdge = totalLabelsWidth/2
+        var nextButtonLeftEdge = -totalLabelsWidth/2
         
         for button in difficultyButtons {
             let buttonFrame = button.calculateAccumulatedFrame()
             button.position.x = nextButtonLeftEdge + buttonFrame.width/2
-            nextButtonLeftEdge += buttonFrame.width + 20
             labelParent.addChild(button)
+            nextButtonLeftEdge += buttonFrame.width + labelSpacing
         }
-        labelParent.position = CGPoint(x: 0, y: size.height/2)
+        labelParent.position = CGPoint(x: size.width/2, y: size.height/1.5)
         addChild(labelParent)
+        
+        selectedDifficulty = UserData.currentUser.preferredDifficulty
+        
+        backgroundMusicLabel.fontSize = 30
+        let backgroundMusicButton = ButtonNode(label: backgroundMusicLabel) {[weak self] in
+            if let settingsScene = self {
+                settingsScene.backroundMusicPreference = !settingsScene.backroundMusicPreference
+            }
+        }
+        backgroundMusicButton.position = CGPoint(x: size.width/2, y: size.height/2.1)
+        addChild(backgroundMusicButton)
+        
+        soundEffectLabel.fontSize = 30
+        let soundEffectButton = ButtonNode(label: soundEffectLabel) {[weak self] in
+            if let settingsScene = self {
+                settingsScene.soundEffectsPreference = !settingsScene.soundEffectsPreference
+            }
+        }
+        soundEffectButton.position = CGPoint(x: size.width/2, y: size.height/3.2)
+        addChild(soundEffectButton)
+        
+        backroundMusicPreference = UserData.currentUser.wantsBackgroundMusic
+        soundEffectsPreference = UserData.currentUser.wantsSoundEffects
         
         let returnToMenuLabel = SKLabelNode(fontNamed: "VT323")
         returnToMenuLabel.text = "RETURN TO MENU"
@@ -87,11 +132,8 @@ class SettingsScene: SKScene {
         returnToMenuLabel.fontSize = 30
         
         let returnToMenuButton = ButtonNode(label: returnToMenuLabel, action: {[weak self] in self?.goToMenu()})
-        returnToMenuButton.position = CGPoint(x: size.width/2, y: size.height/4)
+        returnToMenuButton.position = CGPoint(x: size.width/2, y: size.height - size.height/1.15)
         addChild(returnToMenuButton)
-        
-        selectedDifficulty = UserData.currentUser.preferredDifficulty
-        
     }
     
     func goToMenu() {

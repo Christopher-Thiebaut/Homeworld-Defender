@@ -29,6 +29,11 @@ class Tree: GKEntity {
         
         let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)
         addComponent(obstacleComponent)
+        
+        if let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .environment){
+            addComponent(physicsComponent)
+            physicsComponent.physicsBody.isDynamic = false
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

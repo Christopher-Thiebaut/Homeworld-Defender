@@ -15,33 +15,42 @@ class RocketEffectComponent: GKComponent {
     let particleEmitter: SKEmitterNode?
     let spriteNode: SKSpriteNode
     
-    init(spriteNode: SKSpriteNode, scene: GameScene) {
+    init(spriteNode: SKSpriteNode, entityController: EntityController) {
         particleEmitter = SKEmitterNode(fileNamed: "RocketFire.sks")
         self.spriteNode = spriteNode
         if particleEmitter == nil {
             NSLog("Failed to initialize particle emitter for rocket effect.")
         }
-        if let emitter = particleEmitter {
-            //scene.addChild(emitter)
-            emitter.zPosition = spriteNode.zPosition - 1
-            emitter.particleSize = CGSize(width: spriteNode.size.width * 2.5, height: spriteNode.size.height * 2.5)
-            spriteNode.addChild(emitter)
-            emitter.position.x = -spriteNode.size.width/2
-        }
+        let rocketAtlas = SKTextureAtlas(named: "rocket")
+        let firstTexture = rocketAtlas.textureNamed("1")
+        let scale = 10/firstTexture.size().height
+        let size = CGSize(width: firstTexture.size().width * scale, height: firstTexture.size().height * scale)
+        let fireEntity = GKEntity()
+        
+        let fireSpriteComponent = SpriteComponent(texture: firstTexture, color: .white, size: size)
+        fireEntity.addComponent(fireSpriteComponent)
+        
+        let fireAnimation = ConstantAnimationComponent(spriteAtlas: rocketAtlas, timePerFrame: 0.1, entityController: entityController)
+        fireEntity.addComponent(fireAnimation)
+        
+        spriteNode.addChild(fireSpriteComponent.node)
+        fireSpriteComponent.node.position.x = -spriteNode.size.width/2
+        fireSpriteComponent.node.zPosition = -1
+        
+        entityController.add(fireEntity)
+        fireAnimation.runAnimation(loop: true)
+//        if let emitter = particleEmitter {
+//            //scene.addChild(emitter)
+//            emitter.zPosition = spriteNode.zPosition - 1
+//            emitter.particleSize = CGSize(width: spriteNode.size.width * 2, height: spriteNode.size.height * 2)
+//            spriteNode.addChild(emitter)
+//            emitter.position.x = -spriteNode.size.width/2
+//        }
         super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func update(deltaTime seconds: TimeInterval) {
-        /*let desiredDistance = spriteNode.size.width/2 - spriteNode.size.width/10
-        let angle = Float(spriteNode.zRotation)
-        let dx = CGFloat(cosf(angle))
-        let dy = CGFloat(sinf(angle))
-        particleEmitter?.position = CGPoint(x: spriteNode.position.x - dx * desiredDistance, y: spriteNode.position.y - dy * desiredDistance)
-        particleEmitter?.zRotation = spriteNode.zRotation*/
     }
     
 }

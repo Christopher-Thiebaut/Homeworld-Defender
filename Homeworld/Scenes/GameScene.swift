@@ -43,8 +43,8 @@ class GameScene: SKScene {
     var playerSpriteNode: SKSpriteNode?
     //The node representing the floor.
     var floorNode: SKSpriteNode?
-    ///Minimum height at which the camera will track the player.
-    var minimumCameraHeight: CGFloat = 200
+    ///Minimum distance from the floor at which the camera will track the player.
+    lazy var minimumCameraHeight: CGFloat = size.width/4
     //The size of the gameplay area. Used for map wrapping, restricting camera tracking, and "mirror zones" which move content that is at one edge of the gameplay area to the other as the player moves over there to create the illusion of a continuous world. The gameplay area is centered around the initial area.
     var gamePlayArea: CGSize
 
@@ -109,7 +109,7 @@ class GameScene: SKScene {
         }
         self.playerSpriteNode = playerSpriteNode
         playerSpriteNode.zPosition = ZPositions.low
-        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: size.height)
+        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: floorLevel + 200)
         lastPlayerPositionX = playerSpriteNode.position.x
         entityController.add(player)
 
@@ -121,7 +121,7 @@ class GameScene: SKScene {
             }
         }
         
-        floorLevel = joyStickWidth + 15
+        floorLevel = -size.width/2 + joyStickWidth
         //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
         let floorTexture = textureAtlas.textureNamed(ResourceNames.groundName)
         let floorNode = SKSpriteNode(texture: floorTexture, color: .white, size: CGSize(width: gamePlayArea.width * 3, height: 10))
@@ -136,15 +136,9 @@ class GameScene: SKScene {
         addChild(camera)
         self.camera = camera
         camera.addChild(joyStick)
-        let leftPositionAdjustment: CGFloat
-        let rightPositionAdjustment: CGFloat
-        if #available(iOS 11.0, *) {
-            leftPositionAdjustment = CGFloat(view.safeAreaInsets.left)
-            rightPositionAdjustment = CGFloat(view.safeAreaInsets.right)
-        } else {
-            leftPositionAdjustment = 0
-            rightPositionAdjustment = 0
-        }
+        let leftPositionAdjustment = CGFloat(view.safeAreaInsets.left)
+        let rightPositionAdjustment = CGFloat(view.safeAreaInsets.right)
+ 
         joyStick.position = CGPoint(x:  -0.5 * (size.width - joyStickWidth - leftPositionAdjustment) + joyStickWidth/4, y: -0.5 * (size.height - joyStickWidth) + 30)
         joyStick.zPosition = ZPositions.high
         camera.addChild(fireButton)
@@ -255,6 +249,7 @@ class GameScene: SKScene {
             return
         }
         camera?.position.x = playerNode.position.x
+        //camera?.position.y = playerNode.position.y
         if playerNode.position.y - floorNode.position.y > minimumCameraHeight && playerNode.position.y < placementArea.maxY - minimumCameraHeight {
             camera?.position.y = playerNode.position.y
         }
@@ -332,7 +327,7 @@ extension GameScene {
         var backgroundHeight: CGFloat = 0
         while backgroundHeight < gamePlayArea.height {
             var rowWidth: CGFloat = 0
-            var nextTilePosition = CGPoint(x: minX + backgroundTexture.size().width/2, y: backgroundHeight + backgroundTexture.size().width/2)
+            var nextTilePosition = CGPoint(x: minX + backgroundTexture.size().width/2, y: floorLevel + backgroundHeight + backgroundTexture.size().width/2)
             while rowWidth < gamePlayArea.width {
                 let backgroundTile = SKSpriteNode(texture: backgroundTexture)
                 backgroundTile.position = nextTilePosition

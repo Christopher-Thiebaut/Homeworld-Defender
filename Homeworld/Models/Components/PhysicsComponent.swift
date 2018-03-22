@@ -89,7 +89,7 @@ class PhysicsComponent: GKComponent {
         case .alienProjectile:
             physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.alien.rawValue - CollisionCategory.alienProjectile.rawValue
         case .environment:
-            physicsBody.collisionBitMask = collideWithAllCategories
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.environment.rawValue
 
         }
         //Notify of all collisions.

@@ -27,7 +27,7 @@ class Explosion: GKEntity {
         
         let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count), entityController: entityController)
         addComponent(explosionAnimation)
-        explosionAnimation.explosionAnimation()
+        explosionAnimation.runAnimation()
         if UserData.currentUser.wantsSoundEffects {
             spriteComponent.node.run(SKAction.playSoundFileNamed(ResourceNames.Sounds.smallExplosion, waitForCompletion: false))
         }
@@ -41,7 +41,6 @@ class Explosion: GKEntity {
 //        }catch {
 //            NSLog("Whatever")
 //        }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -33,22 +33,14 @@ class ConstantAnimationComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func explosionAnimation() {
+    func runAnimation(loop: Bool = false) {
         guard let entity = entity, let spriteNode = entity.component(ofType: SpriteComponent.self)?.node else {return}
-        spriteNode.run(SKAction.sequence([SKAction.animate(with: frames, timePerFrame: timePerFrame), SKAction.run({[weak self] in self?.entityController.remove(entity)})]))
+        if loop {
+            spriteNode.run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: timePerFrame)))
+        }else{
+            spriteNode.run(SKAction.sequence([SKAction.animate(with: frames, timePerFrame: timePerFrame), SKAction.run({[weak self] in self?.entityController.remove(entity)})]))
+        }
+        
     }
-    
-//    override func update(deltaTime seconds: TimeInterval) {
-//        guard let spriteNode = entity?.component(ofType: SpriteComponent.self)?.node, let existingTexture = spriteNode.texture else { return }
-//        super.update(deltaTime: seconds)
-//        accumulatedTime += seconds
-//        let frameNumber = Int(accumulatedTime/timePerFrame)
-//        let frameTexture = textures.textureNamed("\(frameNumber)")
-//        let scale = spriteNode.size.width/existingTexture.size().width
-//        let size = CGSize(width: frameTexture.size().width * scale, height: frameTexture.size().height * scale)
-//        spriteNode.texture = frameTexture
-//        spriteNode.size = size
-//    }
-    
     
 }

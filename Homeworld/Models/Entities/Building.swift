@@ -37,6 +37,11 @@ class Building: GKEntity {
         let teamComponent = TeamComponent(team: .environment)
         addComponent(teamComponent)
         
+        if let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .environment){
+            addComponent(physicsComponent)
+            physicsComponent.physicsBody.isDynamic = false
+        }
+        
         let createExplosion: () -> () = {
             let explosionAtlas = SKTextureAtlas(named: "explosion")
             let explosion = Explosion(scale: 2, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)

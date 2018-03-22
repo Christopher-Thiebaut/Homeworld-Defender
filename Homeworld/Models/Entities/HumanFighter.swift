@@ -72,7 +72,7 @@ class HumanFighter: GKEntity {
         let animationComponent = AnimatedComponent(spriteAtlas: SKTextureAtlas(named: "red_jet"))
         addComponent(animationComponent)
         
-        let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, scene: entityController.scene!)
+        let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, entityController: entityController)
         addComponent(rocketEffectComponent)
         
         let createExplosion: () -> () = {
