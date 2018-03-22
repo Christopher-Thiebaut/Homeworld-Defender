@@ -80,7 +80,7 @@ class GameScene: SKScene {
         }
         gameStates = buildGameStates()
         entityController.scene = self
-        speed = 0.9999
+        physicsWorld.contactDelegate = entityController
     }
     
     private func buildGameStates() -> GameStateMachine {

@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class EntityController {
+class EntityController: NSObject {
     
     var entities = Set<GKEntity>()
     var toRemove = Set<GKEntity>()
@@ -170,4 +170,37 @@ class EntityController {
         }
         return nil
     }
+}
+
+extension EntityController: SKPhysicsContactDelegate {
+    
+    //Notify any entities involved about the contact
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let sprite1 = contact.bodyA.node as? SKSpriteNode else { return }
+        guard let sprite2 = contact.bodyB.node as? SKSpriteNode else { return }
+        let bodyAEntities = findEntitiesWithSpriteNode(sprite1)
+        let bodyBEntites = findEntitiesWithSpriteNode(sprite2)
+        notifyEntitiesOfMutualContact(bodyAEntities: bodyAEntities, bodyBEntities: bodyBEntites)
+    }
+    
+    private func findEntitiesWithSpriteNode(_ node: SKSpriteNode) -> [GKEntity] {
+        var foundEntites: [GKEntity] = []
+        for spriteComponent in Array(entities).flatMap({$0.component(ofType: SpriteComponent.self)}){
+            if spriteComponent.hasSprite(node: node) {
+                foundEntites.append(spriteComponent.entity!)
+            }
+        }
+        return foundEntites
+    }
+    
+    private func notifyEntitiesOfMutualContact(bodyAEntities: [GKEntity], bodyBEntities: [GKEntity]){
+        for entity in bodyAEntities {
+            //guard let entityContactDamageComponent = entity.component(ofType: ContactDamageComponent.self) else { continue }
+            for otherEntity in bodyBEntities {
+                entity.component(ofType: ContactDamageComponent.self)?.contactDetectedWith(entity: otherEntity)
+                otherEntity.component(ofType: ContactDamageComponent.self)?.contactDetectedWith(entity: entity)
+            }
+        }
+    }
+    
 }

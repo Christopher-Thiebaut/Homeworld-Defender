@@ -52,7 +52,7 @@ class ContactDamageComponent: GKComponent {
         //Loop through other entities and see if any are having a collision with this one. If so, they should take the specified amount of damage.
         for entity in otherEntities {
             
-            guard let otherEntitySpriteComponent = entity.component(ofType: SpriteComponent.self), let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self) else {
+            guard let otherEntitySpriteComponent = entity.component(ofType: SpriteComponent.self), let _ = entity.component(ofType: HealthComponent.self) else {
                 //The other entity being checked either is immune to damage or has no physical representation and cannot collide or be damaged by contact, or we have been specifically instructed not to damage.
                 continue
             }
@@ -62,12 +62,22 @@ class ContactDamageComponent: GKComponent {
                 continue
             }
             
-            if spriteNode.calculateAccumulatedFrame().intersects(otherEntitySpriteComponent.node.calculateAccumulatedFrame()) {
-                otherEntityHealthComponent.takeDamage(damage)
-                if destroySelf {
-                    entityController.remove(ownEntity)
-                }
+            guard spriteNode.physicsBody == nil || otherEntitySpriteComponent.node.physicsBody == nil else {
+                //If both entities have physics bodies, we are relying on the entity controller, as the physics world contact delegate, to notify us of the collision. (since physics bodies will lead to much more accurate collisions than sprites.
+                return
             }
+            
+            if spriteNode.calculateAccumulatedFrame().intersects(otherEntitySpriteComponent.node.calculateAccumulatedFrame()) {
+                contactDetectedWith(entity: entity)
+            }
+        }
+    }
+    
+    func contactDetectedWith(entity: GKEntity) {
+        guard let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self) else {return}
+        otherEntityHealthComponent.takeDamage(damage)
+        if destroySelf, let ownEntity = self.entity {
+            entityController?.remove(ownEntity)
         }
     }
 }
