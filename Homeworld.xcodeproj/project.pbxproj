@@ -22,6 +22,7 @@
 		B3150F0B206064CF00E10875 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F0A206064CF00E10875 /* Explosion.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
+		B3553FD0206406DF00125D4D /* red_jet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3553FCF206406DE00125D4D /* red_jet.atlas */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
 		B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
@@ -89,6 +90,7 @@
 		B3150F0A206064CF00E10875 /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
+		B3553FCF206406DE00125D4D /* red_jet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = red_jet.atlas; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
 		B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeathEffectComonent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		B3CD4629204467360016B396 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3553FCF206406DE00125D4D /* red_jet.atlas */,
 				B3AABB322062CC450093869F /* Sounds */,
 				B3150F042060618000E10875 /* explosion.atlas */,
 				B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */,
@@ -394,6 +397,7 @@
 				B3AC522C206305D0009E76BD /* small_explosion.caf in Resources */,
 				B395E44620583ADB0091C7A3 /* basic_fighter_short.atlas in Resources */,
 				B395E44A205845500091C7A3 /* RocketFire.sks in Resources */,
+				B3553FD0206406DF00125D4D /* red_jet.atlas in Resources */,
 				B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */,
 				B3150F052060618000E10875 /* explosion.atlas in Resources */,
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,

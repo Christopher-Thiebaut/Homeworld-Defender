@@ -120,7 +120,6 @@ class GameScene: SKScene {
                 fireComponent.fire()
             }
         }
-
         
         floorLevel = joyStickWidth + 15
         //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
@@ -176,6 +175,7 @@ class GameScene: SKScene {
         stealChildren()
         
         showPlayerHealthBar()
+        showPlayerReloadBar()
         
         //The mothership is thick so that the player can't camp out where aliens come out and shoot them immediately (because the aliens can shoot from inside the mothersip and will be able to shoot the player first)
         let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 2, height: 400), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
@@ -297,12 +297,27 @@ extension GameScene {
         let healthBarHeight: CGFloat = 10
         let healthBarPosition = CGPoint(x: -size.width/4, y: size.height/2 - healthBarHeight)
         //let healthBarPosition = camera!.position
-        let healthBar = DisplayedPercentageBar(initialSize: CGSize.init(width: size.width/3, height: healthBarHeight), color: .green, initialPosition: healthBarPosition, quantityToMonitor: playerHealthComponent)
-        if let healthBarSprite = healthBar.component(ofType: PercentageBarComponent.self)?.bar {
+        let healthBar = DisplayedPercentageBar(initialSize: CGSize.init(width: size.width/3, height: healthBarHeight), color: .green, backgroundColor: .red, initialPosition: healthBarPosition, quantityToMonitor: playerHealthComponent)
+        if let healthBarSprite = healthBar.component(ofType: PercentageBarComponent.self)?.sprite {
             camera?.addChild(healthBarSprite)
             healthBarSprite.zPosition = ZPositions.required
         }
         entityController.add(healthBar)
+    }
+    
+    func showPlayerReloadBar() {
+        guard let playerWeapon = entityController.playerAgent?.entity?.component(ofType: FireProjectileComponent.self) else {
+            NSLog("Not displaying player reload bar because the player doesn't exist.")
+            return
+        }
+        let reloadBarHeight: CGFloat = 10
+        let reloadBarPosition = CGPoint(x: size.width/4, y: size.height/2 - reloadBarHeight)
+        let reloadBar = DisplayedPercentageBar(initialSize: CGSize.init(width: size.width/3, height: reloadBarHeight), color: .blue, backgroundColor: .white, initialPosition: reloadBarPosition, quantityToMonitor: playerWeapon)
+        if let reloadBarSprite = reloadBar.component(ofType: PercentageBarComponent.self)?.sprite {
+            camera?.addChild(reloadBarSprite)
+            reloadBarSprite.zPosition = ZPositions.required
+        }
+        entityController.add(reloadBar)
     }
 }
 

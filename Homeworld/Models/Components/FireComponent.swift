@@ -80,3 +80,15 @@ class FireProjectileComponent: GKComponent {
     }
     
 }
+
+extension FireProjectileComponent: PercentageBarQuantity {
+    var quantityRemaining: CGFloat {
+        return min(CGFloat(timeSinceLastFired), CGFloat(reloadTime))
+    }
+    
+    var maximumQuantity: CGFloat {
+        return CGFloat(reloadTime)
+    }
+    
+    
+}

@@ -14,7 +14,7 @@ class HumanFighter: GKEntity {
     
     let mass: CGFloat = 1000
     
-    let image = SKTextureAtlas(named: "basic_fighter_short").textureNamed("1")
+    let image = SKTextureAtlas(named: "red_jet").textureNamed("1")
     
     required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
@@ -69,7 +69,7 @@ class HumanFighter: GKEntity {
         let team = TeamComponent(team: .human)
         addComponent(team)
         
-        let animationComponent = AnimatedComponent(spriteAtlas: SKTextureAtlas(named: "basic_fighter_short"))
+        let animationComponent = AnimatedComponent(spriteAtlas: SKTextureAtlas(named: "red_jet"))
         addComponent(animationComponent)
         
         let rocketEffectComponent = RocketEffectComponent(spriteNode: spriteComponent.node, scene: entityController.scene!)

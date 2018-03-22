@@ -17,6 +17,8 @@ class ButtonNode: SKNode {
         return self.calculateAccumulatedFrame().size
     }
     
+    var repeatActionOnHold: Bool = false
+    
     init(texture: SKTexture, size: CGSize, action: @escaping () -> () ){
         buttonAction = action
         super.init()
@@ -31,7 +33,6 @@ class ButtonNode: SKNode {
         let textureNode = SKSpriteNode(texture: texture, color: SKColor.white, size: size)
         self.addChild(textureNode)
         isUserInteractionEnabled = true
-        //super.init(texture: texture, color: SKColor.white, size: size)
     }
     
     init(label: SKLabelNode, action: @escaping () -> () ){
@@ -46,9 +47,19 @@ class ButtonNode: SKNode {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let action = buttonAction {
+        super.touchesBegan(touches, with: event)
+        guard let action = buttonAction else {return}
+        if repeatActionOnHold {
+            run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.05), SKAction.run {
+                action()
+                }])))
+        }else{
             action()
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        removeAllActions()
     }
     
 }

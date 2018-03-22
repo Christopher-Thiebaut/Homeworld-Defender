@@ -18,15 +18,20 @@ protocol PercentageBarQuantity {
 class PercentageBarComponent: GKComponent {
     
     let quantityToMonitor: PercentageBarQuantity
-    let bar: SKSpriteNode
+    private let bar: SKSpriteNode
+    let sprite: SKSpriteNode
     let fullSize: CGSize
     
-    init(initialSize: CGSize, initialPosition: CGPoint, color: UIColor, quantityToMonitor: PercentageBarQuantity) {
+    init(initialSize: CGSize, initialPosition: CGPoint, color: UIColor, backgroundColor: UIColor, quantityToMonitor: PercentageBarQuantity) {
         self.quantityToMonitor = quantityToMonitor
         
-        let sprite = SKSpriteNode(color: color, size: initialSize)
-        sprite.position = initialPosition
-        self.bar = sprite
+        let backgroundSprite = SKSpriteNode(color: backgroundColor, size: initialSize)
+        backgroundSprite.position = initialPosition
+        self.sprite = backgroundSprite
+        
+        let bar = SKSpriteNode(color: color, size: initialSize)
+        sprite.addChild(bar)
+        self.bar = bar
         self.fullSize = initialSize
         
         super.init()

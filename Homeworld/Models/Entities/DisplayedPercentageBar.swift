@@ -14,15 +14,15 @@ class DisplayedPercentageBar: GKEntity {
     
     let quantity: PercentageBarQuantity
     
-    init(initialSize: CGSize, color: UIColor, initialPosition: CGPoint, quantityToMonitor: PercentageBarQuantity){
+    init(initialSize: CGSize, color: UIColor, backgroundColor: UIColor, initialPosition: CGPoint, quantityToMonitor: PercentageBarQuantity){
         self.quantity = quantityToMonitor
         
         super.init()
         
-        let percentageBarComponent = PercentageBarComponent(initialSize: initialSize, initialPosition: initialPosition, color: color, quantityToMonitor: quantity)
+        let percentageBarComponent = PercentageBarComponent(initialSize: initialSize, initialPosition: initialPosition, color: color, backgroundColor: backgroundColor, quantityToMonitor: quantity)
         addComponent(percentageBarComponent)
         
-        let spriteComponent = SpriteComponent(spriteNode: percentageBarComponent.bar)
+        let spriteComponent = SpriteComponent(spriteNode: percentageBarComponent.sprite)
         addComponent(spriteComponent)
     }
     
