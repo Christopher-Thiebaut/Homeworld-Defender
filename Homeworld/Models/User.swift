@@ -22,6 +22,12 @@ class UserData: Codable {
         }
     }
     
+    var wantsBackgroundMusic: Bool = true {
+        didSet {
+            self.save()
+        }
+    }
+    
     var preferredDifficulty: Difficulty.DifficultyLevel = .medium {
         didSet {
             self.save()

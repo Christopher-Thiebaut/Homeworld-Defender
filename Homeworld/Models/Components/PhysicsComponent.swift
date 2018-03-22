@@ -92,7 +92,7 @@ class PhysicsComponent: GKComponent {
             physicsBody.collisionBitMask = collideWithAllCategories
 
         }
-        //Hopefully this leads to notifiaction of all collisions
+        //Notify of all collisions.
         physicsBody.contactTestBitMask = physicsBody.collisionBitMask
     }
     

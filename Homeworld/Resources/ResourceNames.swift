@@ -24,5 +24,6 @@ struct ResourceNames {
     
     struct Sounds {
         static let smallExplosion = "small_explosion.caf"
+        static let backgroundMusic = "spring_awesome_chiptune.caf"
     }
 }
