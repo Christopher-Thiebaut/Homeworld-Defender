@@ -16,3 +16,5 @@ class RockNode: SKSpriteNode {}
 class SmallBuildingNode: SKSpriteNode {}
 
 class BigBuildingNode: SKSpriteNode {}
+
+class RepairFactoryNode: SKSpriteNode {}

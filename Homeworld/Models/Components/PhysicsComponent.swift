@@ -24,6 +24,7 @@ class PhysicsComponent: GKComponent {
         case alien = 8
         case alienProjectile = 16
         case environment = 32
+        case powerUp = 64
     }
     
     private var spriteNode: SKSpriteNode
@@ -32,7 +33,7 @@ class PhysicsComponent: GKComponent {
     private var affectedByGravity: Bool
     private var collisionCategory: CollisionCategory
     
-    private let collideWithAllCategories = CollisionCategory.player.rawValue + CollisionCategory.playerProjectile.rawValue + CollisionCategory.humanAI.rawValue + CollisionCategory.alien.rawValue + CollisionCategory.alienProjectile.rawValue + CollisionCategory.environment.rawValue
+    private let collideWithAllCategories = CollisionCategory.player.rawValue + CollisionCategory.playerProjectile.rawValue + CollisionCategory.humanAI.rawValue + CollisionCategory.alien.rawValue + CollisionCategory.alienProjectile.rawValue + CollisionCategory.environment.rawValue + CollisionCategory.powerUp.rawValue
     
     var physicsBody: SKPhysicsBody
     
@@ -81,15 +82,17 @@ class PhysicsComponent: GKComponent {
         case .player:
             physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue
         case .playerProjectile:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue - CollisionCategory.powerUp.rawValue
         case .humanAI:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.humanAI.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.humanAI.rawValue - CollisionCategory.powerUp.rawValue
         case .alien:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.alien.rawValue - CollisionCategory.alienProjectile.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.alien.rawValue - CollisionCategory.alienProjectile.rawValue - CollisionCategory.powerUp.rawValue
         case .alienProjectile:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.alien.rawValue - CollisionCategory.alienProjectile.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.alien.rawValue - CollisionCategory.alienProjectile.rawValue - CollisionCategory.powerUp.rawValue
         case .environment:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.environment.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.environment.rawValue - CollisionCategory.powerUp.rawValue
+        case .powerUp:
+            physicsBody.collisionBitMask = CollisionCategory.player.rawValue
 
         }
         //Notify of all collisions.

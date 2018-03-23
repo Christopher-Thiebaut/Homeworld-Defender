@@ -25,6 +25,14 @@ class HealthPack: GKEntity {
         let destnition = CGPoint(x: sprite.position.x, y: scene.gamePlayArea.height + scene.floorLevel)
         let duration = TimeInterval(abs(destnition.y - sprite.position.y) / upwardSpeed)
         sprite.run(SKAction.move(to: destnition, duration: duration))
+        
+        if let physicsComponent = PhysicsComponent(spriteNode: sprite, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .powerUp){
+            physicsComponent.physicsBody.isDynamic = false
+            addComponent(physicsComponent)
+        }
+        
+        let lifeSpanComponent = LifespanComponent(lifespan: 5, entityController: entityController)
+        addComponent(lifeSpanComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
