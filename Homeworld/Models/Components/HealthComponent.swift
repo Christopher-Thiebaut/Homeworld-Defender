@@ -29,6 +29,7 @@ class HealthComponent: GKComponent {
     
     func changeHealthBy(_ amount: Int){
         health += amount
+        health = min(health, fullHealth)
         entity?.component(ofType: ImpactFeedbackComponent.self)?.impactDetected()
         if let entity = self.entity, health <= 0 {
             entityController?.remove(entity)

@@ -22,7 +22,7 @@ class HealthPack: GKEntity {
         
         guard let scene = entityController.scene else {return}
         
-        let destnition = CGPoint(x: sprite.position.x, y: scene.gamePlayArea.height + scene.floorLevel)
+        let destnition = CGPoint(x: sprite.position.x, y: scene.floorLevel + scene.gamePlayArea.height/2)
         let duration = TimeInterval(abs(destnition.y - sprite.position.y) / upwardSpeed)
         sprite.run(SKAction.move(to: destnition, duration: duration))
         
@@ -31,7 +31,7 @@ class HealthPack: GKEntity {
             addComponent(physicsComponent)
         }
         
-        let lifeSpanComponent = LifespanComponent(lifespan: 5, entityController: entityController)
+        let lifeSpanComponent = LifespanComponent(lifespan: 15, entityController: entityController)
         addComponent(lifeSpanComponent)
     }
     

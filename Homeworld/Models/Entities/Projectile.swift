@@ -31,7 +31,7 @@ class Projectile: GKEntity {
         addComponent(physicsComponent)
         physicsComponent.physicsBody.velocity = velocity
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: 50, destroySelf: oneHit, doNotHarm: allies == nil ? [] : [allies!], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -50, destroySelf: oneHit, doNotHarm: allies == nil ? [] : [allies!], entityController: entityController)
         addComponent(contactDamageComponent)
         
         let lifeSpanComponent = LifespanComponent(lifespan: 0.75, entityController: entityController)

@@ -37,7 +37,7 @@ class MotherShip: GKEntity {
         
         addTiledTexture()
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: mainPanel, changeHealthBy: 1000, destroySelf: false, doNotHarm: [.alien], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: mainPanel, changeHealthBy: -1000, destroySelf: false, doNotHarm: [.alien], entityController: entityController)
         addComponent(contactDamageComponent)
         
         mainPanel.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run { [weak self] in

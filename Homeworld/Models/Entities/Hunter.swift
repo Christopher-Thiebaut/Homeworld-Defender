@@ -33,7 +33,7 @@ class Hunter: GKEntity {
         addComponent(healthComponent)
         
         //The hunter should cause damage if collided with
-        let contactDamgeComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: 50, destroySelf: false, doNotHarm: [TeamComponent.Team.alien], entityController: entityController)
+        let contactDamgeComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -50, destroySelf: false, doNotHarm: [TeamComponent.Team.alien], entityController: entityController)
         addComponent(contactDamgeComponent)
         
         //Give the hunter an agent to control its behavior
@@ -45,7 +45,7 @@ class Hunter: GKEntity {
         let reloadTime = entityController.difficultyLevel.getEnemyReloadTime()
         let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.defaultAlientBlaster)
         let projectileSize = CGSize(width: spriteComponent.node.size.width/10, height: spriteComponent.node.size.height/10)
-        let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, damage: 50, speed: projectileSpeed, reloadTime: reloadTime, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
+        let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, speed: projectileSpeed, reloadTime: reloadTime, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
         addComponent(fireProjectileComponent)
         
         //Give the hunter a physics component so he won't run through boundaries

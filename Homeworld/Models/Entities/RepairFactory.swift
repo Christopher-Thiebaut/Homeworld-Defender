@@ -15,7 +15,8 @@ class RepairFactory: Building {
         
         super.init(spriteNode: spriteNode, health: health, entityController: entityController)
         
-        let repairSpawner = HealthSpawner(origin: spriteNode.position, baseFrequency: baseRepairFrequency, variability: variation, healAmount: restoreHealth, entityController: entityController)
+        //midX and midY are used because we don't know what the anchorpoint of the spritenode is.
+        let repairSpawner = HealthSpawner(origin: CGPoint.init(x: spriteNode.frame.midX, y: spriteNode.frame.midY), baseFrequency: baseRepairFrequency, variability: variation, healAmount: restoreHealth, entityController: entityController)
         addComponent(repairSpawner)
 
     }

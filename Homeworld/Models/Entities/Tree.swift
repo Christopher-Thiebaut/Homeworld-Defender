@@ -21,7 +21,7 @@ class Tree: GKEntity {
         let teamComponent = TeamComponent(team: .environment)
         addComponent(teamComponent)
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: 30, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -30, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityController: entityController)
         addComponent(contactDamageComponent)
         
         let healthComponent = HealthComponent(health: 60, entityController: entityController)

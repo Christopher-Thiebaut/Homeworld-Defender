@@ -34,7 +34,7 @@ class GameScene: SKScene {
     ///Handles most of the simulation by managing the addition and removal of entities and calling the update functions of their components.
     let entityController: EntityController
     ///Used to calculate how much time has passed since the last update so that the EntityController can take appropriately sized simulaiton steps.
-    var lastUpdateTimeInterval: TimeInterval = 0
+    var lastUpdateTimeInterval: TimeInterval?
     ///The floor is what should be consider "ground level" for most game elements, but will not usually be 0 at runtime because the control nodes are below the "floor"
     var floorLevel: CGFloat = 0
     //Player Character's class. Allows for giving the player different kinds of fighters/planes on different levels.
@@ -188,6 +188,9 @@ class GameScene: SKScene {
         }
         for child in editorNode.children {
             child.removeFromParent()
+            child.position.y += floorLevel - (floorNode?.size.height ?? 0)
+            child.zPosition = ZPositions.low
+            
             if let tree = child as? TreeNode {
                 let treeEntity = Tree(spriteNode: tree, entityController: entityController) //Badum tss.
                 entityController.add(treeEntity)
@@ -205,11 +208,9 @@ class GameScene: SKScene {
                 entityController.add(bigBuilding)
             }
             if let repairFactory = child as? RepairFactoryNode {
-                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 0.5, variation: 0, restoreHealth: 50, entityController: entityController)
+                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 1, variation: 5, restoreHealth: 50, entityController: entityController)
                 entityController.add(repairFactory)
             }
-            child.position.y += floorLevel - (floorNode?.size.height ?? 0)
-            child.zPosition = ZPositions.low
         }
         sceneEditorNode = nil
     }
@@ -217,7 +218,11 @@ class GameScene: SKScene {
     //MARK: - UPDATE
     
     override func update(_ currentTime: TimeInterval) {
-        let dt = currentTime - lastUpdateTimeInterval
+        guard let lastUpdate = lastUpdateTimeInterval else {
+            lastUpdateTimeInterval = currentTime
+            return
+        }
+        let dt = currentTime - lastUpdate
         lastUpdateTimeInterval = currentTime
         slidingWindowUpdate()
         if aliensDefeated() {

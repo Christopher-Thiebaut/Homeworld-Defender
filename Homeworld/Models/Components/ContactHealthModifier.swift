@@ -16,7 +16,7 @@ class ContactHealthModifier: GKComponent {
     ///Indicates that this entity should be removed after causing contact damage. Should be used for consumable projectiles like missiles and laser beams.
     var destroySelf: Bool
     
-    var damage: Int
+    var contactHealthChange: Int
     var lastDamageTime: TimeInterval
     var doNotHarm: [TeamComponent.Team]
     
@@ -24,7 +24,7 @@ class ContactHealthModifier: GKComponent {
 
     init(spriteNode: SKSpriteNode, changeHealthBy: Int, destroySelf: Bool, doNotHarm: [TeamComponent.Team] = [], entityController: EntityController){
         self.spriteNode = spriteNode
-        self.damage = changeHealthBy
+        self.contactHealthChange = changeHealthBy
         self.destroySelf = destroySelf
         self.entityController = entityController
         self.doNotHarm = doNotHarm
@@ -42,7 +42,7 @@ class ContactHealthModifier: GKComponent {
             return
         }
 
-        otherEntityHealthComponent.changeHealthBy(-damage)
+        otherEntityHealthComponent.changeHealthBy(contactHealthChange)
         if destroySelf, let ownEntity = self.entity {
             entityController?.remove(ownEntity)
         }

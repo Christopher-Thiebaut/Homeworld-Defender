@@ -24,7 +24,7 @@ class FireProjectileComponent: GKComponent {
     let allies: TeamComponent.Team?
     let firesRockets: Bool
     
-    init(projectileTexture: SKTexture, size: CGSize, damage: Int, speed: CGFloat, reloadTime: TimeInterval, projectileCategory: PhysicsComponent.CollisionCategory, allies: TeamComponent.Team?, firesRockets: Bool = false,entityController: EntityController){
+    init(projectileTexture: SKTexture, size: CGSize, speed: CGFloat, reloadTime: TimeInterval, projectileCategory: PhysicsComponent.CollisionCategory, allies: TeamComponent.Team?, firesRockets: Bool = false,entityController: EntityController){
         self.reloadTime = reloadTime
         self.timeSinceLastFired = reloadTime + 1
         self.texture = projectileTexture

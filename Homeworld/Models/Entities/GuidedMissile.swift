@@ -27,7 +27,7 @@ class GuidedMissile: GKEntity {
         let spriteComponent = SpriteComponent(texture: texture, size: texture.size())
         addComponent(spriteComponent)
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: 200, destroySelf: true, entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -200, destroySelf: true, entityController: entityController)
         addComponent(contactDamageComponent)
         
         let chaseAgent = ChaseAgent(target: target, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
