@@ -81,6 +81,8 @@ class GameScene: SKScene {
         gameStates = buildGameStates()
         entityController.scene = self
         physicsWorld.contactDelegate = entityController
+        floorLevel = -size.width/2
+        stealChildren()
     }
     
     private func buildGameStates() -> GameStateMachine {
@@ -109,7 +111,7 @@ class GameScene: SKScene {
         }
         self.playerSpriteNode = playerSpriteNode
         playerSpriteNode.zPosition = ZPositions.low
-        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: floorLevel + 200)
+        playerSpriteNode.position = CGPoint(x: anchorPoint.x, y: floorLevel + 500)
         lastPlayerPositionX = playerSpriteNode.position.x
         entityController.add(player)
 
@@ -121,7 +123,7 @@ class GameScene: SKScene {
             }
         }
         
-        floorLevel = -size.width/2 + joyStickWidth
+//        floorLevel = -size.width/2 + joyStickWidth
         //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
         let floorTexture = textureAtlas.textureNamed(ResourceNames.groundName)
         let floorNode = SKSpriteNode(texture: floorTexture, color: .white, size: CGSize(width: gamePlayArea.width * 3, height: 10))
@@ -166,8 +168,6 @@ class GameScene: SKScene {
         
         physicsWorld.gravity = CGVector(dx: 0, dy: -1)
         
-        stealChildren()
-        
         showPlayerHealthBar()
         showPlayerReloadBar()
         
@@ -188,7 +188,7 @@ class GameScene: SKScene {
         }
         for child in editorNode.children {
             child.removeFromParent()
-            child.position.y += floorLevel - (floorNode?.size.height ?? 0)
+            child.position.y += floorLevel - 10
             child.zPosition = ZPositions.low
             
             if let tree = child as? TreeNode {
