@@ -15,7 +15,7 @@ class RepairFactory: Building {
         
         super.init(spriteNode: spriteNode, health: health, entityController: entityController)
         
-        let repairSpawner = HealthSpawner(origin: spriteNode.position, baseFrequency: 30, variability: 5, healAmount: 50, entityController: entityController)
+        let repairSpawner = HealthSpawner(origin: spriteNode.position, baseFrequency: baseRepairFrequency, variability: variation, healAmount: restoreHealth, entityController: entityController)
         addComponent(repairSpawner)
 
     }

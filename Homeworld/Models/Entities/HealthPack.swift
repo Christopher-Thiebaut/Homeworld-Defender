@@ -17,7 +17,7 @@ class HealthPack: GKEntity {
         let spriteComponent = SpriteComponent(spriteNode: sprite)
         addComponent(spriteComponent)
         
-        let healingComponent = ContactDamageComponent(spriteNode: sprite, contactDamage: -100, destroySelf: true, doNotHarm: [.alien, .environment], entityController: entityController)
+        let healingComponent = ContactHealthModifier(spriteNode: sprite, changeHealthBy: 100, destroySelf: true, doNotHarm: [.alien, .environment], entityController: entityController)
         addComponent(healingComponent)
         
         guard let scene = entityController.scene else {return}

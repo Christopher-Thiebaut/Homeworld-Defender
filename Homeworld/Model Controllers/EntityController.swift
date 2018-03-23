@@ -34,11 +34,10 @@ class EntityController: NSObject {
         let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
         let animatedSystem = GKComponentSystem(componentClass: AnimatedComponent.self)
         let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
-        let mapWrappingSystem = GKComponentSystem(componentClass: MapWrappingComponent.self)
         let passiveAgentSystem = GKComponentSystem(componentClass: PassiveAgent.self)
         let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
         let hunterAgentSystem = GKComponentSystem(componentClass: HunterAgent.self)
-        let contactDamageComponent = GKComponentSystem(componentClass: ContactDamageComponent.self)
+        let contactDamageComponent = GKComponentSystem(componentClass: ContactHealthModifier.self)
         let chaseAgentSystem = GKComponentSystem(componentClass: ChaseAgent.self)
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
         let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
@@ -46,7 +45,8 @@ class EntityController: NSObject {
         let rocketEffectSystem = GKComponentSystem(componentClass: RocketEffectComponent.self)
         let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
         let constantAnimationSystem = GKComponentSystem(componentClass: ConstantAnimationComponent.self)
-        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, mapWrappingSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem]
+        let healthSpawningSystem = GKComponentSystem(componentClass: HealthSpawner.self)
+        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
     }()
     
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
@@ -197,8 +197,8 @@ extension EntityController: SKPhysicsContactDelegate {
         for entity in bodyAEntities {
             //guard let entityContactDamageComponent = entity.component(ofType: ContactDamageComponent.self) else { continue }
             for otherEntity in bodyBEntities {
-                entity.component(ofType: ContactDamageComponent.self)?.contactDetectedWith(entity: otherEntity)
-                otherEntity.component(ofType: ContactDamageComponent.self)?.contactDetectedWith(entity: entity)
+                entity.component(ofType: ContactHealthModifier.self)?.contactDetectedWith(entity: otherEntity)
+                otherEntity.component(ofType: ContactHealthModifier.self)?.contactDetectedWith(entity: entity)
             }
         }
     }

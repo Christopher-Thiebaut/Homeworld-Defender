@@ -27,8 +27,8 @@ class HealthComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func takeDamage(_ damage: Int){
-        health -= damage
+    func changeHealthBy(_ amount: Int){
+        health += amount
         entity?.component(ofType: ImpactFeedbackComponent.self)?.impactDetected()
         if let entity = self.entity, health <= 0 {
             entityController?.remove(entity)

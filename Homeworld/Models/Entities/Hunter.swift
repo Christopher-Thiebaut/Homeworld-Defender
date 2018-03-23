@@ -33,7 +33,7 @@ class Hunter: GKEntity {
         addComponent(healthComponent)
         
         //The hunter should cause damage if collided with
-        let contactDamgeComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 50, destroySelf: false, doNotHarm: [TeamComponent.Team.alien], entityController: entityController)
+        let contactDamgeComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: 50, destroySelf: false, doNotHarm: [TeamComponent.Team.alien], entityController: entityController)
         addComponent(contactDamgeComponent)
         
         //Give the hunter an agent to control its behavior

@@ -27,15 +27,11 @@ class GuidedMissile: GKEntity {
         let spriteComponent = SpriteComponent(texture: texture, size: texture.size())
         addComponent(spriteComponent)
         
-        let contactDamageComponent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 200, destroySelf: true, entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: 200, destroySelf: true, entityController: entityController)
         addComponent(contactDamageComponent)
         
         let chaseAgent = ChaseAgent(target: target, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: 1, entityController: entityController)
         addComponent(chaseAgent)
-        
-        guard let scene = entityController.scene else { fatalError("Tried to do setup from entityController with no scene.") }
-        let mapWrappingComponent = MapWrappingComponent(spriteNode: spriteComponent.node, scene: scene)
-        addComponent(mapWrappingComponent)
         
     }
     

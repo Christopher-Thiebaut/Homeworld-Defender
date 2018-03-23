@@ -41,6 +41,7 @@
 		B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */; };
 		B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */; };
 		B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C420599A79003DBD40 /* MotherShip.swift */; };
+		B37597582064A4B300C96F26 /* ManualRotationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37597572064A4B300C96F26 /* ManualRotationComponent.swift */; };
 		B3790CB42061B9FE00EF2174 /* DifficultyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */; };
 		B3790CB62061C26F00EF2174 /* Hunter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB52061C26F00EF2174 /* Hunter.swift */; };
 		B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */; };
@@ -64,9 +65,8 @@
 		B3CD46372044729A0016B396 /* EntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46362044729A0016B396 /* EntityController.swift */; };
 		B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463A204479050016B396 /* PropulsionComponent.swift */; };
 		B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463D204494AE0016B396 /* JoystickNode.swift */; };
-		B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46412044B70D0016B396 /* MapWrappingComponent.swift */; };
 		B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46432044C3930016B396 /* HealthComponent.swift */; };
-		B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46452044C5900016B396 /* ContactDamageComponent.swift */; };
+		B3CD46462044C5900016B396 /* ContactHealthModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46452044C5900016B396 /* ContactHealthModifier.swift */; };
 		B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46472044CC440016B396 /* PassiveAgent.swift */; };
 		B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46492044D34F0016B396 /* ChaseBehavior.swift */; };
 		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
@@ -113,6 +113,7 @@
 		B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLoggingComponent.swift; sourceTree = "<group>"; };
 		B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B36EE3C420599A79003DBD40 /* MotherShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherShip.swift; sourceTree = "<group>"; };
+		B37597572064A4B300C96F26 /* ManualRotationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualRotationComponent.swift; sourceTree = "<group>"; };
 		B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevel.swift; sourceTree = "<group>"; };
 		B3790CB52061C26F00EF2174 /* Hunter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hunter.swift; sourceTree = "<group>"; };
 		B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactFeedbackComponent.swift; sourceTree = "<group>"; };
@@ -136,9 +137,8 @@
 		B3CD46362044729A0016B396 /* EntityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityController.swift; sourceTree = "<group>"; };
 		B3CD463A204479050016B396 /* PropulsionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropulsionComponent.swift; sourceTree = "<group>"; };
 		B3CD463D204494AE0016B396 /* JoystickNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickNode.swift; sourceTree = "<group>"; };
-		B3CD46412044B70D0016B396 /* MapWrappingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWrappingComponent.swift; sourceTree = "<group>"; };
 		B3CD46432044C3930016B396 /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
-		B3CD46452044C5900016B396 /* ContactDamageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDamageComponent.swift; sourceTree = "<group>"; };
+		B3CD46452044C5900016B396 /* ContactHealthModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHealthModifier.swift; sourceTree = "<group>"; };
 		B3CD46472044CC440016B396 /* PassiveAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveAgent.swift; sourceTree = "<group>"; };
 		B3CD46492044D34F0016B396 /* ChaseBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
 		B3CD464C2044D49D0016B396 /* ChaseAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseAgent.swift; sourceTree = "<group>"; };
@@ -260,12 +260,12 @@
 		B3CD462B204467E50016B396 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B37597572064A4B300C96F26 /* ManualRotationComponent.swift */,
 				B3CD462C204468310016B396 /* SpriteComponent.swift */,
 				B3CD462F20446A410016B396 /* PhysicsComponent.swift */,
 				B3CD463A204479050016B396 /* PropulsionComponent.swift */,
-				B3CD46412044B70D0016B396 /* MapWrappingComponent.swift */,
 				B3CD46432044C3930016B396 /* HealthComponent.swift */,
-				B3CD46452044C5900016B396 /* ContactDamageComponent.swift */,
+				B3CD46452044C5900016B396 /* ContactHealthModifier.swift */,
 				B3CD46472044CC440016B396 /* PassiveAgent.swift */,
 				B3CD464C2044D49D0016B396 /* ChaseAgent.swift */,
 				B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */,
@@ -437,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */,
+				B37597582064A4B300C96F26 /* ManualRotationComponent.swift in Sources */,
 				B3A445812061A05B001587BB /* HunterAgent.swift in Sources */,
 				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
 				B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */,
@@ -476,9 +477,8 @@
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
 				B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */,
-				B3CD46462044C5900016B396 /* ContactDamageComponent.swift in Sources */,
+				B3CD46462044C5900016B396 /* ContactHealthModifier.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
-				B3CD46422044B70D0016B396 /* MapWrappingComponent.swift in Sources */,
 				B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */,
 				B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */,
 				B306E2F82046223600F0E0D9 /* Raider.swift in Sources */,

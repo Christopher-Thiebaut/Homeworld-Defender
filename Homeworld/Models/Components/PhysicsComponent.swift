@@ -80,7 +80,7 @@ class PhysicsComponent: GKComponent {
         physicsBody.categoryBitMask = category.rawValue
         switch category {
         case .player:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue - CollisionCategory.powerUp.rawValue
         case .playerProjectile:
             physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.player.rawValue - CollisionCategory.playerProjectile.rawValue - CollisionCategory.powerUp.rawValue
         case .humanAI:
@@ -90,13 +90,14 @@ class PhysicsComponent: GKComponent {
         case .alienProjectile:
             physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.alien.rawValue - CollisionCategory.alienProjectile.rawValue - CollisionCategory.powerUp.rawValue
         case .environment:
-            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.environment.rawValue - CollisionCategory.powerUp.rawValue
+            physicsBody.collisionBitMask = collideWithAllCategories - CollisionCategory.environment.rawValue - CollisionCategory.powerUp.rawValue 
         case .powerUp:
-            physicsBody.collisionBitMask = CollisionCategory.player.rawValue
+            physicsBody.collisionBitMask = 0
 
         }
-        //Notify of all collisions.
-        physicsBody.contactTestBitMask = physicsBody.collisionBitMask
+        //Notify of all collisions, except if it is a powerup. Powerups should only interact with the player
+        physicsBody.contactTestBitMask = category == .powerUp ? CollisionCategory.player.rawValue : physicsBody.collisionBitMask
+        
     }
     
 }

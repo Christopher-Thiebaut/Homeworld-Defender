@@ -204,6 +204,10 @@ class GameScene: SKScene {
                 let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
                 entityController.add(bigBuilding)
             }
+            if let repairFactory = child as? RepairFactoryNode {
+                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 0.5, variation: 0, restoreHealth: 50, entityController: entityController)
+                entityController.add(repairFactory)
+            }
             child.position.y += floorLevel - (floorNode?.size.height ?? 0)
             child.zPosition = ZPositions.low
         }
