@@ -208,7 +208,7 @@ class GameScene: SKScene {
                 entityController.add(bigBuilding)
             }
             if let repairFactory = child as? RepairFactoryNode {
-                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 1, variation: 5, restoreHealth: 50, entityController: entityController)
+                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 30, variation: 5, restoreHealth: 50, entityController: entityController)
                 entityController.add(repairFactory)
             }
         }

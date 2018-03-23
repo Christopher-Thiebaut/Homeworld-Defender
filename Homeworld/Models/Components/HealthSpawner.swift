@@ -38,7 +38,9 @@ class HealthSpawner: GKComponent {
         super.update(deltaTime: seconds)
         accumulatedTime += seconds
         guard accumulatedTime > nextSpawn else { return }
-        let sprite = SKSpriteNode(color: .white, size: CGSize(width: 50, height: 50))
+        //let sprite = SKSpriteNode(color: .white, size: CGSize(width: 50, height: 50))
+        let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.repairToken)
+        let sprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 50, height: 50))
         sprite.position = origin
         //sprite.position.y -= 150
         sprite.zPosition = GameScene.ZPositions.low - 1

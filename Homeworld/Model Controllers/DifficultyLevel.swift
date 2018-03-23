@@ -76,9 +76,22 @@ class Difficulty {
         case .medium:
             return 250
         case .hard:
-            return 300
+            return 275
         case .madness:
-            return 350
+            return 300
+        }
+    }
+    
+    func getScoreMultiplier() -> Double {
+        switch difficulty {
+        case .easy:
+            return 0.5
+        case .medium:
+            return 1
+        case .hard:
+            return 2
+        case .madness:
+            return 4
         }
     }
     

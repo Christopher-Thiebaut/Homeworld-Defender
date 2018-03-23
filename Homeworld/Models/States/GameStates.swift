@@ -146,6 +146,14 @@ class GameOverState: GKState {
         background.position = CGPoint(x: 0, y: 0)
         background.zPosition = GameScene.ZPositions.required + 1
         
+        let messageLabel = SKLabelNode(fontNamed: "VT323")
+        messageLabel.fontSize = 40
+        messageLabel.text = message
+        messageLabel.fontColor = .white
+        messageLabel.position = CGPoint(x: 0, y: background.size.height/3.5)
+        background.addChild(messageLabel)
+        messageLabel.alpha = 1
+        
         let mainMenuLabel = SKLabelNode(fontNamed: "VT323")
         mainMenuLabel.text = "RETURN TO MENU"
         mainMenuLabel.fontColor = .red
@@ -154,13 +162,15 @@ class GameOverState: GKState {
         background.addChild(mainMenuButton)
         mainMenuButton.alpha = 1
         
-        let messageLabel = SKLabelNode(fontNamed: "VT323")
-        messageLabel.fontSize = 40
-        messageLabel.text = message
-        messageLabel.fontColor = .white
-        messageLabel.position = CGPoint(x: 0, y: background.size.height/3.5)
-        background.addChild(messageLabel)
-        messageLabel.alpha = 1
+        let scoreBreakDownLabel = SKLabelNode(fontNamed: "VT323")
+        scoreBreakDownLabel.text = "SCORE BREAKDOWN:"
+        scoreBreakDownLabel.fontSize = 30
+        scoreBreakDownLabel.fontColor = .white
+        background.addChild(scoreBreakDownLabel)
+        scoreBreakDownLabel.alpha = 1
+        
+        let baseScoreLabel = SKLabelNode(fontNamed: "VT323")
+        baseScoreLabel.text = "BASE SCORE: \(scene.score)"
         
         return background
     }
@@ -183,15 +193,6 @@ class VictoryState: GameOverState {
 class DefeatState: GameOverState {
     
     init(scene: GameScene){
-        super.init(scene: scene, message: "YOU HAVE BEEN DEFEATED, HUMANITY IS DOOMED.")
+        super.init(scene: scene, message: "GAME OVER.")
     }
-    
-//    override func didEnter(from previousState: GKState?) {
-//        super.didEnter(from: previousState)
-//        scene.isPaused = false
-//        //This is to let any death-related animations play.
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {[weak self] in
-//            self?.scene.isPaused = true
-//        })
-//    }
 }

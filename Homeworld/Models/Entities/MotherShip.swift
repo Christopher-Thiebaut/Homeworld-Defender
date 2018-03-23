@@ -52,7 +52,7 @@ class MotherShip: GKEntity {
     
     private var timeSinceAlien: TimeInterval = 100
     private var alienInterval: TimeInterval = 2
-    private var totalAliens = 30
+    private var totalAliens = 100
     private var aliensSpawned = 0
     private var maxAliens = 30
     private func spawnAliens(timeElapsed dt: TimeInterval) {
@@ -61,11 +61,15 @@ class MotherShip: GKEntity {
             timeSinceAlien = 0
             spawnAlien()
             aliensSpawned += 1
+            if aliensSpawned%10 == 0 && alienInterval > 0.5 {
+                alienInterval -= 0.25
+            }
         }
         if aliensSpawned >= totalAliens {
             entityController.scene?.finishedSpawningEnemies = true
         }
     }
+    
     var raiderTexture: SKTexture?
     var hunterTexture: SKTexture?
     private func spawnAlien(){
@@ -95,14 +99,18 @@ class MotherShip: GKEntity {
         guard let raiderTexture = raiderTexture else {return}
         guard let hunterTexture = hunterTexture else {return}
         guard let spriteNode = spriteNode else { return }
-        guard let player = entityController.playerAgent else {return}
+        let getPlayer = {[weak self] () -> [GKAgent2D] in
+            var agentArray: [GKAgent2D] = []
+            if let player = self?.entityController.playerAgent { agentArray.append(player) }
+            return agentArray
+        }
         let alien: GKEntity
         if aliensSpawned%3 == 0 {
             alien = Raider(appearance: raiderTexture, findTargets: findTargets, findObstacles: findObstacles, unlessDistanceAway: 250, entityController: entityController)
         }else{
-            alien = Hunter(appearance: hunterTexture, target: player, obstacles: findObstacles(), entityController: entityController)
+            alien = Raider(appearance: hunterTexture, findTargets: getPlayer, findObstacles: findObstacles, unlessDistanceAway: 100, entityController: entityController)
         }
-        let doorWidth: CGFloat = 100
+        let doorWidth: CGFloat = 200
         let xPositionOffset = CGFloat(GKARC4RandomSource.sharedRandom().nextUniform() - 0.5) * doorWidth
         alien.component(ofType: SpriteComponent.self)?.node.position = CGPoint(x: spriteNode.position.x + xPositionOffset, y: spriteNode.position.y)
         alien.component(ofType: SpriteComponent.self)?.node.zPosition = GameScene.ZPositions.low
