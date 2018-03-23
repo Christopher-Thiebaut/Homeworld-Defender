@@ -146,31 +146,42 @@ class GameOverState: GKState {
         background.position = CGPoint(x: 0, y: 0)
         background.zPosition = GameScene.ZPositions.required + 1
         
-        let messageLabel = SKLabelNode(fontNamed: "VT323")
-        messageLabel.fontSize = 40
-        messageLabel.text = message
-        messageLabel.fontColor = .white
-        messageLabel.position = CGPoint(x: 0, y: background.size.height/3.5)
-        background.addChild(messageLabel)
-        messageLabel.alpha = 1
+        var nodes: [SKNode] = []
         
-        let mainMenuLabel = SKLabelNode(fontNamed: "VT323")
-        mainMenuLabel.text = "RETURN TO MENU"
-        mainMenuLabel.fontColor = .red
-        mainMenuLabel.fontSize = 30
+        let messageLabel = makeLabel(with: message, fontSize: 60, fontColor: .red)
+        nodes.append(messageLabel)
+        
+        let scoreBreakDownLabel = makeLabel(with: "SCORE BREAKDOWN:")
+        nodes.append(scoreBreakDownLabel)
+        
+        let baseScoreLabel = makeLabel(with: "BASE SCORE: \(scene.score/Int(scene.entityController.difficultyLevel.getScoreMultiplier()))")
+        nodes.append(baseScoreLabel)
+        
+        let difficultyMultiplierLabel = makeLabel(with: "\(scene.entityController.difficultyLevel.difficulty.rawValue.uppercased()) DIFFICULTY: \(scene.entityController.difficultyLevel.getScoreMultiplier())x MULTIPLIER")
+        nodes.append(difficultyMultiplierLabel)
+        
+        let finalScoreLabel = makeLabel(with: "FINAL SCORE: \(scene.score)")
+        nodes.append(finalScoreLabel)
+        
+        let mainMenuLabel = makeLabel(with: "RETURN TO MENU", fontSize: 40, fontColor: .red)
         let mainMenuButton = ButtonNode(label: mainMenuLabel, action: returnToMainMenu)
-        background.addChild(mainMenuButton)
-        mainMenuButton.alpha = 1
+        nodes.append(mainMenuButton)
         
-        let scoreBreakDownLabel = SKLabelNode(fontNamed: "VT323")
-        scoreBreakDownLabel.text = "SCORE BREAKDOWN:"
-        scoreBreakDownLabel.fontSize = 30
-        scoreBreakDownLabel.fontColor = .white
-        background.addChild(scoreBreakDownLabel)
-        scoreBreakDownLabel.alpha = 1
+        let desiredHeight = background.size.height - 100
+        var labelsTotalHeight: CGFloat = 0
+        for label in nodes {
+            labelsTotalHeight += label.calculateAccumulatedFrame().height
+        }
+        let totalEmptySpace = desiredHeight - labelsTotalHeight
+        let emptySpaceBetweenLabels = totalEmptySpace/(CGFloat(nodes.count) - 1)
         
-        let baseScoreLabel = SKLabelNode(fontNamed: "VT323")
-        baseScoreLabel.text = "BASE SCORE: \(scene.score)"
+        var nextLabelTop: CGFloat = desiredHeight/2
+        
+        for label in nodes {
+            label.position = CGPoint(x: 0, y: nextLabelTop - label.calculateAccumulatedFrame().height/2)
+            nextLabelTop -= label.calculateAccumulatedFrame().height + emptySpaceBetweenLabels
+            background.addChild(label)
+        }
         
         return background
     }
@@ -180,6 +191,16 @@ class GameOverState: GKState {
         let mainMenu = MainMenuScene(size: view.frame.size)
         mainMenu.scaleMode = .aspectFill
         view.presentScene(mainMenu)
+    }
+    
+    private func makeLabel(with text: String, andPosition position: CGPoint = CGPoint(x: 0, y: 0), fontSize: CGFloat = 30, fontColor: UIColor = .white) -> SKLabelNode {
+        let label = SKLabelNode(fontNamed: "VT323")
+        label.text = text
+        label.position = position
+        label.fontColor = fontColor
+        label.fontSize = fontSize
+        label.alpha = 1
+        return label
     }
 }
 

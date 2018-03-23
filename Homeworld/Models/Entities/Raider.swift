@@ -61,7 +61,7 @@ class Raider: GKEntity {
             let explosion = Explosion(scale: 0.5, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)
             explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
             entityController.add(explosion)
-            gameScene.score += 5
+            gameScene.score += Int(floor(5 * entityController.difficultyLevel.getScoreMultiplier()))
         }
         
         let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)

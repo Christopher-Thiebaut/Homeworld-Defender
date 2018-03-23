@@ -23,7 +23,7 @@ class SettingsScene: SKScene {
                 mediumDifficultyLabel.fontColor = .red
             case .hard:
                 hardDifficultyLabel.fontColor = .red
-            case .madness:
+            case .insane:
                 madnessDifficultyLabel.fontColor = .red
             }
         }
@@ -72,7 +72,7 @@ class SettingsScene: SKScene {
         easyDifficultyLabel.text = "EASY"
         mediumDifficultyLabel.text = "MEDIUM"
         hardDifficultyLabel.text = "HARD"
-        madnessDifficultyLabel.text = "MADNESS"
+        madnessDifficultyLabel.text = "INSANE"
         
         let labelSpacing: CGFloat = 30
         for label in difficultyLabels {
@@ -89,7 +89,7 @@ class SettingsScene: SKScene {
         difficultyButtons.append(mediumButton)
         let hardButton = ButtonNode(label: hardDifficultyLabel, action: {[weak self] in self?.selectedDifficulty = .hard})
         difficultyButtons.append(hardButton)
-        let madnessButton = ButtonNode(label: madnessDifficultyLabel, action: {[weak self] in self?.selectedDifficulty = .madness})
+        let madnessButton = ButtonNode(label: madnessDifficultyLabel, action: {[weak self] in self?.selectedDifficulty = .insane})
         difficultyButtons.append(madnessButton)
         
         var nextButtonLeftEdge = -totalLabelsWidth/2

@@ -15,9 +15,9 @@ class Difficulty {
         case easy
         case medium
         case hard
-        case madness
+        case insane
         
-        static let allValues = [DifficultyLevel.easy, DifficultyLevel.medium, DifficultyLevel.hard, DifficultyLevel.madness]
+        static let allValues = [DifficultyLevel.easy, DifficultyLevel.medium, DifficultyLevel.hard, DifficultyLevel.insane]
     }
     
     let difficulty: DifficultyLevel
@@ -37,7 +37,7 @@ class Difficulty {
             return (GKARC4RandomSource.sharedRandom().nextUniform() - 0.5)/3
         case .hard:
             return (GKARC4RandomSource.sharedRandom().nextUniform() - 0.5)/4
-        case .madness:
+        case .insane:
             return 0
         }
     }
@@ -50,7 +50,7 @@ class Difficulty {
             return 1000
         case .hard:
             return 1500
-        case .madness:
+        case .insane:
             return 2000
         }
     }
@@ -63,7 +63,7 @@ class Difficulty {
             return 1.5
         case .hard:
             return 1
-        case .madness:
+        case .insane:
             return 0.5
         }
 
@@ -77,7 +77,7 @@ class Difficulty {
             return 250
         case .hard:
             return 275
-        case .madness:
+        case .insane:
             return 300
         }
     }
@@ -90,7 +90,7 @@ class Difficulty {
             return 1
         case .hard:
             return 2
-        case .madness:
+        case .insane:
             return 4
         }
     }
