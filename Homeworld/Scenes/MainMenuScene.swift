@@ -57,11 +57,11 @@ class MainMenuScene: SKScene {
         let aspectRatio = view.bounds.width / view.bounds.height
         let gamePlayAreaSize = CGSize(width: 2000, height: 1200)
         let scene = GameScene(fileNamed: "LevelOne", visibleSize: CGSize(width: 640 * aspectRatio, height: 640), gamePlayAreaSize: gamePlayAreaSize, player: HumanFighter.self)
-        view.showsFPS = true
+//        view.showsFPS = true
         //skView.showsPhysics = true
-        view.showsNodeCount = true
+//        view.showsNodeCount = true
         view.ignoresSiblingOrder = true
-        view.showsDrawCount = true
+//        view.showsDrawCount = true
         scene.scaleMode = .aspectFill
         view.presentScene(scene)
     }
