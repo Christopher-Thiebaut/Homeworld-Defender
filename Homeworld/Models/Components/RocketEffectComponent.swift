@@ -18,9 +18,7 @@ class RocketEffectComponent: GKComponent {
     init(spriteNode: SKSpriteNode, entityController: EntityController) {
         particleEmitter = SKEmitterNode(fileNamed: "RocketFire.sks")
         self.spriteNode = spriteNode
-        if particleEmitter == nil {
-            NSLog("Failed to initialize particle emitter for rocket effect.")
-        }
+
         let rocketAtlas = SKTextureAtlas(named: "rocket")
         let firstTexture = rocketAtlas.textureNamed("1")
         let scale = 10/firstTexture.size().height
@@ -39,13 +37,6 @@ class RocketEffectComponent: GKComponent {
         
         entityController.add(fireEntity)
         fireAnimation.runAnimation(loop: true)
-//        if let emitter = particleEmitter {
-//            //scene.addChild(emitter)
-//            emitter.zPosition = spriteNode.zPosition - 1
-//            emitter.particleSize = CGSize(width: spriteNode.size.width * 2, height: spriteNode.size.height * 2)
-//            spriteNode.addChild(emitter)
-//            emitter.position.x = -spriteNode.size.width/2
-//        }
         super.init()
     }
     

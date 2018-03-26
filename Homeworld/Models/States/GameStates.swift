@@ -154,7 +154,7 @@ class GameOverState: GKState {
         let scoreBreakDownLabel = makeLabel(with: "SCORE BREAKDOWN:")
         nodes.append(scoreBreakDownLabel)
         
-        let baseScoreLabel = makeLabel(with: "BASE SCORE: \(scene.score/Int(scene.entityController.difficultyLevel.getScoreMultiplier()))")
+        let baseScoreLabel = makeLabel(with: "BASE SCORE: \(Int(Double(scene.score)/(scene.entityController.difficultyLevel.getScoreMultiplier())))")
         nodes.append(baseScoreLabel)
         
         let difficultyMultiplierLabel = makeLabel(with: "\(scene.entityController.difficultyLevel.difficulty.rawValue.uppercased()) DIFFICULTY: \(scene.entityController.difficultyLevel.getScoreMultiplier())x MULTIPLIER")
