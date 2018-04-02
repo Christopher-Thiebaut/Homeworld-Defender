@@ -185,7 +185,7 @@ extension EntityController: SKPhysicsContactDelegate {
     
     private func findEntitiesWithSpriteNode(_ node: SKSpriteNode) -> [GKEntity] {
         var foundEntites: [GKEntity] = []
-        for spriteComponent in Array(entities).flatMap({$0.component(ofType: SpriteComponent.self)}){
+        for spriteComponent in Array(entities).compactMap({$0.component(ofType: SpriteComponent.self)}){
             if spriteComponent.hasSprite(node: node) {
                 foundEntites.append(spriteComponent.entity!)
             }
