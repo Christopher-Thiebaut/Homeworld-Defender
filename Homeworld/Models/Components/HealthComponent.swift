@@ -12,9 +12,11 @@ import GameplayKit
 class HealthComponent: GKComponent {
     
     var health: Int
+    var fullHealth: Int
     weak var entityController: EntityController?
     
     init(health: Int,entityController: EntityController) {
+        self.fullHealth = health
         self.health = health
         self.entityController = entityController
         
@@ -25,11 +27,25 @@ class HealthComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func takeDamage(_ damage: Int){
-        health -= damage
-        if let entity = self.entity, health < 0 {
+    func changeHealthBy(_ amount: Int){
+        health += amount
+        health = min(health, fullHealth)
+        entity?.component(ofType: ImpactFeedbackComponent.self)?.impactDetected()
+        if let entity = self.entity, health <= 0 {
             entityController?.remove(entity)
         }
     }
+    
+}
+
+extension HealthComponent: PercentageBarQuantity {
+    var quantityRemaining: CGFloat {
+        return CGFloat(health)
+    }
+    
+    var maximumQuantity: CGFloat {
+        return CGFloat(fullHealth)
+    }
+    
     
 }

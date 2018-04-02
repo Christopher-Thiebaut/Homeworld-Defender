@@ -32,4 +32,5 @@ class PassiveAgent: GKAgent2D {
         
         self.position = float2(x: Float(spriteNode.position.x), y: Float(spriteNode.position.y))
     }
+    
 }

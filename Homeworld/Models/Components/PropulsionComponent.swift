@@ -45,8 +45,8 @@ class PropulsionComponent: GKComponent {
             NSLog("A propulsion control did not apply thrust this update cycle because it has no control object. It's probably supposed to have one.")
             return
         }
-        //TODO: Re-examine later whether this additional conditional checking before apply thrust makes things better or worse.
-        if control.shouldApplyThrust() /*&& (speed(velocity: physicsBody.velocity) < 500 || physicsBody.velocity.dy < 0)*/ {
+    
+        if control.shouldApplyThrust() {
             let playerRotation = spriteNode.zRotation
             let scale = control.magnitude() * physicsBody.mass
             let angle = Float(playerRotation)

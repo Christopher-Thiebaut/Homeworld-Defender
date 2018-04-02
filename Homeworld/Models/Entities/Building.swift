@@ -12,13 +12,14 @@ import GameplayKit
 
 class Building: GKEntity {
     
-    let health = 50
+    let health: Int
     
-    init(texture: SKTexture, size: CGSize, entityController: EntityController){
+    init(spriteNode: SKSpriteNode, health: Int, entityController: EntityController){
+        self.health = health
         
         super.init()
         
-        let spriteComponent = SpriteComponent(entity: self, texture: texture, size: size)
+        let spriteComponent = SpriteComponent(spriteNode: spriteNode, color: .white)
         addComponent(spriteComponent)
         
         let healthComponent = HealthComponent(health: health, entityController: entityController)
@@ -27,8 +28,29 @@ class Building: GKEntity {
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)
         addComponent(passiveAgent)
         
-        let contactDamageComponenent = ContactDamageComponent(spriteNode: spriteComponent.node, contactDamage: 100, destroySelf: false, entityController: entityController)
+        let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)
+        addComponent(obstacleComponent)
+        
+        let contactDamageComponenent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -health/4, destroySelf: false,doNotHarm: [TeamComponent.Team.environment], entityController: entityController)
         addComponent(contactDamageComponenent)
+        
+        let teamComponent = TeamComponent(team: .environment)
+        addComponent(teamComponent)
+        
+        if let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .environment){
+            addComponent(physicsComponent)
+            physicsComponent.physicsBody.isDynamic = false
+        }
+        
+        let createExplosion: () -> () = {
+            let explosionAtlas = SKTextureAtlas(named: "explosion")
+            let explosion = Explosion(scale: 2, textureAtlas: explosionAtlas, damage: 100, duration: 0.2, entityController: entityController)
+            explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
+            entityController.add(explosion)
+        }
+        
+        let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
+        addComponent(deathEffectComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
