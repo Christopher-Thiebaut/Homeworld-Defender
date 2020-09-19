@@ -36,7 +36,7 @@ class ChaseAgent : GKAgent2D, GKAgentDelegate {
             return
         }
         
-        position = float2.init(x: Float(spriteComponent.node.position.x), y: Float(spriteComponent.node.position.y))
+        position = SIMD2(x: Float(spriteComponent.node.position.x), y: Float(spriteComponent.node.position.y))
     }
     
     //update the position of the sprite component to match the position of the agent.

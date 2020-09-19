@@ -29,8 +29,12 @@ class PassiveAgent: GKAgent2D {
     
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
-        
-        self.position = float2(x: Float(spriteNode.position.x), y: Float(spriteNode.position.y))
+        self.position = SIMD2(x: spriteNode.position.x.float, y: spriteNode.position.y.float)
     }
-    
+}
+
+extension CGFloat {
+    var float: Float {
+        Float(self)
+    }
 }

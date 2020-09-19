@@ -47,7 +47,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             return
         }
         
-        position = float2.init(x: Float(spriteComponent.node.position.x), y: Float(spriteComponent.node.position.y))
+        position = SIMD2(x: Float(spriteComponent.node.position.x), y: Float(spriteComponent.node.position.y))
     }
     
     func agentDidUpdate(_ agent: GKAgent) {
