@@ -37,7 +37,6 @@
 		B361E2D120423E7100B2AF27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B361E2CF20423E7100B2AF27 /* Main.storyboard */; };
 		B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B361E2D220423E7100B2AF27 /* Assets.xcassets */; };
 		B361E2D620423E7100B2AF27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B361E2D420423E7100B2AF27 /* LaunchScreen.storyboard */; };
-		B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */; };
 		B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */; };
 		B36EE3C3205971CC003DBD40 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */; };
 		B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36EE3C420599A79003DBD40 /* MotherShip.swift */; };
@@ -68,8 +67,6 @@
 		B3CD46462044C5900016B396 /* ContactHealthModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46452044C5900016B396 /* ContactHealthModifier.swift */; };
 		B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46472044CC440016B396 /* PassiveAgent.swift */; };
 		B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46492044D34F0016B396 /* ChaseBehavior.swift */; };
-		B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464C2044D49D0016B396 /* ChaseAgent.swift */; };
-		B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD464E2044D7F40016B396 /* GuidedMissile.swift */; };
 		B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */; };
 		B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */; };
 		B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */; };
@@ -108,7 +105,6 @@
 		B361E2D220423E7100B2AF27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B361E2D520423E7100B2AF27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B361E2D720423E7100B2AF27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBeacon.swift; sourceTree = "<group>"; };
 		B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionLoggingComponent.swift; sourceTree = "<group>"; };
 		B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		B36EE3C420599A79003DBD40 /* MotherShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherShip.swift; sourceTree = "<group>"; };
@@ -139,8 +135,6 @@
 		B3CD46452044C5900016B396 /* ContactHealthModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHealthModifier.swift; sourceTree = "<group>"; };
 		B3CD46472044CC440016B396 /* PassiveAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveAgent.swift; sourceTree = "<group>"; };
 		B3CD46492044D34F0016B396 /* ChaseBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
-		B3CD464C2044D49D0016B396 /* ChaseAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseAgent.swift; sourceTree = "<group>"; };
-		B3CD464E2044D7F40016B396 /* GuidedMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedMissile.swift; sourceTree = "<group>"; };
 		B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SceneResources.atlas; sourceTree = "<group>"; };
 		B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPercentageBar.swift; sourceTree = "<group>"; };
 		B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageBarComponent.swift; sourceTree = "<group>"; };
@@ -264,7 +258,6 @@
 				B3CD46432044C3930016B396 /* HealthComponent.swift */,
 				B3CD46452044C5900016B396 /* ContactHealthModifier.swift */,
 				B3CD46472044CC440016B396 /* PassiveAgent.swift */,
-				B3CD464C2044D49D0016B396 /* ChaseAgent.swift */,
 				B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */,
 				B3A445802061A05B001587BB /* HunterAgent.swift */,
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
@@ -298,11 +291,9 @@
 			isa = PBXGroup;
 			children = (
 				B3CD463420446F970016B396 /* HumanFighter.swift */,
-				B3CD464E2044D7F40016B396 /* GuidedMissile.swift */,
 				B306E2E92045C5B900F0E0D9 /* Projectile.swift */,
 				B306E2F12045F88900F0E0D9 /* Building.swift */,
 				B306E2F72046223600F0E0D9 /* Raider.swift */,
-				B36C5F7920474FDC0097F01B /* DebuggingBeacon.swift */,
 				B30B81BA2049BDBA00A4F7A0 /* Tree.swift */,
 				B30B81BC2049C47800A4F7A0 /* Rock.swift */,
 				B395E447205841240091C7A3 /* Ground.swift */,
@@ -465,7 +456,6 @@
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
 				B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */,
-				B3CD464F2044D7F40016B396 /* GuidedMissile.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
 				B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
@@ -482,12 +472,10 @@
 				B3AABB382062D5EF0093869F /* Sounds.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
 				B37D2CF0204515EC0048941B /* FireComponent.swift in Sources */,
-				B36C5F7A20474FDC0097F01B /* DebuggingBeacon.swift in Sources */,
 				B3790CB62061C26F00EF2174 /* Hunter.swift in Sources */,
 				B36EE3C520599A79003DBD40 /* MotherShip.swift in Sources */,
 				B3150F0B206064CF00E10875 /* Explosion.swift in Sources */,
 				B3AC522E2063065E009E76BD /* SettingsScene.swift in Sources */,
-				B3CD464D2044D49D0016B396 /* ChaseAgent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

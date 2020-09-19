@@ -38,7 +38,6 @@ class EntityController: NSObject {
         let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
         let hunterAgentSystem = GKComponentSystem(componentClass: HunterAgent.self)
         let contactDamageComponent = GKComponentSystem(componentClass: ContactHealthModifier.self)
-        let chaseAgentSystem = GKComponentSystem(componentClass: ChaseAgent.self)
         let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
         let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
         let positionLoggingComponent = GKComponentSystem(componentClass: PositionLoggingComponent.self)
@@ -46,7 +45,7 @@ class EntityController: NSObject {
         let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
         let constantAnimationSystem = GKComponentSystem(componentClass: ConstantAnimationComponent.self)
         let healthSpawningSystem = GKComponentSystem(componentClass: HealthSpawner.self)
-        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, chaseAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
+        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
     }()
     
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
