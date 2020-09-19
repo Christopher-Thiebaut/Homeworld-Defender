@@ -49,9 +49,8 @@ class Hunter: GKEntity {
         addComponent(fireProjectileComponent)
         
         //Give the hunter a physics component so he won't run through boundaries
-        if let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien){
-            addComponent(physicsComponent)
-        }
+        let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien)
+        addComponent(physicsComponent)
         
         let team = TeamComponent(team: .alien)
         addComponent(team)

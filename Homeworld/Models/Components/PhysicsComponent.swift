@@ -37,7 +37,7 @@ class PhysicsComponent: GKComponent {
     
     var physicsBody: SKPhysicsBody
     
-    init?(spriteNode: SKSpriteNode, bodyType: BodyType, mass: CGFloat, affectedByGravity: Bool = true, collisionCategory: CollisionCategory){
+    init(spriteNode: SKSpriteNode, bodyType: BodyType, mass: CGFloat, affectedByGravity: Bool = true, collisionCategory: CollisionCategory){
         
         self.spriteNode = spriteNode
         self.bodyType = bodyType
@@ -49,6 +49,7 @@ class PhysicsComponent: GKComponent {
         setupPhysicsBody()
     }
     
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

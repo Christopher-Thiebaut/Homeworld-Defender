@@ -26,10 +26,9 @@ class HealthPack: GKEntity {
         let duration = TimeInterval(abs(destnition.y - sprite.position.y) / upwardSpeed)
         sprite.run(SKAction.move(to: destnition, duration: duration))
         
-        if let physicsComponent = PhysicsComponent(spriteNode: sprite, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .powerUp){
-            physicsComponent.physicsBody.isDynamic = false
-            addComponent(physicsComponent)
-        }
+        let physicsComponent = PhysicsComponent(spriteNode: sprite, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .powerUp)
+        physicsComponent.physicsBody.isDynamic = false
+        addComponent(physicsComponent)
         
         let lifeSpanComponent = LifespanComponent(lifespan: 15, entityController: entityController)
         addComponent(lifeSpanComponent)

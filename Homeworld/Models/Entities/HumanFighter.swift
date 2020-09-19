@@ -26,10 +26,7 @@ class HumanFighter: GKEntity {
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
-        //Set up the physics properties of the physics component
-        guard let physicsComponent = PhysicsComponent.init(spriteNode: spriteComponent.node, bodyType: .rectange, mass: mass, collisionCategory: .player) else {
-            fatalError("Cannot initialize HumanFighter without a texture.")
-        }
+        let physicsComponent = PhysicsComponent.init(spriteNode: spriteComponent.node, bodyType: .rectange, mass: mass, collisionCategory: .player)
         addComponent(physicsComponent)
         
         //Set up the propulsion component

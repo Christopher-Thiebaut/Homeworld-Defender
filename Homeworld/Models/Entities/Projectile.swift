@@ -25,9 +25,7 @@ class Projectile: GKEntity {
         let spriteComponent = SpriteComponent(texture: texture, size: size)
         addComponent(spriteComponent)
         
-        guard let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 5, affectedByGravity: false, collisionCategory: collisionCategory) else{
-            fatalError("A projectile MUST have a physics body or it cannot have a velocity")
-        }
+        let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 5, affectedByGravity: false, collisionCategory: collisionCategory)
         addComponent(physicsComponent)
         physicsComponent.physicsBody.velocity = velocity
         

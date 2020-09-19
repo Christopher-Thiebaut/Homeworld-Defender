@@ -22,10 +22,9 @@ class Ground: GKEntity {
         let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -1000000, destroySelf: false, doNotHarm: [.environment], entityController: entityController)
         addComponent(contactDamageComponent)
         
-        if let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .environment){
-            addComponent(physicsComponent)
-            physicsComponent.physicsBody.isDynamic = false
-        }
+        let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .environment)
+        addComponent(physicsComponent)
+        physicsComponent.physicsBody.isDynamic = false
         
         let groundAgent = PassiveAgent(spriteNode: spriteNode)
         addComponent(groundAgent)
