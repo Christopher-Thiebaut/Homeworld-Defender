@@ -13,7 +13,7 @@ class ImpactFeedbackComponent: GKComponent {
     
     let impactFeedbackGenerator: UIImpactFeedbackGenerator
     
-    init(feedbackStyle: UIImpactFeedbackStyle) {
+    init(feedbackStyle: UIImpactFeedbackGenerator.FeedbackStyle) {
         impactFeedbackGenerator = UIImpactFeedbackGenerator(style: feedbackStyle)
         super.init()
     }

@@ -14,8 +14,8 @@ class GameStateMachine: GKStateMachine {
     
     override init(states: [GKState]) {
         super.init(states: states)
-        NotificationCenter.default.addObserver(self, selector: #selector(appStatePause), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appStatePause), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appStatePause), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appStatePause), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     fileprivate static func toggleUserInteraction(`in` node: SKNode){
