@@ -16,12 +16,20 @@ class MotherShip: GKEntity {
     var spriteNode: SKSpriteNode? = nil
     let size: CGSize
     let position: CGPoint
+    let gameScene: GameScene
     
-    init(size: CGSize, position: CGPoint, exits: Int, entityController: EntityController){
+    init(
+        size: CGSize,
+        position: CGPoint,
+        exits: Int,
+        entityController: EntityController,
+        gameScene: GameScene
+    ){
         
         self.entityController = entityController
         self.size = size
         self.position = position
+        self.gameScene = gameScene
         
         super.init()
         
@@ -70,7 +78,7 @@ class MotherShip: GKEntity {
             }
         }
         if aliensSpawned >= totalAliens {
-            entityController.scene?.finishedSpawningEnemies = true
+            gameScene.finishedSpawningEnemies = true
         }
     }
     
@@ -110,9 +118,23 @@ class MotherShip: GKEntity {
         }
         let alien: GKEntity
         if aliensSpawned%3 == 0 {
-            alien = Raider(appearance: raiderTexture, findTargets: findTargets, findObstacles: findObstacles, unlessDistanceAway: 250, entityController: entityController)
+            alien = Raider(
+                appearance: raiderTexture,
+                findTargets: findTargets,
+                findObstacles: findObstacles,
+                unlessDistanceAway: 250,
+                entityController: entityController,
+                gameScene: gameScene
+            )
         }else{
-            alien = Raider(appearance: hunterTexture, findTargets: getPlayer, findObstacles: findObstacles, unlessDistanceAway: 100, entityController: entityController)
+            alien = Raider(
+                appearance: hunterTexture,
+                findTargets: getPlayer,
+                findObstacles: findObstacles,
+                unlessDistanceAway: 100,
+                entityController: entityController,
+                gameScene: gameScene
+            )
         }
         let doorWidth: CGFloat = 200
         let xPositionOffset = CGFloat(GKARC4RandomSource.sharedRandom().nextUniform() - 0.5) * doorWidth

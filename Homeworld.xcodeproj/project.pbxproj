@@ -55,6 +55,7 @@
 		B3AC52282062FA9C009E76BD /* HealthPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AC52272062FA9C009E76BD /* HealthPack.swift */; };
 		B3AC522C206305D0009E76BD /* small_explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = B3AC522B206305D0009E76BD /* small_explosion.caf */; };
 		B3AC522E2063065E009E76BD /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AC522D2063065E009E76BD /* SettingsScene.swift */; };
+		B3BC3714252203D200E5DBFA /* EntityControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */; };
 		B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C20D3C20486D2700B4F962 /* GameStates.swift */; };
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
@@ -71,6 +72,16 @@
 		B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */; };
 		B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B3BC370A2522038F00E5DBFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B361E2BA20423E7100B2AF27 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B361E2C120423E7100B2AF27;
+			remoteInfo = Homeworld;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B306E2E92045C5B900F0E0D9 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
@@ -123,6 +134,9 @@
 		B3AC52272062FA9C009E76BD /* HealthPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPack.swift; sourceTree = "<group>"; };
 		B3AC522B206305D0009E76BD /* small_explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = small_explosion.caf; sourceTree = "<group>"; };
 		B3AC522D2063065E009E76BD /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+		B3BC37052522038F00E5DBFA /* HomeworldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeworldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3BC37092522038F00E5DBFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityControllerTests.swift; sourceTree = "<group>"; };
 		B3C20D3C20486D2700B4F962 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
@@ -142,6 +156,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		B361E2BF20423E7100B2AF27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3BC37022522038F00E5DBFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -182,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B361E2C420423E7100B2AF27 /* Homeworld */,
+				B3BC37062522038F00E5DBFA /* HomeworldTests */,
 				B361E2C320423E7100B2AF27 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -190,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				B361E2C220423E7100B2AF27 /* Homeworld.app */,
+				B3BC37052522038F00E5DBFA /* HomeworldTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,6 +238,15 @@
 				B3AC522B206305D0009E76BD /* small_explosion.caf */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		B3BC37062522038F00E5DBFA /* HomeworldTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3BC37092522038F00E5DBFA /* Info.plist */,
+				B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */,
+			);
+			path = HomeworldTests;
 			sourceTree = "<group>";
 		};
 		B3CD4629204467360016B396 /* Resources */ = {
@@ -347,13 +379,31 @@
 			productReference = B361E2C220423E7100B2AF27 /* Homeworld.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B3BC37042522038F00E5DBFA /* HomeworldTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3BC370C2522038F00E5DBFA /* Build configuration list for PBXNativeTarget "HomeworldTests" */;
+			buildPhases = (
+				B3BC37012522038F00E5DBFA /* Sources */,
+				B3BC37022522038F00E5DBFA /* Frameworks */,
+				B3BC37032522038F00E5DBFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3BC370B2522038F00E5DBFA /* PBXTargetDependency */,
+			);
+			name = HomeworldTests;
+			productName = HomeworldTests;
+			productReference = B3BC37052522038F00E5DBFA /* HomeworldTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B361E2BA20423E7100B2AF27 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Christopher Thiebaut";
 				TargetAttributes = {
@@ -361,6 +411,12 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1200;
 						ProvisioningStyle = Automatic;
+					};
+					B3BC37042522038F00E5DBFA = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B361E2C120423E7100B2AF27;
 					};
 				};
 			};
@@ -378,6 +434,7 @@
 			projectRoot = "";
 			targets = (
 				B361E2C120423E7100B2AF27 /* Homeworld */,
+				B3BC37042522038F00E5DBFA /* HomeworldTests */,
 			);
 		};
 /* End PBXProject section */
@@ -398,6 +455,13 @@
 				B361E2D320423E7100B2AF27 /* Assets.xcassets in Resources */,
 				B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */,
 				B361E2D620423E7100B2AF27 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3BC37032522038F00E5DBFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +543,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B3BC37012522038F00E5DBFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3BC3714252203D200E5DBFA /* EntityControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3BC370B2522038F00E5DBFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B361E2C120423E7100B2AF27 /* Homeworld */;
+			targetProxy = B3BC370A2522038F00E5DBFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B361E2CF20423E7100B2AF27 /* Main.storyboard */ = {
@@ -650,6 +730,49 @@
 			};
 			name = Release;
 		};
+		B3BC370D2522038F00E5DBFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JM5E6M7XJW;
+				INFOPLIST_FILE = HomeworldTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopherthiebaut.HomeworldTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Homeworld.app/Homeworld";
+			};
+			name = Debug;
+		};
+		B3BC370E2522038F00E5DBFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JM5E6M7XJW;
+				INFOPLIST_FILE = HomeworldTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopherthiebaut.HomeworldTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Homeworld.app/Homeworld";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -667,6 +790,15 @@
 			buildConfigurations = (
 				B361E2DB20423E7100B2AF27 /* Debug */,
 				B361E2DC20423E7100B2AF27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3BC370C2522038F00E5DBFA /* Build configuration list for PBXNativeTarget "HomeworldTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3BC370D2522038F00E5DBFA /* Debug */,
+				B3BC370E2522038F00E5DBFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,11 +10,17 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+protocol EntityControllerDelegate: AnyObject {
+    var floorLevel: CGFloat { get }
+    func addChild(_ sprite: SKNode)
+    func convert(_ point: CGPoint, from node: SKNode) -> CGPoint
+}
+
 class EntityController: NSObject {
     
     var entities = Set<GKEntity>()
     var toRemove = Set<GKEntity>()
-    var scene: GameScene? {
+    weak var scene: EntityControllerDelegate? {
         didSet {
             entities = Set<GKEntity>()
             toRemove = Set<GKEntity>()
@@ -51,11 +57,6 @@ class EntityController: NSObject {
     ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
     init(difficulty: Difficulty.DifficultyLevel) {
         //Allows the scene to create an instance of this before initializing itself.
-        self.difficultyLevel = Difficulty(difficulty: difficulty)
-    }
-    
-    init(scene: GameScene, difficulty: Difficulty.DifficultyLevel) {
-        self.scene = scene
         self.difficultyLevel = Difficulty(difficulty: difficulty)
     }
     

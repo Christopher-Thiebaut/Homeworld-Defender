@@ -18,14 +18,16 @@ class HealthSpawner: GKComponent {
     var accumulatedTime: TimeInterval
     var nextSpawn: TimeInterval = 0
     let origin: CGPoint
+    let gameScene: GameScene
     
-    init(origin: CGPoint, baseFrequency: TimeInterval, variability: TimeInterval, healAmount: Int, entityController: EntityController){
+    init(origin: CGPoint, baseFrequency: TimeInterval, variability: TimeInterval, healAmount: Int, entityController: EntityController, gameScene: GameScene){
         self.baseFrequency = baseFrequency
         self.variability = variability
         self.healAmount = healAmount
         self.entityController = entityController
         self.accumulatedTime = 0
         self.origin = origin
+        self.gameScene = gameScene
         super.init()
         nextSpawn = getNextSpawnInterval()
     }
@@ -44,7 +46,7 @@ class HealthSpawner: GKComponent {
         sprite.position = origin
         //sprite.position.y -= 150
         sprite.zPosition = GameScene.ZPositions.low - 1
-        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, entityController: entityController)
+        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, entityController: entityController, gameScene: gameScene)
         entityController.add(healEntity)
         accumulatedTime = 0
         nextSpawn = getNextSpawnInterval()

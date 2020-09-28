@@ -15,13 +15,16 @@ let maxAcceleration: Float = 40000
 
 class Raider: GKEntity {
     
-    init(appearance: SKTexture, findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKObstacle], unlessDistanceAway distance: Float, entityController: EntityController){
+    init(
+        appearance: SKTexture,
+        findTargets: @escaping () -> [GKAgent2D],
+        findObstacles: @escaping () -> [GKObstacle],
+        unlessDistanceAway distance: Float,
+        entityController: EntityController,
+        gameScene: GameScene
+    ){
         
         super.init()
-        
-        guard let gameScene = entityController.scene else {
-            fatalError("Cannot add an entity to an entity controller with no scene.")
-        }
         
         //Set up the visual component
         let raiderSize = CGSize(width: appearance.size().width/7, height: appearance.size().height/7)

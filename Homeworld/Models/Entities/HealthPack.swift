@@ -11,7 +11,7 @@ import GameplayKit
 
 class HealthPack: GKEntity {
     
-    init(sprite: SKSpriteNode, healAmount: Int, upwardSpeed: CGFloat, entityController: EntityController){
+    init(sprite: SKSpriteNode, healAmount: Int, upwardSpeed: CGFloat, entityController: EntityController, gameScene: GameScene){
         super.init()
         
         let spriteComponent = SpriteComponent(spriteNode: sprite)
@@ -20,9 +20,7 @@ class HealthPack: GKEntity {
         let healingComponent = ContactHealthModifier(spriteNode: sprite, changeHealthBy: 100, destroySelf: true, doNotHarm: [.alien, .environment], entityController: entityController)
         addComponent(healingComponent)
         
-        guard let scene = entityController.scene else {return}
-        
-        let destnition = CGPoint(x: sprite.position.x, y: scene.floorLevel + scene.gamePlayArea.height/2)
+        let destnition = CGPoint(x: sprite.position.x, y: gameScene.floorLevel + gameScene.gamePlayArea.height/2)
         let duration = TimeInterval(abs(destnition.y - sprite.position.y) / upwardSpeed)
         sprite.run(SKAction.move(to: destnition, duration: duration))
         

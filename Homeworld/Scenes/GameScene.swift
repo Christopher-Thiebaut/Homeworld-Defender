@@ -9,6 +9,8 @@
 import SpriteKit
 import GameplayKit
 
+extension GameScene: EntityControllerDelegate {}
+
 class GameScene: SKScene {
     
     struct ZPositions {
@@ -176,7 +178,13 @@ class GameScene: SKScene {
         }
         
         //The mothership is thick so that the player can't camp out where aliens come out and shoot them immediately (because the aliens can shoot from inside the mothersip and will be able to shoot the player first)
-        let motherShip = MotherShip(size: CGSize.init(width: gamePlayArea.width * 2, height: 400), position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY), exits: 1, entityController: entityController)
+        let motherShip = MotherShip(
+            size: CGSize.init(width: gamePlayArea.width * 2, height: 400),
+            position: CGPoint.init(x: anchorPoint.x, y: placementArea.maxY),
+            exits: 1,
+            entityController: entityController,
+            gameScene: self
+        )
         entityController.add(motherShip)
         
         addStarBackground()
@@ -208,7 +216,7 @@ class GameScene: SKScene {
                 entityController.add(bigBuilding)
             }
             if let repairFactory = child as? RepairFactoryNode {
-                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 30, variation: 5, restoreHealth: 50, entityController: entityController)
+                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 30, variation: 5, restoreHealth: 50, entityController: entityController, gameScene: self)
                 entityController.add(repairFactory)
             }
         }

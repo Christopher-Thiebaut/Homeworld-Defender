@@ -15,13 +15,15 @@ class Hunter: GKEntity {
     let maxSpeed: Float = 100
     let maxAcceleration: Float = 40000
     
-    init(appearance: SKTexture, target: GKAgent2D, obstacles: [GKObstacle], entityController: EntityController){
+    init(
+        appearance: SKTexture,
+        target: GKAgent2D,
+        obstacles: [GKObstacle],
+        entityController: EntityController,
+        gameScene: GameScene
+    ){
         
         super.init()
-        
-        guard let gameScene = entityController.scene else {
-            fatalError("Cannot add an entity to an entity controller with no scene.")
-        }
         
         //Set up the visual component
         let raiderSize = CGSize(width: appearance.size().width/7, height: appearance.size().height/7)
