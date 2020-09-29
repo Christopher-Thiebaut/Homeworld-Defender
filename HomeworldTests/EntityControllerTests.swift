@@ -30,6 +30,26 @@ class EntityControllerTests: XCTestCase {
         XCTAssert(subject.buildingAgents.contains(agent))
         XCTAssert(subject.entities.contains(testEntity))
     }
+    
+    func testRemoveRemovesSpriteFromParent() throws {
+        let node = SKSpriteNode()
+        let parent = SKSpriteNode()
+        parent.addChild(node)
+        
+        let entity = GKEntity()
+        let spriteComponent = SpriteComponent(spriteNode: node)
+        entity.addComponent(spriteComponent)
+        
+        subject.remove(entity)
+        XCTAssertNil(node.parent)
+    }
+    
+    func testUpdateRemovesEntitiesInToRemove() throws {
+        let entity = GKEntity()
+        subject.toRemove.insert(entity)
+        subject.update(1)
+        XCTAssert(subject.toRemove.isEmpty)
+    }
 }
 
 class FakeEntityControllerDelegate: EntityControllerDelegate {
