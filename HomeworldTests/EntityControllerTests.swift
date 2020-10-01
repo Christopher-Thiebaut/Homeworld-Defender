@@ -50,6 +50,75 @@ class EntityControllerTests: XCTestCase {
         subject.update(1)
         XCTAssert(subject.toRemove.isEmpty)
     }
+    
+    func testUpdateJumpsUpThingsBelowFloor() {
+        let delegate = FakeEntityControllerDelegate()
+        delegate.outputPoint = CGPoint(x: 0, y: -100)
+        
+        subject.scene = delegate
+        
+        let entity = GKEntity()
+        let spriteComp = SpriteComponent(spriteNode: SKSpriteNode())
+        let originalPosition = spriteComp.node.position
+        entity.addComponent(spriteComp)
+        
+        let parent = SKSpriteNode()
+        parent.addChild(spriteComp.node)
+        
+        subject.add(entity)
+        
+        subject.update(1)
+        XCTAssertEqual(CGPoint(x: originalPosition.x, y: originalPosition.y + 2000), spriteComp.node.position)
+    }
+    
+    func testContactNotification() {
+        let nodeA = SKSpriteNode()
+        let entityA = GKEntity()
+        let spriteA = SpriteComponent(spriteNode: nodeA)
+        entityA.addComponent(spriteA)
+        let physicsA = SKPhysicsBody(circleOfRadius: 1)
+        nodeA.physicsBody = physicsA
+        
+        let contactA = ContactHealthModifier(spriteNode: nodeA, changeHealthBy: 0, destroySelf: false, entityController: subject)
+        let delA = TestContactDelegate()
+        contactA.delegate = delA
+        entityA.addComponent(contactA)
+        
+        let nodeB = SKSpriteNode()
+        let entityB = GKEntity()
+        let spriteB = SpriteComponent(spriteNode: nodeB)
+        entityB.addComponent(spriteB)
+        let physicsB = SKPhysicsBody(circleOfRadius: 1)
+        nodeB.physicsBody = physicsB
+        
+        let contactB = ContactHealthModifier(spriteNode: nodeB, changeHealthBy: 0, destroySelf: false, entityController: subject)
+        let delB = TestContactDelegate()
+        contactB.delegate = delB
+        entityB.addComponent(contactB)
+        
+        subject.add(entityA)
+        subject.add(entityB)
+        
+        let contact = TestableContact(bodyA: physicsA, bodyB: physicsB)
+        subject.began(contact)
+        
+        XCTAssert(delA.contactedEntities.contains(entityB))
+        XCTAssert(delB.contactedEntities.contains(entityA))
+    }
+}
+
+struct TestableContact: PhysicsContact {
+    var bodyA: SKPhysicsBody
+    
+    var bodyB: SKPhysicsBody
+}
+
+class TestContactDelegate: ContactHealthModifierDelegate {
+    var contactedEntities = [GKEntity]()
+    
+    func contactDetected(with entity: GKEntity) {
+        contactedEntities.append(entity)
+    }
 }
 
 class FakeEntityControllerDelegate: EntityControllerDelegate {

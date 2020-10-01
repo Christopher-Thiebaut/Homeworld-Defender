@@ -10,6 +10,10 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+protocol ContactHealthModifierDelegate: AnyObject {
+    func contactDetected(with entity: GKEntity)
+}
+
 class ContactHealthModifier: GKComponent {
     
     var spriteNode: SKSpriteNode
@@ -19,6 +23,8 @@ class ContactHealthModifier: GKComponent {
     var contactHealthChange: Int
     var lastDamageTime: TimeInterval
     var doNotHarm: [TeamComponent.Team]
+    
+    weak var delegate: ContactHealthModifierDelegate?
     
     weak var entityController: EntityController?
 
@@ -37,6 +43,7 @@ class ContactHealthModifier: GKComponent {
     }
     
     func contactDetectedWith(entity: GKEntity) {
+        delegate?.contactDetected(with: entity)
         guard let otherEntityHealthComponent = entity.component(ofType: HealthComponent.self) else {return}
         if let otherTeam = entity.component(ofType: TeamComponent.self)?.team, doNotHarm.contains(otherTeam) {
             return

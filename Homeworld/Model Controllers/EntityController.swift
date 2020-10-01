@@ -127,7 +127,6 @@ class EntityController: NSObject {
             componentSystem.update(deltaTime: deltaTime)
         }
         
-        //If an entity is below the floor, remove it (because GKAgents will sometimes move without traversing all the space in between and the floor is thin.
         for entity in entities {
             if let node = entity.component(ofType: SpriteComponent.self)?.node, let parent = node.parent, let position = scene?.convert(node.position, from: parent), let floorLevel = scene?.floorLevel, position.y < floorLevel {
                 node.position.y += 2000
@@ -172,15 +171,26 @@ class EntityController: NSObject {
     }
 }
 
+protocol PhysicsContact {
+    var bodyA: SKPhysicsBody { get }
+    var bodyB: SKPhysicsBody { get }
+}
+
+extension SKPhysicsContact: PhysicsContact {}
+
 extension EntityController: SKPhysicsContactDelegate {
     
-    //Notify any entities involved about the contact
-    func didBegin(_ contact: SKPhysicsContact) {
+    func began(_ contact: PhysicsContact) {
         guard let sprite1 = contact.bodyA.node as? SKSpriteNode else { return }
         guard let sprite2 = contact.bodyB.node as? SKSpriteNode else { return }
         let bodyAEntities = findEntitiesWithSpriteNode(sprite1)
         let bodyBEntites = findEntitiesWithSpriteNode(sprite2)
         notifyEntitiesOfMutualContact(bodyAEntities: bodyAEntities, bodyBEntities: bodyBEntites)
+    }
+    
+    //Notify any entities involved about the contact
+    func didBegin(_ contact: SKPhysicsContact) {
+        began(contact)
     }
     
     private func findEntitiesWithSpriteNode(_ node: SKSpriteNode) -> [GKEntity] {
