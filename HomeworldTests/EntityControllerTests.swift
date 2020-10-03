@@ -20,15 +20,10 @@ class EntityControllerTests: XCTestCase {
     }
 
     func testAddBuilding() throws {
-        let node = SKSpriteNode()
-        let testEntity = Building(spriteNode: node, health: 1, entityController: subject)
-        let agent = PassiveAgent(spriteNode: node)
-        testEntity.addComponent(agent)
-        let teamComponent = TeamComponent(team: .environment)
-        testEntity.addComponent(teamComponent)
-        subject.add(testEntity)
-        XCTAssert(subject.buildingAgents.contains(agent))
-        XCTAssert(subject.entities.contains(testEntity))
+        let testBuilding = getBuildingEntity()
+        subject.add(testBuilding.entity)
+        XCTAssert(subject.buildingAgents.contains(testBuilding.agent!))
+        XCTAssert(subject.entities.contains(testBuilding.entity))
     }
     
     func testRemoveRemovesSpriteFromParent() throws {
@@ -42,6 +37,18 @@ class EntityControllerTests: XCTestCase {
         
         subject.remove(entity)
         XCTAssertNil(node.parent)
+    }
+    
+    func testRemoveBuildingGetsRidOfAgent() throws {
+        let node = SKSpriteNode()
+        let agent = PassiveAgent(spriteNode: node)
+        let entity = Building(spriteNode: node, health: 1, entityController: subject)
+        entity.addComponent(agent)
+        
+        subject.add(entity)
+        
+        subject.remove(entity)
+        XCTAssertFalse(subject.buildingAgents.contains(agent))
     }
     
     func testUpdateRemovesEntitiesInToRemove() throws {
@@ -105,6 +112,59 @@ class EntityControllerTests: XCTestCase {
         XCTAssert(delA.contactedEntities.contains(entityB))
         XCTAssert(delB.contactedEntities.contains(entityA))
     }
+    
+    func testGetCivilianTargets() {
+        let entities: [TestEntity] = [getBuildingEntity(), getBuildingEntity(), getAlienEntity(), getAlienEntity(), getAlienEntity()]
+        entities.forEach {
+            subject.add($0.entity)
+        }
+        XCTAssertEqual(subject.getCivilianTargetAgents().count, 2)
+    }
+    
+    func testGetAliens() {
+        let entities: [TestEntity] = [getBuildingEntity(), getBuildingEntity(), getAlienEntity(), getAlienEntity(), getAlienEntity()]
+        entities.forEach {
+            subject.add($0.entity)
+        }
+        XCTAssertEqual(subject.getAlienEntities().count, 3)
+    }
+    
+    func getBuildingEntity() -> TestEntity {
+        let node = SKSpriteNode()
+        let entity = Building(spriteNode: node, health: 1, entityController: subject)
+        return TestEntity(node: node, agent: entity.component(ofType: PassiveAgent.self)!, entity: entity)
+    }
+    
+    func getAlienEntity() -> TestEntity {
+        let node = SKSpriteNode()
+        let sprite = SpriteComponent(spriteNode: node)
+        
+        let agent = RaiderAgent(
+            findTargets: { [] },
+            findObstacles: { [] },
+            findEnemy: { nil },
+            distanceFromAvoid: 0,
+            maxSpeed: 0,
+            maxAcceleration: 0,
+            radius: 0,
+            entityController: subject
+        )
+        
+        let team = TeamComponent(team: .alien)
+        
+        let entity = GKEntity()
+        entity.addComponent(sprite)
+        entity.addComponent(agent)
+        entity.addComponent(team)
+        
+        return TestEntity(node: node, agent: agent, entity: entity)
+    }
+}
+
+struct TestEntity {
+    var node: SKSpriteNode
+    var agent: GKAgent2D?
+    var entity: GKEntity
 }
 
 struct TestableContact: PhysicsContact {

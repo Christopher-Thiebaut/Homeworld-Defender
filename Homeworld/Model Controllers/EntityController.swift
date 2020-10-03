@@ -54,16 +54,11 @@ class EntityController: NSObject {
         return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
     }()
     
-    ///This initializer allows for creating an entityManager before assigning a scene BUT an EntityController with no scene is NOT a valid state and the scene should be assigned to the entity controller before it is actually used.
     init(difficulty: Difficulty.DifficultyLevel) {
         //Allows the scene to create an instance of this before initializing itself.
         self.difficultyLevel = Difficulty(difficulty: difficulty)
     }
-    
-//    private func setupAgentGroups() {
-//        buildingAgents = findBuildingAgents()
-//    }
-    
+
     private func removeAgentFromAgentGroups(_ agent: GKAgent2D?) {
         guard let agent = agent else { return }
         alienAgents.remove(agent)
@@ -139,17 +134,6 @@ class EntityController: NSObject {
             }
         }
         toRemove.removeAll()
-    }
-    
-    private func findBuildingAgents() -> Set<GKAgent2D> {
-        var buildings = Set<GKAgent2D>()
-        for entity in entities {
-            guard let building = entity as? Building, let buildingAgent = building.component(ofType: PassiveAgent.self) else {
-                continue
-            }
-            buildings.insert(buildingAgent)
-        }
-        return buildings
     }
     
     func getCivilianTargetAgents() -> Set<GKAgent2D> {
