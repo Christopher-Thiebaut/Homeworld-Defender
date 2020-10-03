@@ -41,8 +41,8 @@
             filePath = "HomeworldTests/EntityControllerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "testGetAliens()"
             landmarkType = "7">
          </BreakpointContent>

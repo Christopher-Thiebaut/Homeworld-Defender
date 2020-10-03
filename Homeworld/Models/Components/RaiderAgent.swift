@@ -76,7 +76,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             let targets = findTargets()
             //target = self.nearestTarget(from: targets)
             let targetIndex = GKARC4RandomSource.sharedRandom().nextInt(upperBound: targets.count)
-            target = targets[targetIndex]
+            target = targets.object(at: targetIndex)
         }
         
         let obstacles = findObstacles()

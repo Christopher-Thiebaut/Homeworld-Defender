@@ -27,28 +27,20 @@ class EntityControllerTests: XCTestCase {
     }
     
     func testRemoveRemovesSpriteFromParent() throws {
-        let node = SKSpriteNode()
+        let building = getBuildingEntity()
         let parent = SKSpriteNode()
-        parent.addChild(node)
+        parent.addChild(building.node)
+        subject.add(building.entity)
         
-        let entity = GKEntity()
-        let spriteComponent = SpriteComponent(spriteNode: node)
-        entity.addComponent(spriteComponent)
-        
-        subject.remove(entity)
-        XCTAssertNil(node.parent)
+        subject.remove(building.entity)
+        XCTAssertNil(building.node.parent)
     }
     
     func testRemoveBuildingGetsRidOfAgent() throws {
-        let node = SKSpriteNode()
-        let agent = PassiveAgent(spriteNode: node)
-        let entity = Building(spriteNode: node, health: 1, entityController: subject)
-        entity.addComponent(agent)
-        
-        subject.add(entity)
-        
-        subject.remove(entity)
-        XCTAssertFalse(subject.buildingAgents.contains(agent))
+        let building = getBuildingEntity()
+        subject.add(building.entity)
+        subject.remove(building.entity)
+        XCTAssertFalse(subject.buildingAgents.contains(building.agent!))
     }
     
     func testUpdateRemovesEntitiesInToRemove() throws {
@@ -60,22 +52,17 @@ class EntityControllerTests: XCTestCase {
     
     func testUpdateJumpsUpThingsBelowFloor() {
         let delegate = FakeEntityControllerDelegate()
-        delegate.outputPoint = CGPoint(x: 0, y: -100)
-        
         subject.scene = delegate
-        
-        let entity = GKEntity()
-        let spriteComp = SpriteComponent(spriteNode: SKSpriteNode())
-        let originalPosition = spriteComp.node.position
-        entity.addComponent(spriteComp)
+        delegate.outputPoint = CGPoint(x: 0, y: -100)
+        let alien = getAlienEntity()
+        let originalPosition = alien.node.position
+        subject.add(alien.entity)
         
         let parent = SKSpriteNode()
-        parent.addChild(spriteComp.node)
-        
-        subject.add(entity)
+        parent.addChild(alien.node)
         
         subject.update(1)
-        XCTAssertEqual(CGPoint(x: originalPosition.x, y: originalPosition.y + 2000), spriteComp.node.position)
+        XCTAssertEqual(CGPoint(x: originalPosition.x, y: originalPosition.y + 2000), alien.node.position)
     }
     
     func testContactNotification() {
