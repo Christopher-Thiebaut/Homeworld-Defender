@@ -34,29 +34,12 @@ class EntityController: NSObject {
     var obstacles = Set<GKCircleObstacle>()
     lazy var playerAgent: GKAgent2D? = getPlayerAgent()
     
-    lazy var componentSystems: [GKComponentSystem] = {
-        let airfoilSystem = GKComponentSystem(componentClass: AirfoilComponent.self)
-        let firingSystem = GKComponentSystem(componentClass: FireProjectileComponent.self)
-        let manualRotationSystem = GKComponentSystem(componentClass: ManualRotationComponent.self)
-        let animatedSystem = GKComponentSystem(componentClass: AnimatedComponent.self)
-        let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
-        let passiveAgentSystem = GKComponentSystem(componentClass: PassiveAgent.self)
-        let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
-        let hunterAgentSystem = GKComponentSystem(componentClass: HunterAgent.self)
-        let contactDamageComponent = GKComponentSystem(componentClass: ContactHealthModifier.self)
-        let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
-        let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
-        let positionLoggingComponent = GKComponentSystem(componentClass: PositionLoggingComponent.self)
-        let rocketEffectSystem = GKComponentSystem(componentClass: RocketEffectComponent.self)
-        let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
-        let constantAnimationSystem = GKComponentSystem(componentClass: ConstantAnimationComponent.self)
-        let healthSpawningSystem = GKComponentSystem(componentClass: HealthSpawner.self)
-        return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
-    }()
+    let componentSystems: [GKComponentSystem<GKComponent>]
     
-    init(difficulty: Difficulty.DifficultyLevel) {
+    init(difficulty: Difficulty.DifficultyLevel, componentSystems: [GKComponentSystem<GKComponent>] = .productionConfigurtion) {
         //Allows the scene to create an instance of this before initializing itself.
         self.difficultyLevel = Difficulty(difficulty: difficulty)
+        self.componentSystems = componentSystems
     }
 
     private func removeAgentFromAgentGroups(_ agent: GKAgent2D?) {
@@ -196,5 +179,4 @@ extension EntityController: SKPhysicsContactDelegate {
             }
         }
     }
-    
 }

@@ -26,6 +26,18 @@ class EntityControllerTests: XCTestCase {
         XCTAssert(subject.entities.contains(testBuilding.entity))
     }
     
+    func testChangingSceneResetsEntitiesAndToRemove() {
+        let e1 = GKEntity()
+        let e2 = GKEntity()
+        subject.add(e1)
+        subject.add(e2)
+        subject.remove(e2)
+        let scene = FakeEntityControllerDelegate()
+        subject.scene = scene
+        XCTAssert(subject.entities.isEmpty)
+        XCTAssert(subject.toRemove.isEmpty)
+    }
+    
     func testRemoveRemovesSpriteFromParent() throws {
         let building = getBuildingEntity()
         let parent = SKSpriteNode()
@@ -146,6 +158,59 @@ class EntityControllerTests: XCTestCase {
         
         return TestEntity(node: node, agent: agent, entity: entity)
     }
+    
+    func testUpdateIsCalledOnComponentSystems() {
+        let componentSystem = SpyComponentSystem(componentClass: HealthComponent.self)
+        subject = EntityController(difficulty: .easy, componentSystems: [componentSystem])
+        let entity = getBuildingEntity()
+        subject.add(entity.entity)
+        subject.update(1)
+        subject.update(2)
+        XCTAssert(componentSystem.addComponentEntities.first === entity.entity)
+        XCTAssertEqual(componentSystem.updateDTs, [1, 2])
+    }
+    
+    func testComponentsAreRemovedForRemovedEnitities() {
+        let componentSystem = SpyComponentSystem(componentClass: HealthComponent.self)
+        subject = EntityController(difficulty: .easy, componentSystems: [componentSystem])
+        let entity = getBuildingEntity()
+        subject.add(entity.entity)
+        subject.remove(entity.entity)
+        subject.update(1)
+        XCTAssertTrue(componentSystem.removeComponentEntities.contains(entity.entity))
+    }
+    
+    func testRemovingHumanFighterSetsPlayerAgentToNil() {
+        let fighter = HumanFighter(entityController: subject, propulsionControl: FakePropulsion(), rotationControl: FakeRotation())
+        subject.add(fighter)
+        XCTAssertNotNil(subject.playerAgent)
+        subject.remove(fighter)
+        XCTAssertNil(subject.playerAgent)
+    }
+    
+    func testRemovingAlienRemovesFromAgentGroup() {
+        let alien = getAlienEntity()
+        subject.add(alien.entity)
+        XCTAssert(subject.getAlienEntities().contains(alien.agent!))
+        subject.remove(alien.entity)
+        XCTAssertTrue(subject.getAlienEntities().isEmpty)
+    }
+    
+    func testRemovingBuildingRemovesFromAgentGroup() {
+        let building = getBuildingEntity()
+        subject.add(building.entity)
+        XCTAssert(subject.getCivilianTargetAgents().contains(building.agent!))
+        subject.remove(building.entity)
+        XCTAssert(subject.getCivilianTargetAgents().isEmpty)
+    }
+    
+    func testEntityWithObstacleAddedToObstaclesAndRemoved() {
+        let building = getBuildingEntity()
+        subject.add(building.entity)
+        XCTAssertEqual(subject.obstacles.count, 1)
+        subject.remove(building.entity)
+        XCTAssert(subject.obstacles.isEmpty)
+    }
 }
 
 struct TestEntity {
@@ -181,5 +246,42 @@ class FakeEntityControllerDelegate: EntityControllerDelegate {
     func convert(_ point: CGPoint, from node: SKNode) -> CGPoint {
         inputPoint = point
         return outputPoint ?? .zero
+    }
+}
+
+class SpyComponentSystem: GKComponentSystem<GKComponent> {
+    var addComponentEntities = [GKEntity]()
+    
+    override func addComponent(foundIn entity: GKEntity) {
+        super.addComponent(foundIn: entity)
+        addComponentEntities.append(entity)
+    }
+    
+    var removeComponentEntities = [GKEntity]()
+    override func removeComponent(foundIn entity: GKEntity) {
+        super.removeComponent(foundIn: entity)
+        removeComponentEntities.append(entity)
+    }
+    
+    var updateDTs = [TimeInterval]()
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        updateDTs.append(seconds)
+    }
+}
+
+class FakePropulsion: PropulsionControl {
+    func shouldApplyThrust() -> Bool {
+        false
+    }
+    
+    func magnitude() -> CGFloat {
+        0
+    }
+}
+
+class FakeRotation: RotationControl {
+    func angle() -> CGFloat {
+        0
     }
 }

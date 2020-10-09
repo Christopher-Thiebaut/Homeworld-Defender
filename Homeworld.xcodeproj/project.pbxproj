@@ -21,6 +21,7 @@
 		B3150F07206061BD00E10875 /* ConstantAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */; };
 		B3150F0B206064CF00E10875 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F0A206064CF00E10875 /* Explosion.swift */; };
 		B31E69142528AEC70022F9FE /* Array+Safety.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E69132528AEC70022F9FE /* Array+Safety.swift */; };
+		B31E691A252B63990022F9FE /* GKComponentSystem+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B3553FD0206406DF00125D4D /* red_jet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3553FCF206406DE00125D4D /* red_jet.atlas */; };
@@ -99,6 +100,7 @@
 		B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAnimationComponent.swift; sourceTree = "<group>"; };
 		B3150F0A206064CF00E10875 /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		B31E69132528AEC70022F9FE /* Array+Safety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safety.swift"; sourceTree = "<group>"; };
+		B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKComponentSystem+Default.swift"; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B3553FCF206406DE00125D4D /* red_jet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = red_jet.atlas; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				B31E69132528AEC70022F9FE /* Array+Safety.swift */,
+				B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				B395E448205841240091C7A3 /* Ground.swift in Sources */,
 				B3150F07206061BD00E10875 /* ConstantAnimationComponent.swift in Sources */,
 				B306E2F22045F88900F0E0D9 /* Building.swift in Sources */,
+				B31E691A252B63990022F9FE /* GKComponentSystem+Default.swift in Sources */,
 				B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B3A4457D20616230001587BB /* CollisionAvoidanceBehavior.swift in Sources */,
