@@ -45,7 +45,7 @@ class MotherShip: GKEntity {
         
         addTiledTexture()
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: mainPanel, changeHealthBy: -1000, destroySelf: false, doNotHarm: [.alien], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: mainPanel, changeHealthBy: -1000, destroySelf: false, doNotHarm: [.alien], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
         let physicsComponent = PhysicsComponent(spriteNode: mainPanel, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .alien)

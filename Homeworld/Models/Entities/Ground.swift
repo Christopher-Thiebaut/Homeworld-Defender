@@ -19,7 +19,7 @@ class Ground: GKEntity {
         let spriteComponent = SpriteComponent(spriteNode: spriteNode)
         addComponent(spriteComponent)
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -1000000, destroySelf: false, doNotHarm: [.environment], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -1000000, destroySelf: false, doNotHarm: [.environment], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
         let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .environment)

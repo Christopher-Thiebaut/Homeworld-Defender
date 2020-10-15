@@ -21,10 +21,10 @@ class Rock: GKEntity {
         let teamComponent = TeamComponent(team: .environment)
         addComponent(teamComponent)
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -100, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -100, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
-        let healthComponent = HealthComponent(health: 600, entityController: entityController)
+        let healthComponent = HealthComponent(health: 600, removalDelegate: entityController)
         addComponent(healthComponent)
     }
     

@@ -22,7 +22,7 @@ class Building: GKEntity {
         let spriteComponent = SpriteComponent(spriteNode: spriteNode, color: .white)
         addComponent(spriteComponent)
         
-        let healthComponent = HealthComponent(health: health, entityController: entityController)
+        let healthComponent = HealthComponent(health: health, removalDelegate: entityController)
         addComponent(healthComponent)
         
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)
@@ -31,7 +31,7 @@ class Building: GKEntity {
         let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)
         addComponent(obstacleComponent)
         
-        let contactDamageComponenent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -health/4, destroySelf: false,doNotHarm: [TeamComponent.Team.environment], entityController: entityController)
+        let contactDamageComponenent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -health/4, destroySelf: false,doNotHarm: [TeamComponent.Team.environment], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponenent)
         
         let teamComponent = TeamComponent(team: .environment)

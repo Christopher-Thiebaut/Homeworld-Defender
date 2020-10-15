@@ -40,11 +40,11 @@ class HumanFighter: GKEntity {
         addComponent(rotationComponent)
         
         //Give the HumanFighter a set amount of health
-        let healthComponent = HealthComponent(health: 200, entityController: entityController)
+        let healthComponent = HealthComponent(health: 200, removalDelegate: entityController)
         addComponent(healthComponent)
         
         //The human fighter should do damage to entities with which it collides. Still probably not a good idea to collide with things.
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -50, destroySelf: false, doNotHarm: [.human], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -50, destroySelf: false, doNotHarm: [.human], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
         //Add a passive agent to the fighter.  This will effectively do nothing except allow ai characters driven by agents to easily track it.

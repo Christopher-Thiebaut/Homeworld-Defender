@@ -21,10 +21,10 @@ class Tree: GKEntity {
         let teamComponent = TeamComponent(team: .environment)
         addComponent(teamComponent)
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -30, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -30, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
-        let healthComponent = HealthComponent(health: 60, entityController: entityController)
+        let healthComponent = HealthComponent(health: 60, removalDelegate: entityController)
         addComponent(healthComponent)
         
         let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)

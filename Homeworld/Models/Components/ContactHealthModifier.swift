@@ -14,6 +14,10 @@ protocol ContactHealthModifierDelegate: AnyObject {
     func contactDetected(with entity: GKEntity)
 }
 
+protocol EntityRemovalDelegate: AnyObject {
+    func remove(_ entity: GKEntity)
+}
+
 class ContactHealthModifier: GKComponent {
     
     var spriteNode: SKSpriteNode
@@ -26,13 +30,13 @@ class ContactHealthModifier: GKComponent {
     
     weak var delegate: ContactHealthModifierDelegate?
     
-    weak var entityController: EntityController?
+    weak var entityRemovalDelegate: EntityRemovalDelegate?
 
-    init(spriteNode: SKSpriteNode, changeHealthBy: Int, destroySelf: Bool, doNotHarm: [TeamComponent.Team] = [], entityController: EntityController){
+    init(spriteNode: SKSpriteNode, changeHealthBy: Int, destroySelf: Bool, doNotHarm: [TeamComponent.Team] = [], entityRemovalDelegate: EntityRemovalDelegate){
         self.spriteNode = spriteNode
         self.contactHealthChange = changeHealthBy
         self.destroySelf = destroySelf
-        self.entityController = entityController
+        self.entityRemovalDelegate = entityRemovalDelegate
         self.doNotHarm = doNotHarm
         lastDamageTime = 0
         super.init()
@@ -51,7 +55,7 @@ class ContactHealthModifier: GKComponent {
 
         otherEntityHealthComponent.changeHealthBy(contactHealthChange)
         if destroySelf, let ownEntity = self.entity {
-            entityController?.remove(ownEntity)
+            entityRemovalDelegate?.remove(ownEntity)
         }
     }
 }

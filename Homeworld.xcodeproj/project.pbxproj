@@ -22,6 +22,7 @@
 		B3150F0B206064CF00E10875 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F0A206064CF00E10875 /* Explosion.swift */; };
 		B31E69142528AEC70022F9FE /* Array+Safety.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E69132528AEC70022F9FE /* Array+Safety.swift */; };
 		B31E691A252B63990022F9FE /* GKComponentSystem+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */; };
+		B31E6927253100100022F9FE /* TreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E6926253100100022F9FE /* TreeTests.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B3553FD0206406DF00125D4D /* red_jet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3553FCF206406DE00125D4D /* red_jet.atlas */; };
@@ -70,6 +71,8 @@
 		B3CD46462044C5900016B396 /* ContactHealthModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46452044C5900016B396 /* ContactHealthModifier.swift */; };
 		B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46472044CC440016B396 /* PassiveAgent.swift */; };
 		B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD46492044D34F0016B396 /* ChaseBehavior.swift */; };
+		B3CDC0662538CFDC00D0B6B8 /* ContactHealthModifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDC0652538CFDC00D0B6B8 /* ContactHealthModifierTests.swift */; };
+		B3CDC06C2538D21000D0B6B8 /* HealthComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDC06B2538D21000D0B6B8 /* HealthComponentTests.swift */; };
 		B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */; };
 		B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */; };
 		B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */; };
@@ -101,6 +104,7 @@
 		B3150F0A206064CF00E10875 /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		B31E69132528AEC70022F9FE /* Array+Safety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safety.swift"; sourceTree = "<group>"; };
 		B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKComponentSystem+Default.swift"; sourceTree = "<group>"; };
+		B31E6926253100100022F9FE /* TreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTests.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B3553FCF206406DE00125D4D /* red_jet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = red_jet.atlas; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 		B3CD46452044C5900016B396 /* ContactHealthModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHealthModifier.swift; sourceTree = "<group>"; };
 		B3CD46472044CC440016B396 /* PassiveAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveAgent.swift; sourceTree = "<group>"; };
 		B3CD46492044D34F0016B396 /* ChaseBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
+		B3CDC0652538CFDC00D0B6B8 /* ContactHealthModifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHealthModifierTests.swift; sourceTree = "<group>"; };
+		B3CDC06B2538D21000D0B6B8 /* HealthComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponentTests.swift; sourceTree = "<group>"; };
 		B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SceneResources.atlas; sourceTree = "<group>"; };
 		B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPercentageBar.swift; sourceTree = "<group>"; };
 		B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageBarComponent.swift; sourceTree = "<group>"; };
@@ -191,6 +197,14 @@
 				B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B31E691D2530FFBA0022F9FE /* EntityTests */ = {
+			isa = PBXGroup;
+			children = (
+				B31E6926253100100022F9FE /* TreeTests.swift */,
+			);
+			path = EntityTests;
 			sourceTree = "<group>";
 		};
 		B35BEBC92048C6100039CF1E /* States */ = {
@@ -257,6 +271,8 @@
 		B3BC37062522038F00E5DBFA /* HomeworldTests */ = {
 			isa = PBXGroup;
 			children = (
+				B3CDC0642538CFBA00D0B6B8 /* ComponentTests */,
+				B31E691D2530FFBA0022F9FE /* EntityTests */,
 				B3BC37092522038F00E5DBFA /* Info.plist */,
 				B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */,
 			);
@@ -370,6 +386,15 @@
 				B3A4457C20616230001587BB /* CollisionAvoidanceBehavior.swift */,
 			);
 			path = Behaviors;
+			sourceTree = "<group>";
+		};
+		B3CDC0642538CFBA00D0B6B8 /* ComponentTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3CDC0652538CFDC00D0B6B8 /* ContactHealthModifierTests.swift */,
+				B3CDC06B2538D21000D0B6B8 /* HealthComponentTests.swift */,
+			);
+			path = ComponentTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -564,6 +589,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3BC3714252203D200E5DBFA /* EntityControllerTests.swift in Sources */,
+				B3CDC06C2538D21000D0B6B8 /* HealthComponentTests.swift in Sources */,
+				B31E6927253100100022F9FE /* TreeTests.swift in Sources */,
+				B3CDC0662538CFDC00D0B6B8 /* ContactHealthModifierTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

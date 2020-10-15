@@ -16,7 +16,7 @@ protocol EntityControllerDelegate: AnyObject {
     func convert(_ point: CGPoint, from node: SKNode) -> CGPoint
 }
 
-class EntityController: NSObject {
+class EntityController: NSObject, EntityRemovalDelegate {
     
     var entities = Set<GKEntity>()
     var toRemove = Set<GKEntity>()

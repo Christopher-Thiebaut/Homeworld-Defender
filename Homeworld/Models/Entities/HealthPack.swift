@@ -17,7 +17,7 @@ class HealthPack: GKEntity {
         let spriteComponent = SpriteComponent(spriteNode: sprite)
         addComponent(spriteComponent)
         
-        let healingComponent = ContactHealthModifier(spriteNode: sprite, changeHealthBy: 100, destroySelf: true, doNotHarm: [.alien, .environment], entityController: entityController)
+        let healingComponent = ContactHealthModifier(spriteNode: sprite, changeHealthBy: 100, destroySelf: true, doNotHarm: [.alien, .environment], entityRemovalDelegate: entityController)
         addComponent(healingComponent)
         
         let destnition = CGPoint(x: sprite.position.x, y: gameScene.floorLevel + gameScene.gamePlayArea.height/2)

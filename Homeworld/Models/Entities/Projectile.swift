@@ -29,13 +29,13 @@ class Projectile: GKEntity {
         addComponent(physicsComponent)
         physicsComponent.physicsBody.velocity = velocity
         
-        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -50, destroySelf: oneHit, doNotHarm: allies == nil ? [] : [allies!], entityController: entityController)
+        let contactDamageComponent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -50, destroySelf: oneHit, doNotHarm: allies == nil ? [] : [allies!], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
         let lifeSpanComponent = LifespanComponent(lifespan: 0.75, entityController: entityController)
         addComponent(lifeSpanComponent)
         
-        let healthComponent = HealthComponent(health: 1, entityController: entityController)
+        let healthComponent = HealthComponent(health: 1, removalDelegate: entityController)
         addComponent(healthComponent)
         
         if isRocket {
