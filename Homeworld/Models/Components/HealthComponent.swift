@@ -29,6 +29,9 @@ class HealthComponent: GKComponent {
         health += amount
         health = min(health, fullHealth)
         entity?.component(ofType: ImpactFeedbackComponent.self)?.impactDetected()
+        if health <= 0 {
+            entity?.addComponent(Tombstone())
+        }
     }
     
 }

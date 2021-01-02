@@ -111,10 +111,8 @@ class EntityController: NSObject, EntityRemovalDelegate {
                 node.position.y += 2000
             }
             
-            if let health = entity.component(ofType: HealthComponent.self) {
-                if health.health <= 0 {
-                    killed.append(entity)
-                }
+            if entity.component(ofType: Tombstone.self) != nil {
+                killed.append(entity)
             }
         }
         

@@ -16,8 +16,6 @@ class HealthComponentTests: XCTestCase {
     var subject: HealthComponent?
     let healthAmount = 1000
     
-    var removedEntity: GKEntity?
-    
     override func setUpWithError() throws {
         subject = HealthComponent(
             health: healthAmount
@@ -29,6 +27,13 @@ class HealthComponentTests: XCTestCase {
         XCTAssertEqual(subject?.health, healthAmount - 100)
         subject?.changeHealthBy(200)
         XCTAssertEqual(subject?.health, healthAmount)
+    }
+    
+    func testKillEntity() {
+        let entity = GKEntity()
+        entity.addComponent(subject!)
+        subject?.changeHealthBy(-healthAmount)
+        XCTAssertNotNil(entity.component(ofType: Tombstone.self))
     }
     //TODO: MAKE TESTABLE
 //    func testImpactOnContact() {
