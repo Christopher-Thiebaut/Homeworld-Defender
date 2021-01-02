@@ -13,33 +13,34 @@ import GameplayKit
 @testable import Homeworld
 
 class ContactHealthModifierTests: XCTestCase {
-    var subject: ContactHealthModifier?
-    var node: SKSpriteNode?
+    var subject: ContactHealthModifier!
     let healthEffect = -100
-    
-    //EntityRemovalDelegate
-    var removedEntity: GKEntity?
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        node = SKSpriteNode()
         subject = ContactHealthModifier(
-            spriteNode: node!,
             changeHealthBy: healthEffect,
             destroySelf: true,
-            doNotHarm: [.environment],
-            entityRemovalDelegate: self
+            doNotHarm: [.environment]
         )
     }
-    //TODO: FINISH TESTING ENTITY AFTER ISSUES CREATING HEALTH COMPONENT ARE RESOLVED
-//    func testCollidingWithAHostileEntityRemovesHealth() {
-//        let entity = GKEntity()
-//        let health = HealthComponent(health: <#T##Int#>, entityController: <#T##EntityController#>)
-//    }
-}
 
-extension ContactHealthModifierTests: EntityRemovalDelegate {
-    func remove(_ entity: GKEntity) {
-        removedEntity = entity
+    func testCollidingWithAHostileEntityRemovesHealth() {
+        let entity = GKEntity()
+        let health = HealthComponent(health: 500)
+        entity.addComponent(health)
+        subject?.contactDetectedWith(entity: entity)
+        XCTAssertEqual(health.health, 400)
+    }
+    
+    func testDestroySelf() {
+        let subjectEntity = GKEntity()
+        subjectEntity.addComponent(subject)
+        
+        let otherEntity = GKEntity()
+        
+        subject?.contactDetectedWith(entity: otherEntity)
+        
+        XCTAssertNotNil(subjectEntity.component(ofType: Tombstone.self))
     }
 }

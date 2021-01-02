@@ -95,7 +95,7 @@ class EntityControllerTests: XCTestCase {
         let physicsA = SKPhysicsBody(circleOfRadius: 1)
         nodeA.physicsBody = physicsA
         
-        let contactA = ContactHealthModifier(spriteNode: nodeA, changeHealthBy: 0, destroySelf: false, entityRemovalDelegate: subject)
+        let contactA = ContactHealthModifier(changeHealthBy: 0, destroySelf: false)
         let delA = TestContactDelegate()
         contactA.delegate = delA
         entityA.addComponent(contactA)
@@ -107,7 +107,7 @@ class EntityControllerTests: XCTestCase {
         let physicsB = SKPhysicsBody(circleOfRadius: 1)
         nodeB.physicsBody = physicsB
         
-        let contactB = ContactHealthModifier(spriteNode: nodeB, changeHealthBy: 0, destroySelf: false, entityRemovalDelegate: subject)
+        let contactB = ContactHealthModifier(changeHealthBy: 0, destroySelf: false)
         let delB = TestContactDelegate()
         contactB.delegate = delB
         entityB.addComponent(contactB)

@@ -31,7 +31,7 @@ class Building: GKEntity {
         let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)
         addComponent(obstacleComponent)
         
-        let contactDamageComponenent = ContactHealthModifier(spriteNode: spriteComponent.node, changeHealthBy: -health/4, destroySelf: false,doNotHarm: [TeamComponent.Team.environment], entityRemovalDelegate: entityController)
+        let contactDamageComponenent = ContactHealthModifier(changeHealthBy: -health/4, destroySelf: false,doNotHarm: [TeamComponent.Team.environment])
         addComponent(contactDamageComponenent)
         
         let teamComponent = TeamComponent(team: .environment)
