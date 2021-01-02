@@ -12,7 +12,7 @@ import GameplayKit
 
 class Tree: GKEntity {
     
-    init(spriteNode: SKSpriteNode, entityController: EntityController){
+    init(spriteNode: SKSpriteNode){
         super.init()
         
         let spriteComponent = SpriteComponent(spriteNode: spriteNode)

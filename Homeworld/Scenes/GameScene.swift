@@ -200,7 +200,7 @@ class GameScene: SKScene {
             child.zPosition = ZPositions.low
             
             if let tree = child as? TreeNode {
-                let treeEntity = Tree(spriteNode: tree, entityController: entityController) //Badum tss.
+                let treeEntity = Tree(spriteNode: tree) //Badum tss.
                 entityController.add(treeEntity)
             }
             if let rock = child as? RockNode {

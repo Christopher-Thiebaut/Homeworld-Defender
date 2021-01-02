@@ -14,29 +14,11 @@ class RocketEffectComponent: GKComponent {
     
     let particleEmitter: SKEmitterNode?
     let spriteNode: SKSpriteNode
+    private var animationRunning = false
     
-    init(spriteNode: SKSpriteNode, entityController: EntityController) {
+    init(spriteNode: SKSpriteNode) {
         particleEmitter = SKEmitterNode(fileNamed: "RocketFire.sks")
         self.spriteNode = spriteNode
-
-        let rocketAtlas = SKTextureAtlas(named: "rocket")
-        let firstTexture = rocketAtlas.textureNamed("1")
-        let scale = 10/firstTexture.size().height
-        let size = CGSize(width: firstTexture.size().width * scale, height: firstTexture.size().height * scale)
-        let fireEntity = GKEntity()
-        
-        let fireSpriteComponent = SpriteComponent(texture: firstTexture, color: .white, size: size)
-        fireEntity.addComponent(fireSpriteComponent)
-        
-        let fireAnimation = ConstantAnimationComponent(spriteAtlas: rocketAtlas, timePerFrame: 0.1, entityController: entityController)
-        fireEntity.addComponent(fireAnimation)
-        
-        spriteNode.addChild(fireSpriteComponent.node)
-        fireSpriteComponent.node.position.x = -spriteNode.size.width/2
-        fireSpriteComponent.node.zPosition = -1
-        
-        entityController.add(fireEntity)
-        fireAnimation.runAnimation(loop: true)
         super.init()
     }
     
@@ -44,4 +26,37 @@ class RocketEffectComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        guard !animationRunning else { return }
+        createAnimation()
+    }
+    
+    private func createAnimation() {
+        guard let entity = entity else { return }
+        animationRunning = true
+        let rocketAtlas = SKTextureAtlas(named: "rocket")
+        let firstTexture = rocketAtlas.textureNamed("1")
+        let scale = 10/firstTexture.size().height
+        let size = CGSize(width: firstTexture.size().width * scale, height: firstTexture.size().height * scale)
+        
+        let fire = SKSpriteNode(
+            texture: firstTexture,
+            color: .white,
+            size: size
+        )
+        
+        let fireAnimation = ConstantAnimationComponent(
+            node: fire,
+            spriteAtlas: rocketAtlas,
+            timePerFrame: 0.1
+        )
+        entity.addComponent(fireAnimation)
+        
+        spriteNode.addChild(fire)
+        fire.position.x = -spriteNode.size.width/2
+        fire.zPosition = -1
+        
+        fireAnimation.runAnimation(loop: true)
+    }
 }

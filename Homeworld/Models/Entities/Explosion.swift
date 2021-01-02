@@ -13,7 +13,7 @@ import AVFoundation
 
 class Explosion: GKEntity {
     
-    init(scale: CGFloat, textureAtlas: SKTextureAtlas, damage: Int, duration: TimeInterval, entityController: EntityController){
+    init(scale: CGFloat, textureAtlas: SKTextureAtlas, damage: Int, duration: TimeInterval){
         
         super.init()
         
@@ -25,22 +25,16 @@ class Explosion: GKEntity {
         
         spriteComponent.node.zPosition = GameScene.ZPositions.high
         
-        let explosionAnimation = ConstantAnimationComponent(spriteAtlas: textureAtlas, timePerFrame: duration/Double(textureAtlas.textureNames.count), entityController: entityController)
+        let explosionAnimation = ConstantAnimationComponent(
+            node: spriteComponent.node,
+            spriteAtlas: textureAtlas,
+            timePerFrame: duration/Double(textureAtlas.textureNames.count)
+        )
         addComponent(explosionAnimation)
         explosionAnimation.runAnimation()
         if UserData.currentUser.wantsSoundEffects {
             spriteComponent.node.run(SKAction.playSoundFileNamed(ResourceNames.Sounds.smallExplosion, waitForCompletion: false))
         }
-//        let explosion = SKAudioNode(fileNamed: ResourceNames.Sounds.smallExplosion)
-//        spriteComponent.node.addChild(explosion)
-//        explosion.autoplayLooped = false
-//        explosion.isPositional = false
-//        explosion.run(SKAction.play())
-//        do {
-//            try explosion.avAudioNode?.engine?.start()
-//        }catch {
-//            NSLog("Whatever")
-//        }
     }
     
     required init?(coder aDecoder: NSCoder) {

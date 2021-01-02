@@ -63,6 +63,7 @@
 		B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C861C220570CC70053688D /* AnimatedComponent.swift */; };
 		B3C87A6E25A0DB9600E87598 /* Tombstone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C87A6D25A0DB9600E87598 /* Tombstone.swift */; };
 		B3C87A7225A0DDC400E87598 /* LifespanComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C87A7125A0DDC400E87598 /* LifespanComponentTests.swift */; };
+		B3C87A7625A0E81700E87598 /* ConstantAnimationComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C87A7525A0E81700E87598 /* ConstantAnimationComponentTests.swift */; };
 		B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462C204468310016B396 /* SpriteComponent.swift */; };
 		B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD462F20446A410016B396 /* PhysicsComponent.swift */; };
 		B3CD463520446F970016B396 /* HumanFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD463420446F970016B396 /* HumanFighter.swift */; };
@@ -151,6 +152,7 @@
 		B3C861C220570CC70053688D /* AnimatedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		B3C87A6D25A0DB9600E87598 /* Tombstone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tombstone.swift; sourceTree = "<group>"; };
 		B3C87A7125A0DDC400E87598 /* LifespanComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanComponentTests.swift; sourceTree = "<group>"; };
+		B3C87A7525A0E81700E87598 /* ConstantAnimationComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAnimationComponentTests.swift; sourceTree = "<group>"; };
 		B3CD462C204468310016B396 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		B3CD462F20446A410016B396 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		B3CD463420446F970016B396 /* HumanFighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanFighter.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				B3CDC0652538CFDC00D0B6B8 /* ContactHealthModifierTests.swift */,
 				B3CDC06B2538D21000D0B6B8 /* HealthComponentTests.swift */,
 				B3C87A7125A0DDC400E87598 /* LifespanComponentTests.swift */,
+				B3C87A7525A0E81700E87598 /* ConstantAnimationComponentTests.swift */,
 			);
 			path = ComponentTests;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				B3CDC06C2538D21000D0B6B8 /* HealthComponentTests.swift in Sources */,
 				B3C87A7225A0DDC400E87598 /* LifespanComponentTests.swift in Sources */,
 				B31E6927253100100022F9FE /* TreeTests.swift in Sources */,
+				B3C87A7625A0E81700E87598 /* ConstantAnimationComponentTests.swift in Sources */,
 				B3CDC0662538CFDC00D0B6B8 /* ContactHealthModifierTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

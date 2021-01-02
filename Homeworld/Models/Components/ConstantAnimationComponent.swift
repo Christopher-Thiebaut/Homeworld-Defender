@@ -16,17 +16,16 @@ class ConstantAnimationComponent: GKComponent {
     let timePerFrame: TimeInterval
     var accumulatedTime: TimeInterval = 0
     var frames: [SKTexture] = []
-    let entityController: EntityController
+    private let node: SKSpriteNode
     
-    init(spriteAtlas: SKTextureAtlas, timePerFrame: TimeInterval, entityController: EntityController){
+    init(node: SKSpriteNode, spriteAtlas: SKTextureAtlas, timePerFrame: TimeInterval) {
         textures = spriteAtlas
         self.timePerFrame = timePerFrame
-        self.entityController = entityController
+        self.node = node
         for index in 1...spriteAtlas.textureNames.count {
             frames.append(textures.textureNamed("\(index)"))
         }
         super.init()
-       // explosionAnimation()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,11 +33,14 @@ class ConstantAnimationComponent: GKComponent {
     }
     
     func runAnimation(loop: Bool = false) {
-        guard let entity = entity, let spriteNode = entity.component(ofType: SpriteComponent.self)?.node else {return}
+        let animation = SKAction.animate(with: frames, timePerFrame: timePerFrame)
         if loop {
-            spriteNode.run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: timePerFrame)))
-        }else{
-            spriteNode.run(SKAction.sequence([SKAction.animate(with: frames, timePerFrame: timePerFrame), SKAction.run({[weak self] in self?.entityController.remove(entity)})]))
+            node.run(SKAction.repeatForever(animation))
+        } else {
+            let remove = SKAction.run { [weak self] in
+                self?.entity?.addComponent(Tombstone())
+            }
+            node.run(SKAction.sequence([animation, remove]))
         }
         
     }
