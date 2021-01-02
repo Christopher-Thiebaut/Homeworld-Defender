@@ -55,6 +55,16 @@ class EntityControllerTests: XCTestCase {
         XCTAssertFalse(subject.buildingAgents.contains(building.agent!))
     }
     
+    func testRemoveEntitiesWith0Health() throws {
+        let building = getBuildingEntity()
+        let health = HealthComponent(health: 1)
+        building.entity.addComponent(health)
+        subject.add(building.entity)
+        health.changeHealthBy(-1)
+        subject.update(1)
+        XCTAssertFalse(subject.entities.contains(building.entity))
+    }
+    
     func testUpdateRemovesEntitiesInToRemove() throws {
         let entity = GKEntity()
         subject.toRemove.insert(entity)

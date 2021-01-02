@@ -105,11 +105,20 @@ class EntityController: NSObject, EntityRemovalDelegate {
             componentSystem.update(deltaTime: deltaTime)
         }
         
+        var killed = [GKEntity]()
         for entity in entities {
             if let node = entity.component(ofType: SpriteComponent.self)?.node, let parent = node.parent, let position = scene?.convert(node.position, from: parent), let floorLevel = scene?.floorLevel, position.y < floorLevel {
                 node.position.y += 2000
             }
+            
+            if let health = entity.component(ofType: HealthComponent.self) {
+                if health.health <= 0 {
+                    killed.append(entity)
+                }
+            }
         }
+        
+        killed.forEach { remove($0) }
         //Remove the components of entities being removed from their component systems so their update functions won't get called again.
         for removedEntity in toRemove {
             for componentSystem in componentSystems {

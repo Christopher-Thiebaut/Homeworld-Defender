@@ -31,7 +31,7 @@ class Hunter: GKEntity {
         addComponent(spriteComponent)
         
         //Give the hunter limited health
-        let healthComponent = HealthComponent(health: 50, removalDelegate: entityController)
+        let healthComponent = HealthComponent(health: 50)
         addComponent(healthComponent)
         
         //The hunter should cause damage if collided with

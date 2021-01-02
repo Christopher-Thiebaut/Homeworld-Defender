@@ -24,7 +24,7 @@ class Tree: GKEntity {
         let contactDamageComponent = ContactHealthModifier(spriteNode: spriteNode, changeHealthBy: -30, destroySelf: false, doNotHarm: [TeamComponent.Team.environment], entityRemovalDelegate: entityController)
         addComponent(contactDamageComponent)
         
-        let healthComponent = HealthComponent(health: 60, removalDelegate: entityController)
+        let healthComponent = HealthComponent(health: 60)
         addComponent(healthComponent)
         
         let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)

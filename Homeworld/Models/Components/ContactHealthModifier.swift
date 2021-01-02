@@ -25,7 +25,6 @@ class ContactHealthModifier: GKComponent {
     var destroySelf: Bool
     
     var contactHealthChange: Int
-    var lastDamageTime: TimeInterval
     var doNotHarm: [TeamComponent.Team]
     
     weak var delegate: ContactHealthModifierDelegate?
@@ -38,7 +37,6 @@ class ContactHealthModifier: GKComponent {
         self.destroySelf = destroySelf
         self.entityRemovalDelegate = entityRemovalDelegate
         self.doNotHarm = doNotHarm
-        lastDamageTime = 0
         super.init()
     }
     

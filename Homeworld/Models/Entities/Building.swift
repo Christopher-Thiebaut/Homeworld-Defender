@@ -22,7 +22,7 @@ class Building: GKEntity {
         let spriteComponent = SpriteComponent(spriteNode: spriteNode, color: .white)
         addComponent(spriteComponent)
         
-        let healthComponent = HealthComponent(health: health, removalDelegate: entityController)
+        let healthComponent = HealthComponent(health: health)
         addComponent(healthComponent)
         
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)

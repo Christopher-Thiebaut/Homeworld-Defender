@@ -13,12 +13,10 @@ class HealthComponent: GKComponent {
     
     var health: Int
     var fullHealth: Int
-    weak var removalDelegate: EntityRemovalDelegate?
     
-    init(health: Int, removalDelegate: EntityRemovalDelegate?) {
+    init(health: Int) {
         self.fullHealth = health
         self.health = health
-        self.removalDelegate = removalDelegate
         
         super.init()
     }
@@ -31,9 +29,6 @@ class HealthComponent: GKComponent {
         health += amount
         health = min(health, fullHealth)
         entity?.component(ofType: ImpactFeedbackComponent.self)?.impactDetected()
-        if let entity = self.entity, health <= 0 {
-            removalDelegate?.remove(entity)
-        }
     }
     
 }

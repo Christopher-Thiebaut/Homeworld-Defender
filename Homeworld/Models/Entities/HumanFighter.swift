@@ -40,7 +40,7 @@ class HumanFighter: GKEntity {
         addComponent(rotationComponent)
         
         //Give the HumanFighter a set amount of health
-        let healthComponent = HealthComponent(health: 200, removalDelegate: entityController)
+        let healthComponent = HealthComponent(health: 200)
         addComponent(healthComponent)
         
         //The human fighter should do damage to entities with which it collides. Still probably not a good idea to collide with things.

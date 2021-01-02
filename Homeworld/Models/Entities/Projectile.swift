@@ -35,7 +35,7 @@ class Projectile: GKEntity {
         let lifeSpanComponent = LifespanComponent(lifespan: 0.75, entityController: entityController)
         addComponent(lifeSpanComponent)
         
-        let healthComponent = HealthComponent(health: 1, removalDelegate: entityController)
+        let healthComponent = HealthComponent(health: 1)
         addComponent(healthComponent)
         
         if isRocket {

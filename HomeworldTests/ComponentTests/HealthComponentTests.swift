@@ -20,8 +20,7 @@ class HealthComponentTests: XCTestCase {
     
     override func setUpWithError() throws {
         subject = HealthComponent(
-            health: healthAmount,
-            removalDelegate: self
+            health: healthAmount
         )
     }
     
@@ -31,14 +30,6 @@ class HealthComponentTests: XCTestCase {
         subject?.changeHealthBy(200)
         XCTAssertEqual(subject?.health, healthAmount)
     }
-    
-    func testKillEntity() {
-        let entity = GKEntity()
-        entity.addComponent(subject!)
-        subject?.changeHealthBy(-(healthAmount + 1))
-        XCTAssert(removedEntity === entity)
-    }
-    
     //TODO: MAKE TESTABLE
 //    func testImpactOnContact() {
 //        let entity = GKEntity()
@@ -48,10 +39,4 @@ class HealthComponentTests: XCTestCase {
 //        subject?.changeHealthBy(-1)
 //    }
 
-}
-
-extension HealthComponentTests: EntityRemovalDelegate {
-    func remove(_ entity: GKEntity) {
-        removedEntity = entity
-    }
 }
