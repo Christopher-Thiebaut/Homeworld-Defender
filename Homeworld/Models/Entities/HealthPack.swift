@@ -28,7 +28,7 @@ class HealthPack: GKEntity {
         physicsComponent.physicsBody.isDynamic = false
         addComponent(physicsComponent)
         
-        let lifeSpanComponent = LifespanComponent(lifespan: 15, entityController: entityController)
+        let lifeSpanComponent = LifespanComponent(lifespan: 15)
         addComponent(lifeSpanComponent)
     }
     

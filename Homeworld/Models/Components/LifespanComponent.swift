@@ -13,12 +13,10 @@ import GameplayKit
 class LifespanComponent: GKComponent {
     
     let lifespan: TimeInterval
-    let entityController: EntityController
     var elapsedTime: TimeInterval = 0
     
-    init(lifespan: TimeInterval, entityController: EntityController){
+    init(lifespan: TimeInterval){
         self.lifespan = lifespan
-        self.entityController = entityController
         super.init()
     }
     
@@ -28,8 +26,8 @@ class LifespanComponent: GKComponent {
     
     override func update(deltaTime seconds: TimeInterval) {
         elapsedTime += seconds
-        if elapsedTime >= lifespan, let expiredEntity = entity {
-            entityController.remove(expiredEntity)
+        if elapsedTime >= lifespan {
+            entity?.addComponent(Tombstone())
         }
     }
 }
