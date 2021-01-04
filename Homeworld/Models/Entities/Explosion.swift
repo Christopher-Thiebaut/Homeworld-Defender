@@ -13,7 +13,7 @@ import AVFoundation
 
 class Explosion: GKEntity {
     
-    init(scale: CGFloat, textureAtlas: SKTextureAtlas, damage: Int, duration: TimeInterval){
+    init(scale: CGFloat, damage: Int, duration: TimeInterval){
         
         super.init()
         

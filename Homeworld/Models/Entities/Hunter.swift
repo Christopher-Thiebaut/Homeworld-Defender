@@ -58,8 +58,7 @@ class Hunter: GKEntity {
         addComponent(team)
         
         let createExplosion: () -> () = {
-            let explosionAtlas = SKTextureAtlas(named: "explosion")
-            let explosion = Explosion(scale: 0.5, textureAtlas: explosionAtlas, damage: 100, duration: 0.2)
+            let explosion = Explosion(scale: 0.5, damage: 100, duration: 0.2)
             explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
             entityController.add(explosion)
             gameScene.score += 5
