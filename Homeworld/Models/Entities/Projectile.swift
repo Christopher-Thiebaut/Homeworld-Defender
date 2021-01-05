@@ -39,15 +39,8 @@ class Projectile: GKEntity {
         addComponent(healthComponent)
         
         if isRocket {
-            let createExplosion: () -> () = {
-                let explosion = Explosion(scale: 1, damage: 100, duration: 0.2)
-                explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
-                entityController.add(explosion)
-            }
-            
-            let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
-            addComponent(deathEffectComponent)
-
+            let explosionConfig = ExplosionConfig(scale: 1, damage: 100, duration: 0.2)
+            addComponent(ExplodeOnDeath(config: explosionConfig))
         }
         
         spriteComponent.node.zPosition = GameScene.ZPositions.default

@@ -41,14 +41,8 @@ class Building: GKEntity {
         addComponent(physicsComponent)
         physicsComponent.physicsBody.isDynamic = false
         
-        let createExplosion: () -> () = {
-            let explosion = Explosion(scale: 2, damage: 100, duration: 0.2)
-            explosion.component(ofType: SpriteComponent.self)?.node.position = spriteComponent.node.position
-            entityController.add(explosion)
-        }
-        
-        let deathEffectComponent = DeathEffectComonent(deathEffect: createExplosion)
-        addComponent(deathEffectComponent)
+        let explosionConfig = ExplosionConfig(scale: 2, damage: 100, duration: 0.2)
+        addComponent(ExplodeOnDeath(config: explosionConfig))
     }
     
     required init?(coder aDecoder: NSCoder) {

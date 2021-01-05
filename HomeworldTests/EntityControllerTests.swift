@@ -221,6 +221,17 @@ class EntityControllerTests: XCTestCase {
         subject.remove(building.entity)
         XCTAssert(subject.obstacles.isEmpty)
     }
+    
+    func testCreatesExplosionWhenRemovingMarkedEntities() {
+        let building = getBuildingEntity()
+        let config = ExplosionConfig(scale: 1, damage: 1, duration: 1)
+        building.entity.addComponent(ExplodeOnDeath(config: config))
+        subject.add(building.entity)
+        subject.remove(building.entity)
+        
+        let explosion = subject.entities.first(where: { $0 is Explosion })
+        XCTAssertNotNil(explosion)
+    }
 }
 
 struct TestEntity {

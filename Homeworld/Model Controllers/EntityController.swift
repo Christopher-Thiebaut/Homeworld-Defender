@@ -90,14 +90,30 @@ class EntityController: NSObject, EntityRemovalDelegate {
     func remove(_ entity: GKEntity){
         entity.component(ofType: SpriteComponent.self)?.node.removeAllActions()
         entity.component(ofType: SpriteComponent.self)?.node.removeFromParent()
-        entity.component(ofType: DeathEffectComonent.self)?.applyDeathEffect()
         entity.component(ofType: RocketEffectComponent.self)?.particleEmitter?.removeFromParent()
         removeAgentFromAgentGroups(entity.component(ofType: PassiveAgent.self))
         removeAgentFromAgentGroups(entity.component(ofType: RaiderAgent.self))
         removeAgentFromAgentGroups(entity.component(ofType: HunterAgent.self))
         if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle { obstacles.remove(obstacle) }
+        createExplosionIfNeeded(entity: entity)
         toRemove.insert(entity)
         entities.remove(entity)
+    }
+    
+    private func createExplosionIfNeeded(entity: GKEntity) {
+        guard let sprite = entity.component(ofType: SpriteComponent.self),
+              let explosion = entity.component(ofType: ExplodeOnDeath.self) else { return }
+        createExplosion(config: explosion.config, location: sprite.node.position)
+    }
+    
+    func createExplosion(config: ExplosionConfig, location: CGPoint) {
+        let explosion = Explosion(
+            scale: config.scale,
+            damage: config.damage,
+            duration: config.duration
+        )
+        explosion.component(ofType: SpriteComponent.self)?.node.position = location
+        add(explosion)
     }
     
     func update(_ deltaTime: TimeInterval) {

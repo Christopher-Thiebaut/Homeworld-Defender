@@ -30,7 +30,6 @@
 		B3553FD82064557F00125D4D /* rocket.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3553FD72064557E00125D4D /* rocket.atlas */; };
 		B3553FDA20646E2200125D4D /* RepairFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3553FD920646E2200125D4D /* RepairFactory.swift */; };
 		B35BEBC42048B2A90039CF1E /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */; };
-		B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */; };
 		B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BEBC72048C1F90039CF1E /* TeamComponent.swift */; };
 		B35BEBD02048E5530039CF1E /* LevelOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = B35BEBCF2048E5530039CF1E /* LevelOne.sks */; };
 		B35C0C40206499B30009318B /* HealthSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C0C3F206499B30009318B /* HealthSpawner.swift */; };
@@ -79,6 +78,8 @@
 		B3D10447205B6AF100DCC8C0 /* SceneResources.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */; };
 		B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */; };
 		B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */; };
+		B3EDFFC725A486CF005DE879 /* ExplosionConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EDFFC625A486CF005DE879 /* ExplosionConfig.swift */; };
+		B3EDFFCB25A4874D005DE879 /* ExplodeOnDeath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EDFFCA25A4874D005DE879 /* ExplodeOnDeath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +116,6 @@
 		B3553FD72064557E00125D4D /* rocket.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = rocket.atlas; sourceTree = "<group>"; };
 		B3553FD920646E2200125D4D /* RepairFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairFactory.swift; sourceTree = "<group>"; };
 		B35BEBC32048B2A90039CF1E /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
-		B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeathEffectComonent.swift; sourceTree = "<group>"; };
 		B35BEBC72048C1F90039CF1E /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
 		B35BEBCF2048E5530039CF1E /* LevelOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelOne.sks; sourceTree = "<group>"; };
 		B35C0C3F206499B30009318B /* HealthSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSpawner.swift; sourceTree = "<group>"; };
@@ -168,6 +168,8 @@
 		B3D10446205B6AF100DCC8C0 /* SceneResources.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = SceneResources.atlas; sourceTree = "<group>"; };
 		B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPercentageBar.swift; sourceTree = "<group>"; };
 		B3D75934205C8C570006F2C6 /* PercentageBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageBarComponent.swift; sourceTree = "<group>"; };
+		B3EDFFC625A486CF005DE879 /* ExplosionConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplosionConfig.swift; sourceTree = "<group>"; };
+		B3EDFFCA25A4874D005DE879 /* ExplodeOnDeath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodeOnDeath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 				B3CD464B2044D4870016B396 /* Behaviors */,
 				B35BEBC92048C6100039CF1E /* States */,
 				B3128525205C2F5F00F48AAD /* User.swift */,
+				B3EDFFC625A486CF005DE879 /* ExplosionConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -331,7 +334,6 @@
 				B37D2CEF204515EC0048941B /* FireComponent.swift */,
 				B306E2EF2045E2EA00F0E0D9 /* LifespanComponent.swift */,
 				B36C5F7B20474FFE0097F01B /* PositionLoggingComponent.swift */,
-				B35BEBC52048B4EE0039CF1E /* DeathEffectComonent.swift */,
 				B35BEBC72048C1F90039CF1E /* TeamComponent.swift */,
 				B394483920535F3100A48BF0 /* AirfoilComponent.swift */,
 				B3C861C220570CC70053688D /* AnimatedComponent.swift */,
@@ -342,6 +344,7 @@
 				B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */,
 				B35C0C3F206499B30009318B /* HealthSpawner.swift */,
 				B3C87A6D25A0DB9600E87598 /* Tombstone.swift */,
+				B3EDFFCA25A4874D005DE879 /* ExplodeOnDeath.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				B3CD463E204494AE0016B396 /* JoystickNode.swift in Sources */,
 				B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */,
 				B3C20D3D20486D2700B4F962 /* GameStates.swift in Sources */,
+				B3EDFFCB25A4874D005DE879 /* ExplodeOnDeath.swift in Sources */,
 				B361E2CC20423E7100B2AF27 /* GameScene.swift in Sources */,
 				B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */,
 				B3CD463520446F970016B396 /* HumanFighter.swift in Sources */,
@@ -569,7 +573,6 @@
 				B3C87A6E25A0DB9600E87598 /* Tombstone.swift in Sources */,
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
-				B35BEBC62048B4EE0039CF1E /* DeathEffectComonent.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
 				B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
@@ -583,6 +586,7 @@
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */,
 				B3CD463B204479050016B396 /* PropulsionComponent.swift in Sources */,
+				B3EDFFC725A486CF005DE879 /* ExplosionConfig.swift in Sources */,
 				B306E2F82046223600F0E0D9 /* Raider.swift in Sources */,
 				B3AABB382062D5EF0093869F /* Sounds.swift in Sources */,
 				B361E2C620423E7100B2AF27 /* AppDelegate.swift in Sources */,
