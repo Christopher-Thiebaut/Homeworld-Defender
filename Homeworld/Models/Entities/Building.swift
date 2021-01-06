@@ -14,7 +14,7 @@ class Building: GKEntity {
     
     let health: Int
     
-    init(spriteNode: SKSpriteNode, health: Int, entityController: EntityController){
+    init(spriteNode: SKSpriteNode, health: Int){
         self.health = health
         
         super.init()

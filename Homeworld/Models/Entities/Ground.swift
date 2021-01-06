@@ -12,7 +12,7 @@ import GameplayKit
 
 class Ground: GKEntity {
     
-    init(spriteNode: SKSpriteNode, entityController: EntityController){
+    init(spriteNode: SKSpriteNode){
         
         super.init()
         

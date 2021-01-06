@@ -14,7 +14,7 @@ class Projectile: GKEntity {
     
     let lifespan: TimeInterval = 0.75
     
-    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, allies: TeamComponent.Team?, collisionCategory: PhysicsComponent.CollisionCategory, isRocket: Bool = false, entityController: EntityController){
+    init(velocity: CGVector, texture: SKTexture, size: CGSize, oneHit: Bool = true, allies: TeamComponent.Team?, collisionCategory: PhysicsComponent.CollisionCategory, isRocket: Bool = false) {
         super.init()
         
         if let allies = allies {

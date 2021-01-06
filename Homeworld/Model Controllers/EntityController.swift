@@ -127,6 +127,8 @@ class EntityController: NSObject, EntityRemovalDelegate {
                 node.position.y += 2000
             }
             
+            fireProjectiles(for: entity)
+            
             if entity.component(ofType: Tombstone.self) != nil {
                 killed.append(entity)
             }
@@ -140,6 +142,36 @@ class EntityController: NSObject, EntityRemovalDelegate {
             }
         }
         toRemove.removeAll()
+    }
+    
+    private func fireProjectiles(for entity: GKEntity) {
+        guard let gun = entity.component(ofType: FireProjectileComponent.self) else { return }
+        let projectiles = gun.pendingProjectiles.map { pending -> Projectile in
+            var texture: SKTexture
+            let atlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
+            switch pending.weaponType {
+            case .energyPulse:
+                texture = atlas.textureNamed(ResourceNames.defaultAlientBlaster)
+            case .rocket:
+                texture = atlas.textureNamed(ResourceNames.missileName)
+            }
+            let projectile = Projectile(
+                velocity: pending.velocity,
+                texture: texture,
+                size: pending.size,
+                oneHit: true,
+                allies: entity.component(ofType: TeamComponent.self)?.team,
+                collisionCategory: gun.projectileCategory,
+                isRocket: pending.weaponType == .rocket
+            )
+            let sprite = projectile.component(ofType: SpriteComponent.self)?.node
+            sprite?.position = pending.position
+            sprite?.zRotation = atan2(pending.velocity.dy, pending.velocity.dx)
+            return projectile
+        }
+        
+        projectiles.forEach { add($0) }
+        gun.pendingProjectiles = []
     }
     
     func getCivilianTargetAgents() -> Set<GKAgent2D> {

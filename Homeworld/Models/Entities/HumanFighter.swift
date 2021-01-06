@@ -16,7 +16,7 @@ class HumanFighter: GKEntity {
     
     let image = SKTextureAtlas(named: "red_jet").textureNamed("1")
     
-    required init(entityController: EntityController, propulsionControl: PropulsionControl, rotationControl: RotationControl){
+    required init(propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()
         
         //Set up the visual component of the entity
@@ -51,13 +51,13 @@ class HumanFighter: GKEntity {
         let passiveAgent = PassiveAgent(spriteNode: spriteComponent.node)
         addComponent(passiveAgent)
         
-        
-        //Set up the fighter's rocket launcher
-        //let projectileTexture = SKTexture(image: #imageLiteral(resourceName: "missile"))
-        let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.missileName)
-        let projectileSize = CGSize(width: projectileTexture.size().width/5, height: projectileTexture.size().height/5)
-        let fireComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, speed: 2000, reloadTime: 0.4, projectileCategory: .playerProjectile, allies: .human, firesRockets: true, entityController: entityController)
-        addComponent(fireComponent)
+        let weapon = FireProjectileComponent(
+            speed: 2000,
+            reloadTime: 0.4,
+            projectileType: .rocket,
+            projectileCategory: .playerProjectile
+        )
+        addComponent(weapon)
         
         //Give the fighter an airfoil (produces upward velocity from horizontal) so fighter won't fall if it flies sideways.
         let airfoilComponent = AirfoilComponent(physicsBody: physicsComponent.physicsBody, liftRatio: 0.01)

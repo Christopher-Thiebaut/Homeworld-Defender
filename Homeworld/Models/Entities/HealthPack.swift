@@ -11,7 +11,7 @@ import GameplayKit
 
 class HealthPack: GKEntity {
     
-    init(sprite: SKSpriteNode, healAmount: Int, upwardSpeed: CGFloat, entityController: EntityController, gameScene: GameScene){
+    init(sprite: SKSpriteNode, healAmount: Int, upwardSpeed: CGFloat, gameScene: GameScene){
         super.init()
         
         let spriteComponent = SpriteComponent(spriteNode: sprite)

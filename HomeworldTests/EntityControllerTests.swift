@@ -232,6 +232,19 @@ class EntityControllerTests: XCTestCase {
         let explosion = subject.entities.first(where: { $0 is Explosion })
         XCTAssertNotNil(explosion)
     }
+    
+    func testFireProjectile() {
+        let armedBuilding = getBuildingEntity()
+        let fireComponent = FireProjectileComponent(speed: 1, reloadTime: 1, projectileType: .rocket, projectileCategory: .humanAI)
+        armedBuilding.entity.addComponent(fireComponent)
+        
+        subject.add(armedBuilding.entity)
+        fireComponent.fire()
+        subject.update(1)
+        
+        let projectile = subject.entities.first(where: { $0 is Projectile })
+        XCTAssertNotNil(projectile)
+    }
 }
 
 struct TestEntity {

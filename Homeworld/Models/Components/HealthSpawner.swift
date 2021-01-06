@@ -46,7 +46,7 @@ class HealthSpawner: GKComponent {
         sprite.position = origin
         //sprite.position.y -= 150
         sprite.zPosition = GameScene.ZPositions.low - 1
-        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, entityController: entityController, gameScene: gameScene)
+        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, gameScene: gameScene)
         entityController.add(healEntity)
         accumulatedTime = 0
         nextSpawn = getNextSpawnInterval()

@@ -1,39 +1,33 @@
 //
-//  FireComponent.swift
+//  FireProjectileComponent.swift
 //  Homeworld
 //
-//  Created by Christopher Thiebaut on 2/26/18.
-//  Copyright © 2018 Christopher Thiebaut. All rights reserved.
+//  Created by Christopher Thiebaut on 1/5/21.
+//  Copyright © 2021 Christopher Thiebaut. All rights reserved.
 //
 
 import Foundation
-import SpriteKit
 import GameplayKit
 
-
-
 class FireProjectileComponent: GKComponent {
-    
-    let entityController: EntityController
-    let speed: CGFloat
-    let texture: SKTexture
-    let size: CGSize
-    let reloadTime: TimeInterval
-    var timeSinceLastFired: TimeInterval
+    private let speed: CGFloat
+    private let reloadTime: TimeInterval
+    private var timeSinceLastFired: TimeInterval
     let projectileCategory: PhysicsComponent.CollisionCategory
-    let allies: TeamComponent.Team?
-    let firesRockets: Bool
+    private let projectileType: ProjectileType
     
-    init(projectileTexture: SKTexture, size: CGSize, speed: CGFloat, reloadTime: TimeInterval, projectileCategory: PhysicsComponent.CollisionCategory, allies: TeamComponent.Team?, firesRockets: Bool = false,entityController: EntityController){
+    var pendingProjectiles = [FiredProjectile]()
+    
+    init(speed: CGFloat,
+         reloadTime: TimeInterval,
+         projectileType: ProjectileType,
+         projectileCategory: PhysicsComponent.CollisionCategory
+    ){
         self.reloadTime = reloadTime
         self.timeSinceLastFired = reloadTime + 1
-        self.texture = projectileTexture
-        self.size = size
         self.speed = speed
-        self.entityController = entityController
         self.projectileCategory = projectileCategory
-        self.allies = allies
-        self.firesRockets = firesRockets
+        self.projectileType = projectileType
         super.init()
     }
     
@@ -73,10 +67,23 @@ class FireProjectileComponent: GKComponent {
         
         let velocity = CGVector(dx: dx * speed, dy: dy * speed)
         
-        let projectile = Projectile(velocity: velocity, texture: texture, size: size, oneHit: true, allies: allies, collisionCategory: projectileCategory, isRocket: firesRockets ,entityController: entityController)
-        projectile.component(ofType: SpriteComponent.self)?.node.position = spriteNode.position
-        projectile.component(ofType: SpriteComponent.self)?.node.zRotation = CGFloat(angle)
-        entityController.add(projectile)
+        let projectile = projectileForType(
+            projectileType,
+            at: spriteNode.position,
+            with: velocity
+        )
+        pendingProjectiles.append(projectile)
+    }
+    
+    private func projectileForType(_ type: ProjectileType,
+                                   at position: CGPoint,
+                                   with velocity: CGVector) -> FiredProjectile {
+        switch type {
+        case .rocket:
+            return .rocket(position: position, velocity: velocity)
+        case .energyPulse:
+            return .energyPulse(position: position, velocity: velocity)
+        }
     }
     
 }
@@ -89,6 +96,4 @@ extension FireProjectileComponent: PercentageBarQuantity {
     var maximumQuantity: CGFloat {
         return CGFloat(reloadTime)
     }
-    
-    
 }

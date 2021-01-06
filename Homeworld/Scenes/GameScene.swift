@@ -107,7 +107,7 @@ class GameScene: SKScene {
         let joyStick = JoystickNode(size: joyStickSize)
         joyStick.distanceOffCenter = 0.4
         
-        let player = playerType.init(entityController: entityController, propulsionControl: joyStick, rotationControl: joyStick)
+        let player = playerType.init(propulsionControl: joyStick, rotationControl: joyStick)
         guard let playerSpriteNode = player.component(ofType: SpriteComponent.self)?.node else{
             fatalError("Player Character must have a sprite component.")
         }
@@ -125,13 +125,11 @@ class GameScene: SKScene {
             }
         }
         
-//        floorLevel = -size.width/2 + joyStickWidth
-        //let floorTexture = SKTexture(image: #imageLiteral(resourceName: "ground"))
         let floorTexture = textureAtlas.textureNamed(ResourceNames.groundName)
         let floorNode = SKSpriteNode(texture: floorTexture, color: .white, size: CGSize(width: gamePlayArea.width * 3, height: 10))
         floorNode.zPosition = ZPositions.low
         floorNode.position = CGPoint(x: anchorPoint.x, y: floorLevel)
-        let floorEntity = Ground(spriteNode: floorNode, entityController: entityController)
+        let floorEntity = Ground(spriteNode: floorNode)
         self.floorNode = floorNode
         entityController.add(floorEntity)
         
@@ -204,15 +202,15 @@ class GameScene: SKScene {
                 entityController.add(treeEntity)
             }
             if let rock = child as? RockNode {
-                let rockEntity = Rock(spriteNode: rock, entityController: entityController)
+                let rockEntity = Rock(spriteNode: rock)
                 entityController.add(rockEntity)
             }
             if let smallBuilding = child as? SmallBuildingNode {
-                let smallBuilding = Building(spriteNode: smallBuilding, health: 100, entityController: entityController)
+                let smallBuilding = Building(spriteNode: smallBuilding, health: 100)
                 entityController.add(smallBuilding)
             }
             if let bigBuilding = child as? BigBuildingNode {
-                let bigBuilding = Building(spriteNode: bigBuilding, health: 200, entityController: entityController)
+                let bigBuilding = Building(spriteNode: bigBuilding, health: 200)
                 entityController.add(bigBuilding)
             }
             if let repairFactory = child as? RepairFactoryNode {

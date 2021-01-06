@@ -45,10 +45,14 @@ class Hunter: GKEntity {
         //Set up the hunter's gun
         let projectileSpeed = entityController.difficultyLevel.getEnemyProjectileSpeed()
         let reloadTime = entityController.difficultyLevel.getEnemyReloadTime()
-        let projectileTexture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.defaultAlientBlaster)
-        let projectileSize = CGSize(width: spriteComponent.node.size.width/10, height: spriteComponent.node.size.height/10)
-        let fireProjectileComponent = FireProjectileComponent(projectileTexture: projectileTexture, size: projectileSize, speed: projectileSpeed, reloadTime: reloadTime, projectileCategory: .alienProjectile, allies: .alien, entityController: entityController)
-        addComponent(fireProjectileComponent)
+        
+        let weapon = FireProjectileComponent(
+            speed: projectileSpeed,
+            reloadTime: reloadTime,
+            projectileType: .energyPulse,
+            projectileCategory: .alienProjectile
+        )
+        addComponent(weapon)
         
         //Give the hunter a physics component so he won't run through boundaries
         let physicsComponent = PhysicsComponent(spriteNode: spriteComponent.node, bodyType: .rectange, mass: 1000, affectedByGravity: false, collisionCategory: .alien)
