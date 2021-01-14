@@ -14,20 +14,15 @@ class HealthSpawner: GKComponent {
     let baseFrequency: TimeInterval
     let variability: TimeInterval
     let healAmount: Int
-    let entityController: EntityController
     var accumulatedTime: TimeInterval
     var nextSpawn: TimeInterval = 0
-    let origin: CGPoint
-    let gameScene: GameScene
+    var healthPack: PowerUp?
     
-    init(origin: CGPoint, baseFrequency: TimeInterval, variability: TimeInterval, healAmount: Int, entityController: EntityController, gameScene: GameScene){
+    init(baseFrequency: TimeInterval, variability: TimeInterval, healAmount: Int) {
         self.baseFrequency = baseFrequency
         self.variability = variability
         self.healAmount = healAmount
-        self.entityController = entityController
         self.accumulatedTime = 0
-        self.origin = origin
-        self.gameScene = gameScene
         super.init()
         nextSpawn = getNextSpawnInterval()
     }
@@ -40,14 +35,13 @@ class HealthSpawner: GKComponent {
         super.update(deltaTime: seconds)
         accumulatedTime += seconds
         guard accumulatedTime > nextSpawn else { return }
-        //let sprite = SKSpriteNode(color: .white, size: CGSize(width: 50, height: 50))
-        let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.repairToken)
-        let sprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 50, height: 50))
-        sprite.position = origin
-        //sprite.position.y -= 150
-        sprite.zPosition = GameScene.ZPositions.low - 1
-        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, gameScene: gameScene)
-        entityController.add(healEntity)
+        healthPack = PowerUp(effect: .heal(amount: healAmount), upwardSpeed: 50)
+//        let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.repairToken)
+//        let sprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 50, height: 50))
+//        sprite.position = origin
+//        sprite.zPosition = GameScene.ZPositions.low - 1
+//        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, gameScene: gameScene)
+//        entityController.add(healEntity)
         accumulatedTime = 0
         nextSpawn = getNextSpawnInterval()
     }

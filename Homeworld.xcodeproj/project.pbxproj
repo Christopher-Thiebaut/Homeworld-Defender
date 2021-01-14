@@ -23,6 +23,8 @@
 		B31E69142528AEC70022F9FE /* Array+Safety.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E69132528AEC70022F9FE /* Array+Safety.swift */; };
 		B31E691A252B63990022F9FE /* GKComponentSystem+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */; };
 		B31E6927253100100022F9FE /* TreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E6926253100100022F9FE /* TreeTests.swift */; };
+		B332C04A25B06827001E7451 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C04925B06827001E7451 /* PowerUp.swift */; };
+		B332C04E25B06C8B001E7451 /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C04D25B06C8B001E7451 /* CGRect+Extension.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B3553FD0206406DF00125D4D /* red_jet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3553FCF206406DE00125D4D /* red_jet.atlas */; };
@@ -110,6 +112,8 @@
 		B31E69132528AEC70022F9FE /* Array+Safety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safety.swift"; sourceTree = "<group>"; };
 		B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKComponentSystem+Default.swift"; sourceTree = "<group>"; };
 		B31E6926253100100022F9FE /* TreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTests.swift; sourceTree = "<group>"; };
+		B332C04925B06827001E7451 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
+		B332C04D25B06C8B001E7451 /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B3553FCF206406DE00125D4D /* red_jet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = red_jet.atlas; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			children = (
 				B31E69132528AEC70022F9FE /* Array+Safety.swift */,
 				B31E6919252B63990022F9FE /* GKComponentSystem+Default.swift */,
+				B332C04D25B06C8B001E7451 /* CGRect+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 			children = (
 				B3EDFFC625A486CF005DE879 /* ExplosionConfig.swift */,
 				B3EDFFD325A495A8005DE879 /* FiredProjectile.swift */,
+				B332C04925B06827001E7451 /* PowerUp.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */,
 				B36C5F7C20474FFE0097F01B /* PositionLoggingComponent.swift in Sources */,
 				B35C0C40206499B30009318B /* HealthSpawner.swift in Sources */,
+				B332C04E25B06C8B001E7451 /* CGRect+Extension.swift in Sources */,
 				B3AC52282062FA9C009E76BD /* HealthPack.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */,
@@ -584,6 +591,7 @@
 				B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */,
 				B3C87A6E25A0DB9600E87598 /* Tombstone.swift in Sources */,
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
+				B332C04A25B06827001E7451 /* PowerUp.swift in Sources */,
 				B3EDFFDA25A49911005DE879 /* FireProjectileComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,

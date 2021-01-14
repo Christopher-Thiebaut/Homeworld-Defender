@@ -128,6 +128,7 @@ class EntityController: NSObject, EntityRemovalDelegate {
             }
             
             fireProjectiles(for: entity)
+            spawnHealthPackIfNeeded(entity: entity)
             
             if entity.component(ofType: Tombstone.self) != nil {
                 killed.append(entity)
@@ -172,6 +173,27 @@ class EntityController: NSObject, EntityRemovalDelegate {
         
         projectiles.forEach { add($0) }
         gun.pendingProjectiles = []
+    }
+    
+    private func spawnHealthPackIfNeeded(entity: GKEntity) {
+        guard let sprite = entity.component(ofType: SpriteComponent.self),
+              let spawner = entity.component(ofType: HealthSpawner.self),
+              let powerUp = spawner.healthPack else { return }
+        spawnPowerUp(powerUp: powerUp, location: sprite.node.frame.center)
+        spawner.healthPack = nil
+        
+    }
+    
+    private func spawnPowerUp(powerUp: PowerUp, location: CGPoint) {
+        switch powerUp.effect {
+        case .heal(amount: let amount):
+            let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.repairToken)
+            let sprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 50, height: 50))
+                sprite.position = location
+                sprite.zPosition = GameScene.ZPositions.low - 1
+                let healEntity = HealthPack(sprite: sprite, healAmount: amount, upwardSpeed: 50)
+            add(healEntity)
+        }
     }
     
     func getCivilianTargetAgents() -> Set<GKAgent2D> {

@@ -245,6 +245,21 @@ class EntityControllerTests: XCTestCase {
         let projectile = subject.entities.first(where: { $0 is Projectile })
         XCTAssertNotNil(projectile)
     }
+    
+    func testSpawnHealth() {
+        let healingBuilding = getBuildingEntity()
+        healingBuilding.node.position = CGPoint(x: 100, y: 100)
+        let healthSpawner = HealthSpawner(baseFrequency: 1, variability: 0, healAmount: 50)
+        healingBuilding.entity.addComponent(healthSpawner)
+        
+        subject.add(healingBuilding.entity)
+        healthSpawner.healthPack = PowerUp(effect: .heal(amount: 50), upwardSpeed: 50)
+        
+        subject.update(0.1)
+        let healthPack = subject.entities.first(where: { $0 is HealthPack })
+        let position = healthPack?.component(ofType: SpriteComponent.self)?.node.position
+        XCTAssertEqual(position, healingBuilding.node.frame.center)
+    }
 }
 
 struct TestEntity {
