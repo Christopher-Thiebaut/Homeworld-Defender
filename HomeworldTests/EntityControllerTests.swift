@@ -233,6 +233,19 @@ class EntityControllerTests: XCTestCase {
         XCTAssertNotNil(explosion)
     }
     
+    func testAwardsPointsWhenRemovingMarkedEntities() {
+        let scene = FakeEntityControllerDelegate()
+        subject.scene = scene
+        
+        let target = getBuildingEntity()
+        target.entity.addComponent(PointsOnDeathComponent(playerPointsOnDeath: 10))
+        subject.add(target.entity)
+        subject.remove(target.entity)
+        let expectedScore = Int(floor(10 * subject.difficultyLevel.getScoreMultiplier()))
+        XCTAssertEqual(scene.awardedPoints, expectedScore)
+        
+    }
+    
     func testFireProjectile() {
         let armedBuilding = getBuildingEntity()
         let fireComponent = FireProjectileComponent(speed: 1, reloadTime: 1, projectileType: .rocket, projectileCategory: .humanAI)
@@ -295,6 +308,11 @@ class FakeEntityControllerDelegate: EntityControllerDelegate {
     func convert(_ point: CGPoint, from node: SKNode) -> CGPoint {
         inputPoint = point
         return outputPoint ?? .zero
+    }
+    
+    var awardedPoints = 0
+    func awardPoints(_ points: Int) {
+        awardedPoints += points
     }
 }
 

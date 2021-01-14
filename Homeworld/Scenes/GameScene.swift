@@ -299,6 +299,10 @@ class GameScene: SKScene {
         return foundNodes
     }
     
+    func awardPoints(_ points: Int) {
+        score += points
+    }
+    
 }
 
 // MARK: - HealthBar

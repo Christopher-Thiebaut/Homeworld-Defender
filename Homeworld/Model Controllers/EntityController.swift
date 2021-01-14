@@ -14,6 +14,7 @@ protocol EntityControllerDelegate: AnyObject {
     var floorLevel: CGFloat { get }
     func addChild(_ sprite: SKNode)
     func convert(_ point: CGPoint, from node: SKNode) -> CGPoint
+    func awardPoints(_ points: Int)
 }
 
 class EntityController: NSObject, EntityRemovalDelegate {
@@ -96,6 +97,7 @@ class EntityController: NSObject, EntityRemovalDelegate {
         removeAgentFromAgentGroups(entity.component(ofType: HunterAgent.self))
         if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle { obstacles.remove(obstacle) }
         createExplosionIfNeeded(entity: entity)
+        awardPointsForRemoval(entity: entity)
         toRemove.insert(entity)
         entities.remove(entity)
     }
@@ -114,6 +116,12 @@ class EntityController: NSObject, EntityRemovalDelegate {
         )
         explosion.component(ofType: SpriteComponent.self)?.node.position = location
         add(explosion)
+    }
+    
+    func awardPointsForRemoval(entity: GKEntity) {
+        let basePoints = entity.component(ofType: PointsOnDeathComponent.self)?.playerPointsOnDeath ?? 0
+        let pointsForDifficulty = Int(floor(difficultyLevel.getScoreMultiplier() * Double(basePoints)))
+        scene?.awardPoints(pointsForDifficulty)
     }
     
     func update(_ deltaTime: TimeInterval) {

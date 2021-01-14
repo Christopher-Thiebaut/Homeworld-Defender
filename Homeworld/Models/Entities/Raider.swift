@@ -59,6 +59,9 @@ class Raider: GKEntity {
         
         let explosionConfig = ExplosionConfig(scale: 0.5, damage: 100, duration: 0.2)
         addComponent(ExplodeOnDeath(config: explosionConfig))
+        
+        let pointsOnDeath = PointsOnDeathComponent(playerPointsOnDeath: 5)
+        addComponent(pointsOnDeath)
     }
     
     required init?(coder aDecoder: NSCoder) {

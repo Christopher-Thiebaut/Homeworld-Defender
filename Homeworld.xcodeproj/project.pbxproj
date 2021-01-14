@@ -25,6 +25,7 @@
 		B31E6927253100100022F9FE /* TreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E6926253100100022F9FE /* TreeTests.swift */; };
 		B332C04A25B06827001E7451 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C04925B06827001E7451 /* PowerUp.swift */; };
 		B332C04E25B06C8B001E7451 /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C04D25B06C8B001E7451 /* CGRect+Extension.swift */; };
+		B332C05225B0724A001E7451 /* PointsOnDeathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C05125B0724A001E7451 /* PointsOnDeathComponent.swift */; };
 		B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3338B922049F21800589E7C /* RetreatBehavior.swift */; };
 		B352B075205B30560058E0B8 /* ResourceNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352B074205B30560058E0B8 /* ResourceNames.swift */; };
 		B3553FD0206406DF00125D4D /* red_jet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3553FCF206406DE00125D4D /* red_jet.atlas */; };
@@ -114,6 +115,7 @@
 		B31E6926253100100022F9FE /* TreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTests.swift; sourceTree = "<group>"; };
 		B332C04925B06827001E7451 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		B332C04D25B06C8B001E7451 /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
+		B332C05125B0724A001E7451 /* PointsOnDeathComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsOnDeathComponent.swift; sourceTree = "<group>"; };
 		B3338B922049F21800589E7C /* RetreatBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetreatBehavior.swift; sourceTree = "<group>"; };
 		B352B074205B30560058E0B8 /* ResourceNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceNames.swift; sourceTree = "<group>"; };
 		B3553FCF206406DE00125D4D /* red_jet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = red_jet.atlas; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				B3C87A6D25A0DB9600E87598 /* Tombstone.swift */,
 				B3EDFFCA25A4874D005DE879 /* ExplodeOnDeath.swift */,
 				B3EDFFD925A49911005DE879 /* FireProjectileComponent.swift */,
+				B332C05125B0724A001E7451 /* PointsOnDeathComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */,
 				B306E2EC2045D01A00F0E0D9 /* ButtonNode.swift in Sources */,
 				B3A4457F20616C32001587BB /* PassiveObstacleComponent.swift in Sources */,
+				B332C05225B0724A001E7451 /* PointsOnDeathComponent.swift in Sources */,
 				B3553FDA20646E2200125D4D /* RepairFactory.swift in Sources */,
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
