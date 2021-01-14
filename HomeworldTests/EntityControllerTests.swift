@@ -140,7 +140,7 @@ class EntityControllerTests: XCTestCase {
     
     func getBuildingEntity() -> TestEntity {
         let node = SKSpriteNode()
-        let entity = Building(spriteNode: node, health: 1, entityController: subject)
+        let entity = Building(spriteNode: node, health: 1)
         return TestEntity(node: node, agent: entity.component(ofType: PassiveAgent.self)!, entity: entity)
     }
     
@@ -191,7 +191,7 @@ class EntityControllerTests: XCTestCase {
     }
     
     func testRemovingHumanFighterSetsPlayerAgentToNil() {
-        let fighter = HumanFighter(entityController: subject, propulsionControl: FakePropulsion(), rotationControl: FakeRotation())
+        let fighter = HumanFighter(propulsionControl: FakePropulsion(), rotationControl: FakeRotation())
         subject.add(fighter)
         XCTAssertNotNil(subject.playerAgent)
         subject.remove(fighter)
