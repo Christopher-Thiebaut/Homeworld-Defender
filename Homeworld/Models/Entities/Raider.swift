@@ -19,8 +19,9 @@ class Raider: GKEntity {
         appearance: SKTexture,
         findTargets: @escaping () -> [GKAgent2D],
         findObstacles: @escaping () -> [GKObstacle],
+        findEnemy: @escaping () -> GKAgent2D?,
         unlessDistanceAway distance: Float,
-        entityController: EntityController,
+        difficulty: Difficulty,
         gameScene: GameScene
     ){
         
@@ -40,12 +41,12 @@ class Raider: GKEntity {
         addComponent(contactDamgeComponent)
         
         //Give the raider an agent to control its behavior
-        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: findObstacles, findEnemy: {return entityController.playerAgent},distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: Float(max(spriteComponent.node.size.width, spriteComponent.node.size.height)), difficulty: entityController.difficultyLevel)
+        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: findObstacles, findEnemy: findEnemy,distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: Float(max(spriteComponent.node.size.width, spriteComponent.node.size.height)), difficulty: difficulty)
         addComponent(raiderAgent)
         
         //Set up the raider's gun
-        let projectileSpeed = entityController.difficultyLevel.getEnemyProjectileSpeed()
-        let reloadTime = entityController.difficultyLevel.getEnemyReloadTime()
+        let projectileSpeed = difficulty.getEnemyProjectileSpeed()
+        let reloadTime = difficulty.getEnemyReloadTime()
 
         let weapon = FireProjectileComponent(speed: projectileSpeed, reloadTime: reloadTime, projectileType: .energyPulse, projectileCategory: .alienProjectile)
         addComponent(weapon)

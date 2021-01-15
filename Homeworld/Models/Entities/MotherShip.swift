@@ -122,8 +122,9 @@ class MotherShip: GKEntity {
                 appearance: raiderTexture,
                 findTargets: findTargets,
                 findObstacles: findObstacles,
+                findEnemy: { [weak self] in self?.entityController.playerAgent },
                 unlessDistanceAway: 250,
-                entityController: entityController,
+                difficulty: entityController.difficultyLevel,
                 gameScene: gameScene
             )
         }else{
@@ -131,8 +132,9 @@ class MotherShip: GKEntity {
                 appearance: hunterTexture,
                 findTargets: getPlayer,
                 findObstacles: findObstacles,
+                findEnemy: { [weak self] in self?.entityController.playerAgent },
                 unlessDistanceAway: 100,
-                entityController: entityController,
+                difficulty: entityController.difficultyLevel,
                 gameScene: gameScene
             )
         }
