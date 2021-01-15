@@ -17,14 +17,14 @@ class HunterAgent: GKAgent2D, GKAgentDelegate {
     let doNotRunIntoStuff: GKBehavior
     let compositeBehavior: GKCompositeBehavior
     let target: GKAgent2D
-    private let entityController: EntityController
+    private let difficulty: Difficulty
     
-    init(target: GKAgent2D, obstacles: [GKObstacle], maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
+    init(target: GKAgent2D, obstacles: [GKObstacle], maxSpeed: Float, maxAcceleration: Float, radius: Float, difficulty: Difficulty){
         chase = ChaseBehavior(targetSpeed: maxSpeed, seek: target)
         //retreat = RetreatBehavior(targetSpeed: maxSpeed, avoid: target)
         doNotRunIntoStuff = CollisionAvoidanceBehavior(collisionRisks: obstacles)
         compositeBehavior = GKCompositeBehavior(behaviors: [chase, doNotRunIntoStuff], andWeights: [1,0,40])
-        self.entityController = entityController
+        self.difficulty = difficulty
         self.target = target
         super.init()
         delegate = self
@@ -63,10 +63,10 @@ class HunterAgent: GKAgent2D, GKAgentDelegate {
 //        }else{
 //            compositeBehavior.setWeight(0, for: retreat)
 //        }
-        let attackDistance = entityController.difficultyLevel.getAttackDistance()
+        let attackDistance = difficulty.getAttackDistance()
         if distanceToTarget < attackDistance {
             let fireAngle = atan2f(target.position.y - self.position.y, target.position.x - self.position.x)
-            let stormTrooperOffset = entityController.difficultyLevel.getStormTrooperOffset()
+            let stormTrooperOffset = difficulty.getStormTrooperOffset()
             entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle + stormTrooperOffset)
         }
     }

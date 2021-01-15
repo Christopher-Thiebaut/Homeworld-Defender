@@ -19,7 +19,7 @@ class Hunter: GKEntity {
         appearance: SKTexture,
         target: GKAgent2D,
         obstacles: [GKObstacle],
-        entityController: EntityController,
+        difficulty: Difficulty,
         gameScene: GameScene
     ){
         
@@ -39,12 +39,12 @@ class Hunter: GKEntity {
         addComponent(contactDamgeComponent)
         
         //Give the hunter an agent to control its behavior
-        let hunterAgent = HunterAgent(target: target, obstacles: obstacles, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: Float(max(spriteComponent.node.size.width, spriteComponent.node.size.height)), entityController: entityController)
+        let hunterAgent = HunterAgent(target: target, obstacles: obstacles, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: Float(max(spriteComponent.node.size.width, spriteComponent.node.size.height)), difficulty: difficulty)
         addComponent(hunterAgent)
         
         //Set up the hunter's gun
-        let projectileSpeed = entityController.difficultyLevel.getEnemyProjectileSpeed()
-        let reloadTime = entityController.difficultyLevel.getEnemyReloadTime()
+        let projectileSpeed = difficulty.getEnemyProjectileSpeed()
+        let reloadTime = difficulty.getEnemyReloadTime()
         
         let weapon = FireProjectileComponent(
             speed: projectileSpeed,

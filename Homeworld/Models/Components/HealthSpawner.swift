@@ -36,12 +36,6 @@ class HealthSpawner: GKComponent {
         accumulatedTime += seconds
         guard accumulatedTime > nextSpawn else { return }
         healthPack = PowerUp(effect: .heal(amount: healAmount), upwardSpeed: 50)
-//        let texture = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName).textureNamed(ResourceNames.repairToken)
-//        let sprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 50, height: 50))
-//        sprite.position = origin
-//        sprite.zPosition = GameScene.ZPositions.low - 1
-//        let healEntity = HealthPack(sprite: sprite, healAmount: 50, upwardSpeed: 50, gameScene: gameScene)
-//        entityController.add(healEntity)
         accumulatedTime = 0
         nextSpawn = getNextSpawnInterval()
     }
