@@ -156,7 +156,7 @@ class EntityControllerTests: XCTestCase {
             maxSpeed: 0,
             maxAcceleration: 0,
             radius: 0,
-            entityController: subject
+            difficulty: subject.difficultyLevel
         )
         
         let team = TeamComponent(team: .alien)

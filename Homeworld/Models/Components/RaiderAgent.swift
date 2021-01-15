@@ -17,10 +17,10 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
     private let findObstacles: () -> [GKObstacle]
     private let findEnemy: () -> GKAgent2D?
     weak var target: GKAgent2D? = nil
-    private let entityController: EntityController
+    private let difficulty: Difficulty
     
-    init(findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKObstacle], findEnemy: @escaping () -> GKAgent2D?, distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, entityController: EntityController){
-        self.entityController = entityController
+    init(findTargets: @escaping () -> [GKAgent2D], findObstacles: @escaping () -> [GKObstacle], findEnemy: @escaping () -> GKAgent2D?, distanceFromAvoid: Float, maxSpeed: Float, maxAcceleration: Float, radius: Float, difficulty: Difficulty){
+        self.difficulty = difficulty
         self.findTargets = findTargets
         let targets = findTargets()
         self.findObstacles = findObstacles
@@ -88,7 +88,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         if let dangerousEnemy = enemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
             behavior = GKCompositeBehavior(behaviors: [RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy), CollisionAvoidanceBehavior(collisionRisks: obstacles)], andWeights: [1, 400]) //RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
 
-            let stormTrooperOffset = entityController.difficultyLevel.getStormTrooperOffset()//Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
+            let stormTrooperOffset = difficulty.getStormTrooperOffset()//Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
             let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)
             entity?.component(ofType: FireProjectileComponent.self)?.fire(angle: fireAngle + stormTrooperOffset)
             
@@ -99,7 +99,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
             NSLog("Raider will not attack because target can't be found.")
             return
         }
-        let attackDistance = entityController.difficultyLevel.getAttackDistance()
+        let attackDistance = difficulty.getAttackDistance()
         guard distanceTo(target: target) < attackDistance else {
             //If the raider is not very close to a target, approach the nearest one.
             behavior = ChaseBehavior(targetSpeed: maxSpeed, seek: target)

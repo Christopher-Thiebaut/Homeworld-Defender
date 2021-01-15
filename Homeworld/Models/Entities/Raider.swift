@@ -40,7 +40,7 @@ class Raider: GKEntity {
         addComponent(contactDamgeComponent)
         
         //Give the raider an agent to control its behavior
-        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: findObstacles, findEnemy: {return entityController.playerAgent},distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: Float(max(spriteComponent.node.size.width, spriteComponent.node.size.height)), entityController: entityController)
+        let raiderAgent = RaiderAgent(findTargets: findTargets, findObstacles: findObstacles, findEnemy: {return entityController.playerAgent},distanceFromAvoid: distance, maxSpeed: maxSpeed, maxAcceleration: maxAcceleration, radius: Float(max(spriteComponent.node.size.width, spriteComponent.node.size.height)), difficulty: entityController.difficultyLevel)
         addComponent(raiderAgent)
         
         //Set up the raider's gun
