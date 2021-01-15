@@ -75,7 +75,6 @@ class EntityController: NSObject, EntityRemovalDelegate {
         
         updateGroupsForAgent(entity.component(ofType: PassiveAgent.self))
         updateGroupsForAgent(entity.component(ofType: RaiderAgent.self))
-        updateGroupsForAgent(entity.component(ofType: HunterAgent.self))
         
         if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle {
             obstacles.insert(obstacle)
@@ -94,7 +93,6 @@ class EntityController: NSObject, EntityRemovalDelegate {
         entity.component(ofType: RocketEffectComponent.self)?.particleEmitter?.removeFromParent()
         removeAgentFromAgentGroups(entity.component(ofType: PassiveAgent.self))
         removeAgentFromAgentGroups(entity.component(ofType: RaiderAgent.self))
-        removeAgentFromAgentGroups(entity.component(ofType: HunterAgent.self))
         if let obstacle = entity.component(ofType: PassiveObstacleComponent.self)?.obstacle { obstacles.remove(obstacle) }
         createExplosionIfNeeded(entity: entity)
         awardPointsForRemoval(entity: entity)

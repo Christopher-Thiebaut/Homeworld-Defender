@@ -18,7 +18,6 @@ extension Array where Element: GKComponentSystem<GKComponent> {
                 let propulsionSystem = GKComponentSystem(componentClass: PropulsionComponent.self)
                 let passiveAgentSystem = GKComponentSystem(componentClass: PassiveAgent.self)
                 let raiderAgentSystem = GKComponentSystem(componentClass: RaiderAgent.self)
-                let hunterAgentSystem = GKComponentSystem(componentClass: HunterAgent.self)
                 let contactDamageComponent = GKComponentSystem(componentClass: ContactHealthModifier.self)
                 let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
                 let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
@@ -27,6 +26,6 @@ extension Array where Element: GKComponentSystem<GKComponent> {
                 let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
                 let constantAnimationSystem = GKComponentSystem(componentClass: ConstantAnimationComponent.self)
                 let healthSpawningSystem = GKComponentSystem(componentClass: HealthSpawner.self)
-                return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, hunterAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
+                return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
     }
 }
