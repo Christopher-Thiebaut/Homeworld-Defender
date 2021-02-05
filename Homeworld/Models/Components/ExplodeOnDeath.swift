@@ -9,16 +9,11 @@
 import Foundation
 import GameplayKit
 
-public class ExplodeOnDeath: GKComponent {
+class ExplodeOnDeath: NonDecodableComponent {
     let config: ExplosionConfig
     
     init(config: ExplosionConfig) {
         self.config = config
         super.init()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

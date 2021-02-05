@@ -18,7 +18,7 @@ protocol EntityRemovalDelegate: AnyObject {
     func remove(_ entity: GKEntity)
 }
 
-class ContactHealthModifier: GKComponent {
+class ContactHealthModifier: NonDecodableComponent {
     
     ///Indicates that this entity should be removed after causing contact damage. Should be used for consumable projectiles like missiles and laser beams.
     var destroySelf: Bool
@@ -34,11 +34,7 @@ class ContactHealthModifier: GKComponent {
         self.doNotHarm = doNotHarm
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     func contactDetectedWith(entity: GKEntity) {
         delegate?.contactDetected(with: entity)
         

@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class FireProjectileComponent: GKComponent {
+class FireProjectileComponent: NonDecodableComponent {
     private let speed: CGFloat
     private let reloadTime: TimeInterval
     private var timeSinceLastFired: TimeInterval
@@ -30,11 +30,7 @@ class FireProjectileComponent: GKComponent {
         self.projectileType = projectileType
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         timeSinceLastFired += seconds
     }

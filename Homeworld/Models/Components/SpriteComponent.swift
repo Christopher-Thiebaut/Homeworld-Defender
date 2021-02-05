@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class SpriteComponent: GKComponent {
+class SpriteComponent: NonDecodableComponent {
     
     let node: SKSpriteNode
     
@@ -22,10 +22,7 @@ class SpriteComponent: GKComponent {
         node = spriteNode
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     ///Returns true if this SpriteComponents node is the provided node or if the provided node is in its node's child tree.
     func hasSprite(node: SKSpriteNode) -> Bool {
         return nodeHasNode(node1: self.node, node2: node)

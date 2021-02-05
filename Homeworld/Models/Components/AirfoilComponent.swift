@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class AirfoilComponent: GKComponent {
+class AirfoilComponent: NonDecodableComponent {
     
     let physicsBody: SKPhysicsBody
     let liftRatio: CGFloat
@@ -19,10 +19,6 @@ class AirfoilComponent: GKComponent {
         self.physicsBody = physicsBody
         self.liftRatio = liftRatio
         super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func update(deltaTime seconds: TimeInterval) {

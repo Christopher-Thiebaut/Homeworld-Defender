@@ -15,7 +15,7 @@ protocol PercentageBarQuantity {
     var maximumQuantity: CGFloat { get }
 }
 
-class PercentageBarComponent: GKComponent {
+class PercentageBarComponent: NonDecodableComponent {
     
     let quantityToMonitor: PercentageBarQuantity
     private let bar: SKSpriteNode
@@ -36,11 +36,7 @@ class PercentageBarComponent: GKComponent {
         
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         let barLeadingEdge = bar.position.x - bar.size.width/2

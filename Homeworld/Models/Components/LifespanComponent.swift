@@ -10,7 +10,7 @@ import Foundation
 import GameplayKit
 
 ///Entities with this component will be removed after their specified lifespan is over.  Good for things like projectiles that will be spawned a lot and should have their impact on gameplay quickly.
-class LifespanComponent: GKComponent {
+class LifespanComponent: NonDecodableComponent {
     
     let lifespan: TimeInterval
     var elapsedTime: TimeInterval = 0
@@ -19,11 +19,7 @@ class LifespanComponent: GKComponent {
         self.lifespan = lifespan
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         elapsedTime += seconds
         if elapsedTime >= lifespan {

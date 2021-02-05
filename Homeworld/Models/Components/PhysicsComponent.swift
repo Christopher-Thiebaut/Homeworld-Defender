@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class PhysicsComponent: GKComponent {
+class PhysicsComponent: NonDecodableComponent {
     
     enum BodyType {
         case rectange
@@ -48,12 +48,7 @@ class PhysicsComponent: GKComponent {
         super.init()
         setupPhysicsBody()
     }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     func setupPhysicsBody(){
         let velocity = physicsBody.velocity
         let center = CGPoint(x: 0, y: 0)

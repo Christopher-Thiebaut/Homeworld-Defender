@@ -9,16 +9,11 @@
 import Foundation
 import GameplayKit
 
-class PointsOnDeathComponent: GKComponent {
+class PointsOnDeathComponent: NonDecodableComponent {
     var playerPointsOnDeath: Int
     
     init(playerPointsOnDeath: Int) {
         self.playerPointsOnDeath = playerPointsOnDeath
         super.init()
-    }
-    
-    required init?(coder: NSCoder) {
-        playerPointsOnDeath = 0
-        super.init(coder: coder)
     }
 }

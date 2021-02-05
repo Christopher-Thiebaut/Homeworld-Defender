@@ -21,11 +21,10 @@ extension Array where Element: GKComponentSystem<GKComponent> {
                 let contactDamageComponent = GKComponentSystem(componentClass: ContactHealthModifier.self)
                 let healthSystem = GKComponentSystem(componentClass: HealthComponent.self)
                 let expirationSystem = GKComponentSystem(componentClass: LifespanComponent.self)
-                let positionLoggingComponent = GKComponentSystem(componentClass: PositionLoggingComponent.self)
                 let rocketEffectSystem = GKComponentSystem(componentClass: RocketEffectComponent.self)
                 let displayedStatusBarsSystem = GKComponentSystem(componentClass: PercentageBarComponent.self)
                 let constantAnimationSystem = GKComponentSystem(componentClass: ConstantAnimationComponent.self)
                 let healthSpawningSystem = GKComponentSystem(componentClass: HealthSpawner.self)
-                return [airfoilSystem ,positionLoggingComponent, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
+                return [airfoilSystem, firingSystem, manualRotationSystem, animatedSystem, propulsionSystem, passiveAgentSystem, healthSystem, expirationSystem, contactDamageComponent, rocketEffectSystem, raiderAgentSystem, displayedStatusBarsSystem, constantAnimationSystem, healthSpawningSystem]
     }
 }

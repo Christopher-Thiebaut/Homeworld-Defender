@@ -17,7 +17,7 @@ protocol PropulsionControl: class {
 }
 
 ///This component allows for manually applying forces to an entity's physics body (if any) in the direction the entity's SpriteNode is currently facing. This should not be used for AI players with an agent, as the agent will move that entity by other means.
-class PropulsionComponent: GKComponent {
+class PropulsionComponent: NonDecodableComponent {
     
     var spriteNode: SKSpriteNode
     var physicsBody: SKPhysicsBody
@@ -33,11 +33,7 @@ class PropulsionComponent: GKComponent {
         self.control = control
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         

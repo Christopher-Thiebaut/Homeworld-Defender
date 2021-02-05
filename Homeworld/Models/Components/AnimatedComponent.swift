@@ -10,7 +10,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-class AnimatedComponent: GKComponent {
+class AnimatedComponent: NonDecodableComponent {
     
     let spriteAtlas: SKTextureAtlas
     var frames: [SKTexture] = []
@@ -24,11 +24,7 @@ class AnimatedComponent: GKComponent {
         upperHalf = AnimatedComponent.assignRotationFrames(numberOfFrames: frames.count)
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     private static func assignRotationFrames(numberOfFrames: Int) -> [Range<CGFloat>] {
         let frameSpace = CGFloat.pi / CGFloat(numberOfFrames)
         

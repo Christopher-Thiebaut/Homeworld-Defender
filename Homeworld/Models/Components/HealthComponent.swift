@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class HealthComponent: GKComponent {
+class HealthComponent: NonDecodableComponent {
     
     var health: Int
     var fullHealth: Int
@@ -20,11 +20,7 @@ class HealthComponent: GKComponent {
         
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     func changeHealthBy(_ amount: Int){
         health += amount
         health = min(health, fullHealth)

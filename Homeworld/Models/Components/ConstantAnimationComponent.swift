@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class ConstantAnimationComponent: GKComponent {
+class ConstantAnimationComponent: NonDecodableComponent {
     
     let textures: SKTextureAtlas
     let timePerFrame: TimeInterval
@@ -27,11 +27,7 @@ class ConstantAnimationComponent: GKComponent {
         }
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     func runAnimation(loop: Bool = false) {
         let animation = SKAction.animate(with: frames, timePerFrame: timePerFrame)
         if loop {

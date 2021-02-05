@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class PassiveObstacleComponent: GKComponent {
+class PassiveObstacleComponent: NonDecodableComponent {
     
     let obstacle: GKCircleObstacle
     
@@ -18,9 +18,5 @@ class PassiveObstacleComponent: GKComponent {
         obstacle.position.x = Float(position.x)
         obstacle.position.y = Float(position.y)
         super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

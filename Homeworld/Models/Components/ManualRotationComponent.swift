@@ -14,7 +14,7 @@ protocol RotationControl: class {
     func angle() -> CGFloat
 }
 
-class ManualRotationComponent: GKComponent {
+class ManualRotationComponent: NonDecodableComponent {
     
     var spriteNode: SKSpriteNode
     
@@ -25,11 +25,7 @@ class ManualRotationComponent: GKComponent {
         self.rotationControl = rotationControl
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         

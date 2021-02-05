@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class RocketEffectComponent: GKComponent {
+class RocketEffectComponent: NonDecodableComponent {
     
     let particleEmitter: SKEmitterNode?
     let spriteNode: SKSpriteNode
@@ -20,10 +20,6 @@ class RocketEffectComponent: GKComponent {
         particleEmitter = SKEmitterNode(fileNamed: "RocketFire.sks")
         self.spriteNode = spriteNode
         super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func update(deltaTime seconds: TimeInterval) {

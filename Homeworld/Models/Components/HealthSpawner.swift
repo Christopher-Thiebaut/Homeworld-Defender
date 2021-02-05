@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class HealthSpawner: GKComponent {
+class HealthSpawner: NonDecodableComponent {
     
     let baseFrequency: TimeInterval
     let variability: TimeInterval
@@ -26,11 +26,7 @@ class HealthSpawner: GKComponent {
         super.init()
         nextSpawn = getNextSpawnInterval()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         accumulatedTime += seconds
