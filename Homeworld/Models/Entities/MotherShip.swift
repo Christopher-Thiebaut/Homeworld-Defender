@@ -9,6 +9,14 @@
 import SpriteKit
 import GameplayKit
 
+//Needs serious rework.
+//Possibly refactor down to issue semantic "aliens" that need to be placed as entities by the EntityController...but that doesn't eliminate the connection because this thing needs
+//to know whether the aliens it created are still around
+
+//Possibly also refactor to more of a protocol that moves toward levels as data where we'd essentially
+//have a script for different levels with entities coming from various points
+
+//Also, probably should not communicate directly with GameScene
 class MotherShip: GKEntity {
     
     let entityController: EntityController
@@ -124,8 +132,7 @@ class MotherShip: GKEntity {
                 findObstacles: findObstacles,
                 findEnemy: { [weak self] in self?.entityController.playerAgent },
                 unlessDistanceAway: 250,
-                difficulty: entityController.difficultyLevel,
-                gameScene: gameScene
+                difficulty: entityController.difficultyLevel
             )
         }else{
             alien = Raider(
@@ -134,8 +141,7 @@ class MotherShip: GKEntity {
                 findObstacles: findObstacles,
                 findEnemy: { [weak self] in self?.entityController.playerAgent },
                 unlessDistanceAway: 100,
-                difficulty: entityController.difficultyLevel,
-                gameScene: gameScene
+                difficulty: entityController.difficultyLevel
             )
         }
         let doorWidth: CGFloat = 200

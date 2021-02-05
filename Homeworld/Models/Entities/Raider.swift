@@ -21,8 +21,7 @@ class Raider: GKEntity {
         findObstacles: @escaping () -> [GKObstacle],
         findEnemy: @escaping () -> GKAgent2D?,
         unlessDistanceAway distance: Float,
-        difficulty: Difficulty,
-        gameScene: GameScene
+        difficulty: Difficulty
     ){
         
         super.init()
