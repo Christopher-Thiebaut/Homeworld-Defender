@@ -14,8 +14,7 @@
 		B306E2F620461C6D00F0E0D9 /* RaiderAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */; };
 		B306E2F82046223600F0E0D9 /* Raider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B306E2F72046223600F0E0D9 /* Raider.swift */; };
 		B30B81B92049BC3800A4F7A0 /* SceneBuilderNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */; };
-		B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* Tree.swift */; };
-		B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BC2049C47800A4F7A0 /* Rock.swift */; };
+		B30B81BB2049BDBA00A4F7A0 /* EnvironmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B81BA2049BDBA00A4F7A0 /* EnvironmentObject.swift */; };
 		B3128526205C2F5F00F48AAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3128525205C2F5F00F48AAD /* User.swift */; };
 		B3150F052060618000E10875 /* explosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B3150F042060618000E10875 /* explosion.atlas */; };
 		B3150F07206061BD00E10875 /* ConstantAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */; };
@@ -102,8 +101,7 @@
 		B306E2F520461C6D00F0E0D9 /* RaiderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiderAgent.swift; sourceTree = "<group>"; };
 		B306E2F72046223600F0E0D9 /* Raider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raider.swift; sourceTree = "<group>"; };
 		B30B81B82049BC3800A4F7A0 /* SceneBuilderNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilderNodes.swift; sourceTree = "<group>"; };
-		B30B81BA2049BDBA00A4F7A0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
-		B30B81BC2049C47800A4F7A0 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
+		B30B81BA2049BDBA00A4F7A0 /* EnvironmentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentObject.swift; sourceTree = "<group>"; };
 		B3128525205C2F5F00F48AAD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B3150F042060618000E10875 /* explosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = explosion.atlas; sourceTree = "<group>"; };
 		B3150F06206061BD00E10875 /* ConstantAnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantAnimationComponent.swift; sourceTree = "<group>"; };
@@ -371,8 +369,7 @@
 				B306E2E92045C5B900F0E0D9 /* Projectile.swift */,
 				B306E2F12045F88900F0E0D9 /* Building.swift */,
 				B306E2F72046223600F0E0D9 /* Raider.swift */,
-				B30B81BA2049BDBA00A4F7A0 /* Tree.swift */,
-				B30B81BC2049C47800A4F7A0 /* Rock.swift */,
+				B30B81BA2049BDBA00A4F7A0 /* EnvironmentObject.swift */,
 				B395E447205841240091C7A3 /* Ground.swift */,
 				B36EE3C420599A79003DBD40 /* MotherShip.swift */,
 				B3D75932205C82D20006F2C6 /* DisplayedPercentageBar.swift */,
@@ -570,7 +567,6 @@
 				B3D75935205C8C570006F2C6 /* PercentageBarComponent.swift in Sources */,
 				B361E2CE20423E7100B2AF27 /* GameViewController.swift in Sources */,
 				B3A4457D20616230001587BB /* CollisionAvoidanceBehavior.swift in Sources */,
-				B30B81BD2049C47800A4F7A0 /* Rock.swift in Sources */,
 				B3CD463020446A410016B396 /* PhysicsComponent.swift in Sources */,
 				B3338B932049F21900589E7C /* RetreatBehavior.swift in Sources */,
 				B3D75933205C82D20006F2C6 /* DisplayedPercentageBar.swift in Sources */,
@@ -599,7 +595,7 @@
 				B306E2EA2045C5B900F0E0D9 /* Projectile.swift in Sources */,
 				B3CD46372044729A0016B396 /* EntityController.swift in Sources */,
 				B31E69142528AEC70022F9FE /* Array+Safety.swift in Sources */,
-				B30B81BB2049BDBA00A4F7A0 /* Tree.swift in Sources */,
+				B30B81BB2049BDBA00A4F7A0 /* EnvironmentObject.swift in Sources */,
 				B3CD46462044C5900016B396 /* ContactHealthModifier.swift in Sources */,
 				B3CD464A2044D34F0016B396 /* ChaseBehavior.swift in Sources */,
 				B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */,

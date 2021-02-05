@@ -10,9 +10,8 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class Tree: GKEntity {
-    
-    init(spriteNode: SKSpriteNode){
+class EnvironmentObject: GKEntity {
+    init(spriteNode: SKSpriteNode, contactDamage: Int, health: Int) {
         super.init()
         
         let spriteComponent = SpriteComponent(spriteNode: spriteNode)
@@ -21,10 +20,10 @@ class Tree: GKEntity {
         let teamComponent = TeamComponent(team: .environment)
         addComponent(teamComponent)
         
-        let contactDamageComponent = ContactHealthModifier(changeHealthBy: -30, destroySelf: false, doNotHarm: [TeamComponent.Team.environment])
+        let contactDamageComponent = ContactHealthModifier(changeHealthBy: contactDamage, destroySelf: false, doNotHarm: [TeamComponent.Team.environment])
         addComponent(contactDamageComponent)
         
-        let healthComponent = HealthComponent(health: 60)
+        let healthComponent = HealthComponent(health: health)
         addComponent(healthComponent)
         
         let obstacleComponent = PassiveObstacleComponent(radius: spriteNode.size.height, position: spriteNode.position)
@@ -33,11 +32,22 @@ class Tree: GKEntity {
         let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .environment)
         addComponent(physicsComponent)
         physicsComponent.physicsBody.isDynamic = false
-        
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+class Tree: EnvironmentObject {
+    init(spriteNode: SKSpriteNode) {
+        super.init(spriteNode: spriteNode, contactDamage: -30, health: 60)
+    }
+}
+
+class Rock: EnvironmentObject {
+    init(spriteNode: SKSpriteNode) {
+        super.init(spriteNode: spriteNode, contactDamage: -100, health: 600)
+    }
 }
