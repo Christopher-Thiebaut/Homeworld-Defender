@@ -40,9 +40,4 @@ class ButtonNode: SKNode {
         super.touchesBegan(touches, with: event)
         buttonAction()
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        removeAllActions()
-    }
-    
 }

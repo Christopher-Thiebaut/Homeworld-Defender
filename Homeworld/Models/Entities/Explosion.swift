@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class Explosion: GKEntity {
+class Explosion: NonDecodableEntity {
     
     init(scale: CGFloat, damage: Int, duration: TimeInterval){
         
@@ -35,9 +35,5 @@ class Explosion: GKEntity {
         if UserData.currentUser.wantsSoundEffects {
             spriteComponent.node.run(SKAction.playSoundFileNamed(ResourceNames.Sounds.smallExplosion, waitForCompletion: false))
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

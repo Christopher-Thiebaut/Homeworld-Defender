@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class Building: GKEntity {
+class Building: NonDecodableEntity {
     
     let health: Int
     
@@ -43,9 +43,5 @@ class Building: GKEntity {
         
         let explosionConfig = ExplosionConfig(scale: 2, damage: 100, duration: 0.2)
         addComponent(ExplodeOnDeath(config: explosionConfig))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -17,7 +17,7 @@ import GameplayKit
 //have a script for different levels with entities coming from various points
 
 //Also, probably should not communicate directly with GameScene
-class MotherShip: GKEntity {
+class MotherShip: NonDecodableEntity {
     
     let entityController: EntityController
     let textureAtlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
@@ -65,11 +65,7 @@ class MotherShip: GKEntity {
             }]))) 
         
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     private var timeSinceAlien: TimeInterval = 100
     private var alienInterval: TimeInterval = 2
     private var totalAliens = 100

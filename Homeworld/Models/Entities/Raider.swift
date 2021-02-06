@@ -13,7 +13,7 @@ import GameplayKit
 let maxSpeed: Float = 100
 let maxAcceleration: Float = 40000
 
-class Raider: GKEntity {
+class Raider: NonDecodableEntity {
     
     init(
         appearance: SKTexture,
@@ -63,9 +63,4 @@ class Raider: GKEntity {
         let pointsOnDeath = PointsOnDeathComponent(playerPointsOnDeath: 5)
         addComponent(pointsOnDeath)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

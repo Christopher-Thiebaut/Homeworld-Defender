@@ -14,18 +14,9 @@ class RepairFactory: Building {
     init(spriteNode: SKSpriteNode, health: Int, baseRepairFrequency: TimeInterval, variation: TimeInterval, restoreHealth: Int){
         
         super.init(spriteNode: spriteNode, health: health)
-        
-        //midX and midY are used because we don't know what the anchorpoint of the spritenode is.
         let repairSpawner = HealthSpawner(baseFrequency: baseRepairFrequency, variability: variation, healAmount: restoreHealth)
         addComponent(repairSpawner)
 
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
 }
 

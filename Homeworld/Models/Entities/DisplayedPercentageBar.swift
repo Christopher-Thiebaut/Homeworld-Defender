@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class DisplayedPercentageBar: GKEntity {
+class DisplayedPercentageBar: NonDecodableEntity {
     
     let quantity: PercentageBarQuantity
     
@@ -25,9 +25,4 @@ class DisplayedPercentageBar: GKEntity {
         let spriteComponent = SpriteComponent(spriteNode: percentageBarComponent.sprite)
         addComponent(spriteComponent)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
 }

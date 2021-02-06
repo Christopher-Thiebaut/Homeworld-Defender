@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class HealthPack: GKEntity {
+class HealthPack: NonDecodableEntity {
     
     init(sprite: SKSpriteNode, healAmount: Int, upwardSpeed: CGFloat) {
         super.init()
@@ -31,9 +31,4 @@ class HealthPack: GKEntity {
         let lifeSpanComponent = LifespanComponent(lifespan: 15)
         addComponent(lifeSpanComponent)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class EnvironmentObject: GKEntity {
+class EnvironmentObject: NonDecodableEntity {
     init(spriteNode: SKSpriteNode, contactDamage: Int, health: Int) {
         super.init()
         
@@ -32,11 +32,6 @@ class EnvironmentObject: GKEntity {
         let physicsComponent = PhysicsComponent(spriteNode: spriteNode, bodyType: .rectange, mass: 0, affectedByGravity: false, collisionCategory: .environment)
         addComponent(physicsComponent)
         physicsComponent.physicsBody.isDynamic = false
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

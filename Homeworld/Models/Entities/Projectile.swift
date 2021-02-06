@@ -10,7 +10,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-class Projectile: GKEntity {
+class Projectile: NonDecodableEntity {
     
     let lifespan: TimeInterval = 0.75
     
@@ -45,9 +45,4 @@ class Projectile: GKEntity {
         
         spriteComponent.node.zPosition = GameScene.ZPositions.default
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

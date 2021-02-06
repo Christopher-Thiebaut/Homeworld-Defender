@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class Ground: GKEntity {
+class Ground: NonDecodableEntity {
     
     init(spriteNode: SKSpriteNode){
         
@@ -29,9 +29,4 @@ class Ground: GKEntity {
         let groundAgent = PassiveAgent(spriteNode: spriteNode)
         addComponent(groundAgent)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

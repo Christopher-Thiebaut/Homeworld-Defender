@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class HumanFighter: GKEntity {
+class HumanFighter: NonDecodableEntity {
     
     let mass: CGFloat = 1000
     
@@ -78,9 +78,4 @@ class HumanFighter: GKEntity {
         let explosionConfig = ExplosionConfig(scale: 2, damage: 100, duration: 0.2)
         addComponent(ExplodeOnDeath(config: explosionConfig))
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
