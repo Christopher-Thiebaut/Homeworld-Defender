@@ -13,10 +13,10 @@ import GameplayKit
 
 class EntityControllerTests: XCTestCase {
     
-    var subject: EntityController!
+    var subject: EntityControllerImp!
 
     override func setUpWithError() throws {
-        subject = EntityController(difficulty: .easy)
+        subject = EntityControllerImp(difficulty: .easy)
     }
 
     func testAddBuilding() throws {
@@ -33,7 +33,7 @@ class EntityControllerTests: XCTestCase {
         subject.add(e2)
         subject.remove(e2)
         let scene = FakeEntityControllerDelegate()
-        subject.scene = scene
+        subject.delegate = scene
         XCTAssert(subject.entities.isEmpty)
         XCTAssert(subject.toRemove.isEmpty)
     }
@@ -74,7 +74,7 @@ class EntityControllerTests: XCTestCase {
     
     func testUpdateJumpsUpThingsBelowFloor() {
         let delegate = FakeEntityControllerDelegate()
-        subject.scene = delegate
+        subject.delegate = delegate
         delegate.outputPoint = CGPoint(x: 0, y: -100)
         let alien = getAlienEntity()
         let originalPosition = alien.node.position
@@ -171,7 +171,7 @@ class EntityControllerTests: XCTestCase {
     
     func testUpdateIsCalledOnComponentSystems() {
         let componentSystem = SpyComponentSystem(componentClass: HealthComponent.self)
-        subject = EntityController(difficulty: .easy, componentSystems: [componentSystem])
+        subject = EntityControllerImp(difficulty: .easy, componentSystems: [componentSystem])
         let entity = getBuildingEntity()
         subject.add(entity.entity)
         subject.update(1)
@@ -182,7 +182,7 @@ class EntityControllerTests: XCTestCase {
     
     func testComponentsAreRemovedForRemovedEnitities() {
         let componentSystem = SpyComponentSystem(componentClass: HealthComponent.self)
-        subject = EntityController(difficulty: .easy, componentSystems: [componentSystem])
+        subject = EntityControllerImp(difficulty: .easy, componentSystems: [componentSystem])
         let entity = getBuildingEntity()
         subject.add(entity.entity)
         subject.remove(entity.entity)
@@ -235,7 +235,7 @@ class EntityControllerTests: XCTestCase {
     
     func testAwardsPointsWhenRemovingMarkedEntities() {
         let scene = FakeEntityControllerDelegate()
-        subject.scene = scene
+        subject.delegate = scene
         
         let target = getBuildingEntity()
         target.entity.addComponent(PointsOnDeathComponent(playerPointsOnDeath: 10))

@@ -17,11 +17,22 @@ protocol EntityControllerDelegate: AnyObject {
     func awardPoints(_ points: Int)
 }
 
-class EntityController: NSObject, EntityRemovalDelegate {
+protocol EntityController: SKPhysicsContactDelegate {
+    var obstacles: Set<GKCircleObstacle> { get }
+    var difficultyLevel: Difficulty { get }
+    var playerAgent: GKAgent2D? { get }
+    var delegate: EntityControllerDelegate? { get set }
+    func getAlienEntities() -> Set<GKAgent2D>
+    func getCivilianTargetAgents() -> Set<GKAgent2D>
+    func add(_ entity: GKEntity)
+    func update(_ deltaTime: TimeInterval)
+}
+
+class EntityControllerImp: NSObject, EntityRemovalDelegate, EntityController {
     
     var entities = Set<GKEntity>()
     var toRemove = Set<GKEntity>()
-    weak var scene: EntityControllerDelegate? {
+    weak var delegate: EntityControllerDelegate? {
         didSet {
             entities = Set<GKEntity>()
             toRemove = Set<GKEntity>()
@@ -82,7 +93,7 @@ class EntityController: NSObject, EntityRemovalDelegate {
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             if spriteNode.parent == nil {
-                scene?.addChild(spriteNode)
+                delegate?.addChild(spriteNode)
             }
         }
     }
@@ -119,7 +130,7 @@ class EntityController: NSObject, EntityRemovalDelegate {
     func awardPointsForRemoval(entity: GKEntity) {
         let basePoints = entity.component(ofType: PointsOnDeathComponent.self)?.playerPointsOnDeath ?? 0
         let pointsForDifficulty = Int(floor(difficultyLevel.getScoreMultiplier() * Double(basePoints)))
-        scene?.awardPoints(pointsForDifficulty)
+        delegate?.awardPoints(pointsForDifficulty)
     }
     
     func update(_ deltaTime: TimeInterval) {
@@ -129,7 +140,7 @@ class EntityController: NSObject, EntityRemovalDelegate {
         
         var killed = [GKEntity]()
         for entity in entities {
-            if let node = entity.component(ofType: SpriteComponent.self)?.node, let parent = node.parent, let position = scene?.convert(node.position, from: parent), let floorLevel = scene?.floorLevel, position.y < floorLevel {
+            if let node = entity.component(ofType: SpriteComponent.self)?.node, let parent = node.parent, let position = delegate?.convert(node.position, from: parent), let floorLevel = delegate?.floorLevel, position.y < floorLevel {
                 node.position.y += 2000
             }
             
@@ -228,7 +239,7 @@ protocol PhysicsContact {
 
 extension SKPhysicsContact: PhysicsContact {}
 
-extension EntityController: SKPhysicsContactDelegate {
+extension EntityControllerImp: SKPhysicsContactDelegate {
     
     func began(_ contact: PhysicsContact) {
         guard let sprite1 = contact.bodyA.node as? SKSpriteNode else { return }
