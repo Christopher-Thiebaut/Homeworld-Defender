@@ -9,12 +9,20 @@
 import Foundation
 import SpriteKit
 
-class TreeNode: SKSpriteNode {}
+class TreeNode: SKSpriteNode, SceneEditorNode {
+    var nodeType: SceneEditorNodeType = .tree
+}
 
-class RockNode: SKSpriteNode {}
+class RockNode: SKSpriteNode, SceneEditorNode {
+    var nodeType: SceneEditorNodeType = .rock
+}
 
-class SmallBuildingNode: SKSpriteNode {}
+class SmallBuildingNode: SKSpriteNode, SceneEditorNode {
+    var nodeType: SceneEditorNodeType = .smallBuilding
+}
 
-class BigBuildingNode: SKSpriteNode {}
+class BigBuildingNode: SKSpriteNode, SceneEditorNode {
+    var nodeType: SceneEditorNodeType = .largeBuilding
+}
 
 class RepairFactoryNode: SKSpriteNode {}

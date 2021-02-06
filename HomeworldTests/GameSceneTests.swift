@@ -58,7 +58,9 @@ class MockEntityController: NSObject, EntityController {
         []
     }
     
+    var addedEntities = [GKEntity]()
     func add(_ entity: GKEntity) {
+        addedEntities.append(entity)
     }
     
     func update(_ deltaTime: TimeInterval) {

@@ -54,6 +54,8 @@
 		B3A90DE825CD6BA2009231DA /* NonDecodableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DE725CD6BA2009231DA /* NonDecodableComponent.swift */; };
 		B3A90DEE25CEBA1B009231DA /* NonDecodableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DED25CEBA1B009231DA /* NonDecodableEntity.swift */; };
 		B3A90DF225CEBD8A009231DA /* GameSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */; };
+		B3A90DFF25CEF033009231DA /* LevelNodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DFE25CEF033009231DA /* LevelNodeParser.swift */; };
+		B3A90E0325CEF0DE009231DA /* LevelNodeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90E0225CEF0DE009231DA /* LevelNodeParserTests.swift */; };
 		B3AABB382062D5EF0093869F /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AABB372062D5EF0093869F /* Sounds.swift */; };
 		B3AC52282062FA9C009E76BD /* HealthPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AC52272062FA9C009E76BD /* HealthPack.swift */; };
 		B3AC522C206305D0009E76BD /* small_explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = B3AC522B206305D0009E76BD /* small_explosion.caf */; };
@@ -145,6 +147,8 @@
 		B3A90DE725CD6BA2009231DA /* NonDecodableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonDecodableComponent.swift; sourceTree = "<group>"; };
 		B3A90DED25CEBA1B009231DA /* NonDecodableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonDecodableEntity.swift; sourceTree = "<group>"; };
 		B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneTests.swift; sourceTree = "<group>"; };
+		B3A90DFE25CEF033009231DA /* LevelNodeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNodeParser.swift; sourceTree = "<group>"; };
+		B3A90E0225CEF0DE009231DA /* LevelNodeParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNodeParserTests.swift; sourceTree = "<group>"; };
 		B3AABB372062D5EF0093869F /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		B3AC52272062FA9C009E76BD /* HealthPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPack.swift; sourceTree = "<group>"; };
 		B3AC522B206305D0009E76BD /* small_explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = small_explosion.caf; sourceTree = "<group>"; };
@@ -232,7 +236,7 @@
 		B35BEBCC2048C8240039CF1E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				B361E2CB20423E7100B2AF27 /* GameScene.swift */,
+				B3A90DFD25CEF014009231DA /* GameScene */,
 				B35BEBCF2048E5530039CF1E /* LevelOne.sks */,
 				B36EE3C2205971CC003DBD40 /* MainMenuScene.swift */,
 				B3AC522D2063065E009E76BD /* SettingsScene.swift */,
@@ -273,6 +277,15 @@
 			path = Homeworld;
 			sourceTree = "<group>";
 		};
+		B3A90DFD25CEF014009231DA /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				B361E2CB20423E7100B2AF27 /* GameScene.swift */,
+				B3A90DFE25CEF033009231DA /* LevelNodeParser.swift */,
+			);
+			path = GameScene;
+			sourceTree = "<group>";
+		};
 		B3AABB322062CC450093869F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +303,7 @@
 				B3BC37092522038F00E5DBFA /* Info.plist */,
 				B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */,
 				B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */,
+				B3A90E0225CEF0DE009231DA /* LevelNodeParserTests.swift */,
 			);
 			path = HomeworldTests;
 			sourceTree = "<group>";
@@ -582,6 +596,7 @@
 				B3AC52282062FA9C009E76BD /* HealthPack.swift in Sources */,
 				B3CD46442044C3930016B396 /* HealthComponent.swift in Sources */,
 				B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */,
+				B3A90DFF25CEF033009231DA /* LevelNodeParser.swift in Sources */,
 				B3790CB42061B9FE00EF2174 /* DifficultyLevel.swift in Sources */,
 				B3CD462D204468310016B396 /* SpriteComponent.swift in Sources */,
 				B3CD46482044CC440016B396 /* PassiveAgent.swift in Sources */,
@@ -624,6 +639,7 @@
 				B3BC3714252203D200E5DBFA /* EntityControllerTests.swift in Sources */,
 				B3CDC06C2538D21000D0B6B8 /* HealthComponentTests.swift in Sources */,
 				B3A90DF225CEBD8A009231DA /* GameSceneTests.swift in Sources */,
+				B3A90E0325CEF0DE009231DA /* LevelNodeParserTests.swift in Sources */,
 				B3C87A7225A0DDC400E87598 /* LifespanComponentTests.swift in Sources */,
 				B3A90DE425CD6A69009231DA /* AirfoilComponentTests.swift in Sources */,
 				B3C87A7625A0E81700E87598 /* ConstantAnimationComponentTests.swift in Sources */,
