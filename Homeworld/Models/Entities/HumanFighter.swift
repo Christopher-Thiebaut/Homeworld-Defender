@@ -12,9 +12,9 @@ import GameplayKit
 
 class HumanFighter: NonDecodableEntity {
     
-    let mass: CGFloat = 1000
+    private let mass: CGFloat = 1000
     
-    let image = SKTextureAtlas(named: "red_jet").textureNamed("1")
+    private let image = SKTextureAtlas(named: "red_jet").textureNamed("1")
     
     required init(propulsionControl: PropulsionControl, rotationControl: RotationControl){
         super.init()

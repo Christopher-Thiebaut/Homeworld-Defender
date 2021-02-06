@@ -72,10 +72,16 @@ class GameScene: SKScene {
     
     //MARK: - Initialization
     
-    init<T: HumanFighter>(fileNamed: String? = nil, visibleSize: CGSize, gamePlayAreaSize: CGSize, player: T.Type){
+    init<T: HumanFighter>(
+        fileNamed: String? = nil,
+        visibleSize: CGSize,
+        gamePlayAreaSize: CGSize,
+        entityController: EntityController,
+        player: T.Type
+    ){
         playerType = player
         gamePlayArea = gamePlayAreaSize
-        entityController = EntityControllerImp(difficulty: UserData.currentUser.preferredDifficulty)
+        self.entityController = entityController
         super.init(size: visibleSize)
         if let fileName = fileNamed {
             sceneEditorNode = SKNode(fileNamed: fileName)
@@ -120,7 +126,7 @@ class GameScene: SKScene {
         //Assign the fire button to the player's fire function.
         let buttonTexture = textureAtlas.textureNamed(ResourceNames.redButtonName)
         let fireButton = ButtonNode(texture: buttonTexture, size: joyStickSize) {
-            if let fireComponent = player.component(ofType: FireProjectileComponent.self){
+            if let fireComponent = player.component(ofType: FireProjectileComponent.self) {
                 fireComponent.fire()
             }
         }
@@ -276,12 +282,18 @@ class GameScene: SKScene {
             return
         }
         if playerSprite.position.x > lastPlayerPositionX {
-            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x - gamePlayArea.width/2 - 500, max: playerSprite.position.x - gamePlayArea.width/2 - 30)
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(
+                min: playerSprite.position.x - gamePlayArea.width/2 - 500,
+                max: playerSprite.position.x - gamePlayArea.width/2 - 30
+            )
             for node in nodesToUpdate {
                 node.position.x += gamePlayArea.width
             }
         }else if playerSprite.position.x < lastPlayerPositionX {
-            let nodesToUpdate = getNodesWithXcoordinatesBetween(min: playerSprite.position.x + gamePlayArea.width/2 + 30, max: playerSprite.position.x + gamePlayArea.width/2 + 500)
+            let nodesToUpdate = getNodesWithXcoordinatesBetween(
+                min: playerSprite.position.x + gamePlayArea.width/2 + 30,
+                max: playerSprite.position.x + gamePlayArea.width/2 + 500
+            )
             for node in nodesToUpdate {
                 node.position.x -= gamePlayArea.width
             }

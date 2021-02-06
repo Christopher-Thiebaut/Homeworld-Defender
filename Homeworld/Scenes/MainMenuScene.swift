@@ -56,7 +56,14 @@ class MainMenuScene: SKScene {
         }
         let aspectRatio = view.bounds.width / view.bounds.height
         let gamePlayAreaSize = CGSize(width: 2000, height: 1200)
-        let scene = GameScene(fileNamed: "LevelOne", visibleSize: CGSize(width: 640 * aspectRatio, height: 640), gamePlayAreaSize: gamePlayAreaSize, player: HumanFighter.self)
+        let difficulty = UserData.currentUser.preferredDifficulty
+        let scene = GameScene(
+            fileNamed: "LevelOne",
+            visibleSize: CGSize(width: 640 * aspectRatio, height: 640),
+            gamePlayAreaSize: gamePlayAreaSize,
+            entityController: EntityControllerImp(difficulty: difficulty),
+            player: HumanFighter.self
+        )
 //        view.showsFPS = true
         //skView.showsPhysics = true
 //        view.showsNodeCount = true
