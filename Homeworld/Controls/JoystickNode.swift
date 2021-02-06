@@ -33,10 +33,7 @@ class JoystickNode: SKSpriteNode {
         
         let ballLength = size.width / 2.2
         center = CGPoint(x: 0, y: 0)
-        //center = CGPoint(x: size.width/2 - ballLength, y: size.height/2 - ballLength)
-        
-//        let ballTexture = SKTexture(image: #imageLiteral(resourceName: "red_button"))
-//        let ballTexture = SKTexture(image: ballImage)
+
         let imagesAtlas = SKTextureAtlas(named: ResourceNames.mainSpriteAtlasName)
         let ballTexture = imagesAtlas.textureNamed(ResourceNames.redButtonName)
         let ballSize = CGSize(width: ballLength, height: ballLength)
@@ -47,14 +44,12 @@ class JoystickNode: SKSpriteNode {
         
         joystickAngle = 0
         
-        //let rodTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_rod"))
         let rodTexture = imagesAtlas.textureNamed("joystick_rod")
         let rodSize = CGSize(width: ballLength/5, height: ballLength/5)
         rod = SKSpriteNode(texture: rodTexture, color: .black, size: rodSize)
         rod.zRotation = joystickAngle
         rod.zPosition = 0.25
         
-        //let baseTexture = SKTexture(image: #imageLiteral(resourceName: "joystick_base"))
         let baseTexture = imagesAtlas.textureNamed("joystick_base")
         super.init(texture: baseTexture, color: .clear, size: size)
         
@@ -101,25 +96,21 @@ class JoystickNode: SKSpriteNode {
             rod.zRotation = joystickAngle
         }
     }
+    
+    func receivedTouch(at location: CGPoint) {
+        
+    }
 }
 
 extension JoystickNode : PropulsionControl {
     
-    var thrustMagnitude: CGFloat {
-        return 500    }
+    var thrustMagnitude: CGFloat { 500 }
     
-    func shouldApplyThrust() -> Bool {
-        return distanceOffCenter > 0
-    }
+    func shouldApplyThrust() -> Bool { distanceOffCenter > 0 }
     
-    func magnitude() -> CGFloat {
-        return distanceOffCenter * thrustMagnitude
-    }
-    
+    func magnitude() -> CGFloat { distanceOffCenter * thrustMagnitude }
 }
 
 extension JoystickNode : RotationControl {
-    func angle() -> CGFloat {
-        return joystickAngle
-    }
+    func angle() -> CGFloat { joystickAngle }
 }
