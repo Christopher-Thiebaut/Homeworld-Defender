@@ -34,7 +34,6 @@ class ManualRotationComponent: NonDecodableComponent {
             return
         }
         
-        //spriteNode.zRotation = rotationControl.angle()
         let desiredAngle = rotationControl.angle()
         if desiredAngle + 20 < spriteNode.zRotation {
             spriteNode.zRotation -= 20

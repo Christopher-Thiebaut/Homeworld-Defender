@@ -54,6 +54,7 @@
 		B3A90DE425CD6A69009231DA /* AirfoilComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DE325CD6A69009231DA /* AirfoilComponentTests.swift */; };
 		B3A90DE825CD6BA2009231DA /* NonDecodableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DE725CD6BA2009231DA /* NonDecodableComponent.swift */; };
 		B3A90DEE25CEBA1B009231DA /* NonDecodableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DED25CEBA1B009231DA /* NonDecodableEntity.swift */; };
+		B3A90DF225CEBD8A009231DA /* GameSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */; };
 		B3AABB382062D5EF0093869F /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AABB372062D5EF0093869F /* Sounds.swift */; };
 		B3AC52282062FA9C009E76BD /* HealthPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AC52272062FA9C009E76BD /* HealthPack.swift */; };
 		B3AC522C206305D0009E76BD /* small_explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = B3AC522B206305D0009E76BD /* small_explosion.caf */; };
@@ -145,6 +146,7 @@
 		B3A90DE325CD6A69009231DA /* AirfoilComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponentTests.swift; sourceTree = "<group>"; };
 		B3A90DE725CD6BA2009231DA /* NonDecodableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonDecodableComponent.swift; sourceTree = "<group>"; };
 		B3A90DED25CEBA1B009231DA /* NonDecodableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonDecodableEntity.swift; sourceTree = "<group>"; };
+		B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneTests.swift; sourceTree = "<group>"; };
 		B3AABB372062D5EF0093869F /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		B3AC52272062FA9C009E76BD /* HealthPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPack.swift; sourceTree = "<group>"; };
 		B3AC522B206305D0009E76BD /* small_explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = small_explosion.caf; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				B31E691D2530FFBA0022F9FE /* EntityTests */,
 				B3BC37092522038F00E5DBFA /* Info.plist */,
 				B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */,
+				B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */,
 			);
 			path = HomeworldTests;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 			files = (
 				B3BC3714252203D200E5DBFA /* EntityControllerTests.swift in Sources */,
 				B3CDC06C2538D21000D0B6B8 /* HealthComponentTests.swift in Sources */,
+				B3A90DF225CEBD8A009231DA /* GameSceneTests.swift in Sources */,
 				B3C87A7225A0DDC400E87598 /* LifespanComponentTests.swift in Sources */,
 				B31E6927253100100022F9FE /* TreeTests.swift in Sources */,
 				B3A90DE425CD6A69009231DA /* AirfoilComponentTests.swift in Sources */,

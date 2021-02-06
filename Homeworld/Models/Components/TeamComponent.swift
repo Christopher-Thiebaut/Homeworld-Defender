@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-class TeamComponent: GKComponent {
+class TeamComponent: NonDecodableComponent {
     
     enum Team {
         case human
@@ -23,9 +23,4 @@ class TeamComponent: GKComponent {
         self.team = team
         super.init()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
