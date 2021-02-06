@@ -56,6 +56,8 @@
 		B3A90DF225CEBD8A009231DA /* GameSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */; };
 		B3A90DFF25CEF033009231DA /* LevelNodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90DFE25CEF033009231DA /* LevelNodeParser.swift */; };
 		B3A90E0325CEF0DE009231DA /* LevelNodeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90E0225CEF0DE009231DA /* LevelNodeParserTests.swift */; };
+		B3A90E0725CF11D5009231DA /* SceneEditorNodeFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90E0625CF11D5009231DA /* SceneEditorNodeFactoryTests.swift */; };
+		B3A90E0B25CF1213009231DA /* SceneEditorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A90E0A25CF1213009231DA /* SceneEditorFactory.swift */; };
 		B3AABB382062D5EF0093869F /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AABB372062D5EF0093869F /* Sounds.swift */; };
 		B3AC52282062FA9C009E76BD /* HealthPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AC52272062FA9C009E76BD /* HealthPack.swift */; };
 		B3AC522C206305D0009E76BD /* small_explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = B3AC522B206305D0009E76BD /* small_explosion.caf */; };
@@ -149,6 +151,8 @@
 		B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneTests.swift; sourceTree = "<group>"; };
 		B3A90DFE25CEF033009231DA /* LevelNodeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNodeParser.swift; sourceTree = "<group>"; };
 		B3A90E0225CEF0DE009231DA /* LevelNodeParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNodeParserTests.swift; sourceTree = "<group>"; };
+		B3A90E0625CF11D5009231DA /* SceneEditorNodeFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneEditorNodeFactoryTests.swift; sourceTree = "<group>"; };
+		B3A90E0A25CF1213009231DA /* SceneEditorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneEditorFactory.swift; sourceTree = "<group>"; };
 		B3AABB372062D5EF0093869F /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		B3AC52272062FA9C009E76BD /* HealthPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPack.swift; sourceTree = "<group>"; };
 		B3AC522B206305D0009E76BD /* small_explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = small_explosion.caf; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 			children = (
 				B361E2CB20423E7100B2AF27 /* GameScene.swift */,
 				B3A90DFE25CEF033009231DA /* LevelNodeParser.swift */,
+				B3A90E0A25CF1213009231DA /* SceneEditorFactory.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				B3BC3713252203D200E5DBFA /* EntityControllerTests.swift */,
 				B3A90DF125CEBD8A009231DA /* GameSceneTests.swift */,
 				B3A90E0225CEF0DE009231DA /* LevelNodeParserTests.swift */,
+				B3A90E0625CF11D5009231DA /* SceneEditorNodeFactoryTests.swift */,
 			);
 			path = HomeworldTests;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 				B3C861C320570CC70053688D /* AnimatedComponent.swift in Sources */,
 				B3A90DE825CD6BA2009231DA /* NonDecodableComponent.swift in Sources */,
 				B332C04A25B06827001E7451 /* PowerUp.swift in Sources */,
+				B3A90E0B25CF1213009231DA /* SceneEditorFactory.swift in Sources */,
 				B3EDFFDA25A49911005DE879 /* FireProjectileComponent.swift in Sources */,
 				B35BEBC82048C1F90039CF1E /* TeamComponent.swift in Sources */,
 				B306E2F02045E2EA00F0E0D9 /* LifespanComponent.swift in Sources */,
@@ -643,6 +650,7 @@
 				B3C87A7225A0DDC400E87598 /* LifespanComponentTests.swift in Sources */,
 				B3A90DE425CD6A69009231DA /* AirfoilComponentTests.swift in Sources */,
 				B3C87A7625A0E81700E87598 /* ConstantAnimationComponentTests.swift in Sources */,
+				B3A90E0725CF11D5009231DA /* SceneEditorNodeFactoryTests.swift in Sources */,
 				B3CDC0662538CFDC00D0B6B8 /* ContactHealthModifierTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

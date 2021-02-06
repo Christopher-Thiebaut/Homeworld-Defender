@@ -11,7 +11,7 @@ import GameplayKit
 
 extension GameScene: EntityControllerDelegate {}
 
-class GameScene: SKScene {
+class GameScene: SKScene, FloorContainer {
     
     struct ZPositions {
         static let `default`: CGFloat = 0
@@ -70,22 +70,24 @@ class GameScene: SKScene {
     
     var sceneEditorNode: SKNode?
     
+    private var levelParser: LevelNodeParser
+    
     //MARK: - Initialization
     
     init<T: HumanFighter>(
-        fileNamed: String? = nil,
+        sceneEditorNode: SKNode?,
         visibleSize: CGSize,
         gamePlayAreaSize: CGSize,
         entityController: EntityController,
+        levelParser: LevelNodeParser,
         player: T.Type
     ){
         playerType = player
         gamePlayArea = gamePlayAreaSize
         self.entityController = entityController
+        self.levelParser = levelParser
+        self.sceneEditorNode = sceneEditorNode
         super.init(size: visibleSize)
-        if let fileName = fileNamed {
-            sceneEditorNode = SKNode(fileNamed: fileName)
-        }
         gameStates = buildGameStates()
         entityController.delegate = self
         physicsWorld.contactDelegate = entityController
@@ -194,36 +196,15 @@ class GameScene: SKScene {
         addStarBackground()
     }
     
-    private func stealChildren(){
+    private func stealChildren() {
         guard let editorNode = sceneEditorNode else {
             return
         }
-        for child in editorNode.children {
-            child.removeFromParent()
-            child.position.y += floorLevel - 10
-            child.zPosition = ZPositions.low
-            
-            if let tree = child as? TreeNode {
-                let treeEntity = Tree(spriteNode: tree) //Badum tss.
-                entityController.add(treeEntity)
-            }
-            if let rock = child as? RockNode {
-                let rockEntity = Rock(spriteNode: rock)
-                entityController.add(rockEntity)
-            }
-            if let smallBuilding = child as? SmallBuildingNode {
-                let smallBuilding = Building(spriteNode: smallBuilding, health: 100)
-                entityController.add(smallBuilding)
-            }
-            if let bigBuilding = child as? BigBuildingNode {
-                let bigBuilding = Building(spriteNode: bigBuilding, health: 200)
-                entityController.add(bigBuilding)
-            }
-            if let repairFactory = child as? RepairFactoryNode {
-                let repairFactory = RepairFactory(spriteNode: repairFactory, health: 200, baseRepairFrequency: 30, variation: 5, restoreHealth: 50)
-                entityController.add(repairFactory)
-            }
-        }
+        levelParser.parseEntities(
+            from: editorNode,
+            into: self,
+            withEntityController: entityController
+        )
         sceneEditorNode = nil
     }
     

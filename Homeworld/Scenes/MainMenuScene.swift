@@ -58,10 +58,11 @@ class MainMenuScene: SKScene {
         let gamePlayAreaSize = CGSize(width: 2000, height: 1200)
         let difficulty = UserData.currentUser.preferredDifficulty
         let scene = GameScene(
-            fileNamed: "LevelOne",
+            sceneEditorNode: SKNode(fileNamed: "LevelOne"),
             visibleSize: CGSize(width: 640 * aspectRatio, height: 640),
             gamePlayAreaSize: gamePlayAreaSize,
             entityController: EntityControllerImp(difficulty: difficulty),
+            levelParser: LevelNodeParserImp(factory: SceneEditorFactoryImp()),
             player: HumanFighter.self
         )
 //        view.showsFPS = true

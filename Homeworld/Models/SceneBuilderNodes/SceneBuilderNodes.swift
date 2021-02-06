@@ -25,4 +25,6 @@ class BigBuildingNode: SKSpriteNode, SceneEditorNode {
     var nodeType: SceneEditorNodeType = .largeBuilding
 }
 
-class RepairFactoryNode: SKSpriteNode {}
+class RepairFactoryNode: SKSpriteNode, SceneEditorNode {
+    var nodeType: SceneEditorNodeType = .repairFactory
+}

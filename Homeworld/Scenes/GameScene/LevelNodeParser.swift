@@ -10,31 +10,16 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-protocol BaseLineNode: SKNode {
+protocol FloorContainer {
     var floorLevel: CGFloat { get }
 }
 
 protocol LevelNodeParser {
     func parseEntities(
         from node: SKNode,
-        into scene: BaseLineNode,
+        into scene: FloorContainer,
         withEntityController entityController: EntityController
     )
-}
-
-enum SceneEditorNodeType {
-    case tree
-    case rock
-    case smallBuilding
-    case largeBuilding
-}
-
-protocol SceneEditorNode: SKSpriteNode {
-    var nodeType: SceneEditorNodeType { get }
-}
-
-protocol SceneEditorNodeFactory {
-    func createEntity(for node: SceneEditorNode) -> GKEntity
 }
 
 class LevelNodeParserImp: LevelNodeParser {
@@ -46,13 +31,14 @@ class LevelNodeParserImp: LevelNodeParser {
     
     func parseEntities(
         from node: SKNode,
-        into scene: BaseLineNode,
+        into scene: FloorContainer,
         withEntityController entityController: EntityController
     ) {
         for node in node.children.compactMap({ $0 as? SceneEditorNode }) {
             node.removeFromParent()
             let entity = sceneEditorNodeFactory.createEntity(for: node)
             node.position.y += scene.floorLevel - 10
+            node.zPosition = GameScene.ZPositions.low
             entityController.add(entity)
         }
     }

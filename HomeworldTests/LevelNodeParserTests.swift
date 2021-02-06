@@ -32,7 +32,7 @@ class LevelNodeParserTests: XCTestCase {
 
     func testParseEntities() throws {
         let levelNode = SKNode()
-        let nodes = [
+        let nodes: [SKSpriteNode] = [
             TreeNode(),
             BigBuildingNode(),
             SmallBuildingNode(),
@@ -58,10 +58,14 @@ class LevelNodeParserTests: XCTestCase {
             let expectedYPositionChange = sceneNode.floorLevel - 10
             XCTAssertEqual(newPosition.y, originalPosition.y + expectedYPositionChange)
         }
+        
+        nodes.forEach { node in
+            XCTAssertEqual(node.zPosition, GameScene.ZPositions.low)
+        }
     }
 }
 
-class TestBaseLineNode: SKNode, BaseLineNode {
+class TestBaseLineNode: SKNode, FloorContainer {
     var floorLevel: CGFloat = 0
 }
 

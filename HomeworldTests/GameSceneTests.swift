@@ -14,18 +14,23 @@ class GameSceneTests: XCTestCase {
     
     var subject: GameScene!
     var mockEntityController: MockEntityController!
+    var mockLevelNodeParser: MockLevelParser!
 
     override func setUpWithError() throws {
         mockEntityController = MockEntityController()
+        mockLevelNodeParser = MockLevelParser()
         subject = GameScene(
+            sceneEditorNode: SKNode(),
             visibleSize: CGSize(width: 200, height: 50),
             gamePlayAreaSize: CGSize(width: 2000, height: 500),
             entityController: mockEntityController,
+            levelParser: mockLevelNodeParser,
             player: MockFighter.self
         )
     }
 
     override func tearDownWithError() throws {
+        mockLevelNodeParser = nil
         mockEntityController = nil
         subject = nil
     }
@@ -34,6 +39,10 @@ class GameSceneTests: XCTestCase {
         let initialPoints = subject.score
         subject.awardPoints(5)
         XCTAssertEqual(initialPoints + 5, subject.score)
+    }
+    
+    func testInitializationParsesLevelNode() {
+        XCTAssertTrue(mockLevelNodeParser.parseEntitiesCalled)
     }
 }
 
@@ -64,5 +73,12 @@ class MockEntityController: NSObject, EntityController {
     }
     
     func update(_ deltaTime: TimeInterval) {
+    }
+}
+
+class MockLevelParser: LevelNodeParser {
+    var parseEntitiesCalled = false
+    func parseEntities(from node: SKNode, into scene: FloorContainer, withEntityController entityController: EntityController) {
+        parseEntitiesCalled = true
     }
 }
