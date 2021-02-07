@@ -35,13 +35,4 @@ class HealthComponentTests: XCTestCase {
         subject?.changeHealthBy(-healthAmount)
         XCTAssertNotNil(entity.component(ofType: Tombstone.self))
     }
-    //TODO: MAKE TESTABLE
-//    func testImpactOnContact() {
-//        let entity = GKEntity()
-//        let impactFeedbackComponent = ImpactFeedbackComponent(feedbackStyle: .medium)
-//        entity.addComponent(impactFeedbackComponent)
-//        entity.addComponent(subject!)
-//        subject?.changeHealthBy(-1)
-//    }
-
 }
