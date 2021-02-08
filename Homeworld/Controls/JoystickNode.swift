@@ -68,37 +68,36 @@ class JoystickNode: SKSpriteNode {
         
         for touch in touches {
             let touchLocation = touch.location(in: self)
-            
-            var dx = touchLocation.x - center.x
-            var dy = touchLocation.y - center.y
-            
-            let distance = hypot(dx, dy)
-            
-            if distance > trackingDistance {
-                dx = (dx / distance) * trackingDistance
-                dy = (dy / distance) * trackingDistance
-            }
-            
-            ball.position = CGPoint(x: center.x + dx, y: center.y + dy)
-            
-            
-            //Normalize the distance between 0 and 1
-            let normalizedDistance = min(abs(distance)/trackingDistance, 1)
-            
-            //Set the distance off center
-            distanceOffCenter = normalizedDistance
-            
-            //Set the joystickAngle
-            joystickAngle = atan2(dy - 0, dx - 0)
-            
-            rod.position = CGPoint(x: (ball.position.x + center.x)/2, y: (ball.position.y + center.y)/2)
-            rod.size.width = min(distance, hypot(ball.position.x - center.x, ball.position.y - center.y))
-            rod.zRotation = joystickAngle
+            receivedTouch(at: touchLocation)
         }
     }
     
     func receivedTouch(at location: CGPoint) {
+        var dx = location.x - center.x
+        var dy = location.y - center.y
         
+        let distance = hypot(dx, dy)
+        
+        if distance > trackingDistance {
+            dx = (dx / distance) * trackingDistance
+            dy = (dy / distance) * trackingDistance
+        }
+        
+        ball.position = CGPoint(x: center.x + dx, y: center.y + dy)
+        
+        
+        //Normalize the distance between 0 and 1
+        let normalizedDistance = min(abs(distance)/trackingDistance, 1)
+        
+        //Set the distance off center
+        distanceOffCenter = normalizedDistance
+        
+        //Set the joystickAngle
+        joystickAngle = atan2(dy - 0, dx - 0)
+        
+        rod.position = CGPoint(x: (ball.position.x + center.x)/2, y: (ball.position.y + center.y)/2)
+        rod.size.width = min(distance, hypot(ball.position.x - center.x, ball.position.y - center.y))
+        rod.zRotation = joystickAngle
     }
 }
 

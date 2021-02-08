@@ -30,6 +30,30 @@ class JoystickNodeTests: XCTestCase {
         assertInitialJoystickProperties()
     }
     
+    func testCircleMaxDisplacement() throws {
+        assertDisplacement(1, angle: 0, for: CGPoint(x: 200, y: 0))
+        assertDisplacement(1, angle: -.pi/2, for: CGPoint(x: 0, y: -200))
+        assertDisplacement(1, angle: .pi, for: CGPoint(x: -200, y: 0))
+        assertDisplacement(1, angle: .pi/2, for: CGPoint(x: 0, y: 200))
+    }
+    
+    func testCircleMediumDisplacement() throws {
+        print(subject.trackingDistance)
+        let trackingDistance = subject.trackingDistance
+        assertDisplacement(0.5, angle: 0, for: CGPoint(x: trackingDistance/2, y: 0))
+        assertDisplacement(0.5, angle: -.pi/2, for: CGPoint(x: 0, y: -trackingDistance/2))
+        assertDisplacement(0.5, angle: .pi, for: CGPoint(x: -trackingDistance/2, y: 0))
+        assertDisplacement(0.5, angle: .pi/2, for: CGPoint(x: 0, y: trackingDistance/2))
+    }
+    
+    func assertDisplacement(_ expectedDistance: CGFloat,
+                            angle expectedRadians: CGFloat,
+                            for touchLocation: CGPoint) {
+        subject.receivedTouch(at: touchLocation)
+        CGFloatAssertEqual(subject.distanceOffCenter, expectedDistance)
+        CGFloatAssertEqual(subject.joystickAngle, expectedRadians)
+    }
+    
     func assertInitialBallProperties() {
         let ball = subject.ball
         let expectedSize = CGSize(
