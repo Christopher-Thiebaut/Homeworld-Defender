@@ -33,7 +33,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         self.radius = radius
         self.mass = 0.4
         if let nearestTarget = nearestTarget(from: targets){
-            behavior = GKCompositeBehavior(behaviors: [ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget), CollisionAvoidanceBehavior(collisionRisks: findObstacles())], andWeights: [1, 400]) //ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget)
+            behavior = GKCompositeBehavior(behaviors: [ChaseBehavior(targetSpeed: maxSpeed, seek: nearestTarget), CollisionAvoidanceBehavior(collisionRisks: findObstacles())], andWeights: [1, 400])
         }
     }
     
@@ -86,7 +86,7 @@ class RaiderAgent: GKAgent2D, GKAgentDelegate {
         let enemy: GKAgent2D? = findEnemy()
         
         if let dangerousEnemy = enemy, distanceTo(target: dangerousEnemy) < desiredDistanceFromEnemies{
-            behavior = GKCompositeBehavior(behaviors: [RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy), CollisionAvoidanceBehavior(collisionRisks: obstacles)], andWeights: [1, 400]) //RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy)
+            behavior = GKCompositeBehavior(behaviors: [RetreatBehavior(targetSpeed: maxSpeed, avoid: dangerousEnemy), CollisionAvoidanceBehavior(collisionRisks: obstacles)], andWeights: [1, 400])
 
             let stormTrooperOffset = difficulty.getStormTrooperOffset()//Float(GKARC4RandomSource.sharedRandom().nextInt(upperBound: 10) - 5) * 0.05
             let fireAngle = atan2f(dangerousEnemy.position.y - self.position.y,dangerousEnemy.position.x - self.position.x)

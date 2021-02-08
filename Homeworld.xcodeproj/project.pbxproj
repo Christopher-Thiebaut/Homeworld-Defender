@@ -46,6 +46,7 @@
 		B37597582064A4B300C96F26 /* ManualRotationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37597572064A4B300C96F26 /* ManualRotationComponent.swift */; };
 		B3790CB42061B9FE00EF2174 /* DifficultyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */; };
 		B3790CB82062010400EF2174 /* ImpactFeedbackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */; };
+		B379923025D0D57500B94506 /* DisplayedPercentageBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B379922F25D0D57500B94506 /* DisplayedPercentageBarTests.swift */; };
 		B394483A20535F3100A48BF0 /* AirfoilComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394483920535F3100A48BF0 /* AirfoilComponent.swift */; };
 		B395E448205841240091C7A3 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E447205841240091C7A3 /* Ground.swift */; };
 		B395E44C2058482E0091C7A3 /* RocketEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */; };
@@ -142,6 +143,7 @@
 		B37597572064A4B300C96F26 /* ManualRotationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualRotationComponent.swift; sourceTree = "<group>"; };
 		B3790CB32061B9FE00EF2174 /* DifficultyLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevel.swift; sourceTree = "<group>"; };
 		B3790CB72062010400EF2174 /* ImpactFeedbackComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactFeedbackComponent.swift; sourceTree = "<group>"; };
+		B379922F25D0D57500B94506 /* DisplayedPercentageBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPercentageBarTests.swift; sourceTree = "<group>"; };
 		B394483920535F3100A48BF0 /* AirfoilComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirfoilComponent.swift; sourceTree = "<group>"; };
 		B395E447205841240091C7A3 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		B395E44B2058482E0091C7A3 /* RocketEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketEffectComponent.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		B31E691D2530FFBA0022F9FE /* EntityTests */ = {
 			isa = PBXGroup;
 			children = (
+				B379922F25D0D57500B94506 /* DisplayedPercentageBarTests.swift */,
 			);
 			path = EntityTests;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				B3A90DF225CEBD8A009231DA /* GameSceneTests.swift in Sources */,
 				B3A90E0325CEF0DE009231DA /* LevelNodeParserTests.swift in Sources */,
 				B3C87A7225A0DDC400E87598 /* LifespanComponentTests.swift in Sources */,
+				B379923025D0D57500B94506 /* DisplayedPercentageBarTests.swift in Sources */,
 				B3A90DE425CD6A69009231DA /* AirfoilComponentTests.swift in Sources */,
 				B3C87A7625A0E81700E87598 /* ConstantAnimationComponentTests.swift in Sources */,
 				B3A90E0725CF11D5009231DA /* SceneEditorNodeFactoryTests.swift in Sources */,
